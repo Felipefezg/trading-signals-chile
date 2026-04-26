@@ -1,4 +1,3 @@
-cat > ~/trading_signals/dashboard.py << 'ENDOFFILE'
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -235,4 +234,3 @@ with tab_noticias:
                         st.link_button("🔗 Leer noticia", n["url"])
     else:
         st.info("Sin noticias disponibles en este momento")
-ENDOFFILE
