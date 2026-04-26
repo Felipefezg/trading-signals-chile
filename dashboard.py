@@ -17,6 +17,7 @@ from data.macro_usa import get_macro_usa, get_correlaciones_chile
 from data.ipsa import get_precios_ipsa, get_resumen_sectorial, get_top_bottom_ipsa, get_amplitud_mercado
 from engine.divergence import calcular_divergencias
 from engine.recomendaciones import consolidar_señales, generar_recomendaciones, enviar_alertas_nuevas
+from engine.opciones import get_estrategias_opciones, SUBYACENTES_OPCIONES
 
 try:
     from engine.ib_executor import ejecutar_señales, get_posiciones_abiertas, get_resumen_cuenta
@@ -37,8 +38,9 @@ with col_title:
 with col_refresh:
     st.caption(f"🔄 Actualizado: {datetime.now().strftime('%H:%M:%S')} | Refresh: 15 min")
 
-tab_señales, tab_ib, tab_ipsa, tab_chile, tab_usa, tab_div, tab_kalshi, tab_noticias, tab_hist = st.tabs([
-    "🎯 Señales", "🤖 IB Trading", "🇨🇱 IPSA", "📊 Chile Macro", "🇺🇸 USA", "⚡ Divergencias", "🎰 Kalshi", "📰 Noticias", "📈 Historial"
+tab_señales, tab_opciones, tab_ib, tab_ipsa, tab_chile, tab_usa, tab_div, tab_kalshi, tab_noticias, tab_hist = st.tabs([
+    "🎯 Señales", "⚙️ Opciones", "🤖 IB Trading", "🇨🇱 IPSA", "📊 Chile Macro",
+    "🇺🇸 USA", "⚡ Divergencias", "🎰 Kalshi", "📰 Noticias", "📈 Historial"
 ])
 
 # ── TAB SEÑALES ───────────────────────────────────────────────────────────────
@@ -93,8 +95,14 @@ with tab_señales:
             rc     = "🟢" if riesgo <= 3 else ("🟡" if riesgo <= 6 else "🔴")
             ak     = f"{r['accion']}_{r['ib_ticker']}"
             ti     = "📱" if ak in st.session_state.alertas_enviadas else ""
+            # Badge opciones disponibles
+            opt_badge = "⚙️" if r["ib_ticker"] in SUBYACENTES_OPCIONES else ""
 
-            with st.expander(f"{color} **{accion} {r['ib_ticker']}** — {r['descripcion']}  |  Conv: **{r['conviccion']}%**  |  Riesgo: {rc} **{riesgo}/10**  |  {h.get('emoji','')} **{h.get('label','')}** {ti}"):
+            with st.expander(
+                f"{color} **{accion} {r['ib_ticker']}** — {r['descripcion']}  |  "
+                f"Conv: **{r['conviccion']}%**  |  Riesgo: {rc} **{riesgo}/10**  |  "
+                f"{h.get('emoji','')} **{h.get('label','')}** {ti} {opt_badge}"
+            ):
                 col1, col2, col3 = st.columns([2, 2, 1])
                 with col1:
                     st.markdown(f"### {color} {accion}")
@@ -148,6 +156,97 @@ with tab_señales:
                 st.caption("⚠️ Señal informativa. No constituye asesoría de inversión.")
     else:
         st.info("Sin señales consolidadas en este momento.")
+
+# ── TAB OPCIONES ──────────────────────────────────────────────────────────────
+with tab_opciones:
+    st.subheader("⚙️ Opciones — Estrategias Sugeridas")
+    st.caption("Estrategias de opciones derivadas de las señales del sistema. Disponible para SPY, SQM y GLD.")
+
+    recomendaciones = st.session_state.get("recomendaciones", [])
+    posiciones = get_posiciones_abiertas() if IB_DISPONIBLE else {}
+
+    with st.spinner("Evaluando estrategias de opciones..."):
+        estrategias = get_estrategias_opciones(recomendaciones, posiciones)
+
+    if estrategias:
+        st.success(f"✅ {len(estrategias)} estrategia(s) de opciones identificada(s)")
+
+        for est in estrategias:
+            tipo = est["estrategia"]
+            icon = "🟢" if "Comprar" in tipo else "💰"
+
+            with st.expander(f"{icon} **{est['tipo']}** — {est['symbol']} | Strike: {est['strike_objetivo']} | {est['dte_objetivo']}"):
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.markdown(f"### {icon} {est['tipo']}")
+                    st.markdown(f"**Subyacente:** `{est['symbol']}`")
+                    st.markdown(f"**Strike objetivo:** `{est['strike_objetivo']}`")
+                    st.markdown(f"**Vencimiento:** {est['dte_objetivo']}")
+                    st.markdown(f"**Contratos:** {est['contratos']}")
+
+                with col2:
+                    if "costo_total_est" in est:
+                        st.markdown("**💰 Costos y riesgo**")
+                        st.markdown(f"Premium estimado/contrato: **USD {est['premium_est_unit']:,.2f}**")
+                        st.markdown(f"Costo total estimado: **USD {est['costo_total_est']:,.0f}**")
+                        st.markdown(f"Pérdida máxima: **USD {est['max_perdida']:,.0f}**")
+                        st.markdown(f"Break-even: **{est['break_even']:,.2f}**")
+                    elif "ingreso_est" in est:
+                        st.markdown("**💰 Ingreso estimado**")
+                        st.markdown(f"Premium/contrato: **USD {est['premium_est_unit']:,.2f}**")
+                        st.markdown(f"Ingreso total est.: **USD {est['ingreso_est']:,.0f}**")
+                        st.markdown(f"Ganancia máxima: **USD {est['max_ganancia']:,.0f}**")
+
+                with col3:
+                    st.markdown("**📋 Evaluación**")
+                    st.markdown(f"✅ **Pros:** {est['pros']}")
+                    st.markdown(f"⚠️ **Contras:** {est['contras']}")
+                    if est.get("conviccion"):
+                        st.markdown(f"📊 **Convicción señal:** {est['conviccion']}%")
+
+                st.divider()
+                st.markdown(f"**Fundamento:** *{est['razon']}*")
+                if est.get("señal_origen"):
+                    st.caption(f"Origen: {est['señal_origen']}")
+
+                st.divider()
+                st.markdown("**📋 Cómo ejecutar en IB:**")
+                right_nombre = "Call" if est["right"] == "C" else "Put"
+                st.code(
+                    f"1. Abre TWS → Busca {est['symbol']}\n"
+                    f"2. Click derecho → Trade Options\n"
+                    f"3. Filtra por Strike: {est['strike_objetivo']} | Right: {right_nombre}\n"
+                    f"4. Selecciona vencimiento en rango {est['dte_objetivo']}\n"
+                    f"5. {'Comprar' if 'Comprar' in est['tipo'] else 'Vender'} {est['contratos']} contrato(s)\n"
+                    f"6. Usar orden LMT al midpoint del bid/ask"
+                )
+                st.caption("⚠️ Verifica siempre la liquidez (bid/ask spread) antes de ejecutar.")
+
+    else:
+        st.info(
+            "Sin estrategias de opciones disponibles en este momento.\n\n"
+            "Las opciones se sugieren cuando:\n"
+            "- Hay señales con convicción ≥80% y horizonte corto plazo sobre SPY, SQM o GLD\n"
+            "- Hay posiciones abiertas de ≥100 acciones sobre subyacentes con opciones"
+        )
+
+    st.divider()
+    st.subheader("📚 Guía rápida de estrategias")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**🟢 Comprar Call/Put**")
+        st.markdown("- Señal de alta convicción (≥80%)")
+        st.markdown("- Horizonte corto plazo (1-7 días)")
+        st.markdown("- Pérdida máxima = premium pagado")
+        st.markdown("- Apalancamiento 5-10x")
+        st.markdown("- Strike ~5% OTM para mejor R/R")
+    with col2:
+        st.markdown("**💰 Call Cubierto**")
+        st.markdown("- Posición larga existente ≥100 acciones")
+        st.markdown("- Genera ingreso adicional (1-2% mensual)")
+        st.markdown("- Strike ~5% sobre precio actual")
+        st.markdown("- Vencimiento 15-30 días")
+        st.markdown("- Limita ganancia si el activo sube mucho")
 
 # ── TAB IB TRADING ────────────────────────────────────────────────────────────
 with tab_ib:
@@ -217,129 +316,91 @@ with tab_ib:
 # ── TAB IPSA ──────────────────────────────────────────────────────────────────
 with tab_ipsa:
     st.subheader("🇨🇱 IPSA — S&P/CLX IPSA Completo (30 acciones)")
-    st.caption("Todas las acciones del índice IPSA con precios, variaciones y análisis sectorial en tiempo real.")
-
-    with st.spinner("Cargando IPSA completo..."):
+    with st.spinner("Cargando IPSA..."):
         df_ipsa = get_precios_ipsa()
 
     if not df_ipsa.empty:
-        # ── Amplitud de mercado
         amp = get_amplitud_mercado(df_ipsa)
         sesgo_color = "🟢" if amp["sesgo"] == "ALCISTA" else ("🔴" if amp["sesgo"] == "BAJISTA" else "🟡")
         col1, col2, col3, col4 = st.columns(4)
         with col1: st.metric("📈 Subiendo", amp["subiendo"])
         with col2: st.metric("📉 Bajando", amp["bajando"])
         with col3: st.metric("➡️ Neutras", amp["neutras"])
-        with col4: st.metric(f"{sesgo_color} Sesgo mercado", amp["sesgo"])
+        with col4: st.metric(f"{sesgo_color} Sesgo", amp["sesgo"])
 
         st.divider()
-
-        # ── Top y Bottom
         top5, bottom5 = get_top_bottom_ipsa(df_ipsa, n=5)
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🏆 Top 5 del día")
+            st.markdown("### 🏆 Top 5")
             for _, row in top5.iterrows():
                 st.markdown(f"🟢 **{row['nombre']}** ({row['ticker']}) — `{row['cambio_pct']:+.2f}%` | {row['precio']:,.0f} CLP")
         with col2:
-            st.markdown("### 📉 Bottom 5 del día")
+            st.markdown("### 📉 Bottom 5")
             for _, row in bottom5.iterrows():
                 st.markdown(f"🔴 **{row['nombre']}** ({row['ticker']}) — `{row['cambio_pct']:+.2f}%` | {row['precio']:,.0f} CLP")
 
         st.divider()
-
-        # ── Gráfico variación completo
         fig = go.Figure(go.Bar(
-            x=df_ipsa["ticker"],
-            y=df_ipsa["cambio_pct"],
+            x=df_ipsa["ticker"], y=df_ipsa["cambio_pct"],
             marker_color=["#22c55e" if x > 0 else "#ef4444" for x in df_ipsa["cambio_pct"]],
-            text=[f"{x:+.2f}%" for x in df_ipsa["cambio_pct"]],
-            textposition="outside",
-            hovertemplate="<b>%{x}</b><br>Variación: %{y:+.2f}%<extra></extra>",
+            text=[f"{x:+.2f}%" for x in df_ipsa["cambio_pct"]], textposition="outside",
         ))
-        fig.update_layout(
-            title="IPSA — Variación % del día (30 acciones)",
-            paper_bgcolor="#0f172a", plot_bgcolor="#0f172a",
-            font_color="#e2e8f0", height=400,
-            margin=dict(t=50, b=80), xaxis=dict(tickangle=-45),
-            yaxis=dict(gridcolor="#1e293b"), showlegend=False,
-        )
+        fig.update_layout(title="IPSA — Variación % del día", paper_bgcolor="#0f172a",
+            plot_bgcolor="#0f172a", font_color="#e2e8f0", height=400,
+            margin=dict(t=50,b=80), xaxis=dict(tickangle=-45),
+            yaxis=dict(gridcolor="#1e293b"), showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
         st.divider()
-
-        # ── Análisis sectorial
-        st.subheader("📊 Análisis Sectorial")
+        st.subheader("📊 Sectorial")
         df_sec = get_resumen_sectorial(df_ipsa)
         if not df_sec.empty:
-            col1, col2 = st.columns([2, 3])
+            col1, col2 = st.columns([2,3])
             with col1:
                 for _, row in df_sec.iterrows():
                     color = "🟢" if row["variacion_prom"] > 0 else "🔴"
-                    st.markdown(
-                        f"{color} **{row['sector']}** — `{row['variacion_prom']:+.2f}%` "
-                        f"| Mejor: `{row['mejor']:+.2f}%` | Peor: `{row['peor']:+.2f}%`"
-                    )
+                    st.markdown(f"{color} **{row['sector']}** — `{row['variacion_prom']:+.2f}%` | Mejor: `{row['mejor']:+.2f}%` | Peor: `{row['peor']:+.2f}%`")
             with col2:
                 fig_sec = go.Figure(go.Bar(
-                    x=df_sec["sector"],
-                    y=df_sec["variacion_prom"],
+                    x=df_sec["sector"], y=df_sec["variacion_prom"],
                     marker_color=["#22c55e" if x > 0 else "#ef4444" for x in df_sec["variacion_prom"]],
-                    text=[f"{x:+.2f}%" for x in df_sec["variacion_prom"]],
-                    textposition="outside",
+                    text=[f"{x:+.2f}%" for x in df_sec["variacion_prom"]], textposition="outside",
                 ))
-                fig_sec.update_layout(
-                    title="Variación por sector",
-                    paper_bgcolor="#0f172a", plot_bgcolor="#0f172a",
-                    font_color="#e2e8f0", height=300,
-                    margin=dict(t=40, b=60), xaxis=dict(tickangle=-30),
-                    yaxis=dict(gridcolor="#1e293b"), showlegend=False,
-                )
+                fig_sec.update_layout(title="Variación por sector", paper_bgcolor="#0f172a",
+                    plot_bgcolor="#0f172a", font_color="#e2e8f0", height=300,
+                    margin=dict(t=40,b=60), xaxis=dict(tickangle=-30),
+                    yaxis=dict(gridcolor="#1e293b"), showlegend=False)
                 st.plotly_chart(fig_sec, use_container_width=True)
 
         st.divider()
-
-        # ── Tabla completa filtrable
-        st.subheader("📋 Tabla completa IPSA")
+        st.subheader("📋 Tabla completa")
         sectores = ["Todos"] + sorted(df_ipsa["sector"].unique().tolist())
         sector_filtro = st.selectbox("Filtrar por sector", sectores)
-
         df_mostrar = df_ipsa if sector_filtro == "Todos" else df_ipsa[df_ipsa["sector"] == sector_filtro]
-
         st.dataframe(
             df_mostrar[["señal","nombre","ticker","sector","precio","cambio_pct","peso"]].rename(columns={
-                "señal": "", "nombre": "Empresa", "ticker": "Ticker",
-                "sector": "Sector", "precio": "Precio CLP",
-                "cambio_pct": "Var %", "peso": "Peso IPSA"
-            }),
-            use_container_width=True,
-            hide_index=True,
+                "señal":"","nombre":"Empresa","ticker":"Ticker","sector":"Sector",
+                "precio":"Precio CLP","cambio_pct":"Var %","peso":"Peso IPSA"}),
+            use_container_width=True, hide_index=True,
             column_config={
                 "Var %": st.column_config.NumberColumn("Var %", format="%+.2f%%"),
                 "Precio CLP": st.column_config.NumberColumn("Precio CLP", format="%,.0f"),
-            }
-        )
-    else:
-        st.info("No se pudieron cargar datos del IPSA")
+            })
 
 # ── TAB CHILE MACRO ───────────────────────────────────────────────────────────
 with tab_chile:
-    st.subheader("📊 Indicadores Macro Chile")
+    st.subheader("📊 Macro Chile")
     with st.spinner("Cargando..."):
         bcch = get_resumen_bcch()
     col1, col2, col3, col4 = st.columns(4)
-    clp = bcch.get("CLP/USD")
-    tpm = bcch.get("TPM_%")
-    ipc = bcch.get("IPC_%")
-    uf  = bcch.get("UF")
+    clp = bcch.get("CLP/USD"); tpm = bcch.get("TPM_%"); ipc = bcch.get("IPC_%"); uf = bcch.get("UF")
     with col1: st.metric("CLP/USD", f"${clp:,.0f}" if clp else "N/D")
     with col2: st.metric("TPM", f"{tpm}%" if tpm else "N/D")
     with col3: st.metric("IPC mensual", f"{ipc}%" if ipc else "N/D")
     with col4: st.metric("UF", f"${uf:,.2f}" if uf else "N/D")
-
     st.divider()
-    st.subheader("⚡ Spread BTC")
-    with st.spinner("Calculando..."):
+    with st.spinner("Calculando spread BTC..."):
         spread = get_spread_btc(clp or 892.0)
     if spread:
         col1, col2, col3, col4 = st.columns(4)
@@ -347,11 +408,8 @@ with tab_chile:
         with col2: st.metric("BTC Global", f"${spread['btc_global_clp']:,.0f}")
         with col3: st.metric("Spread %", f"{spread['spread_pct']}%", delta=spread["direccion"])
         with col4: st.metric("BTC USD", f"${spread['btc_usd']:,.0f}")
-        if spread.get("alerta"):
-            st.error(f"🚨 ALERTA: BTC {spread['direccion']} {abs(spread['spread_pct'])}%")
-        else:
-            st.success("✅ Spread normal")
-
+        if spread.get("alerta"): st.error(f"🚨 BTC {spread['direccion']} {abs(spread['spread_pct'])}%")
+        else: st.success("✅ Spread normal")
     st.divider()
     st.subheader("🌐 Polymarket Chile")
     with st.spinner("Cargando..."):
@@ -361,13 +419,11 @@ with tab_chile:
             prob = row["probabilidad"]
             if prob is None: continue
             color = "🟢" if prob > 65 else ("🔴" if prob < 35 else "🟡")
-            rel   = row.get("relevancia", 1)
-            with st.expander(f"{color} {row['pregunta'][:90]} — **{prob}%** {'⭐'*rel}"):
+            with st.expander(f"{color} {row['pregunta'][:90]} — **{prob}%** {'⭐'*row.get('relevancia',1)}"):
                 col1, col2 = st.columns(2)
                 with col1: st.write(f"**Prob:** {prob}% | **Activos:** {', '.join(row['chile_impact'])}")
                 with col2:
-                    vol = row.get("volumen_usd", 0)
-                    try: st.write(f"**Vol:** USD {float(vol):,.0f} | **Cierre:** {row.get('cierre','')}")
+                    try: st.write(f"**Vol:** USD {float(row.get('volumen_usd',0)):,.0f}")
                     except: pass
                 st.link_button("Ver en Polymarket", row.get("url",""))
 
@@ -380,10 +436,8 @@ with tab_usa:
         cols = st.columns(3)
         for i, (_, row) in enumerate(df_usa.iterrows()):
             with cols[i % 3]:
-                st.metric(row["ticker"], f"${row['precio']:,.2f}",
-                    delta=f"{row['cambio_pct']:+.2f}%",
+                st.metric(row["ticker"], f"${row['precio']:,.2f}", delta=f"{row['cambio_pct']:+.2f}%",
                     delta_color="normal" if row['cambio_pct'] >= 0 else "inverse")
-
     st.divider()
     st.subheader("🌍 Macro USA")
     with st.spinner("Cargando..."):
@@ -396,8 +450,7 @@ with tab_usa:
                     f"{m['precio']:,.2f}", delta=f"{m['cambio_pct']:+.2f}%",
                     delta_color="inverse" if m["inverso"] else "normal")
         st.divider()
-        st.subheader("🔗 Correlaciones → Chile")
-        for c in get_correlaciones_chile(macro_data)[:8]:
+        for c in get_correlaciones_chile(macro_data)[:6]:
             score = c["score"]
             color = "🔴" if score >= 3 else ("🟡" if score >= 1.5 else "🟢")
             with st.expander(f"{color} [Score:{score}] {c['tesis']}"):
@@ -405,40 +458,20 @@ with tab_usa:
                 with col1: st.write(f"**{c['indicador']}** ({c['cambio_pct']:+.2f}%)")
                 with col2: st.write(f"**{c['activo_chile']}** → {c['direccion']}")
 
-    st.divider()
-    st.subheader("🌐 Polymarket USA")
-    with st.spinner("Cargando..."):
-        df_poly = get_active_markets(limit=30)
-    if not df_poly.empty:
-        busqueda = st.text_input("🔍 Filtrar", placeholder="fed, bitcoin, china...")
-        if busqueda:
-            df_poly = df_poly[df_poly["pregunta"].str.lower().str.contains(busqueda.lower(), na=False)]
-        for _, row in df_poly.iterrows():
-            prob = row["probabilidad"]
-            if prob is None: continue
-            color = "🟢" if prob > 65 else ("🔴" if prob < 35 else "🟡")
-            with st.expander(f"{color} {row['pregunta'][:90]} — **{prob}%**"):
-                vol = row.get("volumen_usd", 0)
-                try: st.write(f"**Prob:** {prob}% | **Vol:** USD {float(vol):,.0f}")
-                except: st.write(f"**Prob:** {prob}%")
-                st.link_button("Ver en Polymarket", row.get("url",""))
-
 # ── TAB DIVERGENCIAS ──────────────────────────────────────────────────────────
 with tab_div:
     st.subheader("⚡ Divergencias")
     with st.spinner("Analizando..."):
         df_poly_div = get_mercados_chile(limit=200)
-        bcch_div    = get_resumen_bcch()
-        clp_div     = bcch_div.get("CLP/USD", 892.0)
-        spread_div  = get_spread_btc(clp_div or 892.0)
-        df_result   = calcular_divergencias(df_poly_div, spread_div)
+        bcch_div = get_resumen_bcch()
+        clp_div = bcch_div.get("CLP/USD", 892.0)
+        spread_div = get_spread_btc(clp_div or 892.0)
+        df_result = calcular_divergencias(df_poly_div, spread_div)
     if not df_result.empty:
         nuevas = guardar_senales(df_result)
         if nuevas > 0: st.success(f"✅ {nuevas} señal(es) guardada(s)")
-        top = df_result.iloc[0]
-        st.info(f"**Principal:** {top['Señal']} — {top['Prob %']}% | {top['Dirección']} | Score: {top['Score']}")
-        st.dataframe(df_result[["Señal","Prob %","Dirección","Activos Chile","Score","Tesis"]],
-            use_container_width=True, hide_index=True)
+        st.info(f"**Principal:** {df_result.iloc[0]['Señal']} — {df_result.iloc[0]['Prob %']}% | Score: {df_result.iloc[0]['Score']}")
+        st.dataframe(df_result[["Señal","Prob %","Dirección","Activos Chile","Score","Tesis"]], use_container_width=True, hide_index=True)
     else:
         st.info("Sin divergencias")
 
@@ -465,7 +498,7 @@ with tab_kalshi:
                 with col1: st.write(f"**Prob:** {prob}% | **Dir:** {s['direccion']} | **Activos:** {', '.join(s['activos_impacto'])}")
                 with col2: st.write(f"**Score:** {s['score']} | **Cierre:** {s['cierre']}")
         st.divider()
-        st.subheader("🔀 Triangulación Kalshi × Polymarket")
+        st.subheader("🔀 Triangulación")
         with st.spinner("..."):
             df_poly_tri = get_mercados_chile(limit=200)
         coincidencias = []
@@ -473,14 +506,11 @@ with tab_kalshi:
             for _, row in df_poly_tri.iterrows():
                 prob_poly = row.get("probabilidad")
                 if prob_poly is None: continue
-                dir_poly = "ALZA" if prob_poly > 50 else "BAJA"
                 comunes = set(s["activos_impacto"]) & set(row.get("chile_impact", []))
+                dir_poly = "ALZA" if prob_poly > 50 else "BAJA"
                 if comunes and s["direccion"] == dir_poly:
-                    coincidencias.append({
-                        "Kalshi": s["titulo"][:50], "Polymarket": row["pregunta"][:50],
-                        "Dir": s["direccion"], "K%": f"{s['prob_pct']}%",
-                        "P%": f"{prob_poly}%", "Activos": ", ".join(comunes),
-                    })
+                    coincidencias.append({"Kalshi": s["titulo"][:50], "Polymarket": row["pregunta"][:50],
+                        "Dir": s["direccion"], "K%": f"{s['prob_pct']}%", "P%": f"{prob_poly}%", "Activos": ", ".join(comunes)})
         if coincidencias:
             st.success(f"✅ {len(coincidencias)} coincidencia(s)")
             st.dataframe(pd.DataFrame(coincidencias), use_container_width=True, hide_index=True)
@@ -502,9 +532,8 @@ with tab_noticias:
         st.caption(f"{len(noticias_filtradas)} noticias")
         for n in noticias_filtradas:
             score = n["score"]
-            kws   = n.get("keywords", [])
             color = "🔴" if score >= 10 else ("🟡" if score >= 5 else "🟢")
-            tags  = " | ".join([f"`{k}`" for k in kws]) if kws else ""
+            tags = " | ".join([f"`{k}`" for k in n.get("keywords", [])]) if n.get("keywords") else ""
             with st.expander(f"{color} **[{score}]** {n['titulo'][:100]}"):
                 col1, col2 = st.columns([3, 1])
                 with col1:
@@ -516,7 +545,7 @@ with tab_noticias:
 
 # ── TAB HISTORIAL ─────────────────────────────────────────────────────────────
 with tab_hist:
-    st.subheader("📈 Historial de Señales")
+    st.subheader("📈 Historial")
     stats = get_estadisticas()
     col1, col2, col3, col4 = st.columns(4)
     with col1: st.metric("Total", stats["total"])
@@ -536,11 +565,11 @@ with tab_hist:
         st.divider()
         pendientes = [r for r in rows if r[7] == "pendiente"]
         if pendientes:
-            opciones = [f"{r[0]} — {r[1][:60]}" for r in pendientes]
-            seleccion = st.selectbox("Señal", opciones)
+            opciones_sel = [f"{r[0]} — {r[1][:60]}" for r in pendientes]
+            seleccion = st.selectbox("Señal", opciones_sel)
             resultado = st.radio("Resultado", ["correcto", "incorrecto"], horizontal=True)
             if st.button("Guardar"):
-                idx = opciones.index(seleccion)
+                idx = opciones_sel.index(seleccion)
                 actualizar_resultado(pendientes[idx][1], pendientes[idx][0][:10], resultado)
                 st.success("✅ Guardado")
                 st.rerun()
