@@ -15,10 +15,14 @@ from data.historial import guardar_senales, get_historial, get_estadisticas, act
 from data.kalshi import get_kalshi_resumen
 from data.macro_usa import get_macro_usa, get_correlaciones_chile
 from engine.divergence import calcular_divergencias
-from engine.recomendaciones import consolidar_señales, generar_recomendaciones
+from engine.recomendaciones import consolidar_señales, generar_recomendaciones, enviar_alertas_nuevas
 
 st.set_page_config(page_title="Trading Signals", page_icon="📊", layout="wide")
 st_autorefresh(interval=15 * 60 * 1000, key="autorefresh")
+
+# Cache de alertas enviadas (se resetea al reiniciar)
+if "alertas_enviadas" not in st.session_state:
+    st.session_state.alertas_enviadas = set()
 
 st.title("📊 Trading Signals — Polymarket × Kalshi × Mercados")
 col_title, col_refresh = st.columns([4, 1])
@@ -31,7 +35,7 @@ tab_señales, tab_chile, tab_usa, tab_div, tab_kalshi, tab_noticias, tab_hist = 
     "🎯 Señales", "🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "🎰 Kalshi", "📰 Noticias", "📊 Historial"
 ])
 
-# ── TAB SEÑALES ──────────────────────────────────────────────────────────────
+# ── TAB SEÑALES ───────────────────────────────────────────────────────────────
 with tab_señales:
     st.subheader("🎯 Señales de Trading — Panel Ejecutivo")
     st.caption("Recomendaciones consolidadas desde Polymarket, Kalshi, Macro USA y Noticias Chile. Para operar en Interactive Brokers.")
@@ -42,12 +46,18 @@ with tab_señales:
         macro_raw   = get_macro_usa()
         macro_corr  = get_correlaciones_chile(macro_raw)
         noticias    = get_noticias_google()
-
-        activos = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
+        activos     = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
         recomendaciones = generar_recomendaciones(activos)
 
+    # Enviar alertas Telegram si corresponde
     if recomendaciones:
-        # Resumen ejecutivo
+        n_alertas, st.session_state.alertas_enviadas = enviar_alertas_nuevas(
+            recomendaciones, st.session_state.alertas_enviadas
+        )
+        if n_alertas > 0:
+            st.success(f"📱 {n_alertas} alerta(s) enviada(s) a Telegram")
+
+    if recomendaciones:
         compras = [r for r in recomendaciones if r["accion"] == "COMPRAR"]
         ventas  = [r for r in recomendaciones if r["accion"] == "VENDER"]
 
@@ -61,13 +71,15 @@ with tab_señales:
 
         st.divider()
 
-        # Señal principal destacada
+        # Señal principal
         top = recomendaciones[0]
         color_top = "🟢" if top["accion"] == "COMPRAR" else "🔴"
+        h = top.get("horizonte", {})
         st.info(
             f"**Señal principal:** {color_top} **{top['accion']} {top['ib_ticker']}** "
             f"({top['descripcion']})  \n"
             f"Convicción: **{top['conviccion']}%** | Riesgo: **{top['riesgo']}/10** | "
+            f"{h.get('emoji','')} Horizonte: **{h.get('dias','N/D')}** | "
             f"Fuentes: **{', '.join(top['fuentes'])}**"
         )
 
@@ -78,35 +90,35 @@ with tab_señales:
             accion  = r["accion"]
             color   = "🟢" if accion == "COMPRAR" else "🔴"
             riesgo  = r["riesgo"]
+            h       = r.get("horizonte", {})
 
-            # Barra de riesgo visual
-            riesgo_bar = "█" * riesgo + "░" * (10 - riesgo)
+            if riesgo <= 3:   riesgo_color = "🟢"
+            elif riesgo <= 6: riesgo_color = "🟡"
+            else:             riesgo_color = "🔴"
 
-            # Color riesgo
-            if riesgo <= 3:
-                riesgo_color = "🟢"
-            elif riesgo <= 6:
-                riesgo_color = "🟡"
-            else:
-                riesgo_color = "🔴"
+            # Indicador de alerta Telegram
+            alerta_key = f"{r['accion']}_{r['ib_ticker']}"
+            telegram_icon = "📱" if alerta_key in st.session_state.alertas_enviadas else ""
 
             header = (
                 f"{color} **{accion} {r['ib_ticker']}** — {r['descripcion']}  |  "
                 f"Convicción: **{r['conviccion']}%**  |  "
-                f"Riesgo: {riesgo_color} **{riesgo}/10**"
+                f"Riesgo: {riesgo_color} **{riesgo}/10**  |  "
+                f"{h.get('emoji','')} **{h.get('label','')}** {telegram_icon}"
             )
 
             with st.expander(header):
+                # ── Fila 1: Acción + Métricas + Dirección
                 col1, col2, col3 = st.columns([2, 2, 1])
                 with col1:
                     st.markdown(f"### {color} {accion}")
-                    st.markdown(f"**Instrumento:** `{r['ib_ticker']}` en Interactive Brokers")
+                    st.markdown(f"**Instrumento IB:** `{r['ib_ticker']}`")
                     st.markdown(f"**Tipo:** {r['tipo']}")
                     st.markdown(f"**Descripción:** {r['descripcion']}")
                 with col2:
                     st.markdown("**Métricas**")
                     st.progress(r["conviccion"] / 100, text=f"Convicción: {r['conviccion']}%")
-                    st.progress(riesgo / 10, text=f"Riesgo: {riesgo}/10 ({riesgo_bar})")
+                    st.progress(riesgo / 10, text=f"Riesgo: {riesgo}/10")
                     st.markdown(f"**Fuentes ({r['n_fuentes']}):** {', '.join(r['fuentes'])}")
                 with col3:
                     if accion == "COMPRAR":
@@ -115,28 +127,69 @@ with tab_señales:
                         st.error("⬇️ SHORT")
 
                 st.divider()
-                st.markdown("#### 📋 Fundamentos")
+
+                # ── Fila 2: Horizonte + SL/TP
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.markdown("**⏱️ Horizonte de inversión**")
+                    st.markdown(f"{h.get('emoji','')} **{h.get('label','')}** — {h.get('dias','')}")
+
+                with col2:
+                    st.markdown("**📐 Stop Loss / Take Profit**")
+                    precio = r.get("precio_actual")
+                    sl     = r.get("stop_loss")
+                    tp     = r.get("take_profit")
+                    if precio and sl and tp:
+                        st.markdown(f"💰 Precio actual: **{precio:,.2f}**")
+                        st.markdown(f"🛑 Stop Loss: **{sl:,.2f}**")
+                        st.markdown(f"🎯 Take Profit: **{tp:,.2f}**")
+                        riesgo_recompensa = round(abs(tp - precio) / abs(precio - sl), 1) if abs(precio - sl) > 0 else "N/D"
+                        st.markdown(f"⚖️ Ratio R/R: **1:{riesgo_recompensa}**")
+                    else:
+                        st.caption("SL/TP no disponible para este instrumento")
+
+                st.divider()
+
+                # ── Fila 3: Vehículos sugeridos
+                st.markdown("**🚗 Vehículos de inversión sugeridos**")
+                instrumentos = r.get("instrumentos", [])
+                for i, inst in enumerate(instrumentos):
+                    badge = "⭐ Recomendado" if i == 0 else "Alternativa"
+                    with st.container():
+                        st.markdown(f"**{badge}: {inst['vehiculo']}**")
+                        col_a, col_b = st.columns(2)
+                        with col_a:
+                            st.markdown(f"📋 {inst['razon']}")
+                            st.markdown(f"✅ **Pros:** {inst['pros']}")
+                        with col_b:
+                            st.markdown(f"🕐 **Cuándo:** {inst['cuando']}")
+                            st.markdown(f"⚠️ **Contras:** {inst['contras']}")
+                        if i < len(instrumentos) - 1:
+                            st.markdown("---")
+
+                st.divider()
+
+                # ── Fila 4: Fundamentos
+                st.markdown("**📋 Fundamentos de la señal**")
                 st.markdown(f"*{r['tesis']}*")
 
-                # Evidencia por fuente
                 fuentes_orden = ["Polymarket", "Kalshi", "Macro USA", "Noticias"]
                 for fuente in fuentes_orden:
                     ev_fuente = [e for e in r["evidencia"] if e["fuente"] == fuente]
-                    if not ev_fuente:
-                        continue
+                    if not ev_fuente: continue
                     st.markdown(f"**{fuente}**")
                     for e in ev_fuente[:3]:
-                        prob_str = f" ({e['prob']}%)" if e.get("prob") else ""
-                        dir_icon = "📈" if e["direccion"] == "ALZA" else ("📉" if e["direccion"] == "BAJA" else "➡️")
+                        prob_str  = f" ({e['prob']}%)" if e.get("prob") else ""
+                        dir_icon  = "📈" if e["direccion"] == "ALZA" else ("📉" if e["direccion"] == "BAJA" else "➡️")
                         st.markdown(f"- {dir_icon} {e['señal']}{prob_str} — Peso: `{e['peso']}`")
 
                 st.divider()
-                st.caption("⚠️ Esta señal es informativa. No constituye asesoría de inversión. Opere bajo su propio criterio y gestión de riesgo.")
+                st.caption("⚠️ Señal informativa. No constituye asesoría de inversión. Opere bajo su propio criterio y gestión de riesgo.")
 
     else:
-        st.info("Sin señales de trading suficientemente consolidadas en este momento. Vuelve en 15 minutos.")
+        st.info("Sin señales suficientemente consolidadas en este momento.")
 
-# ── TAB CHILE ────────────────────────────────────────────────────────────────
+# ── TAB CHILE ─────────────────────────────────────────────────────────────────
 with tab_chile:
     st.subheader("Indicadores Macro Chile")
     with st.spinner("Cargando..."):
@@ -213,7 +266,7 @@ with tab_chile:
     else:
         st.info("Sin mercados Polymarket con impacto Chile detectado")
 
-# ── TAB USA ──────────────────────────────────────────────────────────────────
+# ── TAB USA ───────────────────────────────────────────────────────────────────
 with tab_usa:
     st.subheader("📈 Activos USA")
     with st.spinner("Cargando..."):
@@ -239,37 +292,30 @@ with tab_usa:
 
     st.divider()
     st.subheader("🌍 Macro USA — Indicadores Clave")
-    st.caption("Indicadores que impactan directamente en activos chilenos vía correlaciones globales.")
     with st.spinner("Cargando macro USA..."):
         macro_data = get_macro_usa()
     if macro_data:
         cols = st.columns(4)
         for i, m in enumerate(macro_data):
-            cambio = m["cambio_pct"]
             with cols[i % 4]:
                 alerta_txt = f" {m['alerta']}" if m["alerta"] else ""
-                st.metric(
-                    m["nombre"] + alerta_txt,
-                    f"{m['precio']:,.2f}",
-                    delta=f"{cambio:+.2f}%",
-                    delta_color="inverse" if m["inverso"] else "normal"
-                )
+                st.metric(m["nombre"] + alerta_txt, f"{m['precio']:,.2f}",
+                    delta=f"{m['cambio_pct']:+.2f}%",
+                    delta_color="inverse" if m["inverso"] else "normal")
         st.divider()
         st.subheader("🔗 Correlaciones Macro USA → Chile")
         correlaciones = get_correlaciones_chile(macro_data)
-        if correlaciones:
-            for c in correlaciones[:8]:
-                score = c["score"]
-                color = "🔴" if score >= 3 else ("🟡" if score >= 1.5 else "🟢")
-                alerta = f" **{c['alerta']}**" if c["alerta"] else ""
-                with st.expander(f"{color} [Score:{score}] {c['tesis']}{alerta}"):
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.write(f"**Indicador:** {c['indicador']}")
-                        st.write(f"**Cambio:** {c['cambio_pct']:+.2f}%")
-                    with col2:
-                        st.write(f"**Activo Chile:** {c['activo_chile']}")
-                        st.write(f"**Dirección:** {c['direccion']}")
+        for c in correlaciones[:8]:
+            score = c["score"]
+            color = "🔴" if score >= 3 else ("🟡" if score >= 1.5 else "🟢")
+            with st.expander(f"{color} [Score:{score}] {c['tesis']}"):
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write(f"**Indicador:** {c['indicador']}")
+                    st.write(f"**Cambio:** {c['cambio_pct']:+.2f}%")
+                with col2:
+                    st.write(f"**Activo Chile:** {c['activo_chile']}")
+                    st.write(f"**Dirección:** {c['direccion']}")
 
     st.divider()
     st.subheader("🌐 Mercados Polymarket — Top por Volumen")
@@ -296,10 +342,9 @@ with tab_usa:
                     st.write(f"**Cierre:** {row.get('cierre','')}")
                 st.link_button("Ver en Polymarket", row.get("url",""))
 
-# ── TAB DIVERGENCIAS ─────────────────────────────────────────────────────────
+# ── TAB DIVERGENCIAS ──────────────────────────────────────────────────────────
 with tab_div:
     st.subheader("⚡ Divergencias y Oportunidades Detectadas")
-    st.caption("Score = distancia al 50% × volumen × multiplicador de relevancia geopolítica")
     with st.spinner("Analizando divergencias..."):
         df_poly_div = get_mercados_chile(limit=200)
         bcch_div    = get_resumen_bcch()
@@ -311,107 +356,74 @@ with tab_div:
         if nuevas > 0:
             st.success(f"✅ {nuevas} señal(es) nueva(s) guardada(s) en historial")
         top = df_result.iloc[0]
-        st.info(
-            f"**Señal principal:** {top['Señal']}  \n"
-            f"Probabilidad: **{top['Prob %']}%** | {top['Dirección']} | "
-            f"Activos: **{top['Activos Chile']}** | Score: **{top['Score']}**"
-        )
-        st.dataframe(
-            df_result[["Señal","Prob %","Dirección","Activos Chile","Relevancia","Score","Tesis"]],
+        st.info(f"**Señal principal:** {top['Señal']} — {top['Prob %']}% | {top['Dirección']} | Score: {top['Score']}")
+        st.dataframe(df_result[["Señal","Prob %","Dirección","Activos Chile","Relevancia","Score","Tesis"]],
             use_container_width=True, hide_index=True,
             column_config={
                 "Score": st.column_config.ProgressColumn("Score", min_value=0, max_value=20, format="%.2f"),
                 "Prob %": st.column_config.NumberColumn("Prob %", format="%.1f%%"),
                 "Tesis": st.column_config.TextColumn("Tesis", width="large"),
-            }
-        )
-        st.divider()
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("**Variables Chile**")
-            st.write(f"- CLP/USD: **{bcch_div.get('CLP/USD','N/D')}**")
-            st.write(f"- TPM: **{bcch_div.get('TPM_%','N/D')}%**")
-            st.write(f"- IPC: **{bcch_div.get('IPC_%','N/D')}%**")
-            st.write(f"- UF: **${bcch_div.get('UF','N/D'):,}**")
-        with col2:
-            st.markdown("**Spread BTC**")
-            if spread_div:
-                st.write(f"- Local: **${spread_div.get('btc_local_clp',0):,.0f} CLP**")
-                st.write(f"- Global: **${spread_div.get('btc_global_clp',0):,.0f} CLP**")
-                st.write(f"- Spread: **{spread_div.get('spread_pct',0)}%**")
+            })
     else:
-        st.info("Sin divergencias detectadas en este momento")
+        st.info("Sin divergencias detectadas")
 
-# ── TAB KALSHI ───────────────────────────────────────────────────────────────
+# ── TAB KALSHI ────────────────────────────────────────────────────────────────
 with tab_kalshi:
     st.subheader("🎰 Kalshi — Mercados de Predicción Regulados (CFTC)")
-    st.caption("Kalshi es el primer exchange de predicción regulado por la CFTC en USA.")
     with st.spinner("Cargando Kalshi..."):
         senales_kalshi = get_kalshi_resumen()
     if senales_kalshi:
         col1, col2, col3 = st.columns(3)
-        with col1: st.metric("Señales activas", len(senales_kalshi))
-        alza = sum(1 for s in senales_kalshi if s["direccion"] == "ALZA")
-        baja = sum(1 for s in senales_kalshi if s["direccion"] == "BAJA")
-        with col2: st.metric("📈 ALZA", alza)
-        with col3: st.metric("📉 BAJA", baja)
+        with col1: st.metric("Señales", len(senales_kalshi))
+        with col2: st.metric("📈 ALZA", sum(1 for s in senales_kalshi if s["direccion"] == "ALZA"))
+        with col3: st.metric("📉 BAJA", sum(1 for s in senales_kalshi if s["direccion"] == "BAJA"))
         st.divider()
         series_vistas = set()
         for s in senales_kalshi:
-            serie = s["serie"]
-            if serie not in series_vistas:
-                st.markdown(f"### {serie}")
-                series_vistas.add(serie)
+            if s["serie"] not in series_vistas:
+                st.markdown(f"### {s['serie']}")
+                series_vistas.add(s["serie"])
             prob = s["prob_pct"]
             color = "🟢" if prob > 65 else ("🔴" if prob < 35 else "🟡")
             with st.expander(f"{color} {s['titulo'][:90]} — **{prob}%** | Score: {s['score']}"):
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.write(f"**Probabilidad:** {prob}%")
-                    st.write(f"**Dirección:** {s['direccion']}")
+                    st.write(f"**Prob:** {prob}% | **Dir:** {s['direccion']}")
                     st.write(f"**Activos:** {', '.join(s['activos_impacto'])}")
                 with col2:
-                    st.write(f"**Score:** {s['score']}")
-                    st.write(f"**Cierre:** {s['cierre']}")
-                    st.write(f"**Volumen:** {s['volumen']}")
+                    st.write(f"**Score:** {s['score']} | **Cierre:** {s['cierre']}")
         st.divider()
         st.subheader("🔀 Triangulación Kalshi × Polymarket")
         with st.spinner("Triangulando..."):
             df_poly_tri = get_mercados_chile(limit=200)
-        if not df_poly_tri.empty:
-            coincidencias = []
-            for s in senales_kalshi:
-                for _, row in df_poly_tri.iterrows():
-                    prob_poly = row.get("probabilidad")
-                    if prob_poly is None: continue
-                    dir_poly = "ALZA" if prob_poly > 50 else "BAJA"
-                    comunes = set(s["activos_impacto"]) & set(row.get("chile_impact", []))
-                    if comunes and s["direccion"] == dir_poly:
-                        coincidencias.append({
-                            "Kalshi": s["titulo"][:50],
-                            "Polymarket": row["pregunta"][:50],
-                            "Dirección": s["direccion"],
-                            "Prob Kalshi": f"{s['prob_pct']}%",
-                            "Prob Poly": f"{prob_poly}%",
-                            "Activos": ", ".join(comunes),
-                        })
-            if coincidencias:
-                st.success(f"✅ {len(coincidencias)} señal(es) confirmada(s) en ambas plataformas")
-                st.dataframe(pd.DataFrame(coincidencias), use_container_width=True, hide_index=True)
-            else:
-                st.info("Sin señales coincidentes en este momento")
+        coincidencias = []
+        for s in senales_kalshi:
+            for _, row in df_poly_tri.iterrows():
+                prob_poly = row.get("probabilidad")
+                if prob_poly is None: continue
+                dir_poly = "ALZA" if prob_poly > 50 else "BAJA"
+                comunes = set(s["activos_impacto"]) & set(row.get("chile_impact", []))
+                if comunes and s["direccion"] == dir_poly:
+                    coincidencias.append({
+                        "Kalshi": s["titulo"][:50], "Polymarket": row["pregunta"][:50],
+                        "Dirección": s["direccion"], "Prob K": f"{s['prob_pct']}%",
+                        "Prob P": f"{prob_poly}%", "Activos": ", ".join(comunes),
+                    })
+        if coincidencias:
+            st.success(f"✅ {len(coincidencias)} señal(es) confirmada(s)")
+            st.dataframe(pd.DataFrame(coincidencias), use_container_width=True, hide_index=True)
+        else:
+            st.info("Sin coincidencias en este momento")
 
-# ── TAB NOTICIAS ─────────────────────────────────────────────────────────────
+# ── TAB NOTICIAS ──────────────────────────────────────────────────────────────
 with tab_noticias:
     st.subheader("📰 Noticias Chile — Mercados y Economía")
     with st.spinner("Cargando noticias..."):
         noticias = get_noticias_google()
     if noticias:
         col_f1, col_f2 = st.columns([2, 3])
-        with col_f1:
-            min_score = st.slider("Score mínimo", 0, 15, 3)
-        with col_f2:
-            busqueda_n = st.text_input("🔍 Buscar", placeholder="litio, cobre, tasa...")
+        with col_f1: min_score = st.slider("Score mínimo", 0, 15, 3)
+        with col_f2: busqueda_n = st.text_input("🔍 Buscar", placeholder="litio, cobre, tasa...")
         noticias_filtradas = [n for n in noticias if n["score"] >= min_score]
         if busqueda_n:
             noticias_filtradas = [n for n in noticias_filtradas if busqueda_n.lower() in n["titulo"].lower()]
@@ -448,10 +460,8 @@ with tab_hist:
                 "Score": st.column_config.ProgressColumn("Score", min_value=0, max_value=20, format="%.2f"),
                 "Prob %": st.column_config.NumberColumn("Prob %", format="%.1f%%"),
                 "Tesis": st.column_config.TextColumn("Tesis", width="large"),
-            }
-        )
+            })
         st.divider()
-        st.subheader("✏️ Marcar resultado")
         senales_pendientes = [r for r in rows if r[7] == "pendiente"]
         if senales_pendientes:
             opciones = [f"{r[0]} — {r[1][:60]}" for r in senales_pendientes]
