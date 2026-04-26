@@ -12,20 +12,21 @@ from data.bcch import get_resumen_bcch
 from data.buda import get_spread_btc
 from data.noticias_chile import get_noticias_google
 from data.historial import guardar_senales, get_historial, get_estadisticas, actualizar_resultado
+from data.kalshi import get_kalshi_resumen
 from engine.divergence import calcular_divergencias
 
 st.set_page_config(page_title="Trading Signals", page_icon="📊", layout="wide")
 st_autorefresh(interval=15 * 60 * 1000, key="autorefresh")
 
-st.title("📊 Trading Signals — Polymarket × Mercados")
+st.title("📊 Trading Signals — Polymarket × Kalshi × Mercados")
 col_title, col_refresh = st.columns([4, 1])
 with col_title:
     st.caption("Detección de divergencias entre mercados de predicción y activos financieros")
 with col_refresh:
     st.caption(f"🔄 Actualizado: {datetime.now().strftime('%H:%M:%S')} | Refresh: 15 min")
 
-tab_chile, tab_usa, tab_div, tab_noticias, tab_hist = st.tabs([
-    "🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "📰 Noticias", "📊 Historial"
+tab_chile, tab_usa, tab_div, tab_kalshi, tab_noticias, tab_hist = st.tabs([
+    "🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "🎯 Kalshi", "📰 Noticias", "📊 Historial"
 ])
 
 with tab_chile:
@@ -201,6 +202,80 @@ with tab_div:
                 st.write(f"- Alerta: **{'🚨 ACTIVA' if spread_div.get('alerta') else '✅ Normal'}**")
     else:
         st.info("Sin divergencias detectadas en este momento")
+
+with tab_kalshi:
+    st.subheader("🎯 Kalshi — Mercados de Predicción Regulados (CFTC)")
+    st.caption("Kalshi es el primer exchange de predicción regulado por la CFTC en USA. Sus mercados macro son señales institucionales.")
+
+    with st.spinner("Cargando Kalshi..."):
+        senales_kalshi = get_kalshi_resumen()
+
+    if senales_kalshi:
+        col1, col2, col3 = st.columns(3)
+        with col1: st.metric("Señales activas", len(senales_kalshi))
+        alza = sum(1 for s in senales_kalshi if s["direccion"] == "ALZA")
+        baja = sum(1 for s in senales_kalshi if s["direccion"] == "BAJA")
+        with col2: st.metric("📈 Señales ALZA", alza)
+        with col3: st.metric("📉 Señales BAJA", baja)
+
+        st.divider()
+
+        series_vistas = set()
+        for s in senales_kalshi:
+            serie = s["serie"]
+            if serie not in series_vistas:
+                st.markdown(f"### {serie}")
+                series_vistas.add(serie)
+
+            prob = s["prob_pct"]
+            color = "🟢" if prob > 65 else ("🔴" if prob < 35 else "🟡")
+            with st.expander(f"{color} {s['titulo'][:90]} — **{prob}%** | Score: {s['score']}"):
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write(f"**Probabilidad:** {prob}%")
+                    st.write(f"**Dirección:** {s['direccion']}")
+                    st.write(f"**Activos impactados:** {', '.join(s['activos_impacto'])}")
+                with col2:
+                    st.write(f"**Score:** {s['score']}")
+                    st.write(f"**Serie:** {serie}")
+                    st.write(f"**Cierre:** {s['cierre']}")
+                    st.write(f"**Volumen:** {s['volumen']}")
+
+        st.divider()
+        st.subheader("🔀 Triangulación Kalshi × Polymarket")
+        st.caption("Señales que coinciden entre ambas plataformas tienen mayor confiabilidad.")
+
+        with st.spinner("Cargando Polymarket para triangular..."):
+            df_poly_tri = get_mercados_chile(limit=200)
+
+        if not df_poly_tri.empty:
+            coincidencias = []
+            for s in senales_kalshi:
+                for _, row in df_poly_tri.iterrows():
+                    prob_poly = row.get("probabilidad")
+                    if prob_poly is None: continue
+                    dir_poly = "ALZA" if prob_poly > 50 else "BAJA"
+                    activos_k = set(s["activos_impacto"])
+                    activos_p = set(row.get("chile_impact", []))
+                    comunes = activos_k & activos_p
+                    if comunes and s["direccion"] == dir_poly:
+                        coincidencias.append({
+                            "Kalshi": s["titulo"][:50],
+                            "Polymarket": row["pregunta"][:50],
+                            "Dirección": s["direccion"],
+                            "Prob Kalshi": f"{s['prob_pct']}%",
+                            "Prob Poly": f"{prob_poly}%",
+                            "Activos": ", ".join(comunes),
+                        })
+
+            if coincidencias:
+                st.success(f"✅ {len(coincidencias)} señal(es) confirmada(s) en ambas plataformas")
+                df_coin = pd.DataFrame(coincidencias)
+                st.dataframe(df_coin, use_container_width=True, hide_index=True)
+            else:
+                st.info("Sin señales coincidentes entre Kalshi y Polymarket en este momento")
+    else:
+        st.info("Sin señales Kalshi disponibles")
 
 with tab_noticias:
     st.subheader("📰 Noticias Chile — Mercados y Economía")
