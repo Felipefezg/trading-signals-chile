@@ -14,10 +14,10 @@ from data.noticias_chile import get_noticias_google
 from data.historial import guardar_senales, get_historial, get_estadisticas, actualizar_resultado
 from data.kalshi import get_kalshi_resumen
 from data.macro_usa import get_macro_usa, get_correlaciones_chile
+from data.ipsa import get_precios_ipsa, get_resumen_sectorial, get_top_bottom_ipsa, get_amplitud_mercado
 from engine.divergence import calcular_divergencias
 from engine.recomendaciones import consolidar_señales, generar_recomendaciones, enviar_alertas_nuevas
 
-# IB executor — importar con fallback si no está disponible
 try:
     from engine.ib_executor import ejecutar_señales, get_posiciones_abiertas, get_resumen_cuenta
     IB_DISPONIBLE = True
@@ -37,8 +37,8 @@ with col_title:
 with col_refresh:
     st.caption(f"🔄 Actualizado: {datetime.now().strftime('%H:%M:%S')} | Refresh: 15 min")
 
-tab_señales, tab_ib, tab_chile, tab_usa, tab_div, tab_kalshi, tab_noticias, tab_hist = st.tabs([
-    "🎯 Señales", "🤖 IB Trading", "🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "🎰 Kalshi", "📰 Noticias", "📊 Historial"
+tab_señales, tab_ib, tab_ipsa, tab_chile, tab_usa, tab_div, tab_kalshi, tab_noticias, tab_hist = st.tabs([
+    "🎯 Señales", "🤖 IB Trading", "🇨🇱 IPSA", "📊 Chile Macro", "🇺🇸 USA", "⚡ Divergencias", "🎰 Kalshi", "📰 Noticias", "📈 Historial"
 ])
 
 # ── TAB SEÑALES ───────────────────────────────────────────────────────────────
@@ -55,7 +55,6 @@ with tab_señales:
         activos     = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
         recomendaciones = generar_recomendaciones(activos)
 
-    # Guardar recomendaciones en session_state para usar en tab IB
     st.session_state.recomendaciones = recomendaciones
 
     if recomendaciones:
@@ -67,12 +66,12 @@ with tab_señales:
         compras = [r for r in recomendaciones if r["accion"] == "COMPRAR"]
         ventas  = [r for r in recomendaciones if r["accion"] == "VENDER"]
         col1, col2, col3, col4 = st.columns(4)
-        with col1: st.metric("📊 Total señales", len(recomendaciones))
+        with col1: st.metric("📊 Total", len(recomendaciones))
         with col2: st.metric("🟢 Comprar", len(compras))
         with col3: st.metric("🔴 Vender", len(ventas))
         with col4:
             avg_r = round(sum(r["riesgo"] for r in recomendaciones) / len(recomendaciones), 1)
-            st.metric("⚠️ Riesgo promedio", f"{avg_r}/10")
+            st.metric("⚠️ Riesgo prom.", f"{avg_r}/10")
 
         st.divider()
         top = recomendaciones[0]
@@ -91,21 +90,15 @@ with tab_señales:
             color  = "🟢" if accion == "COMPRAR" else "🔴"
             riesgo = r["riesgo"]
             h      = r.get("horizonte", {})
-            riesgo_color = "🟢" if riesgo <= 3 else ("🟡" if riesgo <= 6 else "🔴")
-            alerta_key = f"{r['accion']}_{r['ib_ticker']}"
-            telegram_icon = "📱" if alerta_key in st.session_state.alertas_enviadas else ""
+            rc     = "🟢" if riesgo <= 3 else ("🟡" if riesgo <= 6 else "🔴")
+            ak     = f"{r['accion']}_{r['ib_ticker']}"
+            ti     = "📱" if ak in st.session_state.alertas_enviadas else ""
 
-            with st.expander(
-                f"{color} **{accion} {r['ib_ticker']}** — {r['descripcion']}  |  "
-                f"Convicción: **{r['conviccion']}%**  |  "
-                f"Riesgo: {riesgo_color} **{riesgo}/10**  |  "
-                f"{h.get('emoji','')} **{h.get('label','')}** {telegram_icon}"
-            ):
+            with st.expander(f"{color} **{accion} {r['ib_ticker']}** — {r['descripcion']}  |  Conv: **{r['conviccion']}%**  |  Riesgo: {rc} **{riesgo}/10**  |  {h.get('emoji','')} **{h.get('label','')}** {ti}"):
                 col1, col2, col3 = st.columns([2, 2, 1])
                 with col1:
                     st.markdown(f"### {color} {accion}")
-                    st.markdown(f"**IB Ticker:** `{r['ib_ticker']}`")
-                    st.markdown(f"**Tipo:** {r['tipo']}")
+                    st.markdown(f"**IB:** `{r['ib_ticker']}` | **Tipo:** {r['tipo']}")
                     st.markdown(f"**Descripción:** {r['descripcion']}")
                 with col2:
                     st.progress(r["conviccion"] / 100, text=f"Convicción: {r['conviccion']}%")
@@ -118,19 +111,13 @@ with tab_señales:
                 st.divider()
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.markdown("**⏱️ Horizonte**")
-                    st.markdown(f"{h.get('emoji','')} **{h.get('label','')}** — {h.get('dias','')}")
+                    st.markdown(f"**⏱️ Horizonte:** {h.get('emoji','')} {h.get('label','')} — {h.get('dias','')}")
                 with col2:
-                    st.markdown("**📐 Stop Loss / Take Profit**")
                     precio = r.get("precio_actual")
-                    sl     = r.get("stop_loss")
-                    tp     = r.get("take_profit")
+                    sl, tp = r.get("stop_loss"), r.get("take_profit")
                     if precio and sl and tp:
-                        st.markdown(f"💰 Precio: **{precio:,.2f}**")
-                        st.markdown(f"🛑 SL: **{sl:,.2f}**")
-                        st.markdown(f"🎯 TP: **{tp:,.2f}**")
-                        rr = round(abs(tp - precio) / abs(precio - sl), 1) if abs(precio - sl) > 0 else "N/D"
-                        st.markdown(f"⚖️ R/R: **1:{rr}**")
+                        rr = round(abs(tp-precio)/abs(precio-sl), 1) if abs(precio-sl) > 0 else "N/D"
+                        st.markdown(f"**📐 SL/TP:** 💰{precio:,.2f} | 🛑{sl:,.2f} | 🎯{tp:,.2f} | R/R 1:{rr}")
                     else:
                         st.caption("SL/TP no disponible")
 
@@ -138,20 +125,18 @@ with tab_señales:
                 st.markdown("**🚗 Vehículos sugeridos**")
                 for i, inst in enumerate(r.get("instrumentos", [])):
                     badge = "⭐ Recomendado" if i == 0 else "Alternativa"
-                    st.markdown(f"**{badge}: {inst['vehiculo']}**")
                     col_a, col_b = st.columns(2)
                     with col_a:
-                        st.markdown(f"📋 {inst['razon']}")
-                        st.markdown(f"✅ **Pros:** {inst['pros']}")
+                        st.markdown(f"**{badge}: {inst['vehiculo']}** — {inst['razon']}")
+                        st.markdown(f"✅ {inst['pros']}")
                     with col_b:
-                        st.markdown(f"🕐 **Cuándo:** {inst['cuando']}")
-                        st.markdown(f"⚠️ **Contras:** {inst['contras']}")
+                        st.markdown(f"🕐 {inst['cuando']}")
+                        st.markdown(f"⚠️ {inst['contras']}")
                     if i < len(r.get("instrumentos", [])) - 1:
                         st.markdown("---")
 
                 st.divider()
-                st.markdown("**📋 Fundamentos**")
-                st.markdown(f"*{r['tesis']}*")
+                st.markdown(f"**📋 Fundamentos:** *{r['tesis']}*")
                 for fuente in ["Polymarket", "Kalshi", "Macro USA", "Noticias"]:
                     ev = [e for e in r["evidencia"] if e["fuente"] == fuente]
                     if not ev: continue
@@ -160,7 +145,6 @@ with tab_señales:
                         prob_str = f" ({e['prob']}%)" if e.get("prob") else ""
                         icon = "📈" if e["direccion"] == "ALZA" else ("📉" if e["direccion"] == "BAJA" else "➡️")
                         st.markdown(f"- {icon} {e['señal']}{prob_str} — Peso: `{e['peso']}`")
-
                 st.caption("⚠️ Señal informativa. No constituye asesoría de inversión.")
     else:
         st.info("Sin señales consolidadas en este momento.")
@@ -168,18 +152,12 @@ with tab_señales:
 # ── TAB IB TRADING ────────────────────────────────────────────────────────────
 with tab_ib:
     st.subheader("🤖 IB Trading — Ejecución Automática Paper Trading")
-    st.caption("Opera automáticamente en Interactive Brokers Paper Trading según las señales del sistema.")
-
     if not IB_DISPONIBLE:
-        st.error("ibapi no está instalado. Ejecuta: `pip install ibapi`")
+        st.error("ibapi no instalado. Ejecuta: `pip install ibapi`")
     else:
-        # ── Estado cuenta IB
         col1, col2 = st.columns([3, 1])
         with col1:
-            st.markdown("**Política de inversión activa:**")
-            st.markdown("- Capital asignado: **USD 100.000** | Máx/operación: **USD 10.000**")
-            st.markdown("- Horizonte máx: **3 días** | Posiciones máx: **5**")
-            st.markdown("- Convicción mínima: **75%** | Riesgo máximo: **6/10**")
+            st.markdown("**Política activa:** Capital USD 100.000 | Máx/op USD 10.000 | Horizonte 3 días | Posiciones máx 5 | Conv ≥75% | Riesgo ≤6/10")
         with col2:
             if st.button("🔄 Actualizar cuenta"):
                 st.session_state.cuenta_ib = get_resumen_cuenta()
@@ -188,12 +166,10 @@ with tab_ib:
             cuenta = st.session_state.cuenta_ib
             col1, col2, col3 = st.columns(3)
             with col1: st.metric("💰 Liquidación neta", f"USD {cuenta.get('NetLiquidation',0):,.0f}")
-            with col2: st.metric("💵 Cash disponible", f"USD {cuenta.get('TotalCashValue',0):,.0f}")
+            with col2: st.metric("💵 Cash", f"USD {cuenta.get('TotalCashValue',0):,.0f}")
             with col3: st.metric("📈 Buying Power", f"USD {cuenta.get('BuyingPower',0):,.0f}")
 
         st.divider()
-
-        # ── Posiciones abiertas
         st.subheader("📂 Posiciones Abiertas")
         posiciones = get_posiciones_abiertas()
         if posiciones:
@@ -202,93 +178,153 @@ with tab_ib:
                 fecha = datetime.fromisoformat(p["fecha_entrada"])
                 dias  = (datetime.now() - fecha).days
                 rows.append({
-                    "Ticker":      ticker,
-                    "Acción":      p["accion"],
-                    "Cantidad":    p["cantidad"],
-                    "Precio entr.":p.get("precio_entrada","N/D"),
-                    "SL":          p.get("sl","N/D"),
-                    "TP":          p.get("tp","N/D"),
-                    "Días abierta":dias,
-                    "Horizonte":   p.get("horizonte","N/D"),
-                    "Vence en":    f"{max(0, 3-dias)} días",
+                    "Ticker": ticker, "Acción": p["accion"],
+                    "Cantidad": p["cantidad"], "Precio entr.": p.get("precio_entrada","N/D"),
+                    "SL": p.get("sl","N/D"), "TP": p.get("tp","N/D"),
+                    "Días": dias, "Vence en": f"{max(0,3-dias)} días",
                 })
-            df_pos = pd.DataFrame(rows)
-            st.dataframe(df_pos, use_container_width=True, hide_index=True)
-
-            # Cierre manual
-            st.divider()
-            st.markdown("**Cerrar posición manualmente:**")
-            ticker_cerrar = st.selectbox("Selecciona posición", list(posiciones.keys()))
-            if st.button("🔴 Cerrar posición", type="primary"):
-                try:
-                    from engine.ib_executor import IBExecutor, _crear_contrato, _cargar_posiciones, _guardar_posiciones
-                    pos = posiciones[ticker_cerrar]
-                    ib = IBExecutor()
-                    if ib.conectar():
-                        contrato = _crear_contrato(ticker_cerrar, pos["tipo"])
-                        ib.cerrar_posicion(contrato, pos["cantidad"], pos["accion"])
-                        time.sleep(2)
-                        ib.disconnect()
-                        del posiciones[ticker_cerrar]
-                        _guardar_posiciones(posiciones)
-                        st.success(f"✅ Posición {ticker_cerrar} cerrada")
-                        st.rerun()
-                    else:
-                        st.error("No se pudo conectar a IB. ¿Está TWS corriendo?")
-                except Exception as e:
-                    st.error(f"Error: {e}")
+            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
         else:
             st.info("Sin posiciones abiertas")
 
         st.divider()
-
-        # ── Ejecutar señales
         st.subheader("🚀 Ejecutar Señales")
         recomendaciones = st.session_state.get("recomendaciones", [])
         señales_validas = [r for r in recomendaciones if r["conviccion"] >= 75 and r["riesgo"] <= 6 and r["n_fuentes"] >= 2]
 
         if señales_validas:
-            st.markdown(f"**{len(señales_validas)} señal(es) listas para ejecutar:**")
             for r in señales_validas:
                 color = "🟢" if r["accion"] == "COMPRAR" else "🔴"
-                precio = r.get("precio_actual")
-                cantidad = int(10000 / precio) if precio else "N/D"
-                monto = round(cantidad * precio, 0) if isinstance(cantidad, int) and precio else "N/D"
-                st.markdown(
-                    f"{color} **{r['accion']} {r['ib_ticker']}** — "
-                    f"Conv: {r['conviccion']}% | Riesgo: {r['riesgo']}/10 | "
-                    f"~{cantidad} unidades ≈ USD {monto:,.0f}" if isinstance(monto, float) else
-                    f"{color} **{r['accion']} {r['ib_ticker']}** — Conv: {r['conviccion']}% | Riesgo: {r['riesgo']}/10"
-                )
-
+                st.markdown(f"{color} **{r['accion']} {r['ib_ticker']}** — Conv: {r['conviccion']}% | Riesgo: {r['riesgo']}/10")
             col1, col2 = st.columns(2)
             with col1:
-                if st.button("🧪 Simular (sin enviar)", use_container_width=True):
-                    resultado = ejecutar_señales(recomendaciones, modo_test=True)
-                    st.json(resultado)
-
+                if st.button("🧪 Simular", use_container_width=True):
+                    st.json(ejecutar_señales(recomendaciones, modo_test=True))
             with col2:
                 if st.button("🚀 EJECUTAR EN IB PAPER", type="primary", use_container_width=True):
-                    with st.spinner("Conectando a IB y ejecutando órdenes..."):
+                    with st.spinner("Ejecutando..."):
                         resultado = ejecutar_señales(recomendaciones, modo_test=False)
-
                     if resultado["ordenes_enviadas"]:
-                        st.success(f"✅ {len(resultado['ordenes_enviadas'])} orden(es) enviada(s) a IB")
+                        st.success(f"✅ {len(resultado['ordenes_enviadas'])} orden(es) enviada(s)")
                         for o in resultado["ordenes_enviadas"]:
-                            st.markdown(f"- **{o['accion']} {o['ticker']}** — {o.get('cantidad','?')} unidades @ ~USD {o.get('monto_usd', o.get('precio_est','?'))}")
-                    if resultado["ordenes_rechazadas"]:
-                        st.warning(f"⚠️ {len(resultado['ordenes_rechazadas'])} rechazada(s)")
-                        for o in resultado["ordenes_rechazadas"]:
-                            st.markdown(f"- {o['ticker']}: {o['razon']}")
+                            st.markdown(f"- **{o['accion']} {o['ticker']}** — {o.get('cantidad','?')} uds")
                     if resultado["errores"]:
-                        st.error("Errores: " + " | ".join(resultado["errores"]))
+                        st.error(" | ".join(resultado["errores"]))
                     st.rerun()
         else:
-            st.info("Sin señales que cumplan la política de inversión en este momento.")
+            st.info("Sin señales que cumplan política en este momento.")
 
-# ── TAB CHILE ─────────────────────────────────────────────────────────────────
+# ── TAB IPSA ──────────────────────────────────────────────────────────────────
+with tab_ipsa:
+    st.subheader("🇨🇱 IPSA — S&P/CLX IPSA Completo (30 acciones)")
+    st.caption("Todas las acciones del índice IPSA con precios, variaciones y análisis sectorial en tiempo real.")
+
+    with st.spinner("Cargando IPSA completo..."):
+        df_ipsa = get_precios_ipsa()
+
+    if not df_ipsa.empty:
+        # ── Amplitud de mercado
+        amp = get_amplitud_mercado(df_ipsa)
+        sesgo_color = "🟢" if amp["sesgo"] == "ALCISTA" else ("🔴" if amp["sesgo"] == "BAJISTA" else "🟡")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1: st.metric("📈 Subiendo", amp["subiendo"])
+        with col2: st.metric("📉 Bajando", amp["bajando"])
+        with col3: st.metric("➡️ Neutras", amp["neutras"])
+        with col4: st.metric(f"{sesgo_color} Sesgo mercado", amp["sesgo"])
+
+        st.divider()
+
+        # ── Top y Bottom
+        top5, bottom5 = get_top_bottom_ipsa(df_ipsa, n=5)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("### 🏆 Top 5 del día")
+            for _, row in top5.iterrows():
+                st.markdown(f"🟢 **{row['nombre']}** ({row['ticker']}) — `{row['cambio_pct']:+.2f}%` | {row['precio']:,.0f} CLP")
+        with col2:
+            st.markdown("### 📉 Bottom 5 del día")
+            for _, row in bottom5.iterrows():
+                st.markdown(f"🔴 **{row['nombre']}** ({row['ticker']}) — `{row['cambio_pct']:+.2f}%` | {row['precio']:,.0f} CLP")
+
+        st.divider()
+
+        # ── Gráfico variación completo
+        fig = go.Figure(go.Bar(
+            x=df_ipsa["ticker"],
+            y=df_ipsa["cambio_pct"],
+            marker_color=["#22c55e" if x > 0 else "#ef4444" for x in df_ipsa["cambio_pct"]],
+            text=[f"{x:+.2f}%" for x in df_ipsa["cambio_pct"]],
+            textposition="outside",
+            hovertemplate="<b>%{x}</b><br>Variación: %{y:+.2f}%<extra></extra>",
+        ))
+        fig.update_layout(
+            title="IPSA — Variación % del día (30 acciones)",
+            paper_bgcolor="#0f172a", plot_bgcolor="#0f172a",
+            font_color="#e2e8f0", height=400,
+            margin=dict(t=50, b=80), xaxis=dict(tickangle=-45),
+            yaxis=dict(gridcolor="#1e293b"), showlegend=False,
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+        st.divider()
+
+        # ── Análisis sectorial
+        st.subheader("📊 Análisis Sectorial")
+        df_sec = get_resumen_sectorial(df_ipsa)
+        if not df_sec.empty:
+            col1, col2 = st.columns([2, 3])
+            with col1:
+                for _, row in df_sec.iterrows():
+                    color = "🟢" if row["variacion_prom"] > 0 else "🔴"
+                    st.markdown(
+                        f"{color} **{row['sector']}** — `{row['variacion_prom']:+.2f}%` "
+                        f"| Mejor: `{row['mejor']:+.2f}%` | Peor: `{row['peor']:+.2f}%`"
+                    )
+            with col2:
+                fig_sec = go.Figure(go.Bar(
+                    x=df_sec["sector"],
+                    y=df_sec["variacion_prom"],
+                    marker_color=["#22c55e" if x > 0 else "#ef4444" for x in df_sec["variacion_prom"]],
+                    text=[f"{x:+.2f}%" for x in df_sec["variacion_prom"]],
+                    textposition="outside",
+                ))
+                fig_sec.update_layout(
+                    title="Variación por sector",
+                    paper_bgcolor="#0f172a", plot_bgcolor="#0f172a",
+                    font_color="#e2e8f0", height=300,
+                    margin=dict(t=40, b=60), xaxis=dict(tickangle=-30),
+                    yaxis=dict(gridcolor="#1e293b"), showlegend=False,
+                )
+                st.plotly_chart(fig_sec, use_container_width=True)
+
+        st.divider()
+
+        # ── Tabla completa filtrable
+        st.subheader("📋 Tabla completa IPSA")
+        sectores = ["Todos"] + sorted(df_ipsa["sector"].unique().tolist())
+        sector_filtro = st.selectbox("Filtrar por sector", sectores)
+
+        df_mostrar = df_ipsa if sector_filtro == "Todos" else df_ipsa[df_ipsa["sector"] == sector_filtro]
+
+        st.dataframe(
+            df_mostrar[["señal","nombre","ticker","sector","precio","cambio_pct","peso"]].rename(columns={
+                "señal": "", "nombre": "Empresa", "ticker": "Ticker",
+                "sector": "Sector", "precio": "Precio CLP",
+                "cambio_pct": "Var %", "peso": "Peso IPSA"
+            }),
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Var %": st.column_config.NumberColumn("Var %", format="%+.2f%%"),
+                "Precio CLP": st.column_config.NumberColumn("Precio CLP", format="%,.0f"),
+            }
+        )
+    else:
+        st.info("No se pudieron cargar datos del IPSA")
+
+# ── TAB CHILE MACRO ───────────────────────────────────────────────────────────
 with tab_chile:
-    st.subheader("Indicadores Macro Chile")
+    st.subheader("📊 Indicadores Macro Chile")
     with st.spinner("Cargando..."):
         bcch = get_resumen_bcch()
     col1, col2, col3, col4 = st.columns(4)
@@ -307,36 +343,14 @@ with tab_chile:
         spread = get_spread_btc(clp or 892.0)
     if spread:
         col1, col2, col3, col4 = st.columns(4)
-        with col1: st.metric("BTC Buda (CLP)", f"${spread['btc_local_clp']:,.0f}")
-        with col2: st.metric("BTC Global (CLP)", f"${spread['btc_global_clp']:,.0f}")
+        with col1: st.metric("BTC Buda", f"${spread['btc_local_clp']:,.0f}")
+        with col2: st.metric("BTC Global", f"${spread['btc_global_clp']:,.0f}")
         with col3: st.metric("Spread %", f"{spread['spread_pct']}%", delta=spread["direccion"])
         with col4: st.metric("BTC USD", f"${spread['btc_usd']:,.0f}")
         if spread.get("alerta"):
-            st.error(f"🚨 ALERTA: BTC {spread['direccion']} un {abs(spread['spread_pct'])}%")
+            st.error(f"🚨 ALERTA: BTC {spread['direccion']} {abs(spread['spread_pct'])}%")
         else:
             st.success("✅ Spread normal")
-
-    st.divider()
-    st.subheader("📈 Activos Chile")
-    with st.spinner("Cargando..."):
-        df_cl = get_precios_chile()
-    if not df_cl.empty:
-        col_left, col_right = st.columns([2, 3])
-        with col_left:
-            for _, row in df_cl.iterrows():
-                cambio = row["cambio_pct"]
-                color  = "🟢" if cambio > 0 else "🔴"
-                st.markdown(f"{color} **{row['ticker']}** — {row.get('descripcion','')}  \nPrecio: **{row['precio']:,.2f}** | Cambio: **{cambio:+.2f}%**")
-        with col_right:
-            fig = go.Figure(go.Bar(
-                x=df_cl["ticker"], y=df_cl["cambio_pct"],
-                marker_color=["#22c55e" if x > 0 else "#ef4444" for x in df_cl["cambio_pct"]],
-                text=[f"{x:+.2f}%" for x in df_cl["cambio_pct"]], textposition="outside",
-            ))
-            fig.update_layout(title="Variación % del día", paper_bgcolor="#0f172a",
-                plot_bgcolor="#0f172a", font_color="#e2e8f0", height=300,
-                margin=dict(t=40,b=20), yaxis=dict(gridcolor="#1e293b"), showlegend=False)
-            st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
     st.subheader("🌐 Polymarket Chile")
@@ -350,8 +364,7 @@ with tab_chile:
             rel   = row.get("relevancia", 1)
             with st.expander(f"{color} {row['pregunta'][:90]} — **{prob}%** {'⭐'*rel}"):
                 col1, col2 = st.columns(2)
-                with col1:
-                    st.write(f"**Prob:** {prob}% | **Activos:** {', '.join(row['chile_impact'])} | **Rel:** {rel}/5")
+                with col1: st.write(f"**Prob:** {prob}% | **Activos:** {', '.join(row['chile_impact'])}")
                 with col2:
                     vol = row.get("volumen_usd", 0)
                     try: st.write(f"**Vol:** USD {float(vol):,.0f} | **Cierre:** {row.get('cierre','')}")
@@ -366,20 +379,10 @@ with tab_usa:
     if not df_usa.empty:
         cols = st.columns(3)
         for i, (_, row) in enumerate(df_usa.iterrows()):
-            cambio = row["cambio_pct"]
             with cols[i % 3]:
-                st.metric(row["ticker"], f"${row['precio']:,.2f}", delta=f"{cambio:+.2f}%",
-                    delta_color="normal" if cambio >= 0 else "inverse")
-        st.divider()
-        fig = go.Figure(go.Bar(
-            x=df_usa["ticker"], y=df_usa["cambio_pct"],
-            marker_color=["#22c55e" if x > 0 else "#ef4444" for x in df_usa["cambio_pct"]],
-            text=[f"{x:+.2f}%" for x in df_usa["cambio_pct"]], textposition="outside",
-        ))
-        fig.update_layout(title="Variación % — USA", paper_bgcolor="#0f172a",
-            plot_bgcolor="#0f172a", font_color="#e2e8f0", height=350,
-            margin=dict(t=40,b=20), yaxis=dict(gridcolor="#1e293b"), showlegend=False)
-        st.plotly_chart(fig, use_container_width=True)
+                st.metric(row["ticker"], f"${row['precio']:,.2f}",
+                    delta=f"{row['cambio_pct']:+.2f}%",
+                    delta_color="normal" if row['cambio_pct'] >= 0 else "inverse")
 
     st.divider()
     st.subheader("🌍 Macro USA")
@@ -399,8 +402,8 @@ with tab_usa:
             color = "🔴" if score >= 3 else ("🟡" if score >= 1.5 else "🟢")
             with st.expander(f"{color} [Score:{score}] {c['tesis']}"):
                 col1, col2 = st.columns(2)
-                with col1: st.write(f"**Indicador:** {c['indicador']} ({c['cambio_pct']:+.2f}%)")
-                with col2: st.write(f"**Activo:** {c['activo_chile']} → {c['direccion']}")
+                with col1: st.write(f"**{c['indicador']}** ({c['cambio_pct']:+.2f}%)")
+                with col2: st.write(f"**{c['activo_chile']}** → {c['direccion']}")
 
     st.divider()
     st.subheader("🌐 Polymarket USA")
@@ -415,12 +418,9 @@ with tab_usa:
             if prob is None: continue
             color = "🟢" if prob > 65 else ("🔴" if prob < 35 else "🟡")
             with st.expander(f"{color} {row['pregunta'][:90]} — **{prob}%**"):
-                col1, col2 = st.columns(2)
-                with col1: st.write(f"**Prob:** {prob}%")
-                with col2:
-                    vol = row.get("volumen_usd", 0)
-                    try: st.write(f"**Vol:** USD {float(vol):,.0f}")
-                    except: pass
+                vol = row.get("volumen_usd", 0)
+                try: st.write(f"**Prob:** {prob}% | **Vol:** USD {float(vol):,.0f}")
+                except: st.write(f"**Prob:** {prob}%")
                 st.link_button("Ver en Polymarket", row.get("url",""))
 
 # ── TAB DIVERGENCIAS ──────────────────────────────────────────────────────────
@@ -465,7 +465,7 @@ with tab_kalshi:
                 with col1: st.write(f"**Prob:** {prob}% | **Dir:** {s['direccion']} | **Activos:** {', '.join(s['activos_impacto'])}")
                 with col2: st.write(f"**Score:** {s['score']} | **Cierre:** {s['cierre']}")
         st.divider()
-        st.subheader("🔀 Triangulación")
+        st.subheader("🔀 Triangulación Kalshi × Polymarket")
         with st.spinner("..."):
             df_poly_tri = get_mercados_chile(limit=200)
         coincidencias = []
@@ -516,7 +516,7 @@ with tab_noticias:
 
 # ── TAB HISTORIAL ─────────────────────────────────────────────────────────────
 with tab_hist:
-    st.subheader("📊 Historial")
+    st.subheader("📈 Historial de Señales")
     stats = get_estadisticas()
     col1, col2, col3, col4 = st.columns(4)
     with col1: st.metric("Total", stats["total"])
