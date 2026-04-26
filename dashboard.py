@@ -234,3 +234,4 @@ with tab_noticias:
                         st.link_button("🔗 Leer noticia", n["url"])
     else:
         st.info("Sin noticias disponibles en este momento")
+# trading signals
