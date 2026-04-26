@@ -13,6 +13,7 @@ from data.buda import get_spread_btc
 from data.noticias_chile import get_noticias_google
 from data.historial import guardar_senales, get_historial, get_estadisticas, actualizar_resultado
 from data.kalshi import get_kalshi_resumen
+from data.macro_usa import get_macro_usa, get_correlaciones_chile
 from engine.divergence import calcular_divergencias
 
 st.set_page_config(page_title="Trading Signals", page_icon="📊", layout="wide")
@@ -127,6 +128,45 @@ with tab_usa:
             plot_bgcolor="#0f172a", font_color="#e2e8f0", height=350,
             margin=dict(t=40,b=20), yaxis=dict(gridcolor="#1e293b"), showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
+
+    st.divider()
+    st.subheader("🌍 Macro USA — Indicadores Clave")
+    st.caption("Indicadores que impactan directamente en activos chilenos vía correlaciones globales.")
+    with st.spinner("Cargando macro USA..."):
+        macro_data = get_macro_usa()
+
+    if macro_data:
+        cols = st.columns(4)
+        for i, m in enumerate(macro_data):
+            cambio = m["cambio_pct"]
+            with cols[i % 4]:
+                alerta_txt = f" {m['alerta']}" if m["alerta"] else ""
+                st.metric(
+                    m["nombre"] + alerta_txt,
+                    f"{m['precio']:,.2f}",
+                    delta=f"{cambio:+.2f}%",
+                    delta_color="inverse" if m["inverso"] else "normal"
+                )
+
+        st.divider()
+        st.subheader("🔗 Correlaciones Macro USA → Chile")
+        st.caption("Movimientos en USA que generan señales en activos chilenos.")
+        correlaciones = get_correlaciones_chile(macro_data)
+        if correlaciones:
+            for c in correlaciones[:8]:
+                score = c["score"]
+                color = "🔴" if score >= 3 else ("🟡" if score >= 1.5 else "🟢")
+                alerta = f" **{c['alerta']}**" if c["alerta"] else ""
+                with st.expander(f"{color} [Score:{score}] {c['tesis']}{alerta}"):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.write(f"**Indicador:** {c['indicador']}")
+                        st.write(f"**Cambio:** {c['cambio_pct']:+.2f}%")
+                    with col2:
+                        st.write(f"**Activo Chile:** {c['activo_chile']}")
+                        st.write(f"**Dirección:** {c['direccion']}")
+        else:
+            st.info("Sin correlaciones significativas en este momento (movimientos < 0.3%)")
 
     st.divider()
     st.subheader("🌐 Mercados Polymarket — Top por Volumen")
