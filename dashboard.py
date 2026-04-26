@@ -1,3 +1,4 @@
+cat > ~/trading_signals/dashboard.py << 'ENDOFFILE'
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -10,11 +11,10 @@ from data.polymarket import get_active_markets, get_mercados_chile
 from data.yahoo_finance import get_precios_usa, get_precios_chile
 from data.bcch import get_resumen_bcch
 from data.buda import get_spread_btc
+from data.noticias_chile import get_noticias_google
 from engine.divergence import calcular_divergencias
 
 st.set_page_config(page_title="Trading Signals", page_icon="📊", layout="wide")
-
-# Auto-refresh cada 15 minutos
 st_autorefresh(interval=15 * 60 * 1000, key="autorefresh")
 
 st.title("📊 Trading Signals — Polymarket × Mercados")
@@ -24,7 +24,7 @@ with col_title:
 with col_refresh:
     st.caption(f"🔄 Actualizado: {datetime.now().strftime('%H:%M:%S')} | Refresh: 15 min")
 
-tab_chile, tab_usa, tab_div = st.tabs(["🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias"])
+tab_chile, tab_usa, tab_div, tab_noticias = st.tabs(["🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "📰 Noticias"])
 
 with tab_chile:
     st.subheader("Indicadores Macro Chile")
@@ -153,14 +153,12 @@ with tab_usa:
 with tab_div:
     st.subheader("⚡ Divergencias y Oportunidades Detectadas")
     st.caption("Score = distancia al 50% × volumen × multiplicador de relevancia geopolítica")
-
     with st.spinner("Analizando divergencias..."):
         df_poly_div = get_mercados_chile(limit=200)
         bcch_div    = get_resumen_bcch()
         clp_div     = bcch_div.get("CLP/USD", 892.0)
         spread_div  = get_spread_btc(clp_div or 892.0)
         df_result   = calcular_divergencias(df_poly_div, spread_div)
-
     if not df_result.empty:
         top = df_result.iloc[0]
         st.info(
@@ -196,3 +194,45 @@ with tab_div:
                 st.write(f"- Alerta: **{'🚨 ACTIVA' if spread_div.get('alerta') else '✅ Normal'}**")
     else:
         st.info("Sin divergencias detectadas en este momento")
+
+with tab_noticias:
+    st.subheader("📰 Noticias Chile — Mercados y Economía")
+    st.caption("Noticias filtradas por relevancia para mercados chilenos. Actualización automática cada 15 min.")
+
+    with st.spinner("Cargando noticias..."):
+        noticias = get_noticias_google()
+
+    if noticias:
+        # Filtro por score mínimo
+        col_f1, col_f2 = st.columns([2, 3])
+        with col_f1:
+            min_score = st.slider("Score mínimo", 0, 15, 3)
+        with col_f2:
+            busqueda_n = st.text_input("🔍 Buscar en noticias", placeholder="litio, cobre, tasa...")
+
+        noticias_filtradas = [n for n in noticias if n["score"] >= min_score]
+        if busqueda_n:
+            noticias_filtradas = [n for n in noticias_filtradas
+                                  if busqueda_n.lower() in n["titulo"].lower()]
+
+        st.caption(f"Mostrando {len(noticias_filtradas)} noticias relevantes")
+
+        for n in noticias_filtradas:
+            score = n["score"]
+            kws   = n.get("keywords", [])
+            color = "🔴" if score >= 10 else ("🟡" if score >= 5 else "🟢")
+            tags  = " | ".join([f"`{k}`" for k in kws]) if kws else ""
+            with st.expander(f"{color} **[Score:{score}]** {n['titulo'][:100]}"):
+                col1, col2 = st.columns([3, 1])
+                with col1:
+                    st.write(f"**Fuente:** {n['fuente']}")
+                    if n.get("fecha"):
+                        st.write(f"**Fecha:** {n['fecha'][:30]}")
+                    if tags:
+                        st.markdown(f"**Keywords:** {tags}")
+                with col2:
+                    if n.get("url"):
+                        st.link_button("🔗 Leer noticia", n["url"])
+    else:
+        st.info("Sin noticias disponibles en este momento")
+ENDOFFILE
