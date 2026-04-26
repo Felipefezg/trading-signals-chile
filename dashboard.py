@@ -11,6 +11,7 @@ from data.yahoo_finance import get_precios_usa, get_precios_chile
 from data.bcch import get_resumen_bcch
 from data.buda import get_spread_btc
 from data.noticias_chile import get_noticias_google
+from data.historial import guardar_senales, get_historial, get_estadisticas, actualizar_resultado
 from engine.divergence import calcular_divergencias
 
 st.set_page_config(page_title="Trading Signals", page_icon="📊", layout="wide")
@@ -23,7 +24,9 @@ with col_title:
 with col_refresh:
     st.caption(f"🔄 Actualizado: {datetime.now().strftime('%H:%M:%S')} | Refresh: 15 min")
 
-tab_chile, tab_usa, tab_div, tab_noticias = st.tabs(["🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "📰 Noticias"])
+tab_chile, tab_usa, tab_div, tab_noticias, tab_hist = st.tabs([
+    "🇨🇱 Chile", "🇺🇸 USA", "⚡ Divergencias", "📰 Noticias", "📊 Historial"
+])
 
 with tab_chile:
     st.subheader("Indicadores Macro Chile")
@@ -158,7 +161,12 @@ with tab_div:
         clp_div     = bcch_div.get("CLP/USD", 892.0)
         spread_div  = get_spread_btc(clp_div or 892.0)
         df_result   = calcular_divergencias(df_poly_div, spread_div)
+
     if not df_result.empty:
+        nuevas = guardar_senales(df_result)
+        if nuevas > 0:
+            st.success(f"✅ {nuevas} señal(es) nueva(s) guardada(s) en historial")
+
         top = df_result.iloc[0]
         st.info(
             f"**Señal principal:** {top['Señal']}  \n"
@@ -197,25 +205,19 @@ with tab_div:
 with tab_noticias:
     st.subheader("📰 Noticias Chile — Mercados y Economía")
     st.caption("Noticias filtradas por relevancia para mercados chilenos. Actualización automática cada 15 min.")
-
     with st.spinner("Cargando noticias..."):
         noticias = get_noticias_google()
-
     if noticias:
-        # Filtro por score mínimo
         col_f1, col_f2 = st.columns([2, 3])
         with col_f1:
             min_score = st.slider("Score mínimo", 0, 15, 3)
         with col_f2:
             busqueda_n = st.text_input("🔍 Buscar en noticias", placeholder="litio, cobre, tasa...")
-
         noticias_filtradas = [n for n in noticias if n["score"] >= min_score]
         if busqueda_n:
             noticias_filtradas = [n for n in noticias_filtradas
                                   if busqueda_n.lower() in n["titulo"].lower()]
-
         st.caption(f"Mostrando {len(noticias_filtradas)} noticias relevantes")
-
         for n in noticias_filtradas:
             score = n["score"]
             kws   = n.get("keywords", [])
@@ -234,4 +236,48 @@ with tab_noticias:
                         st.link_button("🔗 Leer noticia", n["url"])
     else:
         st.info("Sin noticias disponibles en este momento")
-# trading signals
+
+with tab_hist:
+    st.subheader("📊 Historial de Señales")
+    st.caption("Registro automático de todas las señales detectadas. Puedes marcar si fueron correctas o incorrectas.")
+
+    stats = get_estadisticas()
+    col1, col2, col3, col4 = st.columns(4)
+    with col1: st.metric("Total señales", stats["total"])
+    with col2: st.metric("✅ Correctas", stats["correctas"])
+    with col3: st.metric("❌ Incorrectas", stats["incorrectas"])
+    with col4: st.metric("🎯 Tasa de éxito", f"{stats['tasa_exito']}%")
+
+    st.divider()
+    rows = get_historial(limit=50)
+    if rows:
+        df_hist = pd.DataFrame(rows, columns=["Fecha","Señal","Prob %","Dirección","Activos","Score","Tesis","Resultado"])
+        st.dataframe(
+            df_hist,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Score": st.column_config.ProgressColumn("Score", min_value=0, max_value=20, format="%.2f"),
+                "Prob %": st.column_config.NumberColumn("Prob %", format="%.1f%%"),
+                "Tesis": st.column_config.TextColumn("Tesis", width="large"),
+                "Resultado": st.column_config.TextColumn("Resultado"),
+            }
+        )
+        st.divider()
+        st.subheader("✏️ Marcar resultado de señal")
+        senales_pendientes = [r for r in rows if r[7] == "pendiente"]
+        if senales_pendientes:
+            opciones = [f"{r[0]} — {r[1][:60]}" for r in senales_pendientes]
+            seleccion = st.selectbox("Selecciona señal", opciones)
+            resultado = st.radio("Resultado", ["correcto", "incorrecto"], horizontal=True)
+            if st.button("Guardar resultado"):
+                idx = opciones.index(seleccion)
+                senal = senales_pendientes[idx][1]
+                fecha_dia = senales_pendientes[idx][0][:10]
+                actualizar_resultado(senal, fecha_dia, resultado)
+                st.success("✅ Resultado guardado")
+                st.rerun()
+        else:
+            st.info("No hay señales pendientes de evaluación")
+    else:
+        st.info("Sin historial aún. Ve al tab ⚡ Divergencias para generar señales.")
