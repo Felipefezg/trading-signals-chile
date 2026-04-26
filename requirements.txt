@@ -48,3 +48,4 @@ tzdata==2026.2
 urllib3==2.6.3
 websockets==15.0.1
 yfinance==1.2.0
+feedparser==6.0.11
