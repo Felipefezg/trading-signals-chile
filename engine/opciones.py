@@ -19,8 +19,9 @@ try:
     from ibapi.order import Order
     IB_DISPONIBLE = True
 except Exception:
-    class EClient: pass
-    class EWrapper: pass
+    class _Base: pass
+    EClient = _Base
+    EWrapper = _Base
     class Contract: pass
     class Order: pass
 
