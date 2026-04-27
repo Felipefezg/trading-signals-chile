@@ -24,7 +24,7 @@ INDICADORES = {
     "tpm":             {"nombre": "TPM",                       "unidad": "%",      "icono": "🏦", "frecuencia": "diaria"},
     "libra_cobre":     {"nombre": "Cobre (lb USD)",            "unidad": "USD/lb", "icono": "🔶", "frecuencia": "diaria"},
     "tasa_desempleo":  {"nombre": "Tasa de Desempleo",         "unidad": "%",      "icono": "👥", "frecuencia": "mensual"},
-    "bitcoin":         {"nombre": "Bitcoin (CLP)",             "unidad": "CLP",    "icono": "₿",  "frecuencia": "diaria"},
+    "bitcoin":         {"nombre": "Bitcoin (USD)",             "unidad": "CLP",    "icono": "₿",  "frecuencia": "diaria"},
 }
 
 # Umbrales de alerta
@@ -68,7 +68,8 @@ def get_indicador(indicador_id, dias_historico=30):
         if len(serie) >= 2:
             anterior = serie[1].get("valor")
             if anterior and anterior != 0:
-                variacion = round(((valor_actual - anterior) / abs(anterior)) * 100, 3)
+                v = round(((valor_actual - anterior) / abs(anterior)) * 100, 3)
+                variacion = v if abs(v) <= 20 else None
 
         # Alerta
         alerta = _calcular_alerta(indicador_id, valor_actual)
