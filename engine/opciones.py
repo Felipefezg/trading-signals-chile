@@ -45,11 +45,6 @@ DTE_MAX_COMPRA   = 45     # Días máximos para compra (no muy lejano)
 DTE_MAX_VENTA    = 30     # Días máximos para venta cubierta
 
 # ── CLIENTE IB OPCIONES ───────────────────────────────────────────────────────
-if not IB_DISPONIBLE:
-    class OptionsClient: pass
-else:
-    class OptionsClient(EWrapper, EClient): pass
-
 if IB_DISPONIBLE:
     class OptionsClient(EWrapper, EClient):
     def __init__(self):
