@@ -19,9 +19,8 @@ try:
     from ibapi.order import Order
     IB_DISPONIBLE = True
 except Exception:
-    class _Base: pass
-    EClient = _Base
-    EWrapper = _Base
+    class EClient: pass
+    class EWrapper: pass
     class Contract: pass
     class Order: pass
 
@@ -46,7 +45,7 @@ DTE_MAX_COMPRA   = 45     # Días máximos para compra (no muy lejano)
 DTE_MAX_VENTA    = 30     # Días máximos para venta cubierta
 
 # ── CLIENTE IB OPCIONES ───────────────────────────────────────────────────────
-class OptionsClient(EWrapper, EClient):
+class OptionsClient(*([EWrapper, EClient] if IB_DISPONIBLE else [object])): 
     def __init__(self):
         EClient.__init__(self, self)
         self._next_order_id = None
