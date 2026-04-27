@@ -42,8 +42,7 @@ DTE_MAX_COMPRA  = 45
 DTE_MAX_VENTA   = 30
 
 # ── CLIENTE IB OPCIONES ───────────────────────────────────────────────────────
-if IB_DISPONIBLE:
-    class OptionsClient(EWrapper, EClient):
+class OptionsClient(EWrapper if IB_DISPONIBLE else object, EClient if IB_DISPONIBLE else object):
         def __init__(self):
             EClient.__init__(self, self)
             self._next_order_id  = None
@@ -108,9 +107,6 @@ if IB_DISPONIBLE:
             t.start()
             return self._ready.wait(timeout=10)
 
-else:
-    class OptionsClient:
-        pass
 
 # ── SELECCIÓN DE CONTRATOS ────────────────────────────────────────────────────
 def _fecha_vencimiento_objetivo(dte_min, dte_max):
