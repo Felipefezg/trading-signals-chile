@@ -11,16 +11,18 @@ import threading
 import time
 import math
 from datetime import datetime, timedelta
+IB_DISPONIBLE = False
 try:
     from ibapi.client import EClient
     from ibapi.wrapper import EWrapper
     from ibapi.contract import Contract
     from ibapi.order import Order
     IB_DISPONIBLE = True
-except ImportError:
-    IB_DISPONIBLE = False
-    EClient = object
-    EWrapper = object
+except Exception:
+    class EClient: pass
+    class EWrapper: pass
+    class Contract: pass
+    class Order: pass
 
 # ── CONFIGURACIÓN ─────────────────────────────────────────────────────────────
 IB_HOST      = "127.0.0.1"
