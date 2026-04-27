@@ -24,7 +24,7 @@ INDICADORES = {
     "tpm":             {"nombre": "TPM",                       "unidad": "%",      "icono": "🏦", "frecuencia": "diaria"},
     "libra_cobre":     {"nombre": "Cobre (lb USD)",            "unidad": "USD/lb", "icono": "🔶", "frecuencia": "diaria"},
     "tasa_desempleo":  {"nombre": "Tasa de Desempleo",         "unidad": "%",      "icono": "👥", "frecuencia": "mensual"},
-    "bitcoin":         {"nombre": "Bitcoin (USD)",             "unidad": "CLP",    "icono": "₿",  "frecuencia": "diaria"},
+    "bitcoin":         {"nombre": "Bitcoin (USD)",              "unidad": "USD",    "icono": "₿",  "frecuencia": "diaria"},
 }
 
 # Umbrales de alerta
