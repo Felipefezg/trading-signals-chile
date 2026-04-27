@@ -21,7 +21,17 @@ try:
     from ibapi.order import Order
     IB_DISPONIBLE = True
 except Exception:
-    pass
+    class EClient:
+        def __init__(self, wrapper): pass
+        def connect(self, *a, **kw): pass
+        def disconnect(self): pass
+        def run(self): pass
+        def reqContractDetails(self, *a): pass
+        def reqMktData(self, *a): pass
+        def placeOrder(self, *a): pass
+    class EWrapper: pass
+    class Contract: pass
+    class Order: pass
 
 # ── CONFIGURACIÓN ─────────────────────────────────────────────────────────────
 IB_HOST      = "127.0.0.1"
@@ -42,7 +52,7 @@ DTE_MAX_COMPRA  = 45
 DTE_MAX_VENTA   = 30
 
 # ── CLIENTE IB OPCIONES ───────────────────────────────────────────────────────
-class OptionsClient(EWrapper if IB_DISPONIBLE else object, EClient if IB_DISPONIBLE else object):
+class OptionsClient(EWrapper, EClient):
         def __init__(self):
             EClient.__init__(self, self)
             self._next_order_id  = None
