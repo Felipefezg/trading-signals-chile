@@ -392,3 +392,4 @@ if __name__ == "__main__":
     if est:
         for k, v in est.items():
             print(f"  {k}: {v}")
+# ibapi opcional
