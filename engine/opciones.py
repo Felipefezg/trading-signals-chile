@@ -21,15 +21,17 @@ try:
     from ibapi.order import Order
     IB_DISPONIBLE = True
 except Exception:
-    class EClient:
-        def __init__(self, wrapper): pass
+    class _EClientStub:
+        def __init__(self, wrapper=None): pass
         def connect(self, *a, **kw): pass
         def disconnect(self): pass
         def run(self): pass
         def reqContractDetails(self, *a): pass
         def reqMktData(self, *a): pass
         def placeOrder(self, *a): pass
-    class EWrapper: pass
+    class _EWrapperStub: pass
+    EClient = _EClientStub
+    EWrapper = _EWrapperStub
     class Contract: pass
     class Order: pass
 
@@ -53,69 +55,69 @@ DTE_MAX_VENTA   = 30
 
 # ── CLIENTE IB OPCIONES ───────────────────────────────────────────────────────
 class OptionsClient(EWrapper, EClient):
-        def __init__(self):
-            EClient.__init__(self, self)
-            self._next_order_id  = None
-            self._ready          = threading.Event()
-            self._contratos      = []
-            self._contrato_event = threading.Event()
-            self._precio         = {}
-            self._precio_event   = threading.Event()
-            self._greeks         = {}
-            self._greeks_event   = threading.Event()
-            self.errores         = []
+    def __init__(self):
+        EClient.__init__(self, self)
+        self._next_order_id  = None
+        self._ready          = threading.Event()
+        self._contratos      = []
+        self._contrato_event = threading.Event()
+        self._precio         = {}
+        self._precio_event   = threading.Event()
+        self._greeks         = {}
+        self._greeks_event   = threading.Event()
+        self.errores         = []
 
-        def nextValidId(self, orderId):
-            self._next_order_id = orderId
-            self._ready.set()
+    def nextValidId(self, orderId):
+        self._next_order_id = orderId
+        self._ready.set()
 
-        def contractDetails(self, reqId, details):
-            c = details.contract
-            self._contratos.append({
-                "symbol":     c.symbol,
-                "strike":     c.strike,
-                "right":      c.right,
-                "expiry":     c.lastTradeDateOrContractMonth,
-                "exchange":   c.exchange,
-                "multiplier": c.multiplier or 100,
-                "conId":      c.conId,
-            })
+    def contractDetails(self, reqId, details):
+        c = details.contract
+        self._contratos.append({
+            "symbol":     c.symbol,
+            "strike":     c.strike,
+            "right":      c.right,
+            "expiry":     c.lastTradeDateOrContractMonth,
+            "exchange":   c.exchange,
+            "multiplier": c.multiplier or 100,
+            "conId":      c.conId,
+        })
 
-        def contractDetailsEnd(self, reqId):
-            self._contrato_event.set()
+    def contractDetailsEnd(self, reqId):
+        self._contrato_event.set()
 
-        def tickPrice(self, reqId, tickType, price, attrib):
-            if tickType in (1, 2, 4) and price > 0:
-                self._precio[reqId] = price
-                self._precio_event.set()
+    def tickPrice(self, reqId, tickType, price, attrib):
+        if tickType in (1, 2, 4) and price > 0:
+            self._precio[reqId] = price
+            self._precio_event.set()
 
-        def tickOptionComputation(self, reqId, tickType, tickAttrib, impliedVol,
-                                  delta, optPrice, pvDividend, gamma, vega, theta, undPrice):
-            if delta is not None and abs(delta) > 0:
-                self._greeks[reqId] = {
-                    "delta": round(delta, 3),
-                    "gamma": round(gamma or 0, 4),
-                    "vega":  round(vega or 0, 4),
-                    "theta": round(theta or 0, 4),
-                    "iv":    round(impliedVol or 0, 3),
-                    "precio_subyacente": undPrice,
-                }
-                self._greeks_event.set()
+    def tickOptionComputation(self, reqId, tickType, tickAttrib, impliedVol,
+                              delta, optPrice, pvDividend, gamma, vega, theta, undPrice):
+        if delta is not None and abs(delta) > 0:
+            self._greeks[reqId] = {
+                "delta": round(delta, 3),
+                "gamma": round(gamma or 0, 4),
+                "vega":  round(vega or 0, 4),
+                "theta": round(theta or 0, 4),
+                "iv":    round(impliedVol or 0, 3),
+                "precio_subyacente": undPrice,
+            }
+            self._greeks_event.set()
 
-        def error(self, reqId, errorCode, errorString, advancedOrderRejectJson=""):
-            if errorCode not in (2104, 2106, 2158, 2103, 2119):
-                self.errores.append(f"[{errorCode}] {errorString}")
+    def error(self, reqId, errorCode, errorString, advancedOrderRejectJson=""):
+        if errorCode not in (2104, 2106, 2158, 2103, 2119):
+            self.errores.append(f"[{errorCode}] {errorString}")
 
-        def _get_next_id(self):
-            oid = self._next_order_id
-            self._next_order_id += 1
-            return oid
+    def _get_next_id(self):
+        oid = self._next_order_id
+        self._next_order_id += 1
+        return oid
 
-        def conectar(self):
-            self.connect(IB_HOST, IB_PORT, IB_CLIENT_ID)
-            t = threading.Thread(target=self.run, daemon=True)
-            t.start()
-            return self._ready.wait(timeout=10)
+    def conectar(self):
+        self.connect(IB_HOST, IB_PORT, IB_CLIENT_ID)
+        t = threading.Thread(target=self.run, daemon=True)
+        t.start()
+        return self._ready.wait(timeout=10)
 
 
 # ── SELECCIÓN DE CONTRATOS ────────────────────────────────────────────────────
