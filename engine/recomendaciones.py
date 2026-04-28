@@ -257,7 +257,7 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
     return enviadas, enviadas_cache
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
-def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None):
+def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None):
     activos = {}
 
     # Polymarket
@@ -416,6 +416,29 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             "prob": None, "direccion": direccion_vol, "peso": round(peso_vol, 2),
         })
 
+    # Put/Call Ratio — Smart Money Positioning
+    PC_PESO = {"ALZA": 1.5, "BAJA": 1.5, "NEUTRO": 0}
+    for activo_pc, datos_pc in (put_call or {}).items():
+        if activo_pc not in activos:
+            activos[activo_pc] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        direccion_pc = datos_pc.get("direccion", "NEUTRO")
+        score_pc     = datos_pc.get("score", 0)
+        peso_pc      = score_pc * 0.3
+        if direccion_pc == "ALZA" and peso_pc > 0:
+            activos[activo_pc]["alza"] += peso_pc
+            activos[activo_pc]["fuentes"].append("Put/Call")
+            activos[activo_pc]["evidencia"].append({
+                "fuente": "Put/Call", "señal": f"P/C {datos_pc['ticker']}: {datos_pc['ratio']:.3f} — {datos_pc['señal'][:50]}",
+                "prob": None, "direccion": "ALZA", "peso": round(peso_pc, 2),
+            })
+        elif direccion_pc == "BAJA" and peso_pc > 0:
+            activos[activo_pc]["baja"] += peso_pc
+            activos[activo_pc]["fuentes"].append("Put/Call")
+            activos[activo_pc]["evidencia"].append({
+                "fuente": "Put/Call", "señal": f"P/C {datos_pc['ticker']}: {datos_pc['ratio']:.3f} — {datos_pc['señal'][:50]}",
+                "prob": None, "direccion": "BAJA", "peso": round(peso_pc, 2),
+            })
+
     return activos
 
 
@@ -479,6 +502,7 @@ def generar_recomendaciones(activos_dict):
     return sorted(recomendaciones, key=lambda x: (x["score"], -x["riesgo"]), reverse=True)
 
 def _generar_tesis_resumida(activo, accion, evidencia, fuentes):
+    pc_ev     = [e for e in evidencia if e["fuente"] == "Put/Call"]
     poly_ev  = [e for e in evidencia if e["fuente"] == "Polymarket"]
     kalshi_ev = [e for e in evidencia if e["fuente"] == "Kalshi"]
     macro_ev  = [e for e in evidencia if e["fuente"] == "Macro USA"]
@@ -498,6 +522,8 @@ def _generar_tesis_resumida(activo, accion, evidencia, fuentes):
         partes.append(f"Volumen: {vol_ev[0]['señal'][:40]}")
     if fg_ev:
         partes.append(fg_ev[0]["señal"][:40])
+    if pc_ev:
+        partes.append(f"Put/Call: {pc_ev[0]['señal'][:40]}")
     if partes:
         return f"{accion} {activo}: " + " | ".join(partes[:3])
     return f"{accion} {activo} basado en {', '.join(fuentes)}"
