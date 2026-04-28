@@ -19,6 +19,7 @@ from datetime import datetime, timedelta
 import yfinance as yf
 
 from engine.performance import registrar_trade_cerrado
+from engine.trailing_stop import verificar_trailing_stops, actualizar_trail
 
 POSICIONES_FILE    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "posiciones.json")
 TRADES_FILE        = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "trades_cerrados.json")
@@ -394,6 +395,36 @@ def verificar_posiciones(modo_test=False, auto_cerrar=True):
         "sin_datos":  [],
         "ok":         [],
     }
+
+    # Verificar trailing stops primero
+    try:
+        resumen_trail = verificar_trailing_stops()
+        for cierre_trail in resumen_trail.get("cierres", []):
+            ticker_t = cierre_trail["ticker"]
+            if ticker_t in posiciones:
+                posicion_t = posiciones[ticker_t]
+                condicion_trail = {
+                    "razon":    "TRAILING STOP",
+                    "tipo":     "TRAIL",
+                    "urgencia": "MEDIA",
+                    "precio":   cierre_trail["precio_actual"],
+                    "sl":       posicion_t.get("sl"),
+                    "tp":       posicion_t.get("tp"),
+                    "pnl_pct":  cierre_trail["pnl_pct"],
+                    "dias":     0,
+                    "mensaje":  cierre_trail["razon_cierre"],
+                }
+                resultado_ib = ejecutar_cierre_ib(ticker_t, posicion_t, condicion_trail, modo_test)
+                cerrar_posicion_local(ticker_t, posicion_t, condicion_trail, resultado_ib)
+                resumen["cierres"].append({
+                    "ticker":    ticker_t,
+                    "razon":     "TRAILING STOP",
+                    "pnl_pct":  cierre_trail["pnl_pct"],
+                    "ejecutado": resultado_ib.get("ejecutado", False),
+                    "error":     resultado_ib.get("error"),
+                })
+    except Exception as e:
+        print(f"Error trailing stops: {e}")
 
     for ticker, posicion in list(posiciones.items()):
         precio_actual = get_precio_actual(ticker)
