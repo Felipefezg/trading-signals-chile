@@ -60,3 +60,8 @@
 2026-04-27 22:06:53,884 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
 2026-04-27 22:07:29,678 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
 2026-04-27 22:07:30,467 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-27 22:14:41,652 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-27 22:15:48,853 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-27 22:15:50,075 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-27 22:16:32,853 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-27 22:16:33,585 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")

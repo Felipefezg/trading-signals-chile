@@ -283,7 +283,23 @@ with tab_resumen:
         kalshi_list  = get_kalshi_resumen()
         noticias_raw = get_noticias_google()
         noticias     = analizar_noticias_batch(noticias_raw) if noticias_raw else []
-        activos      = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
+        # Obtener Fear & Greed, CMF y Volumen para motor integrado
+        try:
+            fg_data = calcular_fear_greed()
+        except:
+            fg_data = None
+        try:
+            cmf_data = get_hechos_esenciales(solo_ipsa=True, limit=20)
+        except:
+            cmf_data = None
+        try:
+            vol_resumen = get_resumen_volumen()
+            vol_data = correlacionar_con_cmf(vol_resumen.get("top_alertas", []))
+        except:
+            vol_data = None
+
+        activos      = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias,
+                                          fear_greed=fg_data, cmf_hechos=cmf_data, vol_alertas=vol_data)
         recomendaciones = generar_recomendaciones(activos)
         st.session_state.recomendaciones = recomendaciones
 
