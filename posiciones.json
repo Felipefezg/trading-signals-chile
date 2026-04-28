@@ -1,0 +1,50 @@
+{
+  "BTC": {
+    "accion": "VENDER",
+    "cantidad": 1,
+    "precio_entrada": 77771.1328125,
+    "sl": 83586.41,
+    "tp": 66140.58,
+    "tipo": "Crypto",
+    "fecha_entrada": "2026-04-27T09:21:04.387162",
+    "horizonte": "1\u20134 semanas",
+    "conviccion": 100.0,
+    "order_ids": [
+      1,
+      2,
+      3
+    ]
+  },
+  "SQM": {
+    "accion": "VENDER",
+    "cantidad": 112,
+    "precio_entrada": 88.79000091552734,
+    "sl": 96.0,
+    "tp": 74.38,
+    "tipo": "Acci\u00f3n USA/Chile",
+    "fecha_entrada": "2026-04-27T09:21:05.497966",
+    "horizonte": "1\u20137 d\u00edas",
+    "conviccion": 91.7,
+    "order_ids": [
+      4,
+      5,
+      6
+    ]
+  },
+  "COPEC": {
+    "accion": "VENDER",
+    "cantidad": 1,
+    "precio_entrada": 6665.0,
+    "sl": 6909.17,
+    "tp": 6176.65,
+    "tipo": "Acci\u00f3n Chile",
+    "fecha_entrada": "2026-04-27T09:21:06.609182",
+    "horizonte": "1\u20137 d\u00edas",
+    "conviccion": 91.0,
+    "order_ids": [
+      7,
+      8,
+      9
+    ]
+  }
+}

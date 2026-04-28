@@ -1,0 +1,10 @@
+{
+  "activo": true,
+  "pausado": false,
+  "razon_pausa": null,
+  "consecutivos_perdedor": 0,
+  "pnl_dia": 0.0,
+  "ultima_verificacion": null,
+  "ordenes_hoy": 0,
+  "log": []
+}

@@ -24,6 +24,8 @@ from engine.recomendaciones import consolidar_señales, generar_recomendaciones,
 from engine.opciones import get_estrategias_opciones, SUBYACENTES_OPCIONES
 from engine.backtesting import ejecutar_backtest, get_estadisticas_backtest
 from engine.performance import get_metricas_performance, get_benchmarks, CAPITAL_INICIAL
+from engine.cierre_automatico import verificar_posiciones, get_log_cierres
+from engine.motor_automatico import activar_motor, pausar_motor, get_resumen_motor, ciclo_trading_automatico, PARAMS
 from engine.correlaciones import get_correlaciones_ipsa_completo, get_correlacion_rodante, get_divergencias_correlacion, get_correlaciones_ipsa_interno
 from engine.portafolio import get_analisis_portafolio, UNIVERSO_DEFAULT, TASA_LIBRE_RIESGO
 from engine.nlp_sentiment import analizar_noticias_batch, get_resumen_sentiment, get_sentiment_por_activo
@@ -46,6 +48,48 @@ st_autorefresh(interval=15 * 60 * 1000, key="autorefresh")
 
 if "alertas_enviadas" not in st.session_state:
     st.session_state.alertas_enviadas = set()
+
+# Motor automático — ejecutar ciclo si está activo
+if "ultima_verificacion" not in st.session_state:
+    st.session_state.ultima_verificacion = None
+
+ahora = datetime.now()
+ultima = st.session_state.ultima_verificacion
+if ultima is None or (ahora - ultima).seconds > 300:
+    try:
+        estado_motor = get_resumen_motor()
+        if estado_motor.get("activo") and not estado_motor.get("pausado"):
+            resultado_ciclo = ciclo_trading_automatico()
+            st.session_state.resultado_ciclo = resultado_ciclo
+        else:
+            resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
+            st.session_state.resumen_cierre = resumen_cierre
+            if resumen_cierre.get("cierres"):
+                st.session_state.alertas_cierre = resumen_cierre["cierres"]
+        st.session_state.ultima_verificacion = ahora
+    except Exception as e:
+        pass
+
+# Motor automático — ejecutar ciclo si está activo
+if "ultima_verificacion" not in st.session_state:
+    st.session_state.ultima_verificacion = None
+
+ahora = datetime.now()
+ultima = st.session_state.ultima_verificacion
+if ultima is None or (ahora - ultima).seconds > 300:
+    try:
+        estado_motor = get_resumen_motor()
+        if estado_motor.get("activo") and not estado_motor.get("pausado"):
+            resultado_ciclo = ciclo_trading_automatico()
+            st.session_state.resultado_ciclo = resultado_ciclo
+        else:
+            resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
+            st.session_state.resumen_cierre = resumen_cierre
+            if resumen_cierre.get("cierres"):
+                st.session_state.alertas_cierre = resumen_cierre["cierres"]
+        st.session_state.ultima_verificacion = ahora
+    except Exception as e:
+        pass
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 st.markdown("""
@@ -554,7 +598,7 @@ with tab_mercado:
             for c in corrs_ech:
                 v = c["corr"]
                 color = "#22c55e" if v>0 else "#ef4444"
-                barra = ("█" * int(abs(v)*10)).ljust(10)
+                barra = ("█" * (int(abs(v)*10) if v is not None and v == v else 0)).ljust(10)
                 st.markdown(
                     f'<div style="display:flex;align-items:center;gap:1rem;padding:0.25rem 0;border-bottom:1px solid #1a2535">'
                     f'<span style="color:{color};font-family:monospace;font-size:0.82rem;width:140px">{"+" if v>=0 else ""}{barra} {v:+.3f}</span>'
@@ -1034,7 +1078,120 @@ with tab_portafolio:
 # TAB 5 — EJECUCIÓN
 # ════════════════════════════════════════════════════════════════════════════════
 with tab_ejecucion:
-    sub_ib, sub_hist = st.tabs(["IB Paper Trading", "Historial de Órdenes"])
+    sub_motor, sub_ib, sub_hist, sub_cierre = st.tabs(["Motor Automático", "IB Manual", "Historial", "Cierres"])
+
+    with sub_motor:
+        st.markdown("### Motor de Trading Automático")
+        st.caption("Ejecuta y cierra posiciones automáticamente según las señales del sistema y las salvaguardas configuradas.")
+
+        resumen_motor = get_resumen_motor()
+
+        # Estado principal
+        activo  = resumen_motor.get("activo", False)
+        pausado = resumen_motor.get("pausado", False)
+
+        if pausado:
+            st.error(f"⚠️ Motor PAUSADO — {resumen_motor.get('razon_pausa','')}")
+        elif activo:
+            st.success("● Motor ACTIVO — operando automáticamente")
+        else:
+            st.info("○ Motor INACTIVO — activar para operar automáticamente")
+
+        # Controles
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            if st.button("Activar motor", type="primary", use_container_width=True, disabled=activo and not pausado):
+                activar_motor(True)
+                st.success("Motor activado")
+                st.rerun()
+        with col2:
+            if st.button("Pausar motor", use_container_width=True, disabled=not activo or pausado):
+                pausar_motor("Pausado manualmente por el usuario")
+                st.warning("Motor pausado")
+                st.rerun()
+        with col3:
+            if st.button("Desactivar motor", use_container_width=True, disabled=not activo):
+                activar_motor(False)
+                st.info("Motor desactivado")
+                st.rerun()
+
+        st.divider()
+
+        # KPIs del motor
+        col1, col2, col3, col4, col5 = st.columns(5)
+        with col1: st.metric("Posiciones", f"{resumen_motor['posiciones_abiertas']}/{resumen_motor['max_posiciones']}")
+        with col2: st.metric("Riesgo total", f"USD {resumen_motor['riesgo_total_usd']:,.0f}", delta=f"límite {resumen_motor['max_riesgo_usd']:,.0f}")
+        with col3:
+            pnl_d = resumen_motor["pnl_dia_pct"]
+            st.metric("PnL del día", f"{pnl_d:+.2f}%", delta=f"límite {PARAMS['pausa_pnl_dia_pct']}%")
+        with col4: st.metric("Drawdown", f"{resumen_motor['drawdown_pct']:.2f}%", delta=f"límite {PARAMS['max_drawdown_pct']}%")
+        with col5: st.metric("Consecutivos perdedores", f"{resumen_motor['consecutivos_perdedor']}/{PARAMS['pausa_consecutivos']}")
+
+        st.divider()
+
+        # Semáforo de condiciones
+        st.markdown("**Estado de condiciones**")
+        condiciones = [
+            ("Horario de mercado", resumen_motor["en_horario"], resumen_motor["msg_horario"]),
+            ("Posiciones disponibles", resumen_motor["posiciones_abiertas"] < resumen_motor["max_posiciones"], f"{resumen_motor['posiciones_abiertas']}/{resumen_motor['max_posiciones']}"),
+            ("Riesgo bajo límite", resumen_motor["riesgo_total_usd"] < resumen_motor["max_riesgo_usd"], f"USD {resumen_motor['riesgo_total_usd']:,.0f}"),
+            ("PnL día aceptable", resumen_motor["pnl_dia_pct"] > PARAMS["pausa_pnl_dia_pct"], f"{resumen_motor['pnl_dia_pct']:+.2f}%"),
+            ("Drawdown bajo límite", resumen_motor["drawdown_pct"] < PARAMS["max_drawdown_pct"], f"{resumen_motor['drawdown_pct']:.2f}%"),
+            ("Consecutivos OK", resumen_motor["consecutivos_perdedor"] < PARAMS["pausa_consecutivos"], f"{resumen_motor['consecutivos_perdedor']} perdedores"),
+        ]
+        for nombre, ok, detalle in condiciones:
+            color = "#22c55e" if ok else "#ef4444"
+            icon  = "✓" if ok else "✗"
+            st.markdown(
+                f'<div style="display:flex;justify-content:space-between;padding:0.2rem 0;border-bottom:1px solid #1a2535">' +
+                f'<span style="color:{color};font-size:0.82rem">{icon} {nombre}</span>' +
+                f'<span style="color:#64748b;font-size:0.78rem">{detalle}</span></div>',
+                unsafe_allow_html=True
+            )
+
+        st.divider()
+
+        # Parámetros
+        st.markdown("**Parámetros del motor**")
+        col1, col2 = st.columns(2)
+        params_list = list(PARAMS.items())
+        mid = len(params_list) // 2
+        with col1:
+            for k, v in params_list[:mid]:
+                st.markdown(
+                    f'<div style="display:flex;justify-content:space-between;padding:0.15rem 0;border-bottom:1px solid #1a2535">' +
+                    f'<span style="color:#64748b;font-size:0.75rem">{k.replace("_"," ").title()}</span>' +
+                    f'<span style="color:#f1f5f9;font-family:monospace;font-size:0.75rem">{v}</span></div>',
+                    unsafe_allow_html=True
+                )
+        with col2:
+            for k, v in params_list[mid:]:
+                st.markdown(
+                    f'<div style="display:flex;justify-content:space-between;padding:0.15rem 0;border-bottom:1px solid #1a2535">' +
+                    f'<span style="color:#64748b;font-size:0.75rem">{k.replace("_"," ").title()}</span>' +
+                    f'<span style="color:#f1f5f9;font-family:monospace;font-size:0.75rem">{v}</span></div>',
+                    unsafe_allow_html=True
+                )
+
+        st.divider()
+
+        # Log reciente
+        st.markdown("**Actividad reciente del motor**")
+        from engine.motor_automatico import get_log_auto
+        log = get_log_auto(20)
+        if log:
+            for entry in log:
+                tipo  = entry.get("tipo","")
+                color = "#22c55e" if tipo == "APERTURA" else ("#ef4444" if tipo in ("CIERRE","PAUSA") else "#64748b")
+                st.markdown(
+                    f'<div style="display:flex;gap:1rem;padding:0.2rem 0;border-bottom:1px solid #1a2535;font-size:0.78rem">' +
+                    f'<span style="color:#475569;width:130px">{entry.get("timestamp","")[:16]}</span>' +
+                    f'<span style="color:{color};font-weight:600;width:80px">{tipo}</span>' +
+                    f'<span style="color:#94a3b8">{entry.get("descripcion","")[:60]}</span></div>',
+                    unsafe_allow_html=True
+                )
+        else:
+            st.caption("Sin actividad registrada aún.")
 
     with sub_ib:
         if not IB_DISPONIBLE:
@@ -1142,3 +1299,171 @@ with tab_ejecucion:
                     st.rerun()
         else:
             st.caption("Sin historial de señales aún.")
+
+    with sub_cierre:
+        st.markdown("**Cierre Automático de Posiciones — SL/TP/Horizonte**")
+        st.caption("El sistema verifica cada 5 minutos si alguna posición debe cerrarse por Stop Loss, Take Profit o vencimiento del horizonte.")
+
+        # Estado actual
+        col1, col2 = st.columns([3, 1])
+        with col2:
+            modo_auto = st.toggle("Cierre automático activo", value=True, key="toggle_cierre_auto")
+            if st.button("Verificar ahora", use_container_width=True):
+                with st.spinner("Verificando posiciones..."):
+                    resumen = verificar_posiciones(modo_test=False, auto_cerrar=modo_auto)
+                    st.session_state.resumen_cierre = resumen
+                st.rerun()
+
+        resumen = st.session_state.get("resumen_cierre", {})
+        if resumen:
+            col1, col2, col3 = st.columns(3)
+            with col1: st.metric("Posiciones activas", resumen.get("posiciones", 0))
+            with col2: st.metric("Cierres ejecutados", len(resumen.get("cierres", [])))
+            with col3: st.metric("Sin precio", len(resumen.get("sin_datos", [])))
+
+            # Posiciones OK
+            if resumen.get("ok"):
+                st.divider()
+                st.markdown("**Posiciones monitoreadas**")
+                for p in resumen["ok"]:
+                    color = "#22c55e" if p["pnl_pct"] >= 0 else "#ef4444"
+                    st.markdown(
+                        f'<div style="display:flex;justify-content:space-between;padding:0.25rem 0;border-bottom:1px solid #1a2535">' +
+                        f'<span style="color:#94a3b8;font-size:0.82rem">{p["ticker"]}</span>' +
+                        f'<span style="color:#64748b;font-size:0.78rem">Precio: {p["precio"]:,.2f}</span>' +
+                        f'<span style="color:{color};font-family:monospace;font-size:0.82rem;font-weight:600">PnL: {p["pnl_pct"]:+.2f}%</span>' +
+                        f'<span style="color:#475569;font-size:0.72rem">{p["dias"]} días</span></div>',
+                        unsafe_allow_html=True
+                    )
+
+            # Cierres ejecutados
+            if resumen.get("cierres"):
+                st.divider()
+                st.markdown("**Cierres en esta sesión**")
+                for c in resumen["cierres"]:
+                    color = "#ef4444" if c["razon"] == "STOP LOSS" else "#22c55e"
+                    st.markdown(
+                        f'<div style="background:{color}15;border:1px solid {color}33;border-radius:5px;padding:0.4rem 0.8rem;margin:0.2rem 0">' +
+                        f'<span style="color:{color};font-weight:600">{c["razon"]}</span> — ' +
+                        f'<span style="color:#f1f5f9">{c["ticker"]}</span> | ' +
+                        f'<span style="color:{color}">PnL: {c["pnl_pct"]:+.2f}%</span>' +
+                        (f' | ✅ Ejecutado' if c.get("ejecutado") else f' | ⚠️ {c.get("error","")}') +
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+
+        st.divider()
+
+        # Historial de cierres
+        st.markdown("**Historial de cierres automáticos**")
+        log_cierres = get_log_cierres(20)
+        if log_cierres:
+            rows_log = []
+            for entry in log_cierres:
+                orden = entry.get("orden_ib", {})
+                rows_log.append({
+                    "Fecha":    entry.get("timestamp","")[:16],
+                    "Ticker":   entry.get("ticker",""),
+                    "Razón":    entry.get("razon",""),
+                    "PnL %":    entry.get("pnl_pct", 0),
+                    "Precio":   entry.get("precio", 0),
+                    "Estado":   "✅" if orden.get("ejecutado") else "❌",
+                })
+            st.dataframe(pd.DataFrame(rows_log), use_container_width=True, hide_index=True,
+                column_config={"PnL %": st.column_config.NumberColumn(format="%+.2f%%")})
+        else:
+            st.caption("Sin cierres automáticos registrados aún.")
+
+        st.divider()
+        st.markdown("**Configuración de cierre**")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("**Stop Loss (SL):** Orden de mercado inmediata → protege capital")
+            st.markdown("**Take Profit (TP):** Orden límite → captura ganancia objetivo")
+        with col2:
+            st.markdown("**Horizonte:** Cierre por tiempo cuando se cumple el plazo")
+            st.markdown("**Verificación:** Cada 5 minutos automáticamente")
+
+    with sub_cierre:
+        st.markdown("**Cierre Automático de Posiciones — SL/TP/Horizonte**")
+        st.caption("El sistema verifica cada 5 minutos si alguna posición debe cerrarse por Stop Loss, Take Profit o vencimiento del horizonte.")
+
+        # Estado actual
+        col1, col2 = st.columns([3, 1])
+        with col2:
+            modo_auto = st.toggle("Cierre automático activo", value=True, key="toggle_cierre_auto_2")
+            if st.button("Verificar ahora", use_container_width=True, key="btn_verificar_ahora_2"):
+                with st.spinner("Verificando posiciones..."):
+                    resumen = verificar_posiciones(modo_test=False, auto_cerrar=modo_auto)
+                    st.session_state.resumen_cierre = resumen
+                st.rerun()
+
+        resumen = st.session_state.get("resumen_cierre", {})
+        if resumen:
+            col1, col2, col3 = st.columns(3)
+            with col1: st.metric("Posiciones activas", resumen.get("posiciones", 0))
+            with col2: st.metric("Cierres ejecutados", len(resumen.get("cierres", [])))
+            with col3: st.metric("Sin precio", len(resumen.get("sin_datos", [])))
+
+            # Posiciones OK
+            if resumen.get("ok"):
+                st.divider()
+                st.markdown("**Posiciones monitoreadas**")
+                for p in resumen["ok"]:
+                    color = "#22c55e" if p["pnl_pct"] >= 0 else "#ef4444"
+                    st.markdown(
+                        f'<div style="display:flex;justify-content:space-between;padding:0.25rem 0;border-bottom:1px solid #1a2535">' +
+                        f'<span style="color:#94a3b8;font-size:0.82rem">{p["ticker"]}</span>' +
+                        f'<span style="color:#64748b;font-size:0.78rem">Precio: {p["precio"]:,.2f}</span>' +
+                        f'<span style="color:{color};font-family:monospace;font-size:0.82rem;font-weight:600">PnL: {p["pnl_pct"]:+.2f}%</span>' +
+                        f'<span style="color:#475569;font-size:0.72rem">{p["dias"]} días</span></div>',
+                        unsafe_allow_html=True
+                    )
+
+            # Cierres ejecutados
+            if resumen.get("cierres"):
+                st.divider()
+                st.markdown("**Cierres en esta sesión**")
+                for c in resumen["cierres"]:
+                    color = "#ef4444" if c["razon"] == "STOP LOSS" else "#22c55e"
+                    st.markdown(
+                        f'<div style="background:{color}15;border:1px solid {color}33;border-radius:5px;padding:0.4rem 0.8rem;margin:0.2rem 0">' +
+                        f'<span style="color:{color};font-weight:600">{c["razon"]}</span> — ' +
+                        f'<span style="color:#f1f5f9">{c["ticker"]}</span> | ' +
+                        f'<span style="color:{color}">PnL: {c["pnl_pct"]:+.2f}%</span>' +
+                        (f' | ✅ Ejecutado' if c.get("ejecutado") else f' | ⚠️ {c.get("error","")}') +
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+
+        st.divider()
+
+        # Historial de cierres
+        st.markdown("**Historial de cierres automáticos**")
+        log_cierres = get_log_cierres(20)
+        if log_cierres:
+            rows_log = []
+            for entry in log_cierres:
+                orden = entry.get("orden_ib", {})
+                rows_log.append({
+                    "Fecha":    entry.get("timestamp","")[:16],
+                    "Ticker":   entry.get("ticker",""),
+                    "Razón":    entry.get("razon",""),
+                    "PnL %":    entry.get("pnl_pct", 0),
+                    "Precio":   entry.get("precio", 0),
+                    "Estado":   "✅" if orden.get("ejecutado") else "❌",
+                })
+            st.dataframe(pd.DataFrame(rows_log), use_container_width=True, hide_index=True,
+                column_config={"PnL %": st.column_config.NumberColumn(format="%+.2f%%")})
+        else:
+            st.caption("Sin cierres automáticos registrados aún.")
+
+        st.divider()
+        st.markdown("**Configuración de cierre**")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("**Stop Loss (SL):** Orden de mercado inmediata → protege capital")
+            st.markdown("**Take Profit (TP):** Orden límite → captura ganancia objetivo")
+        with col2:
+            st.markdown("**Horizonte:** Cierre por tiempo cuando se cumple el plazo")
+            st.markdown("**Verificación:** Cada 5 minutos automáticamente")
