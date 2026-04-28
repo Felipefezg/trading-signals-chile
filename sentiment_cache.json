@@ -550,5 +550,13 @@
     "confianza": 0.322,
     "estrellas": 4,
     "metodo": "BERT"
+  },
+  "6a01385ea591": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.643,
+    "estrellas": 1,
+    "metodo": "BERT"
   }
 }

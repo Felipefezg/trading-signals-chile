@@ -20,6 +20,7 @@ from data.macro_usa import get_macro_usa, get_correlaciones_chile
 from data.ipsa import get_precios_ipsa, get_resumen_sectorial, get_top_bottom_ipsa, get_amplitud_mercado
 from data.arbitraje import get_resumen_arbitraje, COSTOS
 from data.cmf import get_hechos_esenciales, get_resumen_cmf
+from engine.fear_greed import calcular_fear_greed, get_fear_greed_simple
 from engine.divergence import calcular_divergencias
 from engine.recomendaciones import consolidar_señales, generar_recomendaciones, enviar_alertas_nuevas
 from engine.opciones import get_estrategias_opciones, SUBYACENTES_OPCIONES
@@ -239,10 +240,17 @@ with col_h2:
         unsafe_allow_html=True
     )
 with col_h3:
+    try:
+        fg_score, fg_clase, fg_color = get_fear_greed_simple()
+    except:
+        fg_score, fg_clase, fg_color = 50, "NEUTRO", "#f59e0b"
     st.markdown(
-        '<div style="text-align:right;padding-top:6px">'
-        '<span style="color:#22c55e;font-size:0.72rem;font-weight:600">● EN VIVO</span>'
-        '<span style="color:#334155;font-size:0.68rem;margin-left:8px">Actualización: 15 min</span></div>',
+        f'<div style="text-align:right;padding-top:4px">' +
+        f'<span style="color:#22c55e;font-size:0.72rem;font-weight:600">● EN VIVO</span>' +
+        f'<span style="color:#334155;font-size:0.68rem;margin-left:8px">Actualización: 15 min</span><br>' +
+        f'<span style="background:{fg_color}22;color:{fg_color};border:1px solid {fg_color}44;' +
+        f'border-radius:4px;padding:1px 8px;font-size:0.7rem;font-weight:700">' +
+        f'F&G: {fg_score}/100 · {fg_clase}</span></div>',
         unsafe_allow_html=True
     )
 st.markdown('<hr style="border-color:#1e293b;margin:0.5rem 0 0.8rem 0">', unsafe_allow_html=True)
@@ -309,6 +317,46 @@ with tab_resumen:
     with col_kpi2: st.metric("TPM", f"{tpm}%" if tpm else "N/D")
     with col_kpi3: st.metric("Cobre USD/lb", f"{cobre:.2f}" if cobre else "N/D")
     with col_kpi4: st.metric("IPC Mensual", f"{ipc}%" if ipc else "N/D")
+
+    st.divider()
+
+    # ── Fear & Greed Index
+    try:
+        fg = calcular_fear_greed()
+        fg_score = fg["score"]
+        fg_color = fg["color"]
+        fg_clase = fg["clasificacion"]
+
+        # Barra visual
+        barra_llena  = int(fg_score / 10)
+        barra_vacia  = 10 - barra_llena
+        barra_visual = "█" * barra_llena + "░" * barra_vacia
+
+        st.markdown(
+            f'<div style="background:#0d1521;border:1px solid #1e293b;border-radius:6px;padding:0.65rem 1rem;margin-bottom:0.5rem">' +
+            f'<div style="display:flex;justify-content:space-between;align-items:center">' +
+            f'<div>' +
+            f'<span style="color:#475569;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em">Fear & Greed Index Chile</span><br>' +
+            f'<span style="color:{fg_color};font-size:1.1rem;font-weight:700;font-family:monospace">{fg_score}/100</span>' +
+            f'<span style="color:{fg_color};font-size:0.82rem;font-weight:600;margin-left:8px">{fg_clase}</span>' +
+            f'</div>' +
+            f'<div style="text-align:right">' +
+            f'<span style="color:{fg_color};font-family:monospace;font-size:0.9rem;letter-spacing:2px">{barra_visual}</span><br>' +
+            f'<span style="color:#475569;font-size:0.72rem">{fg["descripcion"]}</span>' +
+            f'</div></div>' +
+            f'<div style="display:flex;gap:1.5rem;margin-top:0.4rem">',
+            unsafe_allow_html=True
+        )
+        for key, c in fg["componentes"].items():
+            cc = "#22c55e" if c["score"] >= 55 else ("#ef4444" if c["score"] <= 45 else "#f59e0b")
+            st.markdown(
+                f'<span style="color:#475569;font-size:0.68rem">{c["nombre"].split("(")[0].strip()}: ' +
+                f'<span style="color:{cc};font-weight:600">{c["score"]}</span></span> &nbsp;',
+                unsafe_allow_html=True
+            )
+        st.markdown('</div>', unsafe_allow_html=True)
+    except Exception as e:
+        st.caption(f"Fear & Greed no disponible: {e}")
 
     st.divider()
 
