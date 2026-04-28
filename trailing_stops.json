@@ -1,0 +1,65 @@
+{
+  "BTC": {
+    "accion": "VENDER",
+    "entrada": 77771.1328125,
+    "trail_pct": 0.05,
+    "trail_nivel": 81659.6895,
+    "precio_extremo": 77771.1328125,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-04-27T21:42:48.840237",
+        "precio": 77771.1328125,
+        "trail_nivel": 81659.6895,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-04-27T21:42:48.840248",
+    "precio_actual": 77176.328125,
+    "pnl_pct": 0.76,
+    "ultima_actualizacion": "2026-04-27T21:42:49.844618"
+  },
+  "SQM": {
+    "accion": "VENDER",
+    "entrada": 88.79000091552734,
+    "trail_pct": 0.04,
+    "trail_nivel": 92.3416,
+    "precio_extremo": 88.79000091552734,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-04-27T21:42:48.840488",
+        "precio": 88.79000091552734,
+        "trail_nivel": 92.3416,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-04-27T21:42:48.840490",
+    "precio_actual": 91.33999633789062,
+    "pnl_pct": -2.87,
+    "ultima_actualizacion": "2026-04-27T21:42:50.191780"
+  },
+  "COPEC": {
+    "accion": "VENDER",
+    "entrada": 6665.0,
+    "trail_pct": 0.03,
+    "trail_nivel": 6864.95,
+    "precio_extremo": 6665.0,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-04-27T21:42:48.840666",
+        "precio": 6665.0,
+        "trail_nivel": 6864.95,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-04-27T21:42:48.840670",
+    "precio_actual": 6600.0,
+    "pnl_pct": 0.98,
+    "ultima_actualizacion": "2026-04-27T21:42:50.505138"
+  }
+}
