@@ -73,3 +73,6 @@
 2026-04-27 22:25:37,020 [ERROR] ['ECH']: TypeError("'NoneType' object is not subscriptable")
 2026-04-27 22:26:08,960 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
 2026-04-27 22:26:09,881 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-27 22:26:46,852 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-27 22:28:27,206 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-27 22:28:28,690 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")

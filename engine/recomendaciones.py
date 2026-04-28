@@ -22,15 +22,29 @@ ALERTA_MAX_RIESGO     = 6    # /10
 
 # ── INSTRUMENTOS ──────────────────────────────────────────────────────────────
 INSTRUMENTOS_IB = {
-    "SQM.SN":           {"ib": "SQM",     "tipo": "Acción USA/Chile", "descripcion": "SQM ADR (NYSE)",          "yf": "SQM"},
-    "ECH":              {"ib": "ECH",     "tipo": "ETF",              "descripcion": "iShares MSCI Chile ETF",   "yf": "ECH"},
-    "COPEC.SN":         {"ib": "COPEC",   "tipo": "Acción Chile",     "descripcion": "Copec (Santiago)",         "yf": "COPEC.SN"},
-    "CLP/USD":          {"ib": "USD.CLP", "tipo": "Forex",            "descripcion": "Dólar / Peso Chileno",     "yf": "CLP=X"},
-    "BTC_LOCAL_SPREAD": {"ib": "BTC",     "tipo": "Crypto",           "descripcion": "Bitcoin (IBKR Crypto)",    "yf": "BTC-USD"},
-    "GC=F":             {"ib": "GC",      "tipo": "Futuro",           "descripcion": "Oro (COMEX)",              "yf": "GC=F"},
-    "CL=F":             {"ib": "CL",      "tipo": "Futuro",           "descripcion": "Petróleo WTI (NYMEX)",     "yf": "CL=F"},
-    "HG=F":             {"ib": "HG",      "tipo": "Futuro",           "descripcion": "Cobre (COMEX)",            "yf": "HG=F"},
-    "^GSPC":            {"ib": "SPY",     "tipo": "ETF",              "descripcion": "S&P 500 ETF",              "yf": "^GSPC"},
+    # ETFs Chile y USA
+    "ECH":              {"ib": "ECH",       "tipo": "ETF",              "descripcion": "iShares MSCI Chile ETF",       "yf": "ECH"},
+    "^GSPC":            {"ib": "SPY",       "tipo": "ETF",              "descripcion": "S&P 500 ETF",                  "yf": "^GSPC"},
+    # Acciones Chile con ADR
+    "SQM.SN":           {"ib": "SQM",       "tipo": "Acción USA/Chile", "descripcion": "SQM ADR (NYSE)",               "yf": "SQM"},
+    "CHILE.SN":         {"ib": "BCH",       "tipo": "Acción USA/Chile", "descripcion": "Banco de Chile ADR",           "yf": "CHILE.SN"},
+    "BSANTANDER.SN":    {"ib": "BSAC",      "tipo": "Acción USA/Chile", "descripcion": "Santander Chile ADR",          "yf": "BSANTANDER.SN"},
+    "LTM.SN":           {"ib": "LTM",       "tipo": "Acción USA/Chile", "descripcion": "LATAM Airlines ADR",           "yf": "LTM.SN"},
+    # Acciones Chile locales
+    "COPEC.SN":         {"ib": "COPEC",     "tipo": "Acción Chile",     "descripcion": "Copec (Santiago)",             "yf": "COPEC.SN"},
+    "BCI.SN":           {"ib": "BCI",       "tipo": "Acción Chile",     "descripcion": "Banco BCI (Santiago)",         "yf": "BCI.SN"},
+    "FALABELLA.SN":     {"ib": "FALABELLA", "tipo": "Acción Chile",     "descripcion": "Falabella (Santiago)",         "yf": "FALABELLA.SN"},
+    "CMPC.SN":          {"ib": "CMPC",      "tipo": "Acción Chile",     "descripcion": "CMPC (Santiago)",              "yf": "CMPC.SN"},
+    "ENELCHILE.SN":     {"ib": "ENELCHILE", "tipo": "Acción Chile",     "descripcion": "Enel Chile (Santiago)",        "yf": "ENELCHILE.SN"},
+    "COLBUN.SN":        {"ib": "COLBUN",    "tipo": "Acción Chile",     "descripcion": "Colbún (Santiago)",            "yf": "COLBUN.SN"},
+    # Forex
+    "CLP/USD":          {"ib": "USD.CLP",   "tipo": "Forex",            "descripcion": "Dólar / Peso Chileno",         "yf": "CLP=X"},
+    # Crypto
+    "BTC_LOCAL_SPREAD": {"ib": "BTC",       "tipo": "Crypto",           "descripcion": "Bitcoin (IBKR Crypto)",        "yf": "BTC-USD"},
+    # Futuros commodities
+    "GC=F":             {"ib": "GC",        "tipo": "Futuro",           "descripcion": "Oro (COMEX)",                  "yf": "GC=F"},
+    "CL=F":             {"ib": "CL",        "tipo": "Futuro",           "descripcion": "Petróleo WTI (NYMEX)",         "yf": "CL=F"},
+    "HG=F":             {"ib": "HG",        "tipo": "Futuro",           "descripcion": "Cobre (COMEX)",                "yf": "HG=F"},
 }
 
 RIESGO_BASE = {
@@ -44,19 +58,42 @@ RIESGO_BASE = {
 }
 
 # ── HORIZONTE ─────────────────────────────────────────────────────────────────
-def _calcular_horizonte(n_fuentes, conviccion, cierre_mas_proximo=None):
+def _calcular_horizonte(n_fuentes, conviccion, cierre_mas_proximo=None, tipo_producto=None):
     """
-    Horizonte basado en convergencia de señales y convicción.
-    - Alta convicción + muchas fuentes → corto plazo (señal ya consolidada)
-    - Convicción media → medio plazo
-    - Pocas fuentes → largo plazo (esperar confirmación)
+    Horizonte ajustado por convicción, fuentes Y tipo de producto.
+    Cada producto tiene restricciones naturales de horizonte.
     """
+    # Horizonte base por convicción y fuentes
     if conviccion >= 80 and n_fuentes >= 3:
-        return {"label": "Corto plazo", "dias": "1–7 días",   "emoji": "⚡"}
+        h = {"label": "Corto plazo", "dias": "1–7 días",   "emoji": "⚡"}
     elif conviccion >= 65 and n_fuentes >= 2:
-        return {"label": "Medio plazo", "dias": "1–4 semanas","emoji": "📅"}
+        h = {"label": "Medio plazo", "dias": "1–4 semanas", "emoji": "📅"}
     else:
-        return {"label": "Largo plazo", "dias": "1–3 meses",  "emoji": "🗓️"}
+        h = {"label": "Largo plazo", "dias": "1–3 meses",   "emoji": "🗓️"}
+
+    # Restricciones por tipo de producto
+    if tipo_producto == "Crypto":
+        # BTC muy volátil — máximo medio plazo
+        if h["dias"] == "1–3 meses":
+            h = {"label": "Medio plazo", "dias": "1–4 semanas", "emoji": "📅",
+                 "nota": "Ajustado: Crypto máx 4 semanas"}
+    elif tipo_producto == "Futuro":
+        # Futuros tienen vencimiento mensual — no pasar de 3 semanas
+        if h["dias"] == "1–3 meses":
+            h = {"label": "Medio plazo", "dias": "1–4 semanas", "emoji": "📅",
+                 "nota": "Ajustado: Futuro vence mensualmente"}
+    elif tipo_producto == "Forex":
+        # Forex muy sensible a eventos macro — máximo medio plazo
+        if h["dias"] == "1–3 meses":
+            h = {"label": "Medio plazo", "dias": "1–4 semanas", "emoji": "📅",
+                 "nota": "Ajustado: Forex sensible a macro"}
+    elif tipo_producto == "Acción Chile":
+        # Acciones locales — liquidez limitada, horizonte mínimo 1 semana
+        if h["dias"] == "1–7 días":
+            h = {"label": "Corto-medio", "dias": "1–2 semanas", "emoji": "📅",
+                 "nota": "Ajustado: Acción Chile liquidez limitada"}
+
+    return h
 
 # ── VOLATILIDAD Y SL/TP ───────────────────────────────────────────────────────
 def _get_volatilidad(yf_ticker):
@@ -466,7 +503,7 @@ def generar_recomendaciones(activos_dict):
         ib_info   = INSTRUMENTOS_IB.get(activo, {})
         tipo      = ib_info.get("tipo", "ETF")
         riesgo    = _calcular_riesgo(tipo, conviccion_pct, n_fuentes)
-        horizonte = _calcular_horizonte(n_fuentes, conviccion_pct)
+        horizonte = _calcular_horizonte(n_fuentes, conviccion_pct, tipo_producto=tipo)
 
         # Volatilidad y SL/TP
         yf_ticker = ib_info.get("yf", activo)
