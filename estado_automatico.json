@@ -3,8 +3,8 @@
   "pausado": false,
   "razon_pausa": null,
   "consecutivos_perdedor": 0,
-  "pnl_dia": 0.0,
-  "ultima_verificacion": null,
+  "pnl_dia": 0,
+  "ultima_verificacion": "2026-04-28T11:19:35.570227",
   "ordenes_hoy": 0,
   "log": []
 }

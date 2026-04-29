@@ -76,3 +76,100 @@
 2026-04-27 22:26:46,852 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
 2026-04-27 22:28:27,206 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
 2026-04-27 22:28:28,690 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-27 22:40:21,385 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-27 22:41:41,370 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-27 22:41:42,392 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-27 22:42:46,961 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-27 22:42:47,750 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:01:18,778 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-28 09:03:28,989 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-28 09:03:30,228 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:04:49,899 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-28 09:04:50,714 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:16:19,171 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-28 09:18:19,119 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:21:45,299 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:37:17,806 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-28 09:37:18,731 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-28 09:37:29,381 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-28 09:37:29,843 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-28 09:37:30,554 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 09:37:37,169 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 09:39:29,468 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:41:32,727 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 09:52:38,795 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-28 09:52:39,367 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-28 09:52:51,436 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 09:54:25,088 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:17:25,482 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:19:11,909 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:19:52,676 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:20:20,235 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:22:02,194 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-28 10:22:03,374 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:23:35,349 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-28 10:23:36,337 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:23:47,741 [ERROR] 
+1 Failed download:
+2026-04-28 10:23:47,748 [ERROR] ['BCI.SN']: TypeError("'NoneType' object is not subscriptable")
+2026-04-28 10:36:57,425 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:38:32,774 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:39:16,297 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:40:51,089 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:42:26,839 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:50:03,403 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:51:34,314 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:54:03,639 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:55:29,842 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 10:55:31,159 [INFO] sent startApi
+2026-04-28 10:55:31,159 [INFO] REQUEST startApi {}
+2026-04-28 10:55:31,159 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-04-28 10:55:31,159 [INFO] ANSWER connectAck {}
+2026-04-28 10:55:31,173 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-04-28 10:55:33,177 [INFO] disconnecting
+2026-04-28 10:55:33,178 [INFO] ANSWER connectionClosed {}
+2026-04-28 10:55:48,663 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 10:57:20,414 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:00:04,346 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:02:21,732 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:02:22,927 [INFO] sent startApi
+2026-04-28 11:02:22,927 [INFO] REQUEST startApi {}
+2026-04-28 11:02:22,927 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-04-28 11:02:22,927 [INFO] ANSWER connectAck {}
+2026-04-28 11:02:22,928 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-04-28 11:02:24,941 [INFO] disconnecting
+2026-04-28 11:02:24,942 [INFO] ANSWER connectionClosed {}
+2026-04-28 11:02:38,558 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 11:06:48,765 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:08:27,196 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:09:44,400 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 11:11:31,879 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:13:02,097 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:13:03,300 [INFO] sent startApi
+2026-04-28 11:13:03,300 [INFO] REQUEST startApi {}
+2026-04-28 11:13:03,300 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-04-28 11:13:03,300 [INFO] ANSWER connectAck {}
+2026-04-28 11:13:03,302 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-04-28 11:13:05,309 [INFO] disconnecting
+2026-04-28 11:13:05,310 [INFO] ANSWER connectionClosed {}
+2026-04-28 11:14:39,565 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:16:11,199 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:19:35,570 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-28 11:21:10,318 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:23:42,174 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 11:23:55,266 [ERROR] 
+1 Failed download:
+2026-04-28 11:23:55,267 [ERROR] ['CENCOSUD.SN']: TypeError("'NoneType' object is not subscriptable")
+2026-04-28 11:25:00,231 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 20:37:04,651 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-28 20:40:04,541 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-28 20:40:06,612 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 20:41:48,616 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-28 20:41:49,382 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 20:46:58,807 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-28 20:46:59,665 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-28 21:13:03,085 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-28 21:16:30,417 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 21:20:00,159 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-28 21:20:19,978 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-28 21:20:21,026 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
