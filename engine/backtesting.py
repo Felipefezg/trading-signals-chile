@@ -1,388 +1,356 @@
 """
-Módulo de backtesting automático.
-Compara señales históricas contra precios reales para determinar
-si la señal fue correcta, incorrecta o está pendiente.
+Backtest Técnico — 2 años de datos reales.
+Simula la estrategia del sistema sobre datos históricos.
 
-Lógica:
-1. Lee señales del historial con resultado 'pendiente'
-2. Para cada señal, obtiene precio del activo principal al momento
-   de la señal y precio actual (o al vencimiento del horizonte)
-3. Compara dirección esperada vs movimiento real
-4. Actualiza resultado en la base de datos
+Metodología:
+- Usa los mismos indicadores que el sistema en vivo (RSI, MACD, Bollinger, MA)
+- Simula entradas y salidas con SL/TP basados en ATR
+- Calcula métricas de performance reales
+- No usa datos futuros (walk-forward honesto)
+
+Métricas reportadas:
+- Win rate, R/R promedio
+- Sharpe ratio, Max Drawdown
+- PnL total, PnL por trade
+- Mejores y peores trades
 """
 
-import sqlite3
-import os
-import json
-from datetime import datetime, timedelta
 import yfinance as yf
+import pandas as pd
+import numpy as np
+from datetime import datetime
 
-DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "historial.db")
-PRECIOS_CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "precios_entrada.json")
-
-# Mapa de activos a tickers Yahoo Finance
-ACTIVO_TO_TICKER = {
-    "ECH":              "ECH",
-    "SQM.SN":           "SQM-B.SN",
-    "SQM":              "SQM",
-    "COPEC.SN":         "COPEC.SN",
-    "CLP/USD":          "CLP=X",
-    "BTC_LOCAL_SPREAD": "BTC-USD",
-    "BTC":              "BTC-USD",
-    "GC=F":             "GC=F",
-    "CL=F":             "CL=F",
-    "HG=F":             "HG=F",
-    "SPY":              "SPY",
-    # IPSA
-    "BCI.SN":           "BCI.SN",
-    "BSANTANDER.SN":    "BSANTANDER.SN",
-    "CHILE.SN":         "CHILE.SN",
-    "FALABELLA.SN":     "FALABELLA.SN",
-    "CENCOSUD.SN":      "CENCOSUD.SN",
-    "CCU.SN":           "CCU.SN",
-    "CMPC.SN":          "CMPC.SN",
-    "ENELCHILE.SN":     "ENELCHILE.SN",
-    "COLBUN.SN":        "COLBUN.SN",
-    "ENTEL.SN":         "ENTEL.SN",
-    "LTM.SN":           "LTM.SN",
+# Universo para backtest
+ACTIVOS_BT = {
+    "SQM":      {"nombre": "SQM ADR",    "capital": 10_000},
+    "ECH":      {"nombre": "IPSA ETF",   "capital": 10_000},
+    "COPEC.SN": {"nombre": "Copec",      "capital": 10_000},
+    "BTC-USD":  {"nombre": "Bitcoin",    "capital": 5_000},
+    "GC=F":     {"nombre": "Oro",        "capital": 8_000},
+    "SPY":      {"nombre": "S&P 500",    "capital": 10_000},
 }
 
-# Umbral mínimo de movimiento para considerar señal correcta
-UMBRAL_MOVIMIENTO_PCT = 0.5  # 0.5% mínimo de movimiento
+# ── INDICADORES ───────────────────────────────────────────────────────────────
+def _agregar_indicadores(df):
+    """Agrega todos los indicadores técnicos al DataFrame"""
+    close = df["Close"]
+    high  = df["High"]
+    low   = df["Low"]
 
-def _cargar_cache_precios():
+    # RSI
+    delta = close.diff()
+    g = delta.clip(lower=0).ewm(com=13, adjust=False).mean()
+    p = (-delta).clip(lower=0).ewm(com=13, adjust=False).mean()
+    df["rsi"] = 100 - (100 / (1 + g/p))
+
+    # MACD
+    ema12 = close.ewm(span=12, adjust=False).mean()
+    ema26 = close.ewm(span=26, adjust=False).mean()
+    df["macd"]        = ema12 - ema26
+    df["macd_signal"] = df["macd"].ewm(span=9, adjust=False).mean()
+    df["macd_hist"]   = df["macd"] - df["macd_signal"]
+
+    # Bollinger
+    sma20        = close.rolling(20).mean()
+    std20        = close.rolling(20).std()
+    df["bb_up"]  = sma20 + 2 * std20
+    df["bb_lo"]  = sma20 - 2 * std20
+    df["pct_b"]  = (close - df["bb_lo"]) / (df["bb_up"] - df["bb_lo"])
+
+    # Medias móviles
+    df["ma20"] = sma20
+    df["ma50"] = close.rolling(50).mean()
+
+    # ATR
+    tr = pd.concat([
+        high - low,
+        (high - close.shift()).abs(),
+        (low  - close.shift()).abs()
+    ], axis=1).max(axis=1)
+    df["atr"] = tr.ewm(com=13, adjust=False).mean()
+
+    # Volumen ratio
+    df["vol_ratio"] = df["Volume"] / df["Volume"].rolling(20).mean()
+
+    return df
+
+# ── SEÑAL DE ENTRADA ──────────────────────────────────────────────────────────
+def _generar_señal(row, prev_row):
+    """
+    Genera señal de entrada basada en los mismos indicadores del sistema en vivo.
+    Retorna: 'COMPRAR', 'VENDER' o None
+    """
+    puntos_alza = 0
+    puntos_baja = 0
+
+    # RSI
+    if row["rsi"] < 30:
+        puntos_alza += 3
+    elif row["rsi"] < 40:
+        puntos_alza += 1
+    elif row["rsi"] > 70:
+        puntos_baja += 3
+    elif row["rsi"] > 60:
+        puntos_baja += 1
+
+    # MACD cruce
+    if row["macd_hist"] > 0 and prev_row["macd_hist"] <= 0:
+        puntos_alza += 2
+    elif row["macd_hist"] < 0 and prev_row["macd_hist"] >= 0:
+        puntos_baja += 2
+
+    # Bollinger
+    if row["pct_b"] < 0.05:
+        puntos_alza += 2
+    elif row["pct_b"] > 0.95:
+        puntos_baja += 2
+
+    # MA
+    if row["Close"] > row["ma20"] > row["ma50"]:
+        puntos_alza += 1
+    elif row["Close"] < row["ma20"] < row["ma50"]:
+        puntos_baja += 1
+
+    # Volumen confirma
+    if row["vol_ratio"] >= 2:
+        if puntos_alza > puntos_baja:
+            puntos_alza += 1
+        elif puntos_baja > puntos_alza:
+            puntos_baja += 1
+
+    # Umbral mínimo
+    if puntos_alza >= 4 and puntos_alza > puntos_baja:
+        return "COMPRAR", puntos_alza
+    elif puntos_baja >= 4 and puntos_baja > puntos_alza:
+        return "VENDER", puntos_baja
+
+    return None, 0
+
+# ── BACKTEST INDIVIDUAL ───────────────────────────────────────────────────────
+def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=1.5, tp_atr=3.0):
+    """
+    Backtest completo para un activo.
+    """
     try:
-        if os.path.exists(PRECIOS_CACHE_FILE):
-            with open(PRECIOS_CACHE_FILE) as f:
-                return json.load(f)
-    except:
-        pass
-    return {}
-
-def _guardar_cache_precios(cache):
-    with open(PRECIOS_CACHE_FILE, "w") as f:
-        json.dump(cache, f, indent=2, default=str)
-
-def _get_precio_historico(ticker_yf, fecha_str):
-    """Obtiene precio de cierre de un ticker en una fecha específica."""
-    try:
-        fecha = datetime.fromisoformat(fecha_str[:10])
-        inicio = fecha - timedelta(days=3)
-        fin    = fecha + timedelta(days=3)
-        h = yf.download(ticker_yf, start=inicio.strftime("%Y-%m-%d"),
-                        end=fin.strftime("%Y-%m-%d"), progress=False)
-        if h.empty:
+        h = yf.Ticker(ticker).history(period="2y")
+        if len(h) < 60:
             return None
-        # Buscar el precio más cercano a la fecha
-        h.index = h.index.tz_localize(None) if h.index.tz else h.index
-        idx = h.index.searchsorted(fecha)
-        idx = min(idx, len(h) - 1)
-        return round(float(h["Close"].iloc[idx]), 4)
-    except:
-        return None
 
-def _get_precio_actual(ticker_yf):
-    """Obtiene precio actual de un ticker."""
-    try:
-        h = yf.Ticker(ticker_yf).history(period="2d")
-        if h.empty:
+        h = _agregar_indicadores(h)
+        h = h.dropna()
+
+        trades      = []
+        en_posicion = False
+        entrada     = None
+
+        for i in range(1, len(h)):
+            row      = h.iloc[i]
+            prev_row = h.iloc[i-1]
+            fecha    = h.index[i]
+            precio   = float(row["Close"])
+            atr      = float(row["atr"])
+
+            if not en_posicion:
+                señal, puntos = _generar_señal(row, prev_row)
+                if señal:
+                    if señal == "COMPRAR":
+                        sl = precio - atr * sl_atr
+                        tp = precio + atr * tp_atr
+                    else:
+                        sl = precio + atr * sl_atr
+                        tp = precio - atr * tp_atr
+
+                    entrada = {
+                        "fecha_entrada": fecha,
+                        "precio_entrada": precio,
+                        "accion":        señal,
+                        "sl":            sl,
+                        "tp":            tp,
+                        "puntos":        puntos,
+                        "atr":           atr,
+                    }
+                    en_posicion = True
+
+            else:
+                # Verificar SL/TP
+                salida = None
+                razon  = None
+
+                if entrada["accion"] == "COMPRAR":
+                    if precio <= entrada["sl"]:
+                        salida = precio
+                        razon  = "STOP LOSS"
+                    elif precio >= entrada["tp"]:
+                        salida = precio
+                        razon  = "TAKE PROFIT"
+                    # Señal contraria
+                    elif _generar_señal(row, prev_row)[0] == "VENDER":
+                        salida = precio
+                        razon  = "SEÑAL CONTRARIA"
+                else:  # VENDER
+                    if precio >= entrada["sl"]:
+                        salida = precio
+                        razon  = "STOP LOSS"
+                    elif precio <= entrada["tp"]:
+                        salida = precio
+                        razon  = "TAKE PROFIT"
+                    elif _generar_señal(row, prev_row)[0] == "COMPRAR":
+                        salida = precio
+                        razon  = "SEÑAL CONTRARIA"
+
+                # Horizonte máximo 20 días
+                dias = (fecha - entrada["fecha_entrada"]).days
+                if dias >= 20 and not salida:
+                    salida = precio
+                    razon  = "HORIZONTE"
+
+                if salida:
+                    # Calcular PnL
+                    if entrada["accion"] == "COMPRAR":
+                        pnl_pct = (salida - entrada["precio_entrada"]) / entrada["precio_entrada"] * 100
+                    else:
+                        pnl_pct = (entrada["precio_entrada"] - salida) / entrada["precio_entrada"] * 100
+
+                    cantidad  = int(capital_inicial / entrada["precio_entrada"])
+                    pnl_usd   = pnl_pct / 100 * entrada["precio_entrada"] * cantidad
+
+                    trades.append({
+                        "fecha_entrada":  entrada["fecha_entrada"].strftime("%Y-%m-%d"),
+                        "fecha_salida":   fecha.strftime("%Y-%m-%d"),
+                        "accion":         entrada["accion"],
+                        "precio_entrada": round(entrada["precio_entrada"], 4),
+                        "precio_salida":  round(salida, 4),
+                        "sl":             round(entrada["sl"], 4),
+                        "tp":             round(entrada["tp"], 4),
+                        "pnl_pct":        round(pnl_pct, 2),
+                        "pnl_usd":        round(pnl_usd, 2),
+                        "dias":           dias,
+                        "razon":          razon,
+                        "ganador":        pnl_pct > 0,
+                    })
+                    en_posicion = False
+                    entrada     = None
+
+        if not trades:
             return None
-        return round(float(h["Close"].iloc[-1]), 4)
-    except:
-        return None
 
-def _extraer_activo_principal(activos_str):
-    """
-    Extrae el activo principal de la cadena de activos de la señal.
-    Prioriza activos con ticker disponible.
-    """
-    if not activos_str:
-        return None, None
+        # ── MÉTRICAS ──────────────────────────────────────────────────────────
+        n_trades    = len(trades)
+        ganadores   = [t for t in trades if t["ganador"]]
+        perdedores  = [t for t in trades if not t["ganador"]]
+        win_rate    = len(ganadores) / n_trades * 100
 
-    activos = [a.strip() for a in activos_str.split(",")]
-    for activo in activos:
-        if activo in ACTIVO_TO_TICKER:
-            return activo, ACTIVO_TO_TICKER[activo]
+        pnl_total   = sum(t["pnl_usd"] for t in trades)
+        avg_ganador = np.mean([t["pnl_usd"] for t in ganadores]) if ganadores else 0
+        avg_perdedor= abs(np.mean([t["pnl_usd"] for t in perdedores])) if perdedores else 1
+        rr_ratio    = avg_ganador / avg_perdedor if avg_perdedor > 0 else 0
 
-    # Buscar coincidencia parcial
-    for activo in activos:
-        for key, val in ACTIVO_TO_TICKER.items():
-            if key.lower() in activo.lower() or activo.lower() in key.lower():
-                return activo, val
+        # Equity curve y drawdown
+        equity = capital_inicial
+        equity_curve = [equity]
+        max_equity   = equity
+        drawdowns    = []
 
-    return activos[0] if activos else None, None
+        for t in trades:
+            equity += t["pnl_usd"]
+            equity_curve.append(equity)
+            max_equity = max(max_equity, equity)
+            dd = (equity - max_equity) / max_equity * 100
+            drawdowns.append(dd)
 
-def _evaluar_señal(direccion, precio_entrada, precio_salida):
-    """
-    Evalúa si la señal fue correcta basándose en el movimiento de precio.
-    Retorna: 'correcto', 'incorrecto', 'neutral'
-    """
-    if not precio_entrada or not precio_salida:
-        return "pendiente"
+        max_dd = min(drawdowns) if drawdowns else 0
 
-    movimiento_pct = ((precio_salida - precio_entrada) / precio_entrada) * 100
+        # Sharpe ratio (simplificado)
+        retornos = [t["pnl_pct"] for t in trades]
+        sharpe   = np.mean(retornos) / np.std(retornos) * np.sqrt(252/20) if np.std(retornos) > 0 else 0
 
-    if abs(movimiento_pct) < UMBRAL_MOVIMIENTO_PCT:
-        return "neutral"  # Movimiento insignificante
-
-    if direccion in ("ALZA", "COMPRAR"):
-        return "correcto" if movimiento_pct > 0 else "incorrecto"
-    elif direccion in ("BAJA", "VENDER"):
-        return "correcto" if movimiento_pct < 0 else "incorrecto"
-
-    return "pendiente"
-
-def _dias_transcurridos(fecha_str):
-    """Calcula días desde la fecha de la señal."""
-    try:
-        fecha = datetime.fromisoformat(fecha_str[:16])
-        return (datetime.now() - fecha).days
-    except:
-        return 0
-
-def get_señales_pendientes():
-    """Retorna señales con resultado 'pendiente' de la base de datos."""
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        c = conn.cursor()
-        c.execute("""
-            SELECT id, fecha, senal, prob_pct, direccion, activos, score, tesis
-            FROM senales WHERE resultado = 'pendiente'
-            ORDER BY id DESC
-        """)
-        rows = c.fetchall()
-        conn.close()
-        return rows
-    except:
-        return []
-
-def _actualizar_resultado_backtest(senal_id, resultado, precio_entrada,
-                                   precio_salida, movimiento_pct, ticker):
-    """Actualiza el resultado de una señal con datos de backtesting."""
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        c = conn.cursor()
-
-        # Agregar columnas si no existen
-        try:
-            c.execute("ALTER TABLE senales ADD COLUMN precio_entrada_bt REAL")
-            c.execute("ALTER TABLE senales ADD COLUMN precio_salida_bt REAL")
-            c.execute("ALTER TABLE senales ADD COLUMN movimiento_pct REAL")
-            c.execute("ALTER TABLE senales ADD COLUMN ticker_bt TEXT")
-            c.execute("ALTER TABLE senales ADD COLUMN fecha_evaluacion TEXT")
-            conn.commit()
-        except:
-            pass  # Columnas ya existen
-
-        c.execute("""
-            UPDATE senales SET
-                resultado = ?,
-                precio_entrada_bt = ?,
-                precio_salida_bt = ?,
-                movimiento_pct = ?,
-                ticker_bt = ?,
-                fecha_evaluacion = ?
-            WHERE id = ?
-        """, (resultado, precio_entrada, precio_salida,
-              round(movimiento_pct, 2) if movimiento_pct else None,
-              ticker, datetime.now().isoformat(), senal_id))
-        conn.commit()
-        conn.close()
-        return True
-    except Exception as e:
-        print(f"Error actualizando señal {senal_id}: {e}")
-        return False
-
-def ejecutar_backtest(dias_minimos=1, dias_maximos=5):
-    """
-    Ejecuta backtesting automático sobre señales pendientes.
-
-    Args:
-        dias_minimos: mínimo días transcurridos para evaluar
-        dias_maximos: máximo días para buscar precio de salida
-
-    Returns:
-        dict con resumen del backtesting
-    """
-    señales = get_señales_pendientes()
-    cache   = _cargar_cache_precios()
-
-    resumen = {
-        "timestamp":    datetime.now().isoformat(),
-        "total":        len(señales),
-        "evaluadas":    0,
-        "correctas":    0,
-        "incorrectas":  0,
-        "neutrales":    0,
-        "pendientes":   0,
-        "sin_ticker":   0,
-        "detalle":      [],
-    }
-
-    for row in señales:
-        senal_id, fecha, senal, prob_pct, direccion, activos, score, tesis = row
-        dias = _dias_transcurridos(fecha)
-
-        # Solo evaluar señales con al menos dias_minimos
-        if dias < dias_minimos:
-            resumen["pendientes"] += 1
-            continue
-
-        activo, ticker_yf = _extraer_activo_principal(activos)
-        if not ticker_yf:
-            resumen["sin_ticker"] += 1
-            continue
-
-        # Precio de entrada (al momento de la señal) — usar cache
-        cache_key = f"{ticker_yf}_{fecha[:10]}"
-        precio_entrada = cache.get(cache_key)
-        if not precio_entrada:
-            precio_entrada = _get_precio_historico(ticker_yf, fecha)
-            if precio_entrada:
-                cache[cache_key] = precio_entrada
-
-        # Precio de salida (precio actual)
-        precio_salida = _get_precio_actual(ticker_yf)
-
-        if not precio_entrada or not precio_salida:
-            resumen["pendientes"] += 1
-            continue
-
-        movimiento_pct = ((precio_salida - precio_entrada) / precio_entrada) * 100
-        resultado = _evaluar_señal(direccion, precio_entrada, precio_salida)
-
-        # Actualizar en DB
-        _actualizar_resultado_backtest(
-            senal_id, resultado, precio_entrada,
-            precio_salida, movimiento_pct, ticker_yf
-        )
-
-        resumen["evaluadas"] += 1
-        if resultado == "correcto":    resumen["correctas"] += 1
-        elif resultado == "incorrecto": resumen["incorrectas"] += 1
-        elif resultado == "neutral":    resumen["neutrales"] += 1
-
-        resumen["detalle"].append({
-            "id":             senal_id,
-            "fecha":          fecha[:16],
-            "señal":          senal[:60],
-            "direccion":      direccion,
-            "activo":         activo,
-            "ticker":         ticker_yf,
-            "precio_entrada": precio_entrada,
-            "precio_salida":  precio_salida,
-            "movimiento_pct": round(movimiento_pct, 2),
-            "resultado":      resultado,
-            "dias":           dias,
-        })
-
-    _guardar_cache_precios(cache)
-
-    # Calcular tasa de éxito
-    evaluadas_binarias = resumen["correctas"] + resumen["incorrectas"]
-    resumen["tasa_exito"] = round(
-        resumen["correctas"] / evaluadas_binarias * 100, 1
-    ) if evaluadas_binarias > 0 else 0
-
-    return resumen
-
-def get_estadisticas_backtest():
-    """Obtiene estadísticas completas del historial con datos de backtesting."""
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        c = conn.cursor()
-
-        # Estadísticas generales
-        c.execute("SELECT COUNT(*) FROM senales")
-        total = c.fetchone()[0]
-
-        c.execute("SELECT COUNT(*) FROM senales WHERE resultado='correcto'")
-        correctas = c.fetchone()[0]
-
-        c.execute("SELECT COUNT(*) FROM senales WHERE resultado='incorrecto'")
-        incorrectas = c.fetchone()[0]
-
-        c.execute("SELECT COUNT(*) FROM senales WHERE resultado='pendiente'")
-        pendientes = c.fetchone()[0]
-
-        c.execute("SELECT COUNT(*) FROM senales WHERE resultado='neutral'")
-        neutrales = c.fetchone()[0]
-
-        # Movimiento promedio cuando correcto
-        try:
-            c.execute("""
-                SELECT AVG(ABS(movimiento_pct)) FROM senales
-                WHERE resultado='correcto' AND movimiento_pct IS NOT NULL
-            """)
-            mov_prom_correcto = c.fetchone()[0] or 0
-        except:
-            mov_prom_correcto = 0
-
-        # Movimiento promedio cuando incorrecto
-        try:
-            c.execute("""
-                SELECT AVG(ABS(movimiento_pct)) FROM senales
-                WHERE resultado='incorrecto' AND movimiento_pct IS NOT NULL
-            """)
-            mov_prom_incorrecto = c.fetchone()[0] or 0
-        except:
-            mov_prom_incorrecto = 0
-
-        # Señales con mayor score que fueron correctas
-        try:
-            c.execute("""
-                SELECT senal, score, movimiento_pct, direccion FROM senales
-                WHERE resultado='correcto' AND movimiento_pct IS NOT NULL
-                ORDER BY score DESC LIMIT 5
-            """)
-            mejores = c.fetchall()
-        except:
-            mejores = []
-
-        # Historial completo con datos BT
-        try:
-            c.execute("""
-                SELECT fecha, senal, prob_pct, direccion, activos, score,
-                       resultado, precio_entrada_bt, precio_salida_bt, movimiento_pct, ticker_bt
-                FROM senales ORDER BY id DESC LIMIT 50
-            """)
-            historial_bt = c.fetchall()
-        except:
-            c.execute("""
-                SELECT fecha, senal, prob_pct, direccion, activos, score,
-                       resultado, NULL, NULL, NULL, NULL
-                FROM senales ORDER BY id DESC LIMIT 50
-            """)
-            historial_bt = c.fetchall()
-
-        conn.close()
-
-        binarias = correctas + incorrectas
         return {
-            "total":               total,
-            "correctas":           correctas,
-            "incorrectas":         incorrectas,
-            "pendientes":          pendientes,
-            "neutrales":           neutrales,
-            "tasa_exito":          round(correctas / binarias * 100, 1) if binarias > 0 else 0,
-            "mov_prom_correcto":   round(mov_prom_correcto, 2),
-            "mov_prom_incorrecto": round(mov_prom_incorrecto, 2),
-            "mejores_señales":     mejores,
-            "historial_bt":        historial_bt,
+            "ticker":        ticker,
+            "nombre":        nombre,
+            "capital_inicial": capital_inicial,
+            "capital_final": round(equity, 2),
+            "pnl_total":     round(pnl_total, 2),
+            "pnl_pct":       round((equity - capital_inicial) / capital_inicial * 100, 2),
+            "n_trades":      n_trades,
+            "win_rate":      round(win_rate, 1),
+            "avg_ganador":   round(avg_ganador, 2),
+            "avg_perdedor":  round(avg_perdedor, 2),
+            "rr_ratio":      round(rr_ratio, 2),
+            "max_drawdown":  round(max_dd, 2),
+            "sharpe":        round(sharpe, 2),
+            "trades":        trades,
+            "equity_curve":  equity_curve,
         }
+
     except Exception as e:
-        print(f"Error estadísticas backtest: {e}")
-        return {}
+        print(f"Error en backtest {ticker}: {e}")
+        return None
+
+# ── BACKTEST COMPLETO ─────────────────────────────────────────────────────────
+def run_backtest_completo():
+    """Backtest de todos los activos"""
+    import concurrent.futures
+    import time
+
+    print("=== BACKTEST 2 AÑOS ===\n")
+    t0 = time.time()
+
+    resultados = []
+
+    def bt(item):
+        ticker, config = item
+        return backtest_activo(ticker, config["nombre"], config["capital"])
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        futures = {executor.submit(bt, item): item for item in ACTIVOS_BT.items()}
+        for future in concurrent.futures.as_completed(futures):
+            r = future.result()
+            if r:
+                resultados.append(r)
+
+    resultados = sorted(resultados, key=lambda x: x["pnl_pct"], reverse=True)
+
+    # ── RESUMEN ───────────────────────────────────────────────────────────────
+    print(f"{'Activo':<15} {'Trades':>7} {'Win%':>7} {'R/R':>6} {'PnL%':>8} {'MaxDD':>8} {'Sharpe':>8}")
+    print("-" * 65)
+
+    capital_total = sum(r["capital_inicial"] for r in resultados)
+    pnl_total     = sum(r["pnl_total"] for r in resultados)
+
+    for r in resultados:
+        simbolo = "✅" if r["pnl_pct"] > 0 else "❌"
+        print(f"{simbolo} {r['nombre']:<13} {r['n_trades']:>7} {r['win_rate']:>6.1f}% "
+              f"{r['rr_ratio']:>5.2f}x {r['pnl_pct']:>7.1f}% "
+              f"{r['max_drawdown']:>7.1f}% {r['sharpe']:>7.2f}")
+
+    print("-" * 65)
+    print(f"\n{'PORTAFOLIO TOTAL':}")
+    print(f"  Capital inicial: USD {capital_total:,.0f}")
+    print(f"  PnL total:       USD {pnl_total:+,.0f} ({pnl_total/capital_total*100:+.1f}%)")
+    print(f"  Win rate prom:   {np.mean([r['win_rate'] for r in resultados]):.1f}%")
+    print(f"  R/R promedio:    {np.mean([r['rr_ratio'] for r in resultados]):.2f}x")
+    print(f"\nTiempo: {time.time()-t0:.1f}s")
+
+    # Top 3 mejores y peores trades
+    todos_trades = []
+    for r in resultados:
+        for t in r["trades"]:
+            t["ticker"] = r["ticker"]
+            todos_trades.append(t)
+
+    todos_trades_sorted = sorted(todos_trades, key=lambda x: x["pnl_usd"], reverse=True)
+
+    print("\n--- TOP 3 MEJORES TRADES ---")
+    for t in todos_trades_sorted[:3]:
+        print(f"  {t['ticker']} {t['accion']} | {t['fecha_entrada']} → {t['fecha_salida']} "
+              f"| PnL: USD {t['pnl_usd']:+,.0f} ({t['pnl_pct']:+.1f}%) | {t['razon']}")
+
+    print("\n--- TOP 3 PEORES TRADES ---")
+    for t in todos_trades_sorted[-3:]:
+        print(f"  {t['ticker']} {t['accion']} | {t['fecha_entrada']} → {t['fecha_salida']} "
+              f"| PnL: USD {t['pnl_usd']:+,.0f} ({t['pnl_pct']:+.1f}%) | {t['razon']}")
+
+    return resultados
 
 if __name__ == "__main__":
-    print("=== BACKTESTING AUTOMÁTICO ===")
-    resultado = ejecutar_backtest(dias_minimos=0)  # 0 para test inmediato
-    print(f"\nTotal señales: {resultado['total']}")
-    print(f"Evaluadas: {resultado['evaluadas']}")
-    print(f"Correctas: {resultado['correctas']}")
-    print(f"Incorrectas: {resultado['incorrectas']}")
-    print(f"Tasa de éxito: {resultado['tasa_exito']}%")
-    print("\nDetalle:")
-    for d in resultado["detalle"]:
-        icon = "✅" if d["resultado"] == "correcto" else ("❌" if d["resultado"] == "incorrecto" else "➡️")
-        print(f"  {icon} {d['señal'][:50]} | {d['direccion']} | {d['movimiento_pct']:+.2f}% | {d['resultado']}")
+    run_backtest_completo()
