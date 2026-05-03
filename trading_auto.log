@@ -908,3 +908,10 @@
 2026-05-03 18:31:12,858 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
 2026-05-03 18:31:14,094 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
 2026-05-03 18:31:24,667 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 18:32:20,191 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 18:35:00,727 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 18:35:02,654 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 18:40:01,213 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 18:40:02,937 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 18:45:00,816 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 18:45:02,836 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
