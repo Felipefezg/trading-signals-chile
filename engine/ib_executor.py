@@ -132,15 +132,32 @@ def _posiciones_expiradas(posiciones):
             pass
     return expiradas
 
-def _calcular_cantidad(precio_actual, tipo):
+def _calcular_cantidad(precio_actual, tipo, conviccion=75, stop_loss=None, take_profit=None):
+    """
+    Calcula cantidad usando Kelly Criterion.
+    Invierte más cuando la convicción es alta y el R/R es favorable.
+    """
     if not precio_actual or precio_actual <= 0:
         return 0
-    max_usd = MAX_POR_OPERACION
-    if tipo == "Crypto":
-        max_usd = min(MAX_POR_OPERACION, MAX_CRYPTO_USD)
-    elif tipo == "Futuro":
-        max_usd = min(MAX_POR_OPERACION, MAX_FUTUROS_USD)
-    return max(1, int(max_usd / precio_actual))
+    try:
+        from engine.kelly import calcular_kelly
+        sizing = calcular_kelly(
+            conviccion_pct=conviccion,
+            precio_entrada=precio_actual,
+            stop_loss=stop_loss,
+            take_profit=take_profit,
+            tipo_activo=tipo,
+        )
+        monto_usd = sizing["monto_usd"]
+    except Exception:
+        # Fallback al método original si Kelly falla
+        monto_usd = MAX_POR_OPERACION
+        if tipo == "Crypto":
+            monto_usd = min(MAX_POR_OPERACION, MAX_CRYPTO_USD)
+        elif tipo == "Futuro":
+            monto_usd = min(MAX_POR_OPERACION, MAX_FUTUROS_USD)
+
+    return max(1, int(monto_usd / precio_actual))
 
 # ── CLIENTE IB ────────────────────────────────────────────────────────────────
 class IBExecutor(EWrapper, EClient):
@@ -259,7 +276,7 @@ def ejecutar_señales(recomendaciones, modo_test=False):
                 resumen["ordenes_rechazadas"].append({"ticker": ticker, "razon": "Posición ya abierta"})
                 continue
             precio = r.get("precio_actual", 100)
-            cantidad = _calcular_cantidad(precio, r["tipo"])
+            cantidad = _calcular_cantidad(precio, r["tipo"], r.get("conviccion",75), r.get("stop_loss"), r.get("take_profit"))
             resumen["ordenes_enviadas"].append({
                 "ticker":     ticker,
                 "accion":     r["accion"],
@@ -312,7 +329,7 @@ def ejecutar_señales(recomendaciones, modo_test=False):
                     resumen["ordenes_rechazadas"].append({"ticker": ticker, "razon": "Sin precio"})
                     continue
 
-                cantidad = _calcular_cantidad(precio, tipo)
+                cantidad = _calcular_cantidad(precio, tipo, r.get("conviccion",75), r.get("stop_loss"), r.get("take_profit"))
                 if cantidad == 0:
                     resumen["ordenes_rechazadas"].append({"ticker": ticker, "razon": "Cantidad=0"})
                     continue
