@@ -70,6 +70,10 @@ def _cargar_renta_fija():
     from data.renta_fija import get_señales_renta_fija
     return get_señales_renta_fija()
 
+def _cargar_mtf():
+    from engine.analisis_mtf import get_señales_mtf
+    return get_señales_mtf(min_conviccion=65, solo_alineados=False)
+
 def _cargar_mercado_local():
     from engine.mercado_local import get_señales_ipsa
     return get_señales_ipsa(min_conviccion=65)
@@ -94,6 +98,7 @@ FUENTES = {
     "volumen":          (_cargar_volumen,           TIMEOUTS["volumen"]),
     "ib_data":          (_cargar_ib_data,           15),
     "mercado_local":    (_cargar_mercado_local,    30),
+    "mtf":              (_cargar_mtf,              45),
     "renta_fija":       (_cargar_renta_fija,        15),
 }
 
@@ -182,6 +187,7 @@ def get_datos_para_motor(verbose=False):
         "vol_alertas":      datos.get("volumen"),
         "ib_data":          datos.get("ib_data"),
         "mercado_local":    datos.get("mercado_local"),
+        "mtf":              datos.get("mtf"),
         "renta_fija":       datos.get("renta_fija"),
         "meta": {
             "t_total":  resultado["t_total"],
