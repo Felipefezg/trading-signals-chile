@@ -24,6 +24,7 @@ from data.volumen import get_resumen_volumen, correlacionar_con_cmf
 from data.put_call import get_resumen_pc, get_señal_consolidada_pc
 from engine.analisis_tecnico import get_señales_tecnicas, get_analisis_completo
 from data.google_trends import get_resumen_trends, get_señales_trends
+from data.ib_market_data import get_señales_ib, get_resumen_ib
 from engine.fear_greed import calcular_fear_greed, get_fear_greed_simple
 from engine.divergence import calcular_divergencias
 from engine.recomendaciones import consolidar_señales, generar_recomendaciones, enviar_alertas_nuevas
@@ -315,11 +316,17 @@ with tab_resumen:
         except:
             gt_señales = None
 
+        try:
+            ib_señales = get_señales_ib()
+        except:
+            ib_señales = None
+
         activos      = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias,
                                           fear_greed=fg_data, cmf_hechos=cmf_data,
                                           vol_alertas=vol_data, put_call=pc_señales,
                                           analisis_tecnico=at_señales,
-                                          google_trends=gt_señales)
+                                          google_trends=gt_señales,
+                                          ib_data=ib_señales)
         recomendaciones = generar_recomendaciones(activos)
         st.session_state.recomendaciones = recomendaciones
 
