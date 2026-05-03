@@ -58,6 +58,26 @@ def main():
                     print(f"TRAILING STOP: {c['ticker']} | PnL {c['pnl_pct']:+.2f}%")
                     logging.info(f"Trailing stop: {c['ticker']} PnL {c['pnl_pct']:+.2f}%")
 
+            # Guardar señales AT en DB (disponible 24/7)
+            try:
+                import pandas as pd
+                from engine.analisis_tecnico import get_señales_tecnicas
+                from data.historial import guardar_senales
+                at = get_señales_tecnicas(min_conviccion=70)
+                rows_at = [{
+                    'Señal': f"{a['accion']} {a['nombre']}: {', '.join(s['descripcion'] for s in a['señales'][:2])}",
+                    'Prob %': a['conviccion'],
+                    'Dirección': a['accion'],
+                    'Activos Chile': a['activo_motor'],
+                    'Score': a['conviccion'] / 10,
+                    'Tesis': f"{a['accion']} {a['nombre']} — RSI:{a['indicadores']['rsi']:.1f} %B:{a['indicadores']['pct_b']:.2f}",
+                } for a in at]
+                if rows_at:
+                    nuevas = guardar_senales(pd.DataFrame(rows_at))
+                    print(f"Señales AT guardadas: {nuevas}")
+            except Exception as e:
+                print(f"Error AT DB: {e}")
+
             # SL/TP
             resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
             for c in resumen_cierre.get("cierres", []):
