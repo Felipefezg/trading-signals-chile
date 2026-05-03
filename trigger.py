@@ -28,10 +28,12 @@ INTERVALO_SCAN      = 60   # segundos entre scans (1 minuto)
 MAX_ORDENES_DIA     = 10   # límite diario de órdenes automáticas
 SEÑALES_EJECUTADAS  = set() # evitar duplicados en misma sesión
 
-def es_horario_mercado():
+def es_horario_mercado(tipo_activo=None):
     import pytz
     tz  = pytz.timezone("America/New_York")
     now = datetime.now(tz)
+    if tipo_activo == "Crypto":
+        return True  # BTC opera 24/7
     if now.weekday() >= 5:
         return False
     from datetime import time as dtime

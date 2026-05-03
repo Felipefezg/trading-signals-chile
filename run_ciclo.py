@@ -57,7 +57,7 @@ def main():
             return
 
         # Verificar horario
-        en_horario, msg = es_horario_mercado()
+        en_horario, msg = es_horario_mercado()  # Default NYSE
         print(f"Horario: {msg}")
 
         if not en_horario:

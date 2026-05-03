@@ -146,7 +146,40 @@ def get_log_auto(limit=50):
         return []
 
 # ── VALIDACIONES DE MERCADO ───────────────────────────────────────────────────
-def es_horario_mercado():
+def es_horario_mercado(tipo_activo=None):
+    """
+    Verifica horario según tipo de activo.
+    Crypto: 24/7
+    Forex: lunes-viernes 24h
+    Acciones/ETFs/Futuros: 9:30-15:45 ET lunes-viernes
+    """
+    import pytz
+    tz  = pytz.timezone("America/New_York")
+    now = datetime.now(tz)
+
+    # Crypto opera 24/7
+    if tipo_activo in ("Crypto",):
+        return True, "Mercado Crypto abierto 24/7"
+
+    # Forex opera lunes-viernes 24h
+    if tipo_activo == "Forex":
+        if now.weekday() < 5:
+            return True, "Mercado Forex abierto"
+        return False, "Mercado Forex cerrado (fin de semana)"
+
+    # Acciones, ETFs, Futuros — horario NYSE
+    if now.weekday() >= 5:
+        return False, f"Mercado cerrado (fin de semana)"
+    from datetime import time as dtime
+    inicio = dtime(int(PARAMS["horario_inicio"].split(":")[0]),
+                   int(PARAMS["horario_inicio"].split(":")[1]))
+    fin    = dtime(int(PARAMS["horario_fin"].split(":")[0]),
+                   int(PARAMS["horario_fin"].split(":")[1]))
+    if inicio <= now.time() <= fin:
+        return True, f"Mercado abierto ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
+    return False, f"Fuera de horario ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
+
+def es_horario_mercado_legacy():
     """Verifica si el mercado NYSE está abierto"""
     tz  = pytz.timezone(PARAMS["timezone"])
     now = datetime.now(tz)

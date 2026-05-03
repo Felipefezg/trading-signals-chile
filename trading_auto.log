@@ -928,3 +928,11 @@
 2026-05-03 18:56:17,222 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
 2026-05-03 18:56:19,212 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
 2026-05-03 18:57:09,405 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 18:59:45,656 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 19:00:01,371 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 19:00:03,363 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 19:01:08,614 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:01:08,699 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:01:09,886 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:01:24,147 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:02:18,264 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
