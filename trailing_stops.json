@@ -85,16 +85,16 @@
       }
     ],
     "fecha_inicio": "2026-04-27T21:42:48.840490",
-    "precio_actual": 89.47000122070312,
-    "pnl_pct": -0.77,
-    "ultima_actualizacion": "2026-04-28T21:20:24.349574"
+    "precio_actual": 92.68000030517578,
+    "pnl_pct": -4.38,
+    "ultima_actualizacion": "2026-05-03T13:30:04.798188"
   },
   "COPEC": {
     "accion": "VENDER",
     "entrada": 6665.0,
     "trail_pct": 0.03,
-    "trail_nivel": 6710.45,
-    "precio_extremo": 6515.0,
+    "trail_nivel": 6492.09,
+    "precio_extremo": 6303.0,
     "activado": true,
     "umbral_activacion": 0.01,
     "historial": [
@@ -127,11 +127,47 @@
         "precio": 6515.0,
         "trail_nivel": 6710.45,
         "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-04-29T10:15:09.434469",
+        "precio": 6510.0,
+        "trail_nivel": 6705.3,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-04-29T11:00:04.558291",
+        "precio": 6500.2001953125,
+        "trail_nivel": 6695.2062,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-04-29T16:45:11.807487",
+        "precio": 6400.0,
+        "trail_nivel": 6592.0,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-04-30T10:45:05.698696",
+        "precio": 6399.7001953125,
+        "trail_nivel": 6591.6912,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-04-30T10:49:53.371496",
+        "precio": 6343.89990234375,
+        "trail_nivel": 6534.2169,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-04-30T16:45:04.162515",
+        "precio": 6303.0,
+        "trail_nivel": 6492.09,
+        "evento": "TRAIL_MOVIDO"
       }
     ],
     "fecha_inicio": "2026-04-27T21:42:48.840670",
-    "precio_actual": 6515.0,
-    "pnl_pct": 2.25,
-    "ultima_actualizacion": "2026-04-28T21:20:24.446149"
+    "precio_actual": 6303.0,
+    "pnl_pct": 5.43,
+    "ultima_actualizacion": "2026-05-03T13:30:05.031390"
   }
 }

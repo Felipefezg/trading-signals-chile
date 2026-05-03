@@ -22,6 +22,7 @@ from data.arbitraje import get_resumen_arbitraje, COSTOS
 from data.cmf import get_hechos_esenciales, get_resumen_cmf
 from data.volumen import get_resumen_volumen, correlacionar_con_cmf
 from data.put_call import get_resumen_pc, get_señal_consolidada_pc
+from engine.analisis_tecnico import get_señales_tecnicas, get_analisis_completo
 from engine.fear_greed import calcular_fear_greed, get_fear_greed_simple
 from engine.divergence import calcular_divergencias
 from engine.recomendaciones import consolidar_señales, generar_recomendaciones, enviar_alertas_nuevas
@@ -304,9 +305,15 @@ with tab_resumen:
         except:
             pc_señales = None
 
+        try:
+            at_señales = get_señales_tecnicas(min_conviccion=60)
+        except:
+            at_señales = None
+
         activos      = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias,
                                           fear_greed=fg_data, cmf_hechos=cmf_data,
-                                          vol_alertas=vol_data, put_call=pc_señales)
+                                          vol_alertas=vol_data, put_call=pc_señales,
+                                          analisis_tecnico=at_señales)
         recomendaciones = generar_recomendaciones(activos)
         st.session_state.recomendaciones = recomendaciones
 
@@ -513,8 +520,8 @@ with tab_resumen:
 # TAB 2 — MERCADO
 # ════════════════════════════════════════════════════════════════════════════════
 with tab_mercado:
-    sub_ipsa, sub_macro, sub_cmf, sub_vol, sub_corr, sub_noticias = st.tabs([
-        "IPSA", "Macro Chile", "CMF Hechos Esenciales", "Volumen Anormal", "Correlaciones", "Noticias"
+    sub_ipsa, sub_macro, sub_cmf, sub_vol, sub_at, sub_corr, sub_noticias = st.tabs([
+        "IPSA", "Macro Chile", "CMF Hechos Esenciales", "Volumen Anormal", "Análisis Técnico", "Correlaciones", "Noticias"
     ])
 
     # ── Sub-tab IPSA
@@ -817,6 +824,96 @@ with tab_mercado:
                     "Vol hoy": st.column_config.NumberColumn(format="%,d"),
                     "Prom 20d": st.column_config.NumberColumn(format="%,d"),
                 })
+
+    # ── Sub-tab Análisis Técnico
+    with sub_at:
+        st.markdown("**Análisis Técnico — RSI · MACD · Bollinger · Medias Móviles**")
+        st.caption("Señales basadas en indicadores técnicos sobre precios reales. Actualización en cada refresh.")
+
+        col1, col2 = st.columns([3,1])
+        with col2:
+            min_conv_at = st.slider("Convicción mínima", 50, 90, 60, key="slider_at")
+            if st.button("Actualizar AT", use_container_width=True, key="btn_at_refresh"):
+                st.rerun()
+
+        with st.spinner("Calculando indicadores técnicos..."):
+            todos_at = get_analisis_completo()
+            señales_at = [a for a in todos_at if a["conviccion"] >= min_conv_at and a["accion"] != "MANTENER"]
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1: st.metric("Activos analizados", len(todos_at))
+        with col2: st.metric("Señales activas", len(señales_at))
+        with col3: st.metric("Comprar", len([s for s in señales_at if s["accion"]=="COMPRAR"]))
+        with col4: st.metric("Vender", len([s for s in señales_at if s["accion"]=="VENDER"]))
+
+        st.divider()
+
+        if señales_at:
+            st.markdown("**Señales técnicas activas**")
+            for s in señales_at:
+                color_a = "#22c55e" if s["accion"] == "COMPRAR" else "#ef4444"
+                with st.expander(
+                    f"{s['accion']} {s['nombre']}  ·  Conv: {s['conviccion']}%  ·  "
+                    f"RSI: {s['indicadores']['rsi']:.1f}  ·  Ret 5d: {s['indicadores']['ret_5d']:+.2f}%"
+                ):
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.markdown(f"**Precio:** `{s['precio']:,.2f}`")
+                        st.markdown(
+                            f'<span style="background:{color_a}22;color:{color_a};border:1px solid {color_a}44;' +
+                            f'border-radius:4px;padding:2px 8px;font-size:0.8rem;font-weight:700">' +
+                            f'{s["accion"]}</span>',
+                            unsafe_allow_html=True
+                        )
+                        st.progress(s["conviccion"]/100, text=f"Convicción: {s['conviccion']}%")
+                    with col2:
+                        ind = s["indicadores"]
+                        st.markdown(f"**RSI:** {ind['rsi']:.1f} {'🔴 Sobrecompra' if ind['rsi']>70 else ('🟢 Sobreventa' if ind['rsi']<30 else '⚪ Neutral')}")
+                        st.markdown(f"**MACD hist:** {ind['macd_hist']:+.4f}")
+                        st.markdown(f"**%Bollinger:** {ind['pct_b']:.2f}")
+                        st.markdown(f"**Volumen:** {ind['vol_ratio']:.1f}x promedio")
+                    with col3:
+                        if s["sl"] and s["tp"]:
+                            st.markdown(f"**SL:** `{s['sl']:,.2f}`")
+                            st.markdown(f"**TP:** `{s['tp']:,.2f}`")
+                            st.markdown(f"**ATR:** `{s['atr']:,.2f}`")
+                        st.markdown(f"**Ret 1d:** {ind['ret_1d']:+.2f}%")
+                        st.markdown(f"**Ret 5d:** {ind['ret_5d']:+.2f}%")
+                    st.divider()
+                    for señal in s["señales"]:
+                        sc = "#22c55e" if señal["direccion"]=="ALZA" else "#ef4444"
+                        st.markdown(
+                            f'<div style="color:{sc};font-size:0.78rem;padding:2px 0">'
+                            f'{"↑" if señal["direccion"]=="ALZA" else "↓"} [{señal["indicador"]}] {señal["descripcion"]}</div>',
+                            unsafe_allow_html=True
+                        )
+
+        st.divider()
+        st.markdown("**Resumen de todos los activos**")
+        rows_at = []
+        for a in todos_at:
+            ind = a["indicadores"]
+            rows_at.append({
+                "Activo":    a["nombre"],
+                "Precio":   a["precio"],
+                "Acción":   a["accion"],
+                "Conv %":   a["conviccion"],
+                "RSI":      ind["rsi"],
+                "MACD":     ind["macd_hist"],
+                "%B":       ind["pct_b"],
+                "Ret 5d":   ind["ret_5d"],
+                "Vol ratio": ind["vol_ratio"],
+            })
+        df_at = pd.DataFrame(rows_at)
+        st.dataframe(df_at, use_container_width=True, hide_index=True,
+            column_config={
+                "Conv %": st.column_config.NumberColumn(format="%.1f%%"),
+                "RSI": st.column_config.NumberColumn(format="%.1f"),
+                "MACD": st.column_config.NumberColumn(format="%+.4f"),
+                "%B": st.column_config.NumberColumn(format="%.2f"),
+                "Ret 5d": st.column_config.NumberColumn(format="%+.2f%%"),
+                "Vol ratio": st.column_config.NumberColumn(format="%.1fx"),
+            })
 
     # ── Sub-tab Correlaciones
     with sub_corr:

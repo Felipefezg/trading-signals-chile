@@ -173,3 +173,561 @@
 2026-04-28 21:20:00,159 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
 2026-04-28 21:20:19,978 [INFO] === CICLO AUTOMÁTICO INICIADO ===
 2026-04-28 21:20:21,026 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-28 21:28:03,493 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-28 21:35:03,146 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-28 21:35:05,240 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-28 21:47:02,587 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-28 21:47:04,706 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-28 22:04:04,013 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-28 22:04:05,924 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-28 22:20:50,870 [ERROR] 
+9 Failed downloads:
+2026-04-28 22:20:50,871 [ERROR] ['BTC-USD', 'ECH', 'SPY', 'CL=F', '^TNX', 'GC=F', 'DX-Y.NYB', 'HG=F', '^VIX']: TypeError("'NoneType' object is not subscriptable")
+2026-04-28 22:20:50,908 [ERROR] 
+2 Failed downloads:
+2026-04-28 22:20:50,908 [ERROR] ['HG=F', 'ECH']: TypeError("'NoneType' object is not subscriptable")
+2026-04-28 22:20:50,926 [ERROR] 
+6 Failed downloads:
+2026-04-28 22:20:50,926 [ERROR] ['ECH', 'SPY', '^VIX', 'DX-Y.NYB', 'CL=F', 'HG=F']: TypeError("'NoneType' object is not subscriptable")
+2026-04-29 01:10:53,530 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 03:39:41,473 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 03:39:43,429 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 03:45:03,136 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 03:45:04,520 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 04:01:03,166 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 04:01:04,738 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 04:17:50,029 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 08:27:26,759 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 08:30:00,800 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 08:30:03,737 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 08:31:07,593 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 08:36:59,456 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 08:45:00,996 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 08:45:04,044 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 08:51:59,716 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 09:00:00,972 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 09:00:04,695 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 09:15:00,972 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 09:15:03,234 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 09:30:00,417 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 09:30:03,817 [ERROR] $SQM: possibly delisted; no price data found  (period=1d)
+2026-04-29 09:30:04,164 [ERROR] $SQM: possibly delisted; no price data found  (period=1d)
+2026-04-29 09:30:29,532 [INFO] APERTURA: VENDER COPEC | Conv 84.5% | Riesgo 1/10
+2026-04-29 09:30:29,589 [INFO] sent startApi
+2026-04-29 09:30:29,589 [INFO] REQUEST startApi {}
+2026-04-29 09:30:29,589 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-04-29 09:30:29,589 [INFO] ANSWER connectAck {}
+2026-04-29 09:30:29,594 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-04-29 09:30:30,740 [INFO] REQUEST placeOrder {'orderId': 7, 'contract': 5563748016: 0,COPEC,STK,,0.0,,,SN,,CLP,,,False,,combo:, 'order': 5563748256: 0,0,0: MKT SELL 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-04-29 09:30:30,740 [INFO] SENDING placeOrder b'\x00\x00\x0133\x007\x000\x00COPEC\x00STK\x00\x000.0\x00\x00\x00SN\x00\x00CLP\x00\x00\x00\x00\x00SELL\x001\x00MKT\x00\x00\x00\x00\x00\x00\x000\x00\x000\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-04-29 09:30:30,996 [INFO] REQUEST placeOrder {'orderId': 8, 'contract': 5563748016: 0,COPEC,STK,,0.0,,,SN,,CLP,,,False,,combo:, 'order': 5563747824: 0,0,0: STP BUY 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-04-29 09:30:30,996 [INFO] SENDING placeOrder b'\x00\x00\x0193\x008\x000\x00COPEC\x00STK\x00\x000.0\x00\x00\x00SN\x00\x00CLP\x00\x00\x00\x00\x00BUY\x001\x00STP\x00\x006864.37\x00\x00\x00\x00\x000\x00\x000\x007\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-04-29 09:30:31,346 [INFO] REQUEST placeOrder {'orderId': 9, 'contract': 5563748016: 0,COPEC,STK,,0.0,,,SN,,CLP,,,False,,combo:, 'order': 5563746960: 0,0,0: LMT BUY 1@5816.260000 }
+2026-04-29 09:30:31,347 [INFO] SENDING placeOrder b'\x00\x00\x0193\x009\x000\x00COPEC\x00STK\x00\x000.0\x00\x00\x00SN\x00\x00CLP\x00\x00\x00\x00\x00BUY\x001\x00LMT\x005816.26\x00\x00\x00\x00\x00\x000\x00\x001\x007\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-04-29 09:30:33,332 [INFO] disconnecting
+2026-04-29 09:30:33,332 [INFO] ANSWER connectionClosed {}
+2026-04-29 09:30:33,337 [INFO] Ciclo completado: 1 aperturas, 0 cierres
+2026-04-29 09:30:33,337 [INFO] Ciclo completado: 1 aperturas, 0 cierres, 3 rechazadas
+2026-04-29 09:45:00,420 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 09:45:03,432 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-29 09:45:03,915 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-29 09:45:15,232 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 09:45:15,233 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 10:00:00,658 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 10:00:03,734 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-29 10:00:04,191 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-29 10:00:30,513 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 10:00:30,525 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 10:15:01,628 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 10:15:34,401 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 10:15:34,402 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 10:30:00,953 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 10:30:18,012 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 10:30:18,013 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 10:45:00,362 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 10:45:16,787 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 10:45:16,788 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 11:00:01,205 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 11:00:15,800 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 11:00:15,801 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 11:15:01,266 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 11:15:38,120 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 11:15:38,122 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 11:30:00,687 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 11:30:14,850 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 11:30:14,850 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 11:45:01,184 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 11:45:34,830 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 11:45:34,831 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 12:00:00,787 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 12:00:26,973 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 12:00:26,978 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 12:15:00,759 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 12:15:14,946 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 12:15:14,947 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 12:30:01,547 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 12:30:19,346 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 12:30:19,347 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 12:45:00,831 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 12:45:15,514 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 12:45:15,514 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 13:00:01,294 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 13:00:18,211 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 13:00:18,212 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 13:15:00,648 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 13:15:22,933 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 13:15:22,987 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 13:32:27,136 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 13:33:10,876 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 13:33:10,878 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 13:45:01,105 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 13:45:16,075 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 13:45:16,075 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 14:00:01,031 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 14:00:17,891 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:00:17,892 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 14:12:08,043 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:13:39,017 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-29 14:13:40,312 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:14:56,410 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-29 14:14:57,554 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:15:01,243 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 14:15:33,845 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:15:33,846 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-29 14:27:29,568 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:28:50,662 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:30:01,274 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 14:30:15,154 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:30:15,155 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 14:30:15,781 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:42:21,485 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:43:41,114 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:45:00,664 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 14:45:03,680 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:45:16,225 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:45:16,225 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 14:57:20,859 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 14:58:41,368 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 14:59:57,258 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:00:00,810 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 15:00:15,498 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 15:00:15,498 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 15:12:20,257 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 15:13:36,084 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:14:46,394 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:15:00,780 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 15:15:27,429 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 15:15:27,431 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 15:27:23,919 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 15:28:41,086 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:29:53,410 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:30:01,437 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 15:30:15,336 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 15:30:15,339 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-29 15:42:21,523 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-29 15:43:41,226 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:45:00,734 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 15:45:00,857 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 15:45:03,970 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 15:57:51,020 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-29 15:59:21,839 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 16:00:00,913 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 16:00:03,053 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 16:00:34,165 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-29 16:15:00,898 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 16:15:03,109 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 16:45:01,379 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 16:45:09,642 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 17:00:00,710 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 17:00:02,697 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 17:15:00,570 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 17:15:02,639 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 17:30:00,933 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 17:30:02,852 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 18:30:00,428 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 18:30:02,504 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 18:45:00,466 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 18:45:02,481 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 19:00:00,378 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 19:00:03,096 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 19:15:00,527 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 19:15:03,769 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 19:30:00,551 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 19:30:02,529 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 20:18:03,813 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 20:18:05,763 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-29 21:46:04,025 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-29 21:46:05,887 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 08:30:01,045 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 08:30:03,193 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 08:45:00,687 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 08:45:02,949 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 09:01:48,613 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 09:01:56,327 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 09:01:58,006 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 09:03:42,212 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-30 09:03:43,571 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:05:22,213 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-04-30 09:05:23,065 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:15:01,046 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 09:15:03,177 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 09:16:48,827 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 09:18:26,159 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:21:25,381 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:30:01,115 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 09:30:04,256 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:30:04,795 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:30:18,590 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 09:30:18,590 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-30 09:31:49,473 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:31:50,165 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:31:56,871 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 09:34:08,139 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:35:37,193 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:45:00,832 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 09:45:04,050 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:45:04,515 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:45:18,397 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 09:45:18,398 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 5 rechazadas
+2026-04-30 09:46:49,798 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:46:50,218 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 09:46:57,139 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 09:48:48,411 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 09:50:12,760 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:00:00,532 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 10:00:03,766 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:00:04,243 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:00:15,078 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:00:15,079 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 10:01:49,377 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:01:49,824 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:01:56,525 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:03:39,745 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:06:33,253 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:08:03,751 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:15:01,952 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 10:15:05,285 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:15:05,812 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:15:17,148 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:15:17,148 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-04-30 10:19:53,349 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:19:53,821 [ERROR] $COPEC.SN: possibly delisted; no price data found  (period=1d)
+2026-04-30 10:20:05,768 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:21:29,934 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:23:10,325 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:30:00,529 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 10:30:31,880 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:30:31,881 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 10:35:07,401 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:36:36,788 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:37:47,272 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:45:00,275 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 10:45:16,847 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:45:16,848 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 10:50:03,974 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 10:51:56,698 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 10:53:19,213 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:00:01,043 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 11:00:39,236 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:00:39,237 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 11:12:37,287 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:14:06,627 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:15:00,794 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 11:15:15,333 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:15:15,334 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 11:15:25,401 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:27:35,582 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:28:59,835 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:30:00,838 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 11:30:16,231 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:30:17,042 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:30:17,042 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 11:42:33,122 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:42:45,898 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:45:00,532 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 11:45:11,288 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:45:14,841 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 11:45:14,842 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 11:48:45,282 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 11:50:09,056 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:00:01,186 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 12:00:14,901 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:00:14,902 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 12:02:07,192 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:03:29,881 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:04:59,555 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:15:01,169 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 12:15:29,155 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:15:29,156 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 12:17:07,684 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:18:29,601 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:19:46,094 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:30:00,595 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 12:30:17,144 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:30:17,145 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 12:32:09,133 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:33:47,143 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:35:10,955 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 12:45:00,734 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 12:45:15,600 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:45:15,602 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 12:58:37,167 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 12:59:47,901 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 13:00:00,822 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 13:00:12,313 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 13:00:12,313 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 13:01:25,994 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 13:13:40,820 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 13:14:59,888 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 13:15:00,783 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 13:15:13,117 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 13:15:13,118 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 13:16:14,723 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 13:30:33,374 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 13:46:16,618 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 13:46:16,619 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 15:11:40,799 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 15:13:05,146 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 15:14:36,464 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 15:15:01,454 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 15:15:15,922 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 15:15:15,922 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 15:26:33,022 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 15:27:56,116 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 15:29:12,721 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 15:30:00,958 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 15:30:15,116 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-04-30 15:30:15,116 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-04-30 15:45:00,552 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 15:45:02,774 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 15:57:19,520 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 15:59:04,825 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 16:00:01,068 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 16:00:03,023 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 16:00:18,395 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 16:15:00,742 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 16:15:03,276 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 16:17:26,865 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 16:18:59,769 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 16:20:30,293 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 16:35:44,846 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 16:35:46,837 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 16:45:01,061 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 16:45:02,962 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 16:50:44,230 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 16:52:12,223 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 16:53:28,340 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 17:00:00,688 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 17:00:02,700 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 17:05:43,847 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 17:07:48,401 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 17:09:13,624 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 17:15:00,578 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 17:15:02,659 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 17:30:01,720 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 17:30:05,229 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 17:30:29,998 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 17:32:28,731 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 17:33:37,363 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 17:45:01,228 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 17:45:03,460 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 17:45:28,854 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 17:47:04,941 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 17:48:36,131 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:00:00,509 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 18:00:02,857 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 18:00:28,892 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 18:01:50,875 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:03:10,225 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:15:00,757 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 18:15:03,064 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 18:15:28,944 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 18:16:31,610 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 18:17:48,568 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:19:06,388 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:30:00,993 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 18:30:03,053 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 18:31:32,818 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-04-30 18:33:05,203 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:34:26,396 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-04-30 18:45:00,273 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 18:45:02,110 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 19:00:01,210 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 19:00:04,814 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 19:32:07,687 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 19:32:10,072 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 20:19:01,940 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 20:19:03,903 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-04-30 22:31:08,265 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-04-30 22:31:10,256 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 01:31:19,624 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 01:31:22,238 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 02:35:38,443 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 02:35:40,358 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 05:17:03,087 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 05:17:05,005 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 09:03:05,201 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 09:08:12,427 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 10:48:48,914 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 10:59:24,636 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 10:59:24,638 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-05-01 11:05:05,898 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 11:10:30,364 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 11:10:30,365 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-05-01 11:16:02,933 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 11:26:54,423 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 11:26:54,423 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 4 rechazadas
+2026-05-01 13:17:12,337 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 13:17:33,264 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 13:17:33,267 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-05-01 13:39:10,388 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 13:44:32,246 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 13:44:32,247 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-05-01 13:50:07,313 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 13:50:34,754 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 13:50:34,755 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-05-01 14:03:14,253 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 14:08:36,697 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 14:08:36,698 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-05-01 14:31:04,496 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 14:36:38,443 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 14:36:38,445 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-05-01 14:39:33,532 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 14:41:04,526 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-01 14:41:06,068 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-01 14:42:51,757 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-01 14:42:53,573 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-01 14:45:01,177 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 14:45:18,818 [INFO] Ciclo completado: 0 aperturas, 0 cierres
+2026-05-01 14:45:18,819 [INFO] Ciclo completado: 0 aperturas, 0 cierres, 3 rechazadas
+2026-05-01 17:47:17,101 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-05-01 17:52:48,383 [WARNING] '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: abd11208-9174-4587-9abc-42ea4a9cfd6e)')' thrown while requesting HEAD https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment/resolve/main/config.json
+2026-05-01 17:52:48,387 [WARNING] Retrying in 1s [Retry 1/5].
+2026-05-01 18:15:00,417 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-01 18:35:21,043 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-05-01 18:37:01,640 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-01 18:38:38,064 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-01 20:35:03,069 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 20:35:05,000 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 21:45:06,273 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 21:50:15,190 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-01 22:23:55,139 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET)
+2026-05-01 22:45:58,126 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-01 22:46:03,190 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-01 22:46:05,141 [INFO] Fuera de horario: Fuera de horario (09:30-15:45 ET) — solo verificando posiciones
+2026-05-02 01:21:40,155 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-02 01:38:27,026 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 01:43:51,970 [ERROR] 
+8 Failed downloads:
+2026-05-02 01:43:51,970 [ERROR] ['CCU.SN', 'ITAUCL.SN', 'COPEC.SN', 'ENELCHILE.SN', 'HITES.SN', 'FALABELLA.SN', 'ILC.SN', 'BCI.SN']: TypeError("'NoneType' object is not subscriptable")
+2026-05-02 01:55:09,837 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 02:01:04,435 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 02:01:06,403 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 02:45:06,730 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 02:45:08,699 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 09:15:37,968 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-02 09:32:33,043 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 09:49:10,678 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 10:49:15,867 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 10:49:18,005 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 12:11:56,044 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-02 12:28:49,436 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 12:50:37,648 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 13:05:24,966 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 13:05:27,179 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 15:08:27,521 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-02 15:34:53,434 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 15:35:08,873 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 15:35:10,999 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 15:45:55,849 [ERROR] 
+8 Failed downloads:
+2026-05-02 15:45:55,850 [ERROR] ['^VIX', 'GC=F', 'SPY', 'ECH', '^TNX', 'CL=F', 'DX-Y.NYB', 'BTC-USD']: TypeError("'NoneType' object is not subscriptable")
+2026-05-02 15:52:21,406 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 16:20:03,298 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 16:20:05,220 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 16:31:04,378 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 16:31:06,231 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 17:48:04,214 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 17:48:06,129 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 18:15:22,344 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-02 18:38:00,228 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 18:54:36,367 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 19:00:05,448 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 19:00:07,597 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 19:50:04,678 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-02 19:50:06,784 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-02 21:22:59,083 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-02 21:45:15,383 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-02 22:07:37,926 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 00:15:33,712 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 00:35:05,137 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 00:35:07,416 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 00:35:22,015 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 00:47:06,776 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 00:47:08,896 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 00:52:21,691 [ERROR] 
+8 Failed downloads:
+2026-05-03 00:52:21,692 [ERROR] ['GC=F', '^VIX', 'BTC-USD', '^TNX', 'DX-Y.NYB', 'ECH', 'SPY', 'CL=F']: TypeError("'NoneType' object is not subscriptable")
+2026-05-03 00:58:04,177 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 03:10:52,936 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 03:33:20,485 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 03:55:14,391 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 04:02:44,687 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 04:02:47,316 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 04:21:44,463 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 04:21:46,380 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 04:33:01,544 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 04:33:03,365 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 05:44:54,430 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 05:45:05,746 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 05:45:07,757 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 06:02:10,222 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 06:07:30,577 [ERROR] 
+1 Failed download:
+2026-05-03 06:07:30,578 [ERROR] ['ENELCHILE.SN']: TypeError("'NoneType' object is not subscriptable")
+2026-05-03 06:21:02,241 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 06:21:04,132 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 06:21:08,780 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 06:49:14,789 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 06:49:16,709 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 07:33:04,839 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 07:33:06,854 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 07:50:22,459 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 07:50:24,389 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 13:13:39,110 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:13:39,111 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:13:39,111 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:14:20,946 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:14:20,946 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:14:22,362 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:14:23,804 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:14:23,826 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:15:00,608 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 13:15:02,973 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 13:15:42,645 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-03 13:15:42,820 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-03 13:15:43,964 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:15:44,359 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:15:44,534 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:15:46,806 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:16:10,942 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:17:24,298 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:17:24,587 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:18:55,388 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:18:57,138 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:19:05,688 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:19:05,795 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:19:50,646 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:21:02,363 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:21:02,720 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:22:37,682 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:22:40,860 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-03 13:22:42,438 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:24:17,046 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-03 13:24:18,514 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:25:52,166 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:30:00,908 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 13:30:02,603 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 13:32:04,842 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 13:34:07,390 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-03 13:34:09,383 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")

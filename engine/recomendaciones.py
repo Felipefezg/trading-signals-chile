@@ -294,7 +294,7 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
     return enviadas, enviadas_cache
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
-def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None):
+def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None):
     activos = {}
 
     # Polymarket
@@ -453,6 +453,40 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             "prob": None, "direccion": direccion_vol, "peso": round(peso_vol, 2),
         })
 
+    # Análisis Técnico — RSI, MACD, Bollinger, MA
+    for at in (analisis_tecnico or []):
+        activo_map = at.get("activo_motor")
+        if not activo_map:
+            continue
+        if activo_map not in activos:
+            activos[activo_map] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+
+        direccion_at = at.get("direccion", "NEUTRO")
+        conviccion_at = at.get("conviccion", 0)
+        puntos_at = at.get("puntos", 0)
+
+        # Peso proporcional a la convicción y puntos técnicos
+        peso_at = puntos_at * 0.8
+
+        if direccion_at == "ALZA" and peso_at > 0:
+            activos[activo_map]["alza"] += peso_at
+            activos[activo_map]["fuentes"].append("Análisis Técnico")
+            señales_desc = " | ".join(s["descripcion"] for s in at.get("señales", [])[:2])
+            activos[activo_map]["evidencia"].append({
+                "fuente": "Análisis Técnico",
+                "señal": f"{at['nombre']}: {señales_desc[:80]}",
+                "prob": None, "direccion": "ALZA", "peso": round(peso_at, 2),
+            })
+        elif direccion_at == "BAJA" and peso_at > 0:
+            activos[activo_map]["baja"] += peso_at
+            activos[activo_map]["fuentes"].append("Análisis Técnico")
+            señales_desc = " | ".join(s["descripcion"] for s in at.get("señales", [])[:2])
+            activos[activo_map]["evidencia"].append({
+                "fuente": "Análisis Técnico",
+                "señal": f"{at['nombre']}: {señales_desc[:80]}",
+                "prob": None, "direccion": "BAJA", "peso": round(peso_at, 2),
+            })
+
     # Put/Call Ratio — Smart Money Positioning
     PC_PESO = {"ALZA": 1.5, "BAJA": 1.5, "NEUTRO": 0}
     for activo_pc, datos_pc in (put_call or {}).items():
@@ -539,6 +573,7 @@ def generar_recomendaciones(activos_dict):
     return sorted(recomendaciones, key=lambda x: (x["score"], -x["riesgo"]), reverse=True)
 
 def _generar_tesis_resumida(activo, accion, evidencia, fuentes):
+    at_ev     = [e for e in evidencia if e["fuente"] == "Análisis Técnico"]
     pc_ev     = [e for e in evidencia if e["fuente"] == "Put/Call"]
     poly_ev  = [e for e in evidencia if e["fuente"] == "Polymarket"]
     kalshi_ev = [e for e in evidencia if e["fuente"] == "Kalshi"]
@@ -559,6 +594,8 @@ def _generar_tesis_resumida(activo, accion, evidencia, fuentes):
         partes.append(f"Volumen: {vol_ev[0]['señal'][:40]}")
     if fg_ev:
         partes.append(fg_ev[0]["señal"][:40])
+    if at_ev:
+        partes.append(f"AT: {at_ev[0]['señal'][:50]}")
     if pc_ev:
         partes.append(f"Put/Call: {pc_ev[0]['señal'][:40]}")
     if partes:
