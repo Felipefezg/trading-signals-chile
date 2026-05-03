@@ -20,18 +20,14 @@ import numpy as np
 from datetime import datetime
 import concurrent.futures
 
-# Universo de activos para MTF
-ACTIVOS_MTF = {
-    "SQM":      {"nombre": "SQM ADR",       "activo_motor": "SQM.SN"},
-    "ECH":      {"nombre": "IPSA ETF",       "activo_motor": "ECH"},
-    "COPEC.SN": {"nombre": "Copec",          "activo_motor": "COPEC.SN"},
-    "BTC-USD":  {"nombre": "Bitcoin",        "activo_motor": "BTC_LOCAL_SPREAD"},
-    "GC=F":     {"nombre": "Oro",            "activo_motor": "GC=F"},
-    "HG=F":     {"nombre": "Cobre",          "activo_motor": "HG=F"},
-    "SPY":      {"nombre": "S&P 500 ETF",    "activo_motor": "^GSPC"},
-    "BCI.SN":   {"nombre": "Banco BCI",      "activo_motor": "BCI.SN"},
-    "CHILE.SN": {"nombre": "Banco de Chile", "activo_motor": "CHILE.SN"},
-}
+# Universo de activos — importado desde universo maestro
+from engine.universo import get_tickers_mtf
+
+def _build_activos_mtf():
+    u = get_tickers_mtf()
+    return {yf: {"nombre": v["nombre"], "activo_motor": yf} for yf, v in u.items()}
+
+ACTIVOS_MTF = _build_activos_mtf()
 
 TIMEFRAMES = {
     "1h":  {"periodo": "60d",  "peso": 0.25, "label": "1 Hora"},

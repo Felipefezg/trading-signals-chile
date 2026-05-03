@@ -1004,3 +1004,27 @@
 2026-05-03 19:20:05,643 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
 2026-05-03 19:20:06,047 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
 2026-05-03 19:20:09,510 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:20:17,676 [INFO] sent startApi
+2026-05-03 19:20:17,677 [INFO] REQUEST startApi {}
+2026-05-03 19:20:17,677 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 19:20:17,677 [INFO] ANSWER connectAck {}
+2026-05-03 19:20:17,679 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 19:20:19,734 [INFO] disconnecting
+2026-05-03 19:20:19,735 [INFO] ANSWER connectionClosed {}
+2026-05-03 19:20:19,735 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 19:22:45,673 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 19:23:40,325 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:23:40,609 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:23:41,637 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:25:00,668 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 19:25:06,522 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:25:06,989 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:25:10,508 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:25:18,849 [INFO] sent startApi
+2026-05-03 19:25:18,850 [INFO] REQUEST startApi {}
+2026-05-03 19:25:18,850 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 19:25:18,850 [INFO] ANSWER connectAck {}
+2026-05-03 19:25:18,853 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 19:25:20,990 [INFO] disconnecting
+2026-05-03 19:25:20,990 [INFO] ANSWER connectionClosed {}
+2026-05-03 19:25:20,990 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones

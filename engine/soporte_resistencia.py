@@ -18,20 +18,14 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
-# Universo de activos
-ACTIVOS_SR = {
-    "SQM":      "SQM ADR",
-    "ECH":      "IPSA ETF",
-    "COPEC.SN": "Copec",
-    "BTC-USD":  "Bitcoin",
-    "GC=F":     "Oro",
-    "HG=F":     "Cobre",
-    "SPY":      "S&P 500",
-    "BCI.SN":   "Banco BCI",
-    "CHILE.SN": "Banco de Chile",
-    "FALABELLA.SN": "Falabella",
-    "CENCOSUD.SN":  "Cencosud",
-}
+# Universo de activos — importado desde universo maestro
+from engine.universo import get_tickers_at
+
+def _build_activos_sr():
+    u = get_tickers_at()
+    return {yf: v["nombre"] for yf, v in u.items()}
+
+ACTIVOS_SR = _build_activos_sr()
 
 # ── PIVOTS (máximos/mínimos locales) ─────────────────────────────────────────
 def detectar_pivots(h, ventana=5, n_niveles=5):

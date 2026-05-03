@@ -18,18 +18,14 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
-# Universo de activos con análisis técnico
-UNIVERSO_AT = {
-    "ECH":      {"nombre": "IPSA ETF",          "activo_motor": "ECH"},
-    "SQM":      {"nombre": "SQM ADR",            "activo_motor": "SQM.SN"},
-    "COPEC.SN": {"nombre": "Copec",              "activo_motor": "COPEC.SN"},
-    "BTC-USD":  {"nombre": "Bitcoin",            "activo_motor": "BTC_LOCAL_SPREAD"},
-    "GC=F":     {"nombre": "Oro",                "activo_motor": "GC=F"},
-    "HG=F":     {"nombre": "Cobre",              "activo_motor": "HG=F"},
-    "SPY":      {"nombre": "S&P 500 ETF",        "activo_motor": "^GSPC"},
-    "BCI.SN":   {"nombre": "Banco BCI",          "activo_motor": "BCI.SN"},
-    "CHILE.SN": {"nombre": "Banco de Chile",     "activo_motor": "CHILE.SN"},
-}
+# Universo de activos — importado desde universo maestro
+from engine.universo import get_tickers_at, UNIVERSO_COMPLETO
+
+def _build_universo_at():
+    u = get_tickers_at()
+    return {yf: {"nombre": v["nombre"], "activo_motor": yf} for yf, v in u.items()}
+
+UNIVERSO_AT = _build_universo_at()
 
 # ── INDICADORES ───────────────────────────────────────────────────────────────
 def calcular_rsi(precios, periodo=14):
