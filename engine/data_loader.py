@@ -82,6 +82,10 @@ def _cargar_mercado_local():
     from engine.mercado_local import get_señales_ipsa
     return get_señales_ipsa(min_conviccion=65)
 
+def _cargar_correlaciones():
+    from engine.correlaciones import get_señales_correlacion
+    return get_señales_correlacion(min_score=2)
+
 def _cargar_order_flow():
     from engine.order_flow import get_señales_order_flow
     return get_señales_order_flow(min_score=2)
@@ -106,6 +110,7 @@ FUENTES = {
     "volumen":          (_cargar_volumen,           TIMEOUTS["volumen"]),
     "ib_data":          (_cargar_ib_data,           15),
     "order_flow":       (_cargar_order_flow,        20),
+    "correlaciones":    (_cargar_correlaciones,     30),
     "mercado_local":    (_cargar_mercado_local,    30),
     "mtf":              (_cargar_mtf,              45),
     "renta_fija":       (_cargar_renta_fija,        15),
@@ -197,6 +202,7 @@ def get_datos_para_motor(verbose=False):
         "vol_alertas":      datos.get("volumen"),
         "ib_data":          datos.get("ib_data"),
         "order_flow":       datos.get("order_flow"),
+        "correlaciones":    datos.get("correlaciones"),
         "mercado_local":    datos.get("mercado_local"),
         "mtf":              datos.get("mtf"),
         "renta_fija":       datos.get("renta_fija"),
