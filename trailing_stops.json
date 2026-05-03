@@ -64,9 +64,9 @@
       }
     ],
     "fecha_inicio": "2026-04-27T21:42:48.840248",
-    "precio_actual": 76265.8828125,
-    "pnl_pct": 1.94,
-    "ultima_actualizacion": "2026-04-28T21:20:24.242256"
+    "precio_actual": 79149.609375,
+    "pnl_pct": -1.77,
+    "ultima_actualizacion": "2026-05-03T19:08:56.508684"
   },
   "SQM": {
     "accion": "VENDER",
@@ -87,7 +87,7 @@
     "fecha_inicio": "2026-04-27T21:42:48.840490",
     "precio_actual": 92.68000030517578,
     "pnl_pct": -4.38,
-    "ultima_actualizacion": "2026-05-03T19:00:10.071510"
+    "ultima_actualizacion": "2026-05-03T19:06:51.499347"
   },
   "COPEC": {
     "accion": "VENDER",
@@ -168,6 +168,6 @@
     "fecha_inicio": "2026-04-27T21:42:48.840670",
     "precio_actual": 6303.0,
     "pnl_pct": 5.43,
-    "ultima_actualizacion": "2026-05-03T19:00:10.355091"
+    "ultima_actualizacion": "2026-05-03T19:06:51.732669"
   }
 }

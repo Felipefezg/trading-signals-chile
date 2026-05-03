@@ -77,7 +77,6 @@ def main():
                     put_call=datos["put_call"],
                     analisis_tecnico=datos["analisis_tecnico"],
                     google_trends=datos["google_trends"],
-                    ib_data=datos["ib_data"],
                     mercado_local=datos.get("mercado_local"),
                     renta_fija=datos.get("renta_fija"),
                     mtf=datos.get("mtf"),
