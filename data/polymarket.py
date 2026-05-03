@@ -53,11 +53,48 @@ def get_active_markets(limit=100):
         print(f"Error Polymarket: {e}")
         return pd.DataFrame()
 
+# Palabras que indican horizonte indefinido o no financiero
+EXCLUIR_PALABRAS = [
+    "world cup", "fifa", "oscar", "grammy",
+    "super bowl", "nba champion", "nfl", "marvel", "movie",
+    "tv show", "song", "album", "celebrity",
+    "arrested", "married", "divorced",
+]
+
+# Palabras que confirman relevancia financiera
+INCLUIR_PALABRAS = [
+    "rate", "fed", "gdp", "inflation", "recession", "copper",
+    "lithium", "bitcoin", "btc", "oil", "gold", "tariff",
+    "trade", "market", "economy", "stock", "yield", "dollar",
+    "china gdp", "emerging", "fomc", "cpi", "treasury",
+]
+
 def get_mercados_chile(limit=200):
     df = get_active_markets(limit=limit)
     if df.empty:
         return df
+
+    # Filtrar solo mercados con impacto Chile
     df = df[df["chile_impact"].apply(len) > 0].copy()
+
+    # Excluir mercados no financieros
+    def es_financiero(pregunta):
+        texto = pregunta.lower()
+        # Excluir si contiene palabras no financieras
+        for palabra in EXCLUIR_PALABRAS:
+            if palabra in texto:
+                return False
+        return True
+
+    df = df[df["pregunta"].apply(es_financiero)].copy()
+
+    # Filtrar por relevancia mínima
+    df = df[df["relevancia"] >= 2].copy()  # mínimo relevancia 2
+
+    # Filtrar por volumen mínimo (descartar mercados sin liquidez)
+    if "volumen_usd" in df.columns:
+        df = df[df["volumen_usd"].fillna(0) >= 1_000].copy()
+
     df = df.sort_values(
         ["relevancia", "volumen_usd"],
         ascending=[False, False]

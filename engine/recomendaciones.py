@@ -306,7 +306,7 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
                 if activo not in activos:
                     activos[activo] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
                 rel = row.get("relevancia", 1)
-                peso = abs(prob - 50) * rel / 100
+                peso = abs(prob - 50) * rel / 200  # reducido — Polymarket sin mercados financieros relevantes
                 direccion = "alza" if prob > 50 else "baja"
                 activos[activo][direccion] += peso
                 activos[activo]["fuentes"].append("Polymarket")
@@ -466,7 +466,7 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         puntos_at = at.get("puntos", 0)
 
         # Peso proporcional a la convicción y puntos técnicos
-        peso_at = puntos_at * 0.8
+        peso_at = puntos_at * 1.5  # aumentado — AT es fuente más confiable actualmente
 
         if direccion_at == "ALZA" and peso_at > 0:
             activos[activo_map]["alza"] += peso_at

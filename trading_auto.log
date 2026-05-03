@@ -731,3 +731,5 @@
 2026-05-03 13:32:04,842 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
 2026-05-03 13:34:07,390 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
 2026-05-03 13:34:09,383 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 13:35:48,101 [ERROR] HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: COPEC"}}}
+2026-05-03 13:35:49,523 [ERROR] $COPEC: possibly delisted; no price data found  (period=2d) (Yahoo error = "No data found, symbol may be delisted")
