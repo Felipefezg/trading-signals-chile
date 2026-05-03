@@ -225,7 +225,8 @@ def validar_señal(recomendacion):
     ticker     = recomendacion.get("ib_ticker", "")
     conviccion = recomendacion.get("conviccion", 0)
     riesgo     = recomendacion.get("riesgo", 10)
-    n_fuentes  = recomendacion.get("n_fuentes", 0)
+    fuentes_list = recomendacion.get("fuentes", [])
+    n_fuentes  = recomendacion.get("n_fuentes", len(fuentes_list))
     sector     = SECTORES.get(ticker, "Otros")
 
     # 1. Convicción mínima
