@@ -204,8 +204,8 @@ def analizar_activo(ticker, periodo="6mo"):
         conviccion = min(50 + puntos_total * 10 + vol_bonus * 10, 95) if puntos_total > 0 else 0
 
         # SL/TP basado en ATR
-        sl_dist = atr_act * 1.5
-        tp_dist = atr_act * 3.0
+        sl_dist = atr_act * 2.0
+        tp_dist = atr_act * 3.5
         if accion_final == "COMPRAR":
             sl = round(precio_act - sl_dist, 4)
             tp = round(precio_act + tp_dist, 4)

@@ -85,8 +85,8 @@ RIESGO_BASE = {
     "Acción Chile":    5,
     "Acción USA/Chile":4,
     "Forex":           4,
-    "Crypto":          8,
-    "Futuro":          7,
+    "Crypto":          7,
+    "Futuro":          6,
     "Índice":          5,
 }
 

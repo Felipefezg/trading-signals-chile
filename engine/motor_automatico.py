@@ -43,13 +43,13 @@ logging.basicConfig(
 
 # ── PARÁMETROS (ajustables) ───────────────────────────────────────────────────
 PARAMS = {
-    "max_posiciones":        5,
-    "max_usd_por_operacion": 10_000,
+    "max_posiciones":        8,
+    "max_usd_por_operacion": 15_000,
     "max_riesgo_total_usd":  30_000,
     "capital_total":         100_000,
-    "conviccion_minima":     80,
-    "riesgo_maximo":         5,
-    "fuentes_minimas":       3,
+    "conviccion_minima":     75,
+    "riesgo_maximo":         7,
+    "fuentes_minimas":       2,
     "max_drawdown_pct":      10.0,
     "pausa_pnl_dia_pct":    -3.0,
     "pausa_consecutivos":    3,
