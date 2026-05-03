@@ -102,20 +102,25 @@ def main():
                 put_call=pc, analisis_tecnico=at)
             recomendaciones = generar_recomendaciones(activos)
 
-            # Guardar en DB
-            for r in recomendaciones:
-                if r["conviccion"] >= 70:
-                    guardar_senales(
-                        señal=r["tesis"][:100],
-                        prob_pct=r["conviccion"],
-                        direccion=r["accion"],
-                        activos=r["ib_ticker"],
-                        score=r["score"],
-                        tesis=r["tesis"],
-                        ticker_bt=r["ib_ticker"],
-                        precio_entrada=r.get("precio_actual"),
-                    )
-            print(f"Señales guardadas en DB: {len([r for r in recomendaciones if r['conviccion'] >= 70])}")
+            # Guardar en DB — convertir a DataFrame
+            import pandas as pd
+            señales_para_guardar = [
+                {
+                    "Señal":     r["tesis"][:100],
+                    "Prob %":    r["conviccion"],
+                    "Dirección": r["accion"],
+                    "Activos Chile": r["ib_ticker"],
+                    "Score":     r["score"],
+                    "Tesis":     r["tesis"],
+                }
+                for r in recomendaciones if r["conviccion"] >= 70
+            ]
+            if señales_para_guardar:
+                df_señales = pd.DataFrame(señales_para_guardar)
+                guardar_senales(df_señales)
+                print(f"Señales guardadas en DB: {len(señales_para_guardar)}")
+            else:
+                print("Sin señales con convicción >= 70% para guardar")
         except Exception as e:
             print(f"Error guardando señales: {e}")
             logging.error(f"Error guardando señales: {e}")

@@ -738,3 +738,5 @@
 2026-05-03 13:45:00,620 [INFO] === CICLO AUTOMÁTICO INICIADO ===
 2026-05-03 13:45:03,266 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
 2026-05-03 13:47:06,323 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 14:00:00,513 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 14:00:03,979 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
