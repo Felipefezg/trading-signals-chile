@@ -579,7 +579,7 @@ def generar_recomendaciones(activos_dict):
         # Volatilidad y SL/TP
         yf_ticker = ib_info.get("yf", activo)
         precio_actual, vol = _get_volatilidad(yf_ticker)
-        precio_actual, sl, tp = _calcular_sl_tp(accion, precio_actual, vol, horizonte["dias"])
+        precio_actual, sl, tp = _calcular_sl_tp(accion, precio_actual, vol, horizonte["dias"], ticker=yf_ticker)
 
         # Tipo de instrumento sugerido
         instrumentos_sugeridos = _sugerir_instrumento(tipo, accion, horizonte["label"], riesgo, conviccion_pct)
