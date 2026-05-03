@@ -321,12 +321,23 @@ with tab_resumen:
         except:
             ib_señales = None
 
-        activos      = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias,
-                                          fear_greed=fg_data, cmf_hechos=cmf_data,
-                                          vol_alertas=vol_data, put_call=pc_señales,
-                                          analisis_tecnico=at_señales,
-                                          google_trends=gt_señales,
-                                          ib_data=ib_señales)
+        try:
+            from engine.data_loader import get_datos_para_motor
+            datos = get_datos_para_motor(verbose=False)
+            activos = consolidar_señales(
+                datos["poly_df"], datos["kalshi_list"],
+                datos["macro_corr"], datos["noticias"],
+                fear_greed=datos["fear_greed"],
+                cmf_hechos=datos["cmf_hechos"],
+                vol_alertas=datos["vol_alertas"],
+                put_call=datos["put_call"],
+                analisis_tecnico=datos["analisis_tecnico"],
+                google_trends=datos["google_trends"],
+                ib_data=datos["ib_data"],
+                mercado_local=datos.get("mercado_local"),
+            )
+        except Exception as e:
+            activos = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
         recomendaciones = generar_recomendaciones(activos)
         st.session_state.recomendaciones = recomendaciones
 
