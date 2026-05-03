@@ -21,8 +21,23 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 
+def enviar_resumen_si_corresponde():
+    """Envía resumen diario a las 9:00 AM y 4:00 PM ET"""
+    import pytz
+    tz  = pytz.timezone("America/New_York")
+    now = datetime.now(tz)
+    hora = now.hour
+    min  = now.minute
+    if (hora == 9 and min < 5) or (hora == 16 and min < 5):
+        try:
+            from engine.telegram_alertas import alerta_resumen_diario
+            alerta_resumen_diario()
+        except Exception as e:
+            logging.error(f"Error resumen Telegram: {e}")
+
 def main():
     logging.info("=== CICLO AUTOMÁTICO INICIADO ===")
+    enviar_resumen_si_corresponde()
     print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Iniciando ciclo automático...")
 
     try:

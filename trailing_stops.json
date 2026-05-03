@@ -87,7 +87,7 @@
     "fecha_inicio": "2026-04-27T21:42:48.840490",
     "precio_actual": 92.68000030517578,
     "pnl_pct": -4.38,
-    "ultima_actualizacion": "2026-05-03T15:00:09.869786"
+    "ultima_actualizacion": "2026-05-03T15:30:10.834638"
   },
   "COPEC": {
     "accion": "VENDER",
@@ -168,6 +168,6 @@
     "fecha_inicio": "2026-04-27T21:42:48.840670",
     "precio_actual": 6303.0,
     "pnl_pct": 5.43,
-    "ultima_actualizacion": "2026-05-03T15:00:10.221017"
+    "ultima_actualizacion": "2026-05-03T15:30:11.159389"
   }
 }

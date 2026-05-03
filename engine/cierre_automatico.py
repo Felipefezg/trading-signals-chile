@@ -317,6 +317,20 @@ def ejecutar_cierre_ib(ticker, posicion, condicion, modo_test=False):
 
 # ── CIERRE DE POSICIÓN EN JSON ────────────────────────────────────────────────
 def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
+    # Enviar alerta Telegram
+    try:
+        from engine.telegram_alertas import alerta_cierre_posicion
+        precio_entrada = posicion.get("precio_entrada", 0)
+        precio_salida  = condicion.get("precio", 0)
+        pnl_pct        = condicion.get("pnl_pct", 0)
+        cantidad       = posicion.get("cantidad", 1)
+        pnl_usd        = (precio_salida - precio_entrada) * cantidad
+        if posicion.get("accion") == "VENDER":
+            pnl_usd = (precio_entrada - precio_salida) * cantidad
+        alerta_cierre_posicion(ticker, condicion["razon"], pnl_pct, pnl_usd, precio_entrada, precio_salida)
+    except:
+        pass
+
     """
     Elimina la posición del JSON y registra el trade cerrado.
     """
