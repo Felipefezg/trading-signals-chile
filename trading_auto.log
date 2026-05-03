@@ -1028,3 +1028,23 @@
 2026-05-03 19:25:20,990 [INFO] disconnecting
 2026-05-03 19:25:20,990 [INFO] ANSWER connectionClosed {}
 2026-05-03 19:25:20,990 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 19:28:02,990 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 19:28:06,908 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:28:07,323 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:28:10,890 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:28:30,060 [INFO] sent startApi
+2026-05-03 19:28:30,060 [INFO] REQUEST startApi {}
+2026-05-03 19:28:30,060 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 19:28:30,060 [INFO] ANSWER connectAck {}
+2026-05-03 19:28:30,063 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 19:28:31,953 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 19:28:32,072 [INFO] disconnecting
+2026-05-03 19:28:32,072 [INFO] ANSWER connectionClosed {}
+2026-05-03 19:28:32,073 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 19:28:32,121 [INFO] Fuera de horario: Mercado cerrado (fin de semana)
+2026-05-03 19:29:25,355 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:29:25,422 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:29:25,803 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:29:26,013 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 19:29:26,978 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 19:29:27,869 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
