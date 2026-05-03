@@ -354,3 +354,38 @@ def run_backtest_completo():
 
 if __name__ == "__main__":
     run_backtest_completo()
+
+
+# ── ALIASES PARA COMPATIBILIDAD CON DASHBOARD ────────────────────────────────
+def ejecutar_backtest(ticker=None, periodo="2y"):
+    """Alias compatible con el dashboard"""
+    if ticker:
+        info = ACTIVOS_BT.get(ticker, {"nombre": ticker, "capital": 10_000})
+        return backtest_activo(ticker, info["nombre"], info["capital"])
+    return run_backtest_completo()
+
+def get_estadisticas_backtest():
+    """Retorna estadísticas agregadas del backtest"""
+    import concurrent.futures
+    resultados = []
+    def bt(item):
+        ticker, config = item
+        return backtest_activo(ticker, config["nombre"], config["capital"])
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        futures = {executor.submit(bt, item): item for item in ACTIVOS_BT.items()}
+        for future in concurrent.futures.as_completed(futures):
+            r = future.result()
+            if r:
+                resultados.append(r)
+    if not resultados:
+        return {}
+    import numpy as np
+    return {
+        "total_trades":  sum(r["n_trades"] for r in resultados),
+        "win_rate":      round(np.mean([r["win_rate"] for r in resultados]), 1),
+        "rr_ratio":      round(np.mean([r["rr_ratio"] for r in resultados]), 2),
+        "pnl_total":     sum(r["pnl_total"] for r in resultados),
+        "max_drawdown":  round(min(r["max_drawdown"] for r in resultados), 1),
+        "sharpe":        round(np.mean([r["sharpe"] for r in resultados]), 2),
+        "por_activo":    resultados,
+    }
