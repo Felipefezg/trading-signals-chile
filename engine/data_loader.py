@@ -66,6 +66,10 @@ def _cargar_volumen():
     resumen = get_resumen_volumen()
     return correlacionar_con_cmf(resumen.get("top_alertas", []))
 
+def _cargar_mercado_local():
+    from engine.mercado_local import get_señales_ipsa
+    return get_señales_ipsa(min_conviccion=65)
+
 def _cargar_ib_data():
     from data.ib_market_data import get_señales_ib, es_horario_mercado
     if not es_horario_mercado():
@@ -85,6 +89,7 @@ FUENTES = {
     "google_trends":    (_cargar_google_trends,     TIMEOUTS["google_trends"]),
     "volumen":          (_cargar_volumen,           TIMEOUTS["volumen"]),
     "ib_data":          (_cargar_ib_data,           15),
+    "mercado_local":    (_cargar_mercado_local,    30),
 }
 
 def cargar_todas_las_fuentes(fuentes=None, max_workers=8, verbose=False):
@@ -171,6 +176,7 @@ def get_datos_para_motor(verbose=False):
         "google_trends":    datos.get("google_trends"),
         "vol_alertas":      datos.get("volumen"),
         "ib_data":          datos.get("ib_data"),
+        "mercado_local":    datos.get("mercado_local"),
         "meta": {
             "t_total":  resultado["t_total"],
             "errores":  resultado["errores"],
