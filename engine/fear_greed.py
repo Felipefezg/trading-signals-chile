@@ -21,7 +21,11 @@ Escala:
 import yfinance as yf
 import requests
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from data.cache_helper import cache_get, cache_set
+from datetime import timedelta
 
 # ── COMPONENTES ───────────────────────────────────────────────────────────────
 PESOS = {
@@ -178,6 +182,11 @@ def _score_cobre():
 
 # ── CALCULAR ÍNDICE ───────────────────────────────────────────────────────────
 def calcular_fear_greed():
+    # Cache 30 minutos
+    cached = cache_get("fear_greed", max_age_min=30)
+    if cached:
+        return cached
+
     """
     Calcula el Fear & Greed Index Chile.
     Retorna dict con score, clasificación y detalle de componentes.
@@ -246,7 +255,7 @@ def calcular_fear_greed():
     else:
         multiplicador_señales = 0.7   # -30% peso a señales de compra
 
-    return {
+    resultado = {
         "timestamp":           datetime.now().isoformat(),
         "score":               score_final,
         "clasificacion":       clasificacion,
@@ -256,6 +265,8 @@ def calcular_fear_greed():
         "multiplicador":       multiplicador_señales,
         "componentes":         componentes,
     }
+    cache_set("fear_greed", resultado)
+    return resultado
 
 def get_fear_greed_simple():
     """Versión rápida para el header del dashboard"""

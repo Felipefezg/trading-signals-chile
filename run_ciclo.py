@@ -92,34 +92,26 @@ def main():
         # En horario — ejecutar ciclo completo
         print("Ejecutando ciclo completo...")
 
-        # Generar y guardar señales en DB
+        # Generar señales — carga paralela
         try:
-            from data.polymarket import get_mercados_chile
-            from data.kalshi import get_kalshi_resumen
-            from data.macro_usa import get_macro_usa, get_correlaciones_chile
-            from data.noticias_chile import get_noticias_google
-            from engine.nlp_sentiment import analizar_noticias_batch
+            from engine.data_loader import get_datos_para_motor
             from engine.recomendaciones import consolidar_señales, generar_recomendaciones
-            from engine.fear_greed import calcular_fear_greed
-            from data.cmf import get_hechos_esenciales
-            from data.volumen import get_resumen_volumen, correlacionar_con_cmf
-            from data.put_call import get_señal_consolidada_pc
-            from engine.analisis_tecnico import get_señales_tecnicas
             from data.historial import guardar_senales
-
-            poly_df    = get_mercados_chile(limit=200)
-            kalshi     = get_kalshi_resumen()
-            macro_corr = get_correlaciones_chile(get_macro_usa())
-            noticias   = analizar_noticias_batch(get_noticias_google())
-            fg         = calcular_fear_greed()
-            cmf        = get_hechos_esenciales(solo_ipsa=True, limit=20)
-            vol        = correlacionar_con_cmf(get_resumen_volumen().get("top_alertas",[]))
-            pc         = get_señal_consolidada_pc()
-            at         = get_señales_tecnicas(min_conviccion=60)
-
-            activos = consolidar_señales(poly_df, kalshi, macro_corr, noticias,
-                fear_greed=fg, cmf_hechos=cmf, vol_alertas=vol,
-                put_call=pc, analisis_tecnico=at)
+            import time
+            t0 = time.time()
+            datos = get_datos_para_motor(verbose=False)
+            print(f"Datos cargados en {datos['meta']['t_total']}s")
+            activos = consolidar_señales(
+                datos["poly_df"], datos["kalshi_list"],
+                datos["macro_corr"], datos["noticias"],
+                fear_greed=datos["fear_greed"],
+                cmf_hechos=datos["cmf_hechos"],
+                vol_alertas=datos["vol_alertas"],
+                put_call=datos["put_call"],
+                analisis_tecnico=datos["analisis_tecnico"],
+                google_trends=datos["google_trends"],
+                ib_data=datos["ib_data"],
+            )
             recomendaciones = generar_recomendaciones(activos)
 
             # Guardar en DB — convertir a DataFrame

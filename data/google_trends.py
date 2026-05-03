@@ -10,6 +10,7 @@ Lógica:
 """
 
 from pytrends.request import TrendReq
+from data.cache_helper import cache_get, cache_set
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -146,6 +147,11 @@ def analizar_grupo(activo, config, periodo="now 7-d"):
     }
 
 def get_trends_chile(periodo="now 7-d"):
+    # Cache 60 minutos — Google Trends tiene rate limit
+    cached = cache_get("google_trends", max_age_min=60)
+    if cached:
+        return cached
+
     """
     Analiza Google Trends para todos los activos chilenos.
     Retorna señales ordenadas por score.
@@ -157,7 +163,9 @@ def get_trends_chile(periodo="now 7-d"):
             resultados.append(resultado)
         time.sleep(1)  # Evitar rate limit de Google
 
-    return sorted(resultados, key=lambda x: x["score"], reverse=True)
+    resultado = sorted(resultados, key=lambda x: x["score"], reverse=True)
+    cache_set("google_trends", resultado)
+    return resultado
 
 def get_señales_trends(min_score=2):
     """

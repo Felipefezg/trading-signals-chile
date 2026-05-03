@@ -38,7 +38,7 @@ UMBRALES = {
     "codicia_extrema":      0.3,   # P/C < 0.3 → contrarian venta
 }
 
-def get_put_call_ratio(ticker, incluir_todos_vencimientos=True):
+def get_put_call_ratio(ticker, incluir_todos_vencimientos=False):
     """
     Calcula el Put/Call ratio para un ticker.
     
@@ -62,7 +62,7 @@ def get_put_call_ratio(ticker, incluir_todos_vencimientos=True):
         vencimientos_usados = 0
 
         # Usar todos o solo los próximos 3 vencimientos
-        fechas = expirations if incluir_todos_vencimientos else expirations[:3]
+        fechas = expirations[:2]  # Solo 2 proximos vencimientos — mas rapido
 
         for fecha in fechas:
             try:
