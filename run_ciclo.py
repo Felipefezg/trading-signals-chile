@@ -71,6 +71,55 @@ def main():
 
         # En horario — ejecutar ciclo completo
         print("Ejecutando ciclo completo...")
+
+        # Generar y guardar señales en DB
+        try:
+            from data.polymarket import get_mercados_chile
+            from data.kalshi import get_kalshi_resumen
+            from data.macro_usa import get_macro_usa, get_correlaciones_chile
+            from data.noticias_chile import get_noticias_google
+            from engine.nlp_sentiment import analizar_noticias_batch
+            from engine.recomendaciones import consolidar_señales, generar_recomendaciones
+            from engine.fear_greed import calcular_fear_greed
+            from data.cmf import get_hechos_esenciales
+            from data.volumen import get_resumen_volumen, correlacionar_con_cmf
+            from data.put_call import get_señal_consolidada_pc
+            from engine.analisis_tecnico import get_señales_tecnicas
+            from data.historial import guardar_senales
+
+            poly_df    = get_mercados_chile(limit=200)
+            kalshi     = get_kalshi_resumen()
+            macro_corr = get_correlaciones_chile(get_macro_usa())
+            noticias   = analizar_noticias_batch(get_noticias_google())
+            fg         = calcular_fear_greed()
+            cmf        = get_hechos_esenciales(solo_ipsa=True, limit=20)
+            vol        = correlacionar_con_cmf(get_resumen_volumen().get("top_alertas",[]))
+            pc         = get_señal_consolidada_pc()
+            at         = get_señales_tecnicas(min_conviccion=60)
+
+            activos = consolidar_señales(poly_df, kalshi, macro_corr, noticias,
+                fear_greed=fg, cmf_hechos=cmf, vol_alertas=vol,
+                put_call=pc, analisis_tecnico=at)
+            recomendaciones = generar_recomendaciones(activos)
+
+            # Guardar en DB
+            for r in recomendaciones:
+                if r["conviccion"] >= 70:
+                    guardar_senales(
+                        señal=r["tesis"][:100],
+                        prob_pct=r["conviccion"],
+                        direccion=r["accion"],
+                        activos=r["ib_ticker"],
+                        score=r["score"],
+                        tesis=r["tesis"],
+                        ticker_bt=r["ib_ticker"],
+                        precio_entrada=r.get("precio_actual"),
+                    )
+            print(f"Señales guardadas en DB: {len([r for r in recomendaciones if r['conviccion'] >= 70])}")
+        except Exception as e:
+            print(f"Error guardando señales: {e}")
+            logging.error(f"Error guardando señales: {e}")
+
         resultado = ciclo_trading_automatico()
 
         # Reportar resultados
