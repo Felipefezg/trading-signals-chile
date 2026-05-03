@@ -111,18 +111,31 @@ def _get_volatilidad(yf_ticker):
     except:
         return None, None
 
-def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias):
+def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
     """
-    SL/TP basado en volatilidad histórica y horizonte.
-    - SL: 1x volatilidad del período
-    - TP: 2x volatilidad del período (ratio 1:2)
+    SL/TP calibrado usando soporte/resistencia real.
+    Fallback a volatilidad si no hay niveles disponibles.
     """
-    if precio is None or volatilidad is None:
+    if precio is None:
         return None, None, None
 
-    # Ajustar volatilidad al horizonte
+    # Intentar calibrar con soporte/resistencia
+    if ticker:
+        try:
+            from engine.soporte_resistencia import calcular_sl_tp_calibrado
+            atr = precio * volatilidad if volatilidad else None
+            sl_sr, tp_sr = calcular_sl_tp_calibrado(ticker, accion, precio, atr)
+            if sl_sr and tp_sr:
+                return precio, sl_sr, tp_sr
+        except:
+            pass
+
+    # Fallback: ATR
+    if volatilidad is None:
+        return None, None, None
+
     dias_map = {"1–7 días": 5, "1–4 semanas": 15, "1–3 meses": 45}
-    dias = 10  # default
+    dias = 10
     for k, v in dias_map.items():
         if k in horizonte_dias:
             dias = v
