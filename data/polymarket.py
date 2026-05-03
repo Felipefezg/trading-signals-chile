@@ -93,7 +93,7 @@ def get_mercados_chile(limit=200):
 
     # Filtrar por volumen mínimo (descartar mercados sin liquidez)
     if "volumen_usd" in df.columns:
-        df = df[df["volumen_usd"].fillna(0) >= 1_000].copy()
+        df = df[pd.to_numeric(df["volumen_usd"], errors="coerce").fillna(0) >= 1_000].copy()
 
     df = df.sort_values(
         ["relevancia", "volumen_usd"],
