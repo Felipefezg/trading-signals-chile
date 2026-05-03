@@ -294,7 +294,7 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
     return enviadas, enviadas_cache
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
-def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None):
+def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None):
     activos = {}
 
     # Polymarket
@@ -486,6 +486,30 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
                 "señal": f"{at['nombre']}: {señales_desc[:80]}",
                 "prob": None, "direccion": "BAJA", "peso": round(peso_at, 2),
             })
+
+    # Google Trends — Amplificador de señales existentes
+    for trend in (google_trends or []):
+        activo_gt = trend.get("activo")
+        if not activo_gt or activo_gt not in activos:
+            continue
+        score_gt = trend.get("score", 0)
+        if score_gt < 2:
+            continue
+        # Trends amplifica la señal dominante (no determina dirección)
+        peso_gt = score_gt * 0.3
+        # Amplificar la dirección que ya tiene más peso
+        if activos[activo_gt]["alza"] >= activos[activo_gt]["baja"]:
+            activos[activo_gt]["alza"] += peso_gt
+            dir_gt = "ALZA"
+        else:
+            activos[activo_gt]["baja"] += peso_gt
+            dir_gt = "BAJA"
+        activos[activo_gt]["fuentes"].append("Google Trends")
+        activos[activo_gt]["evidencia"].append({
+            "fuente": "Google Trends",
+            "señal":  trend.get("descripcion", "")[:80],
+            "prob": None, "direccion": dir_gt, "peso": round(peso_gt, 2),
+        })
 
     # Put/Call Ratio — Smart Money Positioning
     PC_PESO = {"ALZA": 1.5, "BAJA": 1.5, "NEUTRO": 0}
