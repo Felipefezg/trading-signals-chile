@@ -20,15 +20,43 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
-# Universo para backtest
-ACTIVOS_BT = {
-    "SQM":      {"nombre": "SQM ADR",    "capital": 10_000},
-    "ECH":      {"nombre": "IPSA ETF",   "capital": 10_000},
-    "COPEC.SN": {"nombre": "Copec",      "capital": 10_000},
-    "BTC-USD":  {"nombre": "Bitcoin",    "capital": 5_000},
-    "GC=F":     {"nombre": "Oro",        "capital": 8_000},
-    "SPY":      {"nombre": "S&P 500",    "capital": 10_000},
+# Universo para backtest — importado desde universo maestro
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from engine.universo import UNIVERSO_COMPLETO
+
+def _build_activos_bt():
+    resultado = {}
+    for yf_ticker, info in UNIVERSO_COMPLETO.items():
+        tipo = info.get("tipo", "ETF")
+        if tipo == "Crypto":
+            capital = 5_000
+        elif tipo == "Futuro":
+            capital = 8_000
+        elif tipo in ("Acción Chile", "Acción USA/Chile"):
+            capital = 10_000
+        else:
+            capital = 10_000
+        resultado[yf_ticker] = {
+            "nombre":  info["nombre"],
+            "capital": capital,
+            "tipo":    tipo,
+            "sector":  info.get("sector", ""),
+        }
+    return resultado
+
+ACTIVOS_BT = _build_activos_bt()
+
+# Excluir activos ilíquidos con señales falsas frecuentes
+EXCLUIR_BT = {
+    # Small caps ilíquidos con señales falsas
+    "MARINSA.SN", "MASISA.SN", "SCHWAGER.SN", "INGEVEC.SN", "HITES.SN",
+    # Win rate < 20% en backtest
+    "MOLYMET.SN", "BESALCO.SN", "CAP.SN", "MALLPLAZA.SN", "ITAUCL.SN",
+    # PnL < -15% en backtest
+    "SALFACORP.SN", "SOCOVESA.SN",
 }
+ACTIVOS_BT = {k: v for k, v in ACTIVOS_BT.items() if k not in EXCLUIR_BT}
 
 # ── INDICADORES ───────────────────────────────────────────────────────────────
 def _agregar_indicadores(df):
@@ -119,15 +147,15 @@ def _generar_señal(row, prev_row):
             puntos_baja += 1
 
     # Umbral mínimo
-    if puntos_alza >= 4 and puntos_alza > puntos_baja:
+    if puntos_alza >= 6 and puntos_alza > puntos_baja:
         return "COMPRAR", puntos_alza
-    elif puntos_baja >= 4 and puntos_baja > puntos_alza:
+    elif puntos_baja >= 6 and puntos_baja > puntos_alza:
         return "VENDER", puntos_baja
 
     return None, 0
 
 # ── BACKTEST INDIVIDUAL ───────────────────────────────────────────────────────
-def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=1.5, tp_atr=3.0):
+def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=2.0, tp_atr=4.0):
     """
     Backtest completo para un activo.
     """
