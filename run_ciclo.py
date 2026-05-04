@@ -83,6 +83,7 @@ def main():
                     sec_13f=datos.get("sec_13f"),
                     order_flow=datos.get("order_flow"),
                     correlaciones=datos.get("correlaciones"),
+                    iv_opciones=datos.get("iv_opciones"),
                 )
                 recomendaciones = generar_recomendaciones(activos)
 
@@ -172,6 +173,7 @@ def main():
                 sec_13f=datos.get("sec_13f"),
                 order_flow=datos.get("order_flow"),
                 correlaciones=datos.get("correlaciones"),
+                iv_opciones=datos.get("iv_opciones"),
             )
             recomendaciones = generar_recomendaciones(activos)
 

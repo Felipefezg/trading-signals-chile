@@ -66,6 +66,10 @@ def _cargar_volumen():
     resumen = get_resumen_volumen()
     return correlacionar_con_cmf(resumen.get("top_alertas", []))
 
+def _cargar_iv_opciones():
+    from data.iv_opciones import get_señales_iv
+    return get_señales_iv(min_score=2)
+
 def _cargar_sec_13f():
     from data.sec_13f import get_señales_institucionales
     return get_señales_institucionales(min_score=1)
@@ -115,6 +119,7 @@ FUENTES = {
     "mtf":              (_cargar_mtf,              45),
     "renta_fija":       (_cargar_renta_fija,        15),
     "sec_13f":          (_cargar_sec_13f,           30),
+    "iv_opciones":      (_cargar_iv_opciones,       30),
 }
 
 def cargar_todas_las_fuentes(fuentes=None, max_workers=8, verbose=False):
@@ -207,6 +212,7 @@ def get_datos_para_motor(verbose=False):
         "mtf":              datos.get("mtf"),
         "renta_fija":       datos.get("renta_fija"),
         "sec_13f":          datos.get("sec_13f"),
+        "iv_opciones":      datos.get("iv_opciones"),
         "meta": {
             "t_total":  resultado["t_total"],
             "errores":  resultado["errores"],
