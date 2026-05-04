@@ -1239,3 +1239,27 @@
 2026-05-03 20:35:39,647 [INFO] disconnecting
 2026-05-03 20:35:39,648 [INFO] ANSWER connectionClosed {}
 2026-05-03 20:35:39,648 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 20:40:01,080 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 20:40:09,608 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:40:10,089 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:40:14,469 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 20:40:40,071 [INFO] sent startApi
+2026-05-03 20:40:40,072 [INFO] REQUEST startApi {}
+2026-05-03 20:40:40,072 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 20:40:40,072 [INFO] ANSWER connectAck {}
+2026-05-03 20:40:40,077 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 20:40:42,159 [INFO] disconnecting
+2026-05-03 20:40:42,161 [INFO] ANSWER connectionClosed {}
+2026-05-03 20:40:42,161 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 20:45:00,641 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 20:45:06,806 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:45:07,388 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:45:10,325 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 20:45:39,760 [INFO] sent startApi
+2026-05-03 20:45:39,763 [INFO] REQUEST startApi {}
+2026-05-03 20:45:39,763 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 20:45:39,763 [INFO] ANSWER connectAck {}
+2026-05-03 20:45:39,852 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 20:45:41,996 [INFO] disconnecting
+2026-05-03 20:45:41,998 [INFO] ANSWER connectionClosed {}
+2026-05-03 20:45:41,998 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones

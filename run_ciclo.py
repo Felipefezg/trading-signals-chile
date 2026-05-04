@@ -80,6 +80,9 @@ def main():
                     mercado_local=datos.get("mercado_local"),
                     renta_fija=datos.get("renta_fija"),
                     mtf=datos.get("mtf"),
+                    sec_13f=datos.get("sec_13f"),
+                    order_flow=datos.get("order_flow"),
+                    correlaciones=datos.get("correlaciones"),
                 )
                 recomendaciones = generar_recomendaciones(activos)
 
@@ -163,6 +166,12 @@ def main():
                 analisis_tecnico=datos["analisis_tecnico"],
                 google_trends=datos["google_trends"],
                 ib_data=datos["ib_data"],
+                mercado_local=datos.get("mercado_local"),
+                renta_fija=datos.get("renta_fija"),
+                mtf=datos.get("mtf"),
+                sec_13f=datos.get("sec_13f"),
+                order_flow=datos.get("order_flow"),
+                correlaciones=datos.get("correlaciones"),
             )
             recomendaciones = generar_recomendaciones(activos)
 
