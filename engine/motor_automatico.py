@@ -167,7 +167,18 @@ def es_horario_mercado(tipo_activo=None):
             return True, "Mercado Forex abierto"
         return False, "Mercado Forex cerrado (fin de semana)"
 
-    # Acciones, ETFs, Futuros — horario NYSE
+    # Acciones Chile locales — Bolsa de Santiago
+    if tipo_activo == "Acción Chile":
+        tz_cl = pytz.timezone("America/Santiago")
+        now_cl = datetime.now(tz_cl)
+        if now_cl.weekday() >= 5:
+            return False, "Bolsa Santiago cerrada (fin de semana)"
+        from datetime import time as dtime
+        if dtime(9, 30) <= now_cl.time() <= dtime(17, 30):
+            return True, "Bolsa Santiago abierta (9:30-17:30 hora Chile)"
+        return False, "Bolsa Santiago fuera de horario"
+
+    # Acciones USA, ETFs, Futuros — horario NYSE
     if now.weekday() >= 5:
         return False, f"Mercado cerrado (fin de semana)"
     from datetime import time as dtime
@@ -176,8 +187,8 @@ def es_horario_mercado(tipo_activo=None):
     fin    = dtime(int(PARAMS["horario_fin"].split(":")[0]),
                    int(PARAMS["horario_fin"].split(":")[1]))
     if inicio <= now.time() <= fin:
-        return True, f"Mercado abierto ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
-    return False, f"Fuera de horario ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
+        return True, f"Mercado NYSE abierto ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
+    return False, f"Fuera de horario NYSE ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
 
 def es_horario_mercado_legacy():
     """Verifica si el mercado NYSE está abierto"""
