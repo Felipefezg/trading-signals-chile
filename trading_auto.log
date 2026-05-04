@@ -1144,3 +1144,39 @@
 2026-05-03 20:05:37,298 [INFO] disconnecting
 2026-05-03 20:05:37,301 [INFO] ANSWER connectionClosed {}
 2026-05-03 20:05:37,301 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 20:08:30,769 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 20:08:33,632 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:08:33,996 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:08:37,400 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 20:09:04,212 [INFO] sent startApi
+2026-05-03 20:09:04,213 [INFO] REQUEST startApi {}
+2026-05-03 20:09:04,213 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 20:09:04,213 [INFO] ANSWER connectAck {}
+2026-05-03 20:09:04,218 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 20:09:06,228 [INFO] disconnecting
+2026-05-03 20:09:06,230 [INFO] ANSWER connectionClosed {}
+2026-05-03 20:09:06,231 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 20:10:00,349 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 20:10:05,703 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:10:05,998 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:10:09,003 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 20:10:33,553 [INFO] sent startApi
+2026-05-03 20:10:33,554 [INFO] REQUEST startApi {}
+2026-05-03 20:10:33,554 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 20:10:33,554 [INFO] ANSWER connectAck {}
+2026-05-03 20:10:33,560 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 20:10:36,051 [INFO] disconnecting
+2026-05-03 20:10:36,057 [INFO] ANSWER connectionClosed {}
+2026-05-03 20:10:36,059 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones
+2026-05-03 20:15:00,912 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-03 20:15:06,735 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:15:07,135 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-03 20:15:11,164 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-03 20:15:39,503 [INFO] sent startApi
+2026-05-03 20:15:39,504 [INFO] REQUEST startApi {}
+2026-05-03 20:15:39,504 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-03 20:15:39,504 [INFO] ANSWER connectAck {}
+2026-05-03 20:15:39,508 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-03 20:15:41,642 [INFO] disconnecting
+2026-05-03 20:15:41,642 [INFO] ANSWER connectionClosed {}
+2026-05-03 20:15:41,642 [INFO] Fuera de horario: Mercado cerrado (fin de semana) — solo verificando posiciones

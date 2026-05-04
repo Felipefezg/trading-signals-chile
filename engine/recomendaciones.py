@@ -617,6 +617,18 @@ def generar_recomendaciones(activos_dict):
         # Tipo de instrumento sugerido
         instrumentos_sugeridos = _sugerir_instrumento(tipo, accion, horizonte["label"], riesgo, conviccion_pct)
 
+        # Aplicar filtro macro
+        try:
+            from engine.macro_filtro import evaluar_activo_vs_macro
+            ib_info_actual = INSTRUMENTOS_IB.get(activo, {})
+            sector_actual  = ib_info_actual.get("sector", "")
+            macro_eval     = evaluar_activo_vs_macro(yf_ticker, accion, sector_actual)
+            conviccion_pct += macro_eval["ajuste_conviccion"]
+            conviccion_pct  = max(0, min(100, conviccion_pct))
+            sizing_macro    = macro_eval["ajuste_sizing"]
+        except:
+            sizing_macro = 1.0
+
         tesis = _generar_tesis_resumida(activo, accion, data["evidencia"], fuentes_unicas)
 
         recomendaciones.append({
