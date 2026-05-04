@@ -187,7 +187,15 @@ def es_horario_mercado(tipo_activo=None):
     fin    = dtime(int(PARAMS["horario_fin"].split(":")[0]),
                    int(PARAMS["horario_fin"].split(":")[1]))
     if inicio <= now.time() <= fin:
-        return True, f"Mercado NYSE abierto ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
+        # Horario óptimo de entrada: primeras 2h y última hora
+        from datetime import time as dtime2
+        hora_actual = now.time()
+        if dtime2(9, 30) <= hora_actual <= dtime2(11, 30):
+            return True, f"Mercado NYSE abierto — HORARIO ÓPTIMO entrada"
+        elif dtime2(14, 30) <= hora_actual <= dtime2(15, 45):
+            return True, f"Mercado NYSE abierto — hora cierre"
+        else:
+            return True, f"Mercado NYSE abierto — horario normal"
     return False, f"Fuera de horario NYSE ({PARAMS['horario_inicio']}-{PARAMS['horario_fin']} ET)"
 
 def es_horario_mercado_legacy():

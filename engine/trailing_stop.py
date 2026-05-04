@@ -45,6 +45,21 @@ TICKER_YF_MAP = {
     "LTM":   "LTM.SN",
 }
 
+def _calcular_trail_atr(ticker, precio_actual, trail_pct_default=0.03):
+    try:
+        import yfinance as yf
+        yf_map = {"BTC": "BTC-USD", "SQM": "SQM", "COPEC": "COPEC.SN", "ECH": "ECH"}
+        yf_ticker = yf_map.get(ticker, f"{ticker}.SN")
+        h = yf.Ticker(yf_ticker).history(period="20d")
+        if h.empty:
+            return trail_pct_default
+        tr = abs(h["High"] - h["Low"]).ewm(com=13, adjust=False).mean()
+        atr = float(tr.iloc[-1])
+        trail_atr = (atr * 1.5) / precio_actual
+        return max(0.015, min(0.08, trail_atr))
+    except:
+        return trail_pct_default
+
 # ── ESTADO TRAILING ───────────────────────────────────────────────────────────
 def _cargar_trails():
     try:

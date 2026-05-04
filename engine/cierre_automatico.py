@@ -382,6 +382,21 @@ def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
     return True
 
 # ── VERIFICACIÓN COMPLETA ─────────────────────────────────────────────────────
+def calcular_tp_parcial(precio_entrada, tp_original, accion, atr=None):
+    """
+    Calcula TP1 (50% cierre) y TP2 (dejar correr resto).
+    TP1 = 60% del camino hacia TP original
+    TP2 = TP original extendido 50%
+    """
+    distancia = abs(tp_original - precio_entrada)
+    if accion == "COMPRAR":
+        tp1 = round(precio_entrada + distancia * 0.6, 4)
+        tp2 = round(precio_entrada + distancia * 1.5, 4)
+    else:
+        tp1 = round(precio_entrada - distancia * 0.6, 4)
+        tp2 = round(precio_entrada - distancia * 1.5, 4)
+    return tp1, tp2
+
 def verificar_posiciones(modo_test=False, auto_cerrar=True):
     """
     Verifica todas las posiciones abiertas y ejecuta cierres si corresponde.
