@@ -1591,3 +1591,5 @@ Error CMF: HTTPSConnectionPool(host='www.cmfchile.cl', port=443): Max retries ex
 Ejecutando 1 señal(es) Crypto 24/7...
 Señales AT guardadas: 0
 Posición: BTC | precio 78,426.15 | PnL +0.91%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
