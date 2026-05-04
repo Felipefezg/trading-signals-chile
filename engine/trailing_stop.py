@@ -48,8 +48,17 @@ TICKER_YF_MAP = {
 def _calcular_trail_atr(ticker, precio_actual, trail_pct_default=0.03):
     try:
         import yfinance as yf
-        yf_map = {"BTC": "BTC-USD", "SQM": "SQM", "COPEC": "COPEC.SN", "ECH": "ECH"}
-        yf_ticker = yf_map.get(ticker, f"{ticker}.SN")
+        yf_map = {
+            "BTC": "BTC-USD", "SQM": "SQM", "COPEC": "COPEC.SN",
+            "ECH": "ECH", "SPY": "SPY", "GLD": "GLD", "TLT": "TLT",
+            "GC": "GC=F", "HG": "HG=F", "CL": "CL=F",
+            "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
+        }
+        # Si tiene sufijo .SN en el ticker IB, buscar en Santiago
+        if ticker.endswith(".SN"):
+            yf_ticker = ticker
+        else:
+            yf_ticker = yf_map.get(ticker, ticker)
         h = yf.Ticker(yf_ticker).history(period="20d")
         if h.empty:
             return trail_pct_default
@@ -103,7 +112,7 @@ def inicializar_trail(ticker, posicion):
     trails     = _cargar_trails()
     accion     = posicion.get("accion", "COMPRAR")
     entrada    = posicion.get("precio_entrada", 0)
-    trail_pct  = TRAIL_PCT.get(ticker, TRAIL_PCT["default"])
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
 
     if accion == "VENDER":
         # Para posición corta: trail = entrada × (1 + trail_pct)
