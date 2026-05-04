@@ -315,3 +315,29 @@ if __name__ == "__main__":
         print("\nSin divergencias significativas")
 
     print(f"\nTiempo: {time.time()-t0:.1f}s")
+
+
+# ── ALIASES PARA COMPATIBILIDAD CON DASHBOARD ────────────────────────────────
+def get_correlaciones_ipsa_completo(periodo="90d"):
+    """Alias compatible con el dashboard"""
+    return get_resumen_correlaciones()
+
+def get_correlacion_rodante(ticker1, ticker2, ventana=30):
+    """Correlación rodante entre dos activos"""
+    try:
+        import yfinance as yf
+        h1 = yf.Ticker(ticker1).history(period="6mo")["Close"]
+        h2 = yf.Ticker(ticker2).history(period="6mo")["Close"]
+        df = pd.DataFrame({"a": h1, "b": h2}).dropna()
+        return df["a"].rolling(ventana).corr(df["b"]).dropna()
+    except:
+        return pd.Series()
+
+def get_divergencias_correlacion(min_score=2):
+    """Alias — retorna pares con divergencias"""
+    resumen = get_resumen_correlaciones()
+    return [p for p in resumen.get("alertas", []) if p.get("score", 0) >= min_score]
+
+def get_correlaciones_ipsa_interno():
+    """Correlaciones internas del IPSA"""
+    return get_resumen_correlaciones()

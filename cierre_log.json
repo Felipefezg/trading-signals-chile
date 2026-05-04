@@ -1,0 +1,23 @@
+[
+  {
+    "timestamp": "2026-05-04T06:03:14.050360",
+    "ticker": "BTC",
+    "razon": "TRAILING STOP",
+    "pnl_pct": -2.64,
+    "precio": 79828.0,
+    "orden_ib": {
+      "ticker": "BTC",
+      "accion": "BUY",
+      "cantidad": 1,
+      "razon": "TRAILING STOP",
+      "precio": 79828.0,
+      "pnl_pct": -2.64,
+      "timestamp": "2026-05-04T05:45:51.292039",
+      "ejecutado": true,
+      "modo": "PAPER",
+      "error": null,
+      "order_id": 1,
+      "tipo_orden": "LMT"
+    }
+  }
+]

@@ -2,17 +2,17 @@
   "BTC": {
     "accion": "VENDER",
     "cantidad": 1,
-    "precio_entrada": 79149.28125,
+    "precio_entrada": 78924.9921875,
     "sl": 80283.0536,
-    "tp": 76822.9091,
+    "tp": 77624.414,
     "tipo": "Crypto",
-    "fecha_entrada": "2026-05-03T19:08:50.014797",
-    "horizonte": "1\u20137 d\u00edas",
-    "conviccion": 100.0,
+    "fecha_entrada": "2026-05-04T08:23:50.972747",
+    "horizonte": "1\u20134 semanas",
+    "conviccion": 95.0,
     "order_ids": [
-      9,
       10,
-      11
+      11,
+      12
     ]
   }
 }

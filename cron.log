@@ -1613,3 +1613,236 @@ Señales AT guardadas: 0
 Posición: BTC | precio 78,445.99 | PnL +0.89%
 /Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
   warnings.warn(
+
+[2026-05-03 21:00:00] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error CMF: HTTPSConnectionPool(host='www.cmfchile.cl', port=443): Max retries exceeded with url: /institucional/hechos/hechos_portada.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.cmfchile.cl', port=443) at 0x120f049d0>, 'Connection to www.cmfchile.cl timed out. (connect timeout=12)'))
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,539.18 | PnL +0.77%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-03 21:05:01] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error CMF: HTTPSConnectionPool(host='www.cmfchile.cl', port=443): Max retries exceeded with url: /institucional/hechos/hechos_portada.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.cmfchile.cl', port=443) at 0x10df33970>, 'Connection to www.cmfchile.cl timed out. (connect timeout=12)'))
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,434.73 | PnL +0.90%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 00:00:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 52 activos...
+Error analizando FALABELLA.SN: 'NoneType' object is not subscriptable
+Error macro USA [^GSPC]: 'NoneType' object is not subscriptable
+  Precios disponibles: 41/52
+Error analizando CCU.SN: 'NoneType' object is not subscriptable
+Error Google News [Cochilco cobre litio]: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=8)
+Error analizando GLD: 'NoneType' object is not subscriptable
+Error Google News [mineria Chile royalty]: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=8)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: HTTPSConnectionPool(host='trends.google.com', port=443): Read timed out. (read timeout=25)
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: HTTPSConnectionPool(host='trends.google.com', port=443): Read timed out. (read timeout=25)
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: HTTPSConnectionPool(host='trends.google.com', port=443): Read timed out. (read timeout=25)
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: HTTPSConnectionPool(host='trends.google.com', port=443): Read timed out. (read timeout=25)
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Error ciclo Crypto: 1 (of 18) futures unfinished
+TRAILING STOP: BTC | PnL -2.55%
+Error analizando CENCOSUD.SN: 'NoneType' object is not subscriptable
+Señales AT guardadas: 10
+CIERRE: BTC | TRAILING STOP | PnL -2.64%
+Posición: BTC | precio 79,426.13 | PnL -0.35%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Device set to use mps:0
+
+[2026-05-04 08:22:57] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 52 activos...
+  Precios disponibles: 52/52
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+  Buscando 13F para SQM...
+  Buscando 13F para ECH...
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+  Buscando 13F para BSAC...
+  Buscando 13F para BCH...
+  Buscando 13F para LTM...
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Señales AT guardadas: 2
+Posición: BTC | precio 78,922.35 | PnL +0.00%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:25:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 1
+Posición: BTC | precio 78,953.98 | PnL -0.04%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:30:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 1
+Posición: BTC | precio 78,945.50 | PnL -0.03%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:35:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 2
+Posición: BTC | precio 78,857.90 | PnL +0.09%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:40:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 1
+Posición: BTC | precio 78,973.65 | PnL -0.06%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:45:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,958.16 | PnL -0.04%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:50:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 1
+Posición: BTC | precio 78,993.06 | PnL -0.09%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 08:55:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,957.49 | PnL -0.04%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Device set to use mps:0
+
+[2026-05-04 09:00:05] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,611.98 | PnL +0.40%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Device set to use mps:0
+
+[2026-05-04 09:05:04] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,694.54 | PnL +0.29%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 09:10:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,869.01 | PnL +0.07%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 09:15:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,906.57 | PnL +0.02%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 09:20:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,928.65 | PnL -0.00%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 09:25:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+Señales AT guardadas: 0
+Posición: BTC | precio 78,968.03 | PnL -0.05%

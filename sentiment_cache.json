@@ -1182,5 +1182,29 @@
     "confianza": 0.355,
     "estrellas": 1,
     "metodo": "BERT"
+  },
+  "9d161f9df5e2": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.546,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "5f8e3d3c2831": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.386,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "998c039fd9eb": {
+    "se\u00f1al": 1,
+    "tono": "POSITIVO",
+    "color": "#22c55e",
+    "confianza": 0.325,
+    "estrellas": 4,
+    "metodo": "BERT"
   }
 }

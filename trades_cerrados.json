@@ -1,0 +1,14 @@
+[
+  {
+    "ticker": "BTC",
+    "accion": "VENDER",
+    "cantidad": 1,
+    "precio_entrada": 79149.28125,
+    "precio_salida": 79828.0,
+    "pnl_total": -678.72,
+    "pnl_pct": -0.86,
+    "fecha_entrada": "2026-05-03T19:08:50.014797",
+    "fecha_salida": "2026-05-04T06:03:14.048521",
+    "resultado": "perdedor"
+  }
+]
