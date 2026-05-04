@@ -153,11 +153,20 @@ def analizar_accion(ticker, info, periodo="3mo"):
 
         if vol_ratio >= 2:
             if ret_1d > 0:
-                puntos_alza += 1
+                puntos_alza += 2
                 señales.append(f"Volumen {vol_ratio:.1f}x + alza")
             else:
-                puntos_baja += 1
+                puntos_baja += 2
                 señales.append(f"Volumen {vol_ratio:.1f}x + baja")
+        elif vol_ratio < 0.4:
+            # Volumen muy bajo — reducir puntos
+            puntos_alza = max(0, puntos_alza - 1)
+            puntos_baja = max(0, puntos_baja - 1)
+            señales.append(f"Volumen bajo {vol_ratio:.1f}x — señal débil")
+
+        # Filtro liquidez mínima
+        if vol_prom < 500:
+            return None
 
         # Dirección
         if puntos_alza > puntos_baja and puntos_alza >= 2:

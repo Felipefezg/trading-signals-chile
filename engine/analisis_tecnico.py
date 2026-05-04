@@ -177,7 +177,19 @@ def analizar_activo(ticker, periodo="6mo"):
                            "descripcion": f"Precio bajo MA20 y MA50 — tendencia bajista"})
 
         # Volumen anormal confirma señal
-        vol_bonus = 0.5 if vol_ratio >= 2 else 0
+        # Volumen: bonus si alto, penalización si muy bajo
+        if vol_ratio >= 2.0:
+            vol_bonus = 1.0   # Volumen alto confirma señal
+        elif vol_ratio >= 1.2:
+            vol_bonus = 0.3   # Volumen moderado
+        elif vol_ratio < 0.5:
+            vol_bonus = -2.0  # Volumen muy bajo → señal no confiable
+        else:
+            vol_bonus = 0
+
+        # Filtro de liquidez mínima — no operar activos sin volumen
+        if vol_prom < 1000 and vol_act < 1000:
+            return None  # Sin liquidez suficiente
 
         # ── CONSOLIDAR SEÑAL ──────────────────────────────────────────────────
         puntos_alza = sum(s["fuerza"] for s in señales if s["direccion"] == "ALZA")
