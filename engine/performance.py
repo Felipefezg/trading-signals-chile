@@ -34,10 +34,17 @@ def _guardar_trades_cerrados(trades):
         json.dump(trades, f, indent=2, default=str)
 
 def registrar_trade_cerrado(ticker, accion, cantidad, precio_entrada,
-                             precio_salida, fecha_entrada, fecha_salida=None):
-    """Registra un trade cerrado para el cálculo de PnL histórico."""
+                             precio_salida, fecha_entrada, fecha_salida=None,
+                             confirmado_ib=True):
+    """
+    Registra un trade cerrado para el cálculo de PnL histórico.
+
+    Args:
+        confirmado_ib: True si la orden de cierre fue confirmada por IB.
+                       False = trade fantasma (no debería sumarse a métricas reales).
+    """
     trades = _cargar_trades_cerrados()
-    pnl_unit = precio_salida - precio_entrada if accion == "COMPRAR" else precio_entrada - precio_salida
+    pnl_unit  = precio_salida - precio_entrada if accion == "COMPRAR" else precio_entrada - precio_salida
     pnl_total = round(pnl_unit * cantidad, 2)
     pnl_pct   = round((pnl_unit / precio_entrada) * 100, 2) if precio_entrada > 0 else 0
 
@@ -52,6 +59,7 @@ def registrar_trade_cerrado(ticker, accion, cantidad, precio_entrada,
         "fecha_entrada":   str(fecha_entrada),
         "fecha_salida":    str(fecha_salida or datetime.now().isoformat()),
         "resultado":       "ganador" if pnl_total > 0 else "perdedor",
+        "confirmado_ib":   confirmado_ib,
     })
     _guardar_trades_cerrados(trades)
     return pnl_total

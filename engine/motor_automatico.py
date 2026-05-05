@@ -237,10 +237,18 @@ def _cargar_trades():
     return []
 
 def calcular_pnl_dia():
-    """Calcula PnL del día actual"""
+    """
+    Calcula PnL del día actual.
+    Solo considera trades confirmados por IB (confirmado_ib != False).
+    """
     trades = _cargar_trades()
     hoy    = datetime.now().date().isoformat()
-    pnl    = sum(t["pnl_total"] for t in trades if t.get("fecha_salida","")[:10] == hoy)
+    pnl    = sum(
+        t["pnl_total"]
+        for t in trades
+        if t.get("fecha_salida", "")[:10] == hoy
+        and t.get("confirmado_ib", True) is not False   # excluir fantasmas explícitos
+    )
     return pnl
 
 def calcular_riesgo_total():
@@ -262,9 +270,16 @@ def calcular_riesgo_total():
     return riesgo
 
 def calcular_drawdown_total():
-    """Calcula drawdown total desde el capital inicial"""
+    """
+    Calcula drawdown total desde el capital inicial.
+    Solo trades confirmados por IB.
+    """
     trades = _cargar_trades()
-    pnl    = sum(t["pnl_total"] for t in trades)
+    pnl    = sum(
+        t["pnl_total"]
+        for t in trades
+        if t.get("confirmado_ib", True) is not False
+    )
     if pnl >= 0:
         return 0
     return abs(pnl) / PARAMS["capital_total"] * 100
@@ -366,6 +381,14 @@ def ciclo_trading_automatico():
         "pausas":      [],
     }
 
+    # ── SINCRONIZAR CON IB PRIMERO (fuente de verdad) ─────────────────────────
+    # Elimina posiciones fantasma antes de cualquier cálculo de riesgo/capital.
+    try:
+        from engine.ib_executor import sincronizar_desde_ib
+        sincronizar_desde_ib()
+    except Exception as e:
+        logging.warning(f"Sync IB al inicio del ciclo falló: {e}")
+
     # ── VERIFICAR CONDICIONES DE PAUSA
     pnl_dia = calcular_pnl_dia()
     pnl_dia_pct = (pnl_dia / PARAMS["capital_total"]) * 100
@@ -401,13 +424,19 @@ def ciclo_trading_automatico():
         for c in resumen_cierre.get("cierres", []):
             resultados["cierres"].append(c)
             _registrar_evento("CIERRE", c.get("razon",""), c)
-            logging.info(f"CIERRE: {c['ticker']} | {c['razon']} | PnL {c.get('pnl_pct',0):+.2f}%")
+            logging.info(
+                f"CIERRE: {c['ticker']} | {c['razon']} | PnL {c.get('pnl_pct',0):+.2f}% "
+                f"| IB={'OK' if c.get('confirmado_ib') else 'NO CONFIRMADO'}"
+            )
 
-            # Actualizar consecutivos perdedores
-            if c.get("pnl_pct", 0) < 0:
-                estado["consecutivos_perdedor"] = estado.get("consecutivos_perdedor", 0) + 1
-            else:
-                estado["consecutivos_perdedor"] = 0
+            # Actualizar consecutivos perdedores SOLO si IB confirmó el cierre.
+            # Un cierre no confirmado por IB no es un trade real — ignorar para
+            # evitar que posiciones fantasma activen la pausa del motor.
+            if c.get("confirmado_ib", False):
+                if c.get("pnl_pct", 0) < 0:
+                    estado["consecutivos_perdedor"] = estado.get("consecutivos_perdedor", 0) + 1
+                else:
+                    estado["consecutivos_perdedor"] = 0
     except Exception as e:
         logging.error(f"Error en cierre automático: {e}")
 
