@@ -2968,3 +2968,18 @@ Señales AT guardadas: 0
    ✅ Cerrado
 CIERRE: BTC | TRAILING STOP | PnL -3.03%
 CIERRE: BTC | TAKE PROFIT | PnL +0.03%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2026-05-04 21:05:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+TRAILING STOP: BTC | PnL -3.03%
+Señales AT guardadas: 0
+
+⚠️  CIERRE DETECTADO: BTC
+   Precio 80,139.49 alcanzó TP 80,800.00 → ganancia -0.02%
+   ✅ Cerrado
+CIERRE: BTC | TRAILING STOP | PnL -3.04%
+CIERRE: BTC | TAKE PROFIT | PnL -0.02%
