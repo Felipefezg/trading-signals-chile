@@ -1206,5 +1206,93 @@
     "confianza": 0.325,
     "estrellas": 4,
     "metodo": "BERT"
+  },
+  "36ae33adb4a2": {
+    "se\u00f1al": 1,
+    "tono": "POSITIVO",
+    "color": "#22c55e",
+    "confianza": 0.309,
+    "estrellas": 5,
+    "metodo": "BERT"
+  },
+  "178d5d8e9e83": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.625,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "611529aea742": {
+    "se\u00f1al": 1,
+    "tono": "POSITIVO",
+    "color": "#22c55e",
+    "confianza": 0.476,
+    "estrellas": 5,
+    "metodo": "BERT"
+  },
+  "fdb41e00506f": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.479,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "3b24f6ce1dbb": {
+    "se\u00f1al": 1,
+    "tono": "POSITIVO",
+    "color": "#22c55e",
+    "confianza": 0.484,
+    "estrellas": 5,
+    "metodo": "BERT"
+  },
+  "026303348b0a": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.314,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "edcc68dbdf7e": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.758,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "483c12a2b555": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.562,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "61ee2c422d8f": {
+    "se\u00f1al": 1,
+    "tono": "POSITIVO",
+    "color": "#22c55e",
+    "confianza": 0.405,
+    "estrellas": 5,
+    "metodo": "BERT"
+  },
+  "20e250aca70c": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.332,
+    "estrellas": 1,
+    "metodo": "BERT"
+  },
+  "162809a0fd2f": {
+    "se\u00f1al": -1,
+    "tono": "NEGATIVO",
+    "color": "#ef4444",
+    "confianza": 0.822,
+    "estrellas": 1,
+    "metodo": "BERT"
   }
 }

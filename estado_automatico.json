@@ -4,7 +4,8 @@
   "razon_pausa": null,
   "consecutivos_perdedor": 0,
   "pnl_dia": 0,
-  "ultima_verificacion": "2026-05-01T14:45:18.818039",
-  "ordenes_hoy": 1,
-  "log": []
+  "ultima_verificacion": "2026-05-04T11:30:58.659903",
+  "ordenes_hoy": 0,
+  "log": [],
+  "trades_consecutivos_perdedores": 0
 }
