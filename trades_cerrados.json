@@ -538,5 +538,29 @@
     "fecha_entrada": "2026-05-04T20:50:32.755701",
     "fecha_salida": "2026-05-04T20:50:49.505666",
     "resultado": "perdedor"
+  },
+  {
+    "ticker": "BTC",
+    "accion": "VENDER",
+    "cantidad": 1,
+    "precio_entrada": 80150.0078125,
+    "precio_salida": 80131.0,
+    "pnl_total": 19.01,
+    "pnl_pct": 0.02,
+    "fecha_entrada": "2026-05-04T20:55:31.248124",
+    "fecha_salida": "2026-05-04T20:55:49.505716",
+    "resultado": "ganador"
+  },
+  {
+    "ticker": "BTC",
+    "accion": "VENDER",
+    "cantidad": 1,
+    "precio_entrada": 80150.0,
+    "precio_salida": 80129.796875,
+    "pnl_total": 20.2,
+    "pnl_pct": 0.03,
+    "fecha_entrada": "2026-05-04T21:00:36.166436",
+    "fecha_salida": "2026-05-04T21:00:56.286218",
+    "resultado": "ganador"
   }
 ]

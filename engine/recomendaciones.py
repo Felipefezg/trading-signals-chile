@@ -341,7 +341,19 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
 def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None):
+    # Inicializar todos los activos del universo maestro
     activos = {}
+    try:
+        from engine.universo import UNIVERSO_COMPLETO
+        for yf_ticker in UNIVERSO_COMPLETO:
+            activos[yf_ticker] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        # Agregar tickers IB también
+        for yf_ticker, info in UNIVERSO_COMPLETO.items():
+            ib_ticker = info.get("ib", "")
+            if ib_ticker and ib_ticker not in activos:
+                activos[ib_ticker] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+    except:
+        pass
 
     # Polymarket
     if poly_df is not None and not poly_df.empty:

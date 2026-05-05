@@ -247,12 +247,36 @@
         "precio": 80086.9921875,
         "trail_nivel": 79468.2,
         "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-04T20:55:33.189390",
+        "precio": 80130.9765625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-04T20:55:44.107944",
+        "precio": 80131.0,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-04T21:00:38.229979",
+        "precio": 80132.5,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-04T21:00:50.957351",
+        "precio": 80129.796875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
       }
     ],
     "fecha_inicio": "2026-04-27T21:42:48.840248",
-    "precio_actual": 80086.9921875,
-    "pnl_pct": -2.98,
-    "ultima_actualizacion": "2026-05-04T20:50:44.326530"
+    "precio_actual": 80129.796875,
+    "pnl_pct": -3.03,
+    "ultima_actualizacion": "2026-05-04T21:00:50.957271"
   },
   "SQM": {
     "accion": "VENDER",
