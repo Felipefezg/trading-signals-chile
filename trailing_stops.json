@@ -9,162 +9,6 @@
     "umbral_activacion": 0.01,
     "historial": [
       {
-        "timestamp": "2026-04-28T09:53:59.205056",
-        "precio": 76125.9765625,
-        "trail_nivel": 79932.2754,
-        "evento": "TRAIL_MOVIDO"
-      },
-      {
-        "timestamp": "2026-04-28T10:17:08.677512",
-        "precio": 76062.46875,
-        "trail_nivel": 79865.5922,
-        "evento": "TRAIL_MOVIDO"
-      },
-      {
-        "timestamp": "2026-04-28T10:19:40.532053",
-        "precio": 75995.0,
-        "trail_nivel": 79794.75,
-        "evento": "TRAIL_MOVIDO"
-      },
-      {
-        "timestamp": "2026-04-28T10:20:10.229061",
-        "precio": 75974.8984375,
-        "trail_nivel": 79773.6434,
-        "evento": "TRAIL_MOVIDO"
-      },
-      {
-        "timestamp": "2026-04-28T10:36:42.467622",
-        "precio": 75684.0,
-        "trail_nivel": 79468.2,
-        "evento": "TRAIL_MOVIDO"
-      },
-      {
-        "timestamp": "2026-05-04T05:39:24.991966",
-        "precio": 79752.9921875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T05:45:51.290881",
-        "precio": 79828.0,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T10:40:28.759699",
-        "precio": 79488.5,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T10:44:04.430829",
-        "precio": 79560.7421875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T10:45:22.555695",
-        "precio": 79590.2265625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T10:50:30.007126",
-        "precio": 80167.25,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T10:55:42.417061",
-        "precio": 80482.5,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:00:42.890182",
-        "precio": 80247.9921875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:05:35.396600",
-        "precio": 80130.7890625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:10:11.056697",
-        "precio": 80106.046875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:10:38.040101",
-        "precio": 80030.0,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:15:21.906817",
-        "precio": 80150.1484375,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:20:34.662003",
-        "precio": 79540.90625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:25:08.202197",
-        "precio": 79552.65625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:25:24.736952",
-        "precio": 79595.640625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:30:39.979485",
-        "precio": 79699.5703125,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T11:40:08.060278",
-        "precio": 79712.0078125,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:20:36.975641",
-        "precio": 79954.6875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:20:49.515413",
-        "precio": 79954.703125,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:25:31.917044",
-        "precio": 79898.2578125,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:25:43.367706",
-        "precio": 79898.3828125,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
         "timestamp": "2026-05-04T20:30:38.988287",
         "precio": 79896.53125,
         "trail_nivel": 79468.2,
@@ -307,12 +151,168 @@
         "precio": 80232.453125,
         "trail_nivel": 79468.2,
         "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:21:48.417031",
+        "precio": 80922.3203125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:22:02.192216",
+        "precio": 80940.9921875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:32:59.760923",
+        "precio": 81035.5,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:33:05.783581",
+        "precio": 81042.5625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:38:14.967049",
+        "precio": 81134.203125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:38:18.489702",
+        "precio": 81134.203125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:49:11.151028",
+        "precio": 80951.5,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:49:21.170127",
+        "precio": 80948.0078125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T01:49:23.299721",
+        "precio": 80948.0078125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T02:00:08.640196",
+        "precio": 80975.9921875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T02:05:54.524902",
+        "precio": 80890.0625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T02:11:06.948900",
+        "precio": 80906.0,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T02:11:13.350834",
+        "precio": 80906.03125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T02:11:19.161377",
+        "precio": 80916.5,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T04:12:45.663815",
+        "precio": 80876.65625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T04:17:59.835899",
+        "precio": 80848.5390625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:21:45.981365",
+        "precio": 80616.8515625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:21:58.588546",
+        "precio": 80604.1015625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:22:25.216445",
+        "precio": 80616.046875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:22:35.102966",
+        "precio": 80614.28125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:26:08.633278",
+        "precio": 80647.8203125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:26:20.764264",
+        "precio": 80652.546875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:31:12.241911",
+        "precio": 80691.9296875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:31:24.462116",
+        "precio": 80688.171875,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:35:59.610660",
+        "precio": 80633.0078125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:36:09.409737",
+        "precio": 80633.0078125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
       }
     ],
     "fecha_inicio": "2026-04-27T21:42:48.840248",
-    "precio_actual": 80232.453125,
-    "pnl_pct": -3.16,
-    "ultima_actualizacion": "2026-05-04T21:15:45.791768"
+    "precio_actual": 80633.0078125,
+    "pnl_pct": -3.68,
+    "ultima_actualizacion": "2026-05-05T05:36:09.409716"
   },
   "SQM": {
     "accion": "VENDER",
