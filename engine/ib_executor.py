@@ -143,15 +143,35 @@ if IB_DISPONIBLE:
                     _log.warning(f"IB Error [{errorCode}] reqId={reqId}: {errorString[:100]}")
                     print(f"  IB Error [{errorCode}]: {errorString[:80]}")
 
-        def conectar(self, timeout=8):
-            try:
-                self.connect(IB_HOST, IB_PORT, IB_CLIENT_ID)
-                t = threading.Thread(target=self.run, daemon=True)
-                t.start()
-                return self._ready.wait(timeout=timeout)
-            except Exception as e:
-                print(f"  Error conectando IB: {e}")
-                return False
+        def conectar(self, timeout=8, reintentos=3, pausa_entre_intentos=4):
+            """
+            Intenta conectar a IB/Gateway con reintentos automáticos.
+            Útil cuando Gateway acaba de reiniciarse y tarda unos segundos
+            en aceptar conexiones.
+            """
+            for intento in range(1, reintentos + 1):
+                try:
+                    self.connect(IB_HOST, IB_PORT, IB_CLIENT_ID)
+                    t = threading.Thread(target=self.run, daemon=True)
+                    t.start()
+                    if self._ready.wait(timeout=timeout):
+                        if intento > 1:
+                            import logging as _log
+                            _log.info(f"IB conectado en intento {intento}")
+                        return True
+                    # Timeout — desconectar limpio antes de reintentar
+                    try:
+                        self.disconnect()
+                    except Exception:
+                        pass
+                    time.sleep(pausa_entre_intentos)
+                except Exception as e:
+                    if intento < reintentos:
+                        time.sleep(pausa_entre_intentos)
+                    else:
+                        import logging as _log
+                        _log.warning(f"IB no disponible tras {reintentos} intentos: {e}")
+            return False
 
 # ── CONTRATOS ─────────────────────────────────────────────────────────────────
 def crear_contrato(ib_ticker, tipo):

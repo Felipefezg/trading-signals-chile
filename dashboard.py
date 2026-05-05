@@ -1589,20 +1589,104 @@ with tab_ejecucion:
         # Log reciente
         st.markdown("**Actividad reciente del motor**")
         from engine.motor_automatico import get_log_auto
-        log = get_log_auto(20)
-        if log:
-            for entry in log:
+        log = get_log_auto(40)
+
+        # ── Actividad reciente (sin rechazadas) ────────────────────────────────
+        eventos_ops = [e for e in log if e.get("tipo") != "RECHAZADA"][-20:]
+        if eventos_ops:
+            COLOR_TIPO = {
+                "APERTURA": "#22c55e",
+                "CIERRE":   "#3b82f6",
+                "PAUSA":    "#ef4444",
+                "ERROR":    "#f97316",
+            }
+            for entry in eventos_ops:
                 tipo  = entry.get("tipo","")
-                color = "#22c55e" if tipo == "APERTURA" else ("#ef4444" if tipo in ("CIERRE","PAUSA") else "#64748b")
+                color = COLOR_TIPO.get(tipo, "#64748b")
                 st.markdown(
-                    f'<div style="display:flex;gap:1rem;padding:0.2rem 0;border-bottom:1px solid #1a2535;font-size:0.78rem">' +
-                    f'<span style="color:#475569;width:130px">{entry.get("timestamp","")[:16]}</span>' +
-                    f'<span style="color:{color};font-weight:600;width:80px">{tipo}</span>' +
-                    f'<span style="color:#94a3b8">{entry.get("descripcion","")[:60]}</span></div>',
+                    f'<div style="display:flex;gap:1rem;padding:0.2rem 0;border-bottom:1px solid #1a2535;font-size:0.78rem">'
+                    f'<span style="color:#475569;width:130px">{entry.get("timestamp","")[:16]}</span>'
+                    f'<span style="color:{color};font-weight:600;width:80px">{tipo}</span>'
+                    f'<span style="color:#94a3b8">{entry.get("descripcion","")[:70]}</span></div>',
                     unsafe_allow_html=True
                 )
         else:
             st.caption("Sin actividad registrada aún.")
+
+        st.divider()
+
+        # ── Panel señales rechazadas ───────────────────────────────────────────
+        st.markdown("**Señales rechazadas recientes**")
+        st.caption("Por qué el motor detectó señales pero no las ejecutó.")
+
+        rechazadas_log = [e for e in log if e.get("tipo") == "RECHAZADA"][-15:]
+
+        if rechazadas_log:
+            # Contar razones para mostrar distribución
+            from collections import Counter
+            razones = Counter(e.get("datos", {}).get("razon", e.get("descripcion", ""))[:50]
+                              for e in rechazadas_log)
+
+            # Tabla de rechazadas
+            for entry in reversed(rechazadas_log):
+                datos  = entry.get("datos", {})
+                razon  = datos.get("razon", entry.get("descripcion", ""))
+                conv   = datos.get("conviccion", 0)
+                riesgo = datos.get("riesgo", 0)
+                desc   = entry.get("descripcion", "")
+                ts     = entry.get("timestamp", "")[:16]
+
+                # Color por tipo de razón
+                if any(k in razon.lower() for k in ("posición ya", "ya hay", "duplicad")):
+                    rc = "#6366f1"   # violeta — duplicado
+                elif any(k in razon.lower() for k in ("riesgo", "capital", "posiciones max")):
+                    rc = "#f97316"   # naranja — límite de riesgo
+                elif any(k in razon.lower() for k in ("horario", "cerrado", "fuera")):
+                    rc = "#64748b"   # gris — fuera de horario
+                elif any(k in razon.lower() for k in ("convicción", "conviccion", "mínima")):
+                    rc = "#eab308"   # amarillo — baja convicción
+                else:
+                    rc = "#94a3b8"
+
+                st.markdown(
+                    f'<div style="display:flex;gap:0.8rem;padding:0.25rem 0;border-bottom:1px solid #1a2535;font-size:0.77rem;align-items:center">'
+                    f'<span style="color:#475569;width:110px;flex-shrink:0">{ts}</span>'
+                    f'<span style="color:#94a3b8;width:120px;flex-shrink:0;font-weight:600">{desc[:18]}</span>'
+                    f'<span style="color:{rc};flex:1">{razon[:65]}</span>'
+                    f'<span style="color:#475569;width:60px;text-align:right;flex-shrink:0">C:{conv}% R:{riesgo}</span>'
+                    f'</div>',
+                    unsafe_allow_html=True
+                )
+
+            # Resumen de causas
+            if razones:
+                st.markdown("")
+                st.caption("**Distribución de causas:**  " +
+                    "  ·  ".join(f"{razon[:35]}: **{n}**" for razon, n in razones.most_common(4)))
+        else:
+            st.caption("Sin señales rechazadas en el log reciente.")
+
+        st.divider()
+
+        # ── Estado conexión IB en tiempo real ─────────────────────────────────
+        st.markdown("**Estado conexión IB**")
+        try:
+            from engine.ib_executor import IB_DISPONIBLE as ib_disp
+            if ib_disp:
+                # Intentar ping rápido
+                from engine.ib_executor import IBEjecutor as _IBE
+                _c = _IBE()
+                ib_ok = _c.conectar(timeout=4, reintentos=1, pausa_entre_intentos=1)
+                if ib_ok:
+                    try: _c.disconnect()
+                    except: pass
+                    st.success("● IB Gateway/TWS conectado — listo para operar")
+                else:
+                    st.error("✗ IB Gateway/TWS no responde — verificar que esté corriendo en puerto 7497")
+            else:
+                st.warning("ibapi no instalada")
+        except Exception as _e:
+            st.warning(f"No se pudo verificar IB: {_e}")
 
     with sub_ib:
         if not IB_DISPONIBLE:

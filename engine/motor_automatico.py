@@ -621,13 +621,22 @@ def ciclo_trading_automatico():
                         pass
             else:
                 resultados["rechazadas"].append({
-                    "ticker": r.get("ib_ticker", ""),
-                    "razon":  razon,
+                    "ticker":    r.get("ib_ticker", ""),
+                    "accion":    r.get("accion", ""),
+                    "conviccion": r.get("conviccion", 0),
+                    "razon":     razon,
                 })
                 logging.info(
                     f"RECHAZADA: {r.get('ib_ticker','')} ({r.get('accion','')}) "
                     f"conv={r.get('conviccion',0)}% — {razon}"
                 )
+                # Persistir en log para visibilidad en dashboard
+                _registrar_evento("RECHAZADA", f"{r.get('accion','')} {r.get('ib_ticker','')}", {
+                    "razon":      razon,
+                    "conviccion": r.get("conviccion", 0),
+                    "riesgo":     r.get("riesgo", 0),
+                    "fuentes":    r.get("fuentes", []),
+                })
 
     except Exception as e:
         logging.error(f"Error en apertura automática: {e}", exc_info=True)

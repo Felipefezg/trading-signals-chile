@@ -96,21 +96,26 @@ def run_trigger():
     print(f"  Intervalo fuera:      {INTERVALO_FUERA}s")
     logging.info("Trigger iniciado")
 
-    ciclos_hoy  = 0
-    fecha_hoy   = date.today()
+    ciclos_hoy        = 0
+    fecha_hoy         = date.today()
+    fallos_ib         = 0          # ciclos consecutivos con error IB
+    FALLOS_IB_ALERTA  = 3          # enviar Telegram después de N fallos seguidos
+    alerta_ib_enviada = False      # para no spamear
 
     while True:
         try:
             # Resetear contador al nuevo día
             if date.today() != fecha_hoy:
-                fecha_hoy  = date.today()
-                ciclos_hoy = 0
+                fecha_hoy         = date.today()
+                ciclos_hoy        = 0
+                fallos_ib         = 0
+                alerta_ib_enviada = False
                 logging.info("Nuevo día — contadores reseteados")
 
             # Límite de seguridad diario
             if ciclos_hoy >= MAX_CICLOS_DIA:
                 logging.warning(f"Límite de ciclos diarios alcanzado ({MAX_CICLOS_DIA})")
-                time.sleep(600)  # pausa 10 min y reintenta
+                time.sleep(600)
                 continue
 
             t0 = time.time()
@@ -124,6 +129,34 @@ def run_trigger():
 
                 resultado = ciclo_trading_automatico()
                 ciclos_hoy += 1
+
+                # Detectar errores IB en el ciclo (apertura fallida por IB)
+                errores_ib = [
+                    r for r in resultado.get("rechazadas", [])
+                    if "IB" in r.get("razon", "") or "TWS" in r.get("razon", "")
+                    or "conecta" in r.get("razon", "").lower()
+                ]
+                if errores_ib:
+                    fallos_ib += 1
+                    if fallos_ib >= FALLOS_IB_ALERTA and not alerta_ib_enviada:
+                        try:
+                            from engine.telegram_alertas import alerta_riesgo
+                            alerta_riesgo(
+                                "ERROR",
+                                f"IB no responde — {fallos_ib} ciclos consecutivos sin conexión",
+                                {"Último error": errores_ib[0].get("razon", "desconocido"),
+                                 "Acción": "Verificar TWS/Gateway está corriendo"}
+                            )
+                            alerta_ib_enviada = True
+                            logging.warning(f"IB sin respuesta por {fallos_ib} ciclos — Telegram enviado")
+                        except Exception:
+                            pass
+                else:
+                    # Ciclo exitoso — resetear contador
+                    if fallos_ib > 0:
+                        logging.info(f"IB reconectado tras {fallos_ib} fallos")
+                        fallos_ib         = 0
+                        alerta_ib_enviada = False
 
                 aperturas  = resultado.get("aperturas", [])
                 cierres    = resultado.get("cierres", [])
