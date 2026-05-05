@@ -165,9 +165,9 @@ def alerta_resumen_diario():
         pos_lines = ""
         if posiciones:
             import yfinance as yf
+            from engine.cierre_automatico import TICKER_YF_MAP as yf_map
             for ticker, p in posiciones.items():
                 try:
-                    yf_map = {"SQM": "SQM", "COPEC": "COPEC.SN", "ECH": "ECH", "BTC": "BTC-USD"}
                     yf_ticker = yf_map.get(ticker, ticker)
                     precio_actual = float(yf.Ticker(yf_ticker).history(period="1d")["Close"].iloc[-1])
                     entrada = p.get("precio_entrada", 0)

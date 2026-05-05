@@ -114,6 +114,7 @@ SECTORES = {
     "CL":         "Energía",
     # Crypto
     "BTC":        "Crypto",
+    "ETH":        "Crypto",
 }
 
 # ── ESTADO DEL MOTOR ──────────────────────────────────────────────────────────
@@ -278,15 +279,33 @@ def _cargar_trades():
         pass
     return []
 
+def _pnl_trade_usd(trade):
+    """
+    Normaliza el pnl_total de un trade a USD.
+    Acciones Chile (tipo='Acción Chile') tienen precios en CLP — convertir.
+    """
+    pnl = trade.get("pnl_total", 0)
+    if trade.get("tipo") == "Acción Chile":
+        try:
+            from engine.ib_executor import _get_usd_clp
+            tasa = _get_usd_clp()
+            if tasa and tasa > 0:
+                pnl = pnl / tasa
+        except Exception:
+            pass  # mantener CLP si falla — peor caso: sobre-estimación
+    return pnl
+
+
 def calcular_pnl_dia():
     """
-    Calcula PnL del día actual.
+    Calcula PnL del día actual en USD.
     Solo considera trades confirmados por IB (confirmado_ib != False).
+    Normaliza acciones Chile (CLP) a USD.
     """
     trades = _cargar_trades()
     hoy    = datetime.now().date().isoformat()
     pnl    = sum(
-        t["pnl_total"]
+        _pnl_trade_usd(t)
         for t in trades
         if t.get("fecha_salida", "")[:10] == hoy
         and t.get("confirmado_ib", True) is not False   # excluir fantasmas explícitos
@@ -294,7 +313,10 @@ def calcular_pnl_dia():
     return pnl
 
 def calcular_riesgo_total():
-    """Calcula riesgo total en posiciones abiertas (basado en SL)"""
+    """
+    Calcula riesgo total en posiciones abiertas (basado en SL) en USD.
+    Acciones Chile tienen precios en CLP — normaliza antes de sumar.
+    """
     posiciones = _cargar_posiciones()
     riesgo = 0
     for ticker, p in posiciones.items():
@@ -302,23 +324,35 @@ def calcular_riesgo_total():
         sl       = p.get("sl", entrada)
         cantidad = p.get("cantidad", 0)
         accion   = p.get("accion", "COMPRAR")
+        tipo     = p.get("tipo", "ETF")
         if sl is None or entrada is None:
             continue
         if accion == "COMPRAR":
             riesgo_unit = max(0, entrada - sl)
         else:
             riesgo_unit = max(0, sl - entrada)
-        riesgo += riesgo_unit * cantidad
+        riesgo_pos = riesgo_unit * cantidad
+        # Normalizar CLP → USD para acciones Chile
+        if tipo == "Acción Chile":
+            try:
+                from engine.ib_executor import _get_usd_clp
+                tasa = _get_usd_clp()
+                if tasa and tasa > 0:
+                    riesgo_pos = riesgo_pos / tasa
+            except Exception:
+                pass
+        riesgo += riesgo_pos
     return riesgo
 
 def calcular_drawdown_total():
     """
-    Calcula drawdown total desde el capital inicial.
+    Calcula drawdown total desde el capital inicial en USD.
     Solo trades confirmados por IB.
+    Normaliza acciones Chile (CLP) a USD.
     """
     trades = _cargar_trades()
     pnl    = sum(
-        t["pnl_total"]
+        _pnl_trade_usd(t)
         for t in trades
         if t.get("confirmado_ib", True) is not False
     )
@@ -438,6 +472,11 @@ def ciclo_trading_automatico():
         razon = f"PnL del día {pnl_dia_pct:.2f}% < límite {PARAMS['pausa_pnl_dia_pct']}%"
         pausar_motor(razon)
         resultados["pausas"].append(razon)
+        try:
+            from engine.telegram_alertas import alerta_riesgo
+            alerta_riesgo("PAUSA", razon, {"PnL día": f"{pnl_dia_pct:+.2f}%", "Límite": f"{PARAMS['pausa_pnl_dia_pct']}%"})
+        except Exception:
+            pass
         return resultados
 
     drawdown = calcular_drawdown_total()
@@ -445,12 +484,22 @@ def ciclo_trading_automatico():
         razon = f"Drawdown {drawdown:.2f}% >= límite {PARAMS['max_drawdown_pct']}%"
         pausar_motor(razon)
         resultados["pausas"].append(razon)
+        try:
+            from engine.telegram_alertas import alerta_riesgo
+            alerta_riesgo("DRAWDOWN", razon, {"Drawdown": f"{drawdown:.2f}%", "Límite": f"{PARAMS['max_drawdown_pct']}%"})
+        except Exception:
+            pass
         return resultados
 
     if estado.get("consecutivos_perdedor", 0) >= PARAMS["pausa_consecutivos"]:
         razon = f"{estado['consecutivos_perdedor']} trades consecutivos perdedores"
         pausar_motor(razon)
         resultados["pausas"].append(razon)
+        try:
+            from engine.telegram_alertas import alerta_riesgo
+            alerta_riesgo("PAUSA", razon, {"Consecutivos perdedores": estado['consecutivos_perdedor']})
+        except Exception:
+            pass
         return resultados
 
     # ── VERIFICAR HORARIO
@@ -532,9 +581,21 @@ def ciclo_trading_automatico():
 
             valida, razon = validar_señal(r)
             if valida:
+                # Alerta señal detectada antes de intentar ejecutar
+                try:
+                    from engine.telegram_alertas import alerta_señal_detectada
+                    alerta_señal_detectada(r)
+                except Exception:
+                    pass
+
                 logging.info(f"APERTURA: {r['accion']} {r['ib_ticker']} | Conv {r['conviccion']}% | Riesgo {r['riesgo']}/10")
                 resultado = ejecutar_señal_automatica(r)
                 if resultado.get("ordenes_enviadas"):
+                    orden = resultado["ordenes_enviadas"][0]
+                    cantidad  = orden.get("cantidad", 0)
+                    precio    = orden.get("precio", r.get("precio_actual", 0))
+                    monto_usd = round(cantidad * precio, 0)
+
                     resultados["aperturas"].append({
                         "ticker":     r["ib_ticker"],
                         "accion":     r["accion"],
@@ -543,8 +604,21 @@ def ciclo_trading_automatico():
                     })
                     _registrar_evento("APERTURA", f"{r['accion']} {r['ib_ticker']}", r)
                     estado["ordenes_hoy"] = estado.get("ordenes_hoy", 0) + 1
+
+                    # Alerta Telegram — orden ejecutada con confirmación IB
+                    try:
+                        from engine.telegram_alertas import alerta_orden_ejecutada
+                        alerta_orden_ejecutada(r, cantidad, monto_usd)
+                    except Exception:
+                        pass
                 else:
-                    logging.warning(f"APERTURA FALLIDA: {r['ib_ticker']} — {resultado.get('error','sin detalle')}")
+                    error_ib = resultado.get("error", "sin detalle")
+                    logging.warning(f"APERTURA FALLIDA: {r['ib_ticker']} — {error_ib}")
+                    try:
+                        from engine.telegram_alertas import alerta_riesgo
+                        alerta_riesgo("ERROR", f"Apertura fallida: {r['accion']} {r['ib_ticker']}", {"Error": error_ib, "Convicción": f"{r['conviccion']}%"})
+                    except Exception:
+                        pass
             else:
                 resultados["rechazadas"].append({
                     "ticker": r.get("ib_ticker", ""),

@@ -77,58 +77,17 @@ def main():
             logging.info(f"Motor pausado: {resumen.get('razon_pausa')}")
             return
 
-        # Sincronizar posiciones con IB antes de cada ciclo
-        try:
-            from engine.ib_sync import sincronizar_posiciones_local
-            sincronizar_posiciones_local()
-        except:
-            pass
 
         # Verificar horario
         en_horario, msg = es_horario_mercado()  # Default NYSE
         print(f"Horario: {msg}")
 
         if not en_horario:
-            # Fuera de horario NYSE — pero ejecutar Crypto 24/7
-            try:
-                from engine.data_loader import get_datos_para_motor
-                from engine.recomendaciones import consolidar_señales, generar_recomendaciones
-                from engine.ib_executor import ejecutar_señales
-
-                datos = get_datos_para_motor(verbose=False)
-                activos = consolidar_señales(
-                    datos["poly_df"], datos["kalshi_list"],
-                    datos["macro_corr"], datos["noticias"],
-                    fear_greed=datos["fear_greed"],
-                    cmf_hechos=datos["cmf_hechos"],
-                    vol_alertas=datos["vol_alertas"],
-                    put_call=datos["put_call"],
-                    analisis_tecnico=datos["analisis_tecnico"],
-                    google_trends=datos["google_trends"],
-                    mercado_local=datos.get("mercado_local"),
-                    renta_fija=datos.get("renta_fija"),
-                    mtf=datos.get("mtf"),
-                    sec_13f=datos.get("sec_13f"),
-                    order_flow=datos.get("order_flow"),
-                    correlaciones=datos.get("correlaciones"),
-                    iv_opciones=datos.get("iv_opciones"),
-                )
-                recomendaciones = generar_recomendaciones(activos)
-
-                # Filtrar solo Crypto para ejecutar fuera de horario
-                crypto_señales = [r for r in recomendaciones
-                                 if r.get("tipo") == "Crypto"
-                                 and r.get("conviccion", 0) >= 75]
-
-                if crypto_señales:
-                    print(f"Ejecutando {len(crypto_señales)} señal(es) Crypto 24/7...")
-                    resultado = ejecutar_señales(crypto_señales, modo_test=False)
-                    for o in resultado.get("ordenes_enviadas", []):
-                        print(f"✅ Orden Crypto: {o['accion']} {o['ticker']}")
-                else:
-                    print("Sin señales Crypto activas")
-            except Exception as e:
-                print(f"Error ciclo Crypto: {e}")
+            # Fuera de horario NYSE.
+            # Crypto opera 24/7 y se maneja dentro de ciclo_trading_automatico()
+            # vía es_horario_mercado(tipo_activo="Crypto") → siempre True.
+            # NO ejecutar señales aquí directamente para no saltarse
+            # validaciones de riesgo, posiciones máximas y deduplicación.
 
             # Fuera de horario — solo verificar SL/TP/Trailing
             logging.info(f"Fuera de horario: {msg} — solo verificando posiciones")
