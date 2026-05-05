@@ -5804,3 +5804,13 @@
 2026-05-04 21:16:05,682 [INFO] ANSWER connectionClosed {}
 2026-05-04 21:16:06,886 [INFO] Cierre: BTC TRAILING STOP PnL -3.16%
 2026-05-04 21:16:06,887 [INFO] Cierre: BTC TAKE PROFIT PnL +0.00%
+2026-05-04 21:20:00,525 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-04 21:20:02,493 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 62, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'

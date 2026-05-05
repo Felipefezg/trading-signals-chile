@@ -53,6 +53,12 @@ def main():
     logging.info("=== CICLO AUTOMÁTICO INICIADO ===")
     enviar_resumen_si_corresponde()
     enviar_revision_semanal()
+    # Sincronizar con IB cada ciclo
+    try:
+        from engine.ib_sync import sincronizar_posiciones_local
+        sincronizar_posiciones_local()
+    except Exception as e:
+        logging.error(f"Error sync IB: {e}")
     print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Iniciando ciclo automático...")
 
     try:
