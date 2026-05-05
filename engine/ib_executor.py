@@ -45,15 +45,17 @@ if IB_DISPONIBLE:
     class IBEjecutor(EWrapper, EClient):
         def __init__(self):
             EClient.__init__(self, self)
-            self._ready       = threading.Event()
-            self._orderId     = None
-            self._lock        = threading.Lock()
-            self._posiciones  = {}   # symbol → {position, avgCost}
-            self._done_pos    = threading.Event()
-            self._ordenes     = {}   # orderId → status
-            self._filled      = {}   # orderId → {filled, avgPrice}
-            self._capital     = 0.0
-            self._done_acct   = threading.Event()
+            self._ready         = threading.Event()
+            self._orderId       = None
+            self._lock          = threading.Lock()
+            self._posiciones    = {}   # symbol → {position, avgCost}
+            self._done_pos      = threading.Event()
+            self._ordenes       = {}   # orderId → status
+            self._filled        = {}   # orderId → {filled, avgPrice}
+            self._open_orders   = {}   # orderId → True  (órdenes abiertas confirmadas en TWS)
+            self._done_orders   = threading.Event()
+            self._capital       = 0.0
+            self._done_acct     = threading.Event()
 
         def nextValidId(self, orderId):
             with self._lock:
@@ -82,6 +84,8 @@ if IB_DISPONIBLE:
         # ── ESTADO DE ÓRDENES ─────────────────────────────────────────────────
         def orderStatus(self, orderId, status, filled, remaining,
                         avgFillPrice, *args):
+            import logging as _log
+            _log.info(f"orderStatus: id={orderId} status={status} filled={filled}")
             self._ordenes[orderId] = status
             if filled > 0:
                 self._filled[orderId] = {
@@ -89,8 +93,33 @@ if IB_DISPONIBLE:
                     "avgPrice": round(float(avgFillPrice), 4),
                 }
 
+        # ── ÓRDENES ABIERTAS (fallback) ───────────────────────────────────────
+        def openOrder(self, orderId, contract, order, orderState):
+            """
+            TWS envía openOrder para cada orden activa.
+            Usamos esto como fallback cuando orderStatus no llega a tiempo.
+            """
+            self._open_orders[orderId] = {
+                "symbol": contract.symbol,
+                "action": order.action,
+                "qty":    float(order.totalQuantity),
+                "status": orderState.status,
+            }
+            # También registrar el status en _ordenes si aún no llegó
+            if orderId not in self._ordenes or not self._ordenes[orderId]:
+                self._ordenes[orderId] = orderState.status
+
+        def openOrderEnd(self):
+            self._done_orders.set()
+
         def execDetails(self, reqId, contract, execution):
-            pass
+            # Registrar ejecuciones para detectar fills
+            oid = execution.orderId
+            self._filled[oid] = {
+                "filled":   float(execution.shares),
+                "avgPrice": round(float(execution.price), 4),
+            }
+            self._ordenes[oid] = "Filled"
 
         # ── CUENTA ────────────────────────────────────────────────────────────
         def accountSummary(self, reqId, account, tag, value, currency):
@@ -105,11 +134,13 @@ if IB_DISPONIBLE:
 
         # ── ERRORES ───────────────────────────────────────────────────────────
         def error(self, reqId, errorCode, errorString, *args):
+            import logging as _log
             ignorar = {2104, 2106, 2158, 2103, 2119, 2110, 2105, 2157, 10349}
             if errorCode not in ignorar:
                 if errorCode == 1104:
                     pass  # Pending orders — ignorar
                 else:
+                    _log.warning(f"IB Error [{errorCode}] reqId={reqId}: {errorString[:100]}")
                     print(f"  IB Error [{errorCode}]: {errorString[:80]}")
 
         def conectar(self, timeout=8):
@@ -259,24 +290,65 @@ def ejecutar_orden(señal, modo_test=False):
         client.reqPositions()
         client._done_pos.wait(timeout=5)
 
-        # Si ya hay posición en este activo → no duplicar
+        # Si ya hay posición filled en IB → no duplicar
         if ib_ticker in client._posiciones:
             pos_actual = client._posiciones[ib_ticker]["position"]
             if (accion == "COMPRAR" and pos_actual > 0) or \
                (accion == "VENDER" and pos_actual < 0):
                 return {"exito": False, "error": f"Ya hay posición {ib_ticker} en IB"}
 
+        # Si ya hay orden abierta (Submitted/PreSubmitted) en IB → no duplicar
+        client._done_orders.clear()
+        client.reqAllOpenOrders()
+        client._done_orders.wait(timeout=8)
+        for oid, oi in client._open_orders.items():
+            if oi.get("symbol") == ib_ticker:
+                accion_ib_existente = oi.get("action", "")
+                if (accion == "COMPRAR" and accion_ib_existente == "BUY") or \
+                   (accion == "VENDER" and accion_ib_existente == "SELL"):
+                    return {
+                        "exito": False,
+                        "error": f"Ya existe orden activa {accion_ib_existente} para {ib_ticker} en IB (ID:{oid})"
+                    }
+
+        # Crypto: no permitir short sin posición larga previa.
+        # Paper trading PAXOS rechaza (error 201) ventas en corto de crypto.
+        # Solo ejecutar VENDER Crypto si hay posición larga existente en IB.
+        if tipo == "Crypto" and accion == "VENDER":
+            pos_crypto = client._posiciones.get(ib_ticker, {}).get("position", 0)
+            if pos_crypto <= 0:
+                return {
+                    "exito": False,
+                    "error": f"VENDER {ib_ticker} bloqueado: no hay posición larga en IB (short crypto no permitido en paper trading)"
+                }
+
         # Crear contrato y orden
         contrato = crear_contrato(ib_ticker, tipo)
         if not contrato:
             return {"exito": False, "error": "No se pudo crear contrato"}
 
-        # Calcular precio límite (0.1% slippage)
+        # Tick size por tipo de instrumento (requerimiento IB error 110)
+        TICK = {
+            "Crypto":       1.0,     # BTC/ETH en PAXOS → $1.00 (precio > $1000)
+            "Futuro":       0.01,    # CL, GC, HG — mínimo común
+            "Acción Chile": 1.0,     # Bolsa Santiago → 1 CLP
+        }
+        tick = TICK.get(tipo, 0.01)  # default $0.01 para acciones USA/ETF/ADR
+
+        def _redondear_tick(p, t):
+            """Redondea precio al tick correcto usando Decimal (evita floating-point error 110)."""
+            import decimal
+            d_p = decimal.Decimal(str(round(p, 6)))
+            d_t = decimal.Decimal(str(t))
+            redondeado = (d_p / d_t).quantize(decimal.Decimal("1"), rounding=decimal.ROUND_HALF_UP) * d_t
+            return float(redondeado)
+
+        # Calcular precio límite con 0.1% slippage + tick correcto
         if accion == "COMPRAR":
-            precio_lmt = round(precio * 1.001, 4)
+            precio_lmt = _redondear_tick(precio * 1.001, tick)
             accion_ib  = "BUY"
         else:
-            precio_lmt = round(precio * 0.999, 4)
+            precio_lmt = _redondear_tick(precio * 0.999, tick)
             accion_ib  = "SELL"
 
         # Orden principal LMT
@@ -293,24 +365,50 @@ def ejecutar_orden(señal, modo_test=False):
         orden_id = client._next_id()
         client.placeOrder(orden_id, contrato, orden)
 
+        import logging as _log
+        _log.info(f"Orden enviada: {accion} {cantidad} {ib_ticker} @ {precio_lmt:.4f} (ID:{orden_id})")
         print(f"  Orden enviada: {accion} {cantidad} {ib_ticker} @ {precio_lmt:.4f} (ID:{orden_id})")
 
-        # Esperar confirmación de IB (máx 30 segundos)
+        # ── FASE 1: esperar orderStatus hasta 15s ─────────────────────────────
+        ESTADOS_OK  = {"Filled", "Submitted", "PreSubmitted", "ApiPending"}
+        ESTADOS_MAL = {"Cancelled", "Inactive", "ApiCancelled"}
+
         t0 = time.time()
         confirmado = False
-        while time.time() - t0 < 30:
+        status     = ""
+        while time.time() - t0 < 15:
             status = client._ordenes.get(orden_id, "")
-            if status in ("Filled", "Submitted", "PreSubmitted"):
+            if status in ESTADOS_OK:
                 confirmado = True
                 break
-            elif status in ("Cancelled", "Inactive"):
-                break
-            time.sleep(0.5)
+            elif status in ESTADOS_MAL:
+                _log.warning(f"Orden {orden_id} rechazada por IB: {status}")
+                return {"exito": False, "error": f"Orden rechazada por IB: {status}"}
+            time.sleep(0.3)
 
+        # ── FASE 2: fallback — consultar open orders en TWS ───────────────────
+        # Paper trading a veces no envía orderStatus en tiempo real.
+        # Si la orden existe en TWS como open order → está activa aunque no
+        # haya llegado el callback.
         if not confirmado:
-            # Cancelar orden si no se confirmó
-            client.cancelOrder(orden_id)
-            return {"exito": False, "error": f"IB no confirmó en 30s (status: {status})"}
+            _log.info(f"orderStatus no llegó en 15s para {orden_id} — consultando open orders TWS")
+            client._done_orders.clear()
+            client.reqAllOpenOrders()
+            client._done_orders.wait(timeout=8)
+
+            if orden_id in client._open_orders:
+                confirmado = True
+                status = client._open_orders[orden_id].get("status", "Submitted")
+                _log.info(f"Orden {orden_id} confirmada vía open orders: {status}")
+                print(f"  ✅ Confirmada vía open orders TWS: {status}")
+            else:
+                # La orden no existe en TWS — cancelar y reportar falla
+                _log.warning(f"Orden {orden_id} no encontrada en TWS — cancelando")
+                try:
+                    client.cancelOrder(orden_id)
+                except Exception:
+                    pass
+                return {"exito": False, "error": f"IB no registró la orden (status: {status or 'sin respuesta'})"}
 
         # Obtener precio de fill real
         fill_info  = client._filled.get(orden_id, {})
@@ -388,19 +486,27 @@ def sincronizar_desde_ib():
 
     try:
         time.sleep(0.3)
+
+        # ── FASE 1: posiciones filled en IB ──────────────────────────────────
         client.reqPositions()
         client._done_pos.wait(timeout=8)
+        posiciones_ib = client._posiciones  # solo posiciones con fill real
 
-        posiciones_ib = client._posiciones
+        # ── FASE 2: órdenes abiertas (Submitted/PreSubmitted sin fill) ────────
+        client._done_orders.clear()
+        client.reqAllOpenOrders()
+        client._done_orders.wait(timeout=8)
+        # Construir set de symbols con orden activa en IB
+        open_order_symbols = {v["symbol"] for v in client._open_orders.values()}
 
-        # Leer posiciones locales
+        # ── Leer posiciones locales ────────────────────────────────────────────
         try:
             with open(POSICIONES_FILE) as f:
                 pos_local = json.load(f)
         except:
             pos_local = {}
 
-        # Construir nueva versión — IB manda
+        # ── Construir nueva versión — IB manda ────────────────────────────────
         pos_nueva = {}
         for symbol, pos_ib in posiciones_ib.items():
             if symbol in pos_local and pos_local[symbol].get("confirmado_ib"):
@@ -413,13 +519,25 @@ def sincronizar_desde_ib():
             # No agregar posiciones de IB que no están en local
             # (pueden ser posiciones manuales — no interfiramos)
 
-        # Eliminar posiciones locales que no están en IB
+        # ── Reconciliar posiciones locales vs IB ─────────────────────────────
         for symbol in list(pos_local.keys()):
-            if symbol not in posiciones_ib:
-                print(f"  Eliminando posición fantasma: {symbol}")
+            if symbol in pos_nueva:
+                continue  # ya procesado en el loop anterior
+
+            if symbol in posiciones_ib:
+                # Está en IB pero no tenía confirmado_ib=True → mantener tal cual
+                pos_nueva[symbol] = pos_local[symbol]
             else:
-                if symbol not in pos_nueva:
+                # No aparece en posiciones filled de IB
+                pos_conf = pos_local[symbol].get("confirmado_ib", False)
+                tiene_orden_abierta = symbol in open_order_symbols
+                if pos_conf and tiene_orden_abierta:
+                    # Orden LMT Submitted aún no ejecutada — es real, no fantasma
+                    print(f"  Manteniendo posición pendiente (orden abierta en IB): {symbol}")
                     pos_nueva[symbol] = pos_local[symbol]
+                else:
+                    # No confirmada por IB ni tiene orden activa → fantasma
+                    print(f"  Eliminando posición fantasma: {symbol}")
 
         with open(POSICIONES_FILE, "w") as f:
             json.dump(pos_nueva, f, indent=2)
@@ -427,6 +545,7 @@ def sincronizar_desde_ib():
         return pos_nueva
 
     except Exception as e:
+        print(f"  Error en sincronizar_desde_ib: {e}")
         return {}
     finally:
         try:
@@ -456,11 +575,19 @@ def cerrar_posicion_ib(ib_ticker, tipo, cantidad, accion_original):
         time.sleep(0.3)
         contrato = crear_contrato(ib_ticker, tipo)
 
-        # Precio límite para cierre
+        # Precio límite para cierre — respetar tick size del contrato
+        TICK = {"Crypto": 1.0, "Futuro": 0.01, "Acción Chile": 1.0}
+        tick = TICK.get(tipo, 0.01)
+        def _rt(p, t):
+            import decimal
+            d_p = decimal.Decimal(str(round(p, 6)))
+            d_t = decimal.Decimal(str(t))
+            return float((d_p / d_t).quantize(decimal.Decimal("1"), rounding=decimal.ROUND_HALF_UP) * d_t)
+
         if accion_cierre == "BUY":
-            precio_lmt = round(precio * 1.002, 4)
+            precio_lmt = _rt(precio * 1.002, tick)
         else:
-            precio_lmt = round(precio * 0.998, 4)
+            precio_lmt = _rt(precio * 0.998, tick)
 
         orden = Order()
         orden.action        = accion_cierre
