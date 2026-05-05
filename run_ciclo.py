@@ -21,6 +21,20 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 
+def enviar_revision_semanal():
+    """Envía reporte de revisión los lunes a las 9:00 AM ET"""
+    import pytz
+    tz  = pytz.timezone("America/New_York")
+    now = datetime.now(tz)
+    if now.weekday() == 0 and now.hour == 9 and now.minute < 5:
+        try:
+            from engine.revision_mejora import generar_reporte_revision, enviar_reporte_telegram
+            reporte = generar_reporte_revision()
+            enviar_reporte_telegram(reporte)
+            logging.info("Reporte semanal enviado")
+        except Exception as e:
+            logging.error(f"Error reporte semanal: {e}")
+
 def enviar_resumen_si_corresponde():
     """Envía resumen diario a las 9:00 AM y 4:00 PM ET"""
     import pytz
@@ -38,6 +52,7 @@ def enviar_resumen_si_corresponde():
 def main():
     logging.info("=== CICLO AUTOMÁTICO INICIADO ===")
     enviar_resumen_si_corresponde()
+    enviar_revision_semanal()
     print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Iniciando ciclo automático...")
 
     try:
