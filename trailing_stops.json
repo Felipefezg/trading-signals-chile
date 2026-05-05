@@ -9,42 +9,6 @@
     "umbral_activacion": 0.01,
     "historial": [
       {
-        "timestamp": "2026-05-04T20:30:38.988287",
-        "precio": 79896.53125,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:30:51.818241",
-        "precio": 79897.46875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:35:34.550484",
-        "precio": 80073.296875,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:35:45.453178",
-        "precio": 80083.5,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:44:49.255260",
-        "precio": 80031.0390625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
-        "timestamp": "2026-05-04T20:44:55.264558",
-        "precio": 80031.0390625,
-        "trail_nivel": 79468.2,
-        "evento": "CIERRE"
-      },
-      {
         "timestamp": "2026-05-04T20:45:33.507775",
         "precio": 80048.328125,
         "trail_nivel": 79468.2,
@@ -307,12 +271,48 @@
         "precio": 80633.0078125,
         "trail_nivel": 79468.2,
         "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:40:57.156938",
+        "precio": 80554.7265625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:41:06.698932",
+        "precio": 80554.7265625,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:42:50.789066",
+        "precio": 80585.8828125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:42:57.961192",
+        "precio": 80585.8828125,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:45:32.342768",
+        "precio": 80603.9609375,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
+      },
+      {
+        "timestamp": "2026-05-05T05:45:38.585207",
+        "precio": 80603.9609375,
+        "trail_nivel": 79468.2,
+        "evento": "CIERRE"
       }
     ],
     "fecha_inicio": "2026-04-27T21:42:48.840248",
-    "precio_actual": 80633.0078125,
-    "pnl_pct": -3.68,
-    "ultima_actualizacion": "2026-05-05T05:36:09.409716"
+    "precio_actual": 80603.9609375,
+    "pnl_pct": -3.64,
+    "ultima_actualizacion": "2026-05-05T05:45:38.585195"
   },
   "SQM": {
     "accion": "VENDER",

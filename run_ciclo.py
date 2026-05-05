@@ -77,6 +77,13 @@ def main():
             logging.info(f"Motor pausado: {resumen.get('razon_pausa')}")
             return
 
+        # Sincronizar posiciones con IB antes de cada ciclo
+        try:
+            from engine.ib_sync import sincronizar_posiciones_local
+            sincronizar_posiciones_local()
+        except:
+            pass
+
         # Verificar horario
         en_horario, msg = es_horario_mercado()  # Default NYSE
         print(f"Horario: {msg}")

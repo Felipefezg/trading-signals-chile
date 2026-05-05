@@ -1279,5 +1279,68 @@
       "order_id": 1,
       "tipo_orden": "LMT"
     }
+  },
+  {
+    "timestamp": "2026-05-05T05:41:22.022352",
+    "ticker": "BTC",
+    "razon": "TRAILING STOP",
+    "pnl_pct": -3.58,
+    "precio": 80554.7265625,
+    "orden_ib": {
+      "ticker": "BTC",
+      "accion": "BUY",
+      "cantidad": 1,
+      "razon": "TRAILING STOP",
+      "precio": 80554.7265625,
+      "pnl_pct": -3.58,
+      "timestamp": "2026-05-05T05:41:06.700641",
+      "ejecutado": true,
+      "modo": "PAPER",
+      "error": null,
+      "order_id": 1,
+      "tipo_orden": "LMT"
+    }
+  },
+  {
+    "timestamp": "2026-05-05T05:43:03.229586",
+    "ticker": "BTC",
+    "razon": "TRAILING STOP",
+    "pnl_pct": -3.62,
+    "precio": 80585.8828125,
+    "orden_ib": {
+      "ticker": "BTC",
+      "accion": "BUY",
+      "cantidad": 1,
+      "razon": "TRAILING STOP",
+      "precio": 80585.8828125,
+      "pnl_pct": -3.62,
+      "timestamp": "2026-05-05T05:42:57.963167",
+      "ejecutado": true,
+      "modo": "PAPER",
+      "error": null,
+      "order_id": 1,
+      "tipo_orden": "LMT"
+    }
+  },
+  {
+    "timestamp": "2026-05-05T05:45:43.805162",
+    "ticker": "BTC",
+    "razon": "TRAILING STOP",
+    "pnl_pct": -3.64,
+    "precio": 80603.9609375,
+    "orden_ib": {
+      "ticker": "BTC",
+      "accion": "BUY",
+      "cantidad": 1,
+      "razon": "TRAILING STOP",
+      "precio": 80603.9609375,
+      "pnl_pct": -3.64,
+      "timestamp": "2026-05-05T05:45:38.587520",
+      "ejecutado": true,
+      "modo": "PAPER",
+      "error": null,
+      "order_id": 1,
+      "tipo_orden": "LMT"
+    }
   }
 ]

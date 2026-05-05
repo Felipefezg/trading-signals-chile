@@ -18,7 +18,7 @@ TRADES_FILE     = os.path.join(BASE_DIR, "trades_cerrados.json")
 
 IB_HOST      = "127.0.0.1"
 IB_PORT      = 7497
-IB_CLIENT_ID = 55
+IB_CLIENT_ID = 77
 
 try:
     from ibapi.client import EClient
