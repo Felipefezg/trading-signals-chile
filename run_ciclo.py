@@ -263,6 +263,8 @@ def main():
         )
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         print(f"ERROR en ciclo: {e}")
         logging.error(f"Error en ciclo automático: {e}", exc_info=True)
 

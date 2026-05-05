@@ -112,7 +112,7 @@ def inicializar_trail(ticker, posicion):
     trails     = _cargar_trails()
     accion     = posicion.get("accion", "COMPRAR")
     entrada    = posicion.get("precio_entrada", 0)
-    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+    trail_pct  = _calcular_trail_atr(ticker, entrada, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
 
     if accion == "VENDER":
         # Para posición corta: trail = entrada × (1 + trail_pct)

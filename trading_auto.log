@@ -6937,3 +6937,543 @@ Traceback (most recent call last):
   File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
     riesgo_unit = max(0, sl - entrada)
 TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-05 05:52:43,527 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 05:52:43,651 [INFO] sent startApi
+2026-05-05 05:52:43,651 [INFO] REQUEST startApi {}
+2026-05-05 05:52:43,651 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 05:52:43,651 [INFO] ANSWER connectAck {}
+2026-05-05 05:52:43,659 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 05:52:44,164 [INFO] REQUEST reqPositions {}
+2026-05-05 05:52:44,165 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 05:52:44,174 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4386401488: Object}
+2026-05-05 05:52:44,174 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 05:52:44,177 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 05:52:44,177 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 05:52:44,179 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 05:52:44,180 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 05:52:44,357 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 05:52:47,186 [INFO] disconnecting
+2026-05-05 05:52:47,187 [INFO] ANSWER connectionClosed {}
+2026-05-05 05:52:48,786 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-05 05:53:33,167 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 05:53:33,300 [INFO] sent startApi
+2026-05-05 05:53:33,300 [INFO] REQUEST startApi {}
+2026-05-05 05:53:33,301 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 05:53:33,301 [INFO] ANSWER connectAck {}
+2026-05-05 05:53:33,312 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 05:53:33,818 [INFO] REQUEST reqPositions {}
+2026-05-05 05:53:33,818 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 05:53:33,822 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4383320576: Object}
+2026-05-05 05:53:33,823 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 05:53:33,824 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 05:53:33,824 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 05:53:33,826 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 05:53:33,826 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 05:53:34,002 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 05:53:36,830 [INFO] disconnecting
+2026-05-05 05:53:36,832 [INFO] ANSWER connectionClosed {}
+2026-05-05 05:53:38,733 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-05 05:55:01,153 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 05:55:01,352 [INFO] sent startApi
+2026-05-05 05:55:01,352 [INFO] REQUEST startApi {}
+2026-05-05 05:55:01,352 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 05:55:01,352 [INFO] ANSWER connectAck {}
+2026-05-05 05:55:01,362 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 05:55:01,936 [INFO] REQUEST reqPositions {}
+2026-05-05 05:55:01,937 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 05:55:02,914 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4305934176: Object}
+2026-05-05 05:55:02,916 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 05:55:03,179 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 05:55:03,180 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 05:55:03,188 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 05:55:03,189 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 05:55:03,381 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 05:55:06,252 [INFO] disconnecting
+2026-05-05 05:55:06,259 [INFO] ANSWER connectionClosed {}
+2026-05-05 05:55:08,507 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-05 05:57:49,332 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 05:57:49,424 [INFO] sent startApi
+2026-05-05 05:57:49,424 [INFO] REQUEST startApi {}
+2026-05-05 05:57:49,424 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 05:57:49,424 [INFO] ANSWER connectAck {}
+2026-05-05 05:57:49,427 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 05:57:49,932 [INFO] REQUEST reqPositions {}
+2026-05-05 05:57:49,933 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 05:57:49,936 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4381370688: Object}
+2026-05-05 05:57:49,936 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 05:57:49,940 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 05:57:49,941 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 05:57:49,942 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 05:57:49,942 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 05:57:50,128 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 05:57:52,947 [INFO] disconnecting
+2026-05-05 05:57:52,947 [INFO] ANSWER connectionClosed {}
+2026-05-05 05:57:53,826 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-05 05:58:44,777 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 05:58:44,890 [INFO] sent startApi
+2026-05-05 05:58:44,890 [INFO] REQUEST startApi {}
+2026-05-05 05:58:44,890 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 05:58:44,890 [INFO] ANSWER connectAck {}
+2026-05-05 05:58:44,894 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 05:58:45,400 [INFO] REQUEST reqPositions {}
+2026-05-05 05:58:45,400 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 05:58:45,408 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4309822048: Object}
+2026-05-05 05:58:45,408 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 05:58:45,411 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 05:58:45,412 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 05:58:45,412 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 05:58:45,413 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 05:58:45,599 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 05:58:48,427 [INFO] disconnecting
+2026-05-05 05:58:48,434 [INFO] ANSWER connectionClosed {}
+2026-05-05 05:58:49,833 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-05 06:00:01,216 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:00:01,407 [INFO] sent startApi
+2026-05-05 06:00:01,408 [INFO] REQUEST startApi {}
+2026-05-05 06:00:01,408 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:00:01,409 [INFO] ANSWER connectAck {}
+2026-05-05 06:00:01,423 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:00:01,928 [INFO] REQUEST reqPositions {}
+2026-05-05 06:00:01,928 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:00:01,932 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4344027168: Object}
+2026-05-05 06:00:01,932 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:00:01,934 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:00:01,934 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:00:01,935 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:00:01,935 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:00:02,119 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:00:03,231 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:00:03,271 [INFO] sent startApi
+2026-05-05 06:00:03,271 [INFO] REQUEST startApi {}
+2026-05-05 06:00:03,272 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:00:03,272 [INFO] ANSWER connectAck {}
+2026-05-05 06:00:03,886 [INFO] disconnecting
+2026-05-05 06:00:03,886 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:00:05,004 [INFO] disconnecting
+2026-05-05 06:00:05,005 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:00:05,036 [ERROR] Error en ciclo automático: expected an indented block (motor_automatico.py, line 257)
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 65, in main
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 257
+    continue
+    ^
+IndentationError: expected an indented block
+2026-05-05 06:00:11,285 [ERROR] Error en ciclo automático: expected an indented block (motor_automatico.py, line 257)
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 65, in main
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 257
+    continue
+    ^
+IndentationError: expected an indented block
+2026-05-05 06:02:04,320 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:02:04,487 [INFO] sent startApi
+2026-05-05 06:02:04,487 [INFO] REQUEST startApi {}
+2026-05-05 06:02:04,487 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:02:04,487 [INFO] ANSWER connectAck {}
+2026-05-05 06:02:04,494 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:02:05,000 [INFO] REQUEST reqPositions {}
+2026-05-05 06:02:05,000 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:02:05,005 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4311476832: Object}
+2026-05-05 06:02:05,005 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:02:05,007 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:02:05,008 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:02:05,009 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:02:05,009 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:02:05,187 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:02:08,014 [INFO] disconnecting
+2026-05-05 06:02:08,015 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:02:09,043 [INFO] sent startApi
+2026-05-05 06:02:09,043 [INFO] REQUEST startApi {}
+2026-05-05 06:02:09,043 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:02:09,044 [INFO] ANSWER connectAck {}
+2026-05-05 06:02:09,050 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:02:09,555 [INFO] REQUEST reqPositions {}
+2026-05-05 06:02:09,555 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:02:09,560 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4468550768: Object}
+2026-05-05 06:02:09,560 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:02:09,562 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:02:09,562 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:02:09,563 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:02:09,563 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:02:09,739 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:02:12,566 [INFO] disconnecting
+2026-05-05 06:02:12,568 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:02:14,920 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:02:15,235 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:02:18,121 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-05 06:02:33,791 [INFO] sent startApi
+2026-05-05 06:02:33,791 [INFO] REQUEST startApi {}
+2026-05-05 06:02:33,791 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-05 06:02:33,791 [INFO] ANSWER connectAck {}
+2026-05-05 06:02:33,792 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:02:34,801 [INFO] REQUEST placeOrder {'orderId': 26, 'contract': 4481333472: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4481331888: 0,0,0: MKT SELL 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:02:34,802 [INFO] SENDING placeOrder b'\x00\x00\x0183\x0026\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00SELL\x001\x00MKT\x00\x00\x00\x00\x00\x00\x000\x00\x000\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:02:35,002 [INFO] REQUEST placeOrder {'orderId': 27, 'contract': 4481333472: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4468639200: 0,0,0: STP BUY 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:02:35,003 [INFO] SENDING placeOrder b'\x00\x00\x01@3\x0027\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00STP\x00\x0082038.69\x00\x00\x00\x00\x000\x00\x000\x0026\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:02:35,207 [INFO] REQUEST placeOrder {'orderId': 28, 'contract': 4481333472: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4468638096: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:02:35,208 [INFO] SENDING placeOrder b'\x00\x00\x01?3\x0028\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x0026\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:02:36,918 [INFO] disconnecting
+2026-05-05 06:02:36,919 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:02:36,919 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-05 06:02:36,940 [ERROR] Error en ciclo automático: name 'precio_actual' is not defined
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+2026-05-05 06:05:00,762 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:05:00,921 [INFO] sent startApi
+2026-05-05 06:05:00,921 [INFO] REQUEST startApi {}
+2026-05-05 06:05:00,921 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:05:00,921 [INFO] ANSWER connectAck {}
+2026-05-05 06:05:00,926 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:05:01,480 [INFO] REQUEST reqPositions {}
+2026-05-05 06:05:01,481 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:05:01,485 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4345747392: Object}
+2026-05-05 06:05:01,485 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:05:01,486 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:05:01,486 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:05:01,487 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:05:01,487 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:05:01,665 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:05:04,550 [INFO] disconnecting
+2026-05-05 06:05:04,550 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:05:06,582 [INFO] sent startApi
+2026-05-05 06:05:06,583 [INFO] REQUEST startApi {}
+2026-05-05 06:05:06,583 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:05:06,583 [INFO] ANSWER connectAck {}
+2026-05-05 06:05:06,587 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:05:07,165 [INFO] REQUEST reqPositions {}
+2026-05-05 06:05:07,166 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:05:07,168 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4496226192: Object}
+2026-05-05 06:05:07,169 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:05:07,170 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:05:07,170 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:05:07,171 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:05:07,171 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:05:07,343 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:05:10,232 [INFO] disconnecting
+2026-05-05 06:05:10,245 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:05:13,686 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:05:13,883 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:05:17,737 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-05 06:05:35,064 [INFO] sent startApi
+2026-05-05 06:05:35,064 [INFO] REQUEST startApi {}
+2026-05-05 06:05:35,064 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-05 06:05:35,065 [INFO] ANSWER connectAck {}
+2026-05-05 06:05:35,067 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:05:36,098 [INFO] REQUEST placeOrder {'orderId': 27, 'contract': 4510556368: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4510556272: 0,0,0: MKT SELL 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:05:36,099 [INFO] SENDING placeOrder b'\x00\x00\x0183\x0027\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00SELL\x001\x00MKT\x00\x00\x00\x00\x00\x00\x000\x00\x000\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:05:36,323 [INFO] REQUEST placeOrder {'orderId': 28, 'contract': 4510556368: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4511213168: 0,0,0: STP BUY 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:05:36,324 [INFO] SENDING placeOrder b'\x00\x00\x01@3\x0028\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00STP\x00\x0082038.69\x00\x00\x00\x00\x000\x00\x000\x0027\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:05:36,579 [INFO] REQUEST placeOrder {'orderId': 29, 'contract': 4510556368: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4511212160: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:05:36,579 [INFO] SENDING placeOrder b'\x00\x00\x01?3\x0029\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x0027\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:05:38,496 [INFO] disconnecting
+2026-05-05 06:05:38,498 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:05:38,499 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-05 06:05:38,529 [ERROR] Error en ciclo automático: name 'precio_actual' is not defined
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+2026-05-05 06:07:50,048 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:07:50,624 [INFO] sent startApi
+2026-05-05 06:07:50,625 [INFO] REQUEST startApi {}
+2026-05-05 06:07:50,625 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:07:50,625 [INFO] ANSWER connectAck {}
+2026-05-05 06:07:50,915 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:07:51,330 [INFO] REQUEST reqPositions {}
+2026-05-05 06:07:51,334 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:07:51,338 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4319226944: Object}
+2026-05-05 06:07:51,338 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:07:51,341 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:07:51,341 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:07:51,342 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:07:51,342 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:07:51,796 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:07:54,350 [INFO] disconnecting
+2026-05-05 06:07:54,352 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:07:55,524 [INFO] sent startApi
+2026-05-05 06:07:55,524 [INFO] REQUEST startApi {}
+2026-05-05 06:07:55,525 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:07:55,525 [INFO] ANSWER connectAck {}
+2026-05-05 06:07:55,529 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:07:56,034 [INFO] REQUEST reqPositions {}
+2026-05-05 06:07:56,035 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:07:56,037 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4473372432: Object}
+2026-05-05 06:07:56,038 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:07:56,039 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:07:56,039 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:07:56,040 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:07:56,040 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:07:56,212 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:07:59,045 [INFO] disconnecting
+2026-05-05 06:07:59,046 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:08:02,253 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:08:02,419 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:08:06,130 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-05 06:08:26,649 [INFO] sent startApi
+2026-05-05 06:08:26,650 [INFO] REQUEST startApi {}
+2026-05-05 06:08:26,650 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-05 06:08:26,650 [INFO] ANSWER connectAck {}
+2026-05-05 06:08:26,652 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:08:27,657 [INFO] REQUEST placeOrder {'orderId': 28, 'contract': 4485119040: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4485118416: 0,0,0: MKT SELL 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:08:27,658 [INFO] SENDING placeOrder b'\x00\x00\x0183\x0028\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00SELL\x001\x00MKT\x00\x00\x00\x00\x00\x00\x000\x00\x000\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:08:27,863 [INFO] REQUEST placeOrder {'orderId': 29, 'contract': 4485119040: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4485116400: 0,0,0: STP BUY 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:08:27,864 [INFO] SENDING placeOrder b'\x00\x00\x01@3\x0029\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00STP\x00\x0082038.69\x00\x00\x00\x00\x000\x00\x000\x0028\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:08:28,066 [INFO] REQUEST placeOrder {'orderId': 30, 'contract': 4485119040: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4485118464: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:08:28,066 [INFO] SENDING placeOrder b'\x00\x00\x01?3\x0030\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x0028\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:08:29,777 [INFO] disconnecting
+2026-05-05 06:08:29,778 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:08:29,778 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-05 06:08:29,791 [ERROR] Error en ciclo automático: name 'precio_actual' is not defined
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+2026-05-05 06:09:39,830 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:09:39,924 [INFO] sent startApi
+2026-05-05 06:09:39,924 [INFO] REQUEST startApi {}
+2026-05-05 06:09:39,924 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:09:39,924 [INFO] ANSWER connectAck {}
+2026-05-05 06:09:39,927 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:09:40,428 [INFO] REQUEST reqPositions {}
+2026-05-05 06:09:40,429 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:09:40,432 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4349192704: Object}
+2026-05-05 06:09:40,432 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:09:40,433 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:09:40,434 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:09:40,435 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:09:40,435 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:09:40,608 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:09:43,436 [INFO] disconnecting
+2026-05-05 06:09:43,436 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:09:44,405 [INFO] sent startApi
+2026-05-05 06:09:44,405 [INFO] REQUEST startApi {}
+2026-05-05 06:09:44,405 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:09:44,405 [INFO] ANSWER connectAck {}
+2026-05-05 06:09:44,414 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:09:44,919 [INFO] REQUEST reqPositions {}
+2026-05-05 06:09:44,919 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:09:44,922 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4500138880: Object}
+2026-05-05 06:09:44,923 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:09:44,924 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:09:44,924 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:09:44,924 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:09:44,925 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:09:45,099 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:09:47,927 [INFO] disconnecting
+2026-05-05 06:09:47,929 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:09:51,209 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:09:51,562 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:09:55,272 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-05 06:10:00,362 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:10:00,527 [INFO] sent startApi
+2026-05-05 06:10:00,527 [INFO] REQUEST startApi {}
+2026-05-05 06:10:00,527 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:10:00,527 [INFO] ANSWER connectAck {}
+2026-05-05 06:10:00,530 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:10:01,100 [INFO] REQUEST reqPositions {}
+2026-05-05 06:10:01,100 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:10:01,103 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4382529472: Object}
+2026-05-05 06:10:01,103 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:10:01,104 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:10:01,104 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:10:01,105 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:10:01,105 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:10:01,278 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:10:04,177 [INFO] disconnecting
+2026-05-05 06:10:04,178 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:10:06,993 [INFO] sent startApi
+2026-05-05 06:10:06,993 [INFO] REQUEST startApi {}
+2026-05-05 06:10:06,993 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:10:06,993 [INFO] ANSWER connectAck {}
+2026-05-05 06:10:06,994 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:10:07,517 [INFO] REQUEST reqPositions {}
+2026-05-05 06:10:07,518 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:10:07,521 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4533467840: Object}
+2026-05-05 06:10:07,521 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:10:07,522 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:10:07,522 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:10:07,523 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:10:07,523 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:10:07,698 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:10:10,573 [INFO] disconnecting
+2026-05-05 06:10:10,574 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:10:14,044 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:10:14,349 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:10:14,552 [INFO] sent startApi
+2026-05-05 06:10:14,552 [INFO] REQUEST startApi {}
+2026-05-05 06:10:14,552 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-05 06:10:14,552 [INFO] ANSWER connectAck {}
+2026-05-05 06:10:14,554 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:10:15,559 [INFO] REQUEST placeOrder {'orderId': 29, 'contract': 4500761088: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4515168160: 0,0,0: MKT SELL 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:10:15,559 [INFO] SENDING placeOrder b'\x00\x00\x0183\x0029\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00SELL\x001\x00MKT\x00\x00\x00\x00\x00\x00\x000\x00\x000\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:10:15,761 [INFO] REQUEST placeOrder {'orderId': 30, 'contract': 4500761088: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4500761136: 0,0,0: STP BUY 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:10:15,762 [INFO] SENDING placeOrder b'\x00\x00\x01@3\x0030\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00STP\x00\x0082038.69\x00\x00\x00\x00\x000\x00\x000\x0029\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:10:15,966 [INFO] REQUEST placeOrder {'orderId': 31, 'contract': 4500761088: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4500762096: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:10:15,967 [INFO] SENDING placeOrder b'\x00\x00\x01?3\x0031\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x0029\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:10:17,679 [INFO] disconnecting
+2026-05-05 06:10:17,680 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:10:17,680 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-05 06:10:17,699 [ERROR] Error en ciclo automático: name 'precio_actual' is not defined
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+2026-05-05 06:10:18,103 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-05 06:10:40,055 [INFO] sent startApi
+2026-05-05 06:10:40,055 [INFO] REQUEST startApi {}
+2026-05-05 06:10:40,056 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-05 06:10:40,056 [INFO] ANSWER connectAck {}
+2026-05-05 06:10:40,058 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:10:42,186 [INFO] disconnecting
+2026-05-05 06:10:42,186 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:10:42,186 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-05 06:10:42,216 [ERROR] Error en ciclo automático: name 'precio_actual' is not defined
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+2026-05-05 06:12:29,047 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-05 06:12:29,151 [INFO] sent startApi
+2026-05-05 06:12:29,151 [INFO] REQUEST startApi {}
+2026-05-05 06:12:29,151 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:12:29,152 [INFO] ANSWER connectAck {}
+2026-05-05 06:12:29,157 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:12:29,662 [INFO] REQUEST reqPositions {}
+2026-05-05 06:12:29,662 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:12:29,665 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4313213440: Object}
+2026-05-05 06:12:29,665 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:12:29,667 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:12:29,667 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:12:29,667 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:12:29,667 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:12:29,845 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:12:32,682 [INFO] disconnecting
+2026-05-05 06:12:32,685 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:12:34,668 [INFO] sent startApi
+2026-05-05 06:12:34,668 [INFO] REQUEST startApi {}
+2026-05-05 06:12:34,668 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0077\x00\x00'
+2026-05-05 06:12:34,668 [INFO] ANSWER connectAck {}
+2026-05-05 06:12:34,671 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:12:35,179 [INFO] REQUEST reqPositions {}
+2026-05-05 06:12:35,180 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-05 06:12:35,184 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4463799792: Object}
+2026-05-05 06:12:35,184 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-05 06:12:35,188 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-05 06:12:35,189 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-05 06:12:35,189 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-05 06:12:35,190 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-05 06:12:35,366 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-05 06:12:38,195 [INFO] disconnecting
+2026-05-05 06:12:38,196 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:12:41,420 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:12:41,503 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-05 06:12:45,302 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-05 06:13:04,632 [INFO] sent startApi
+2026-05-05 06:13:04,632 [INFO] REQUEST startApi {}
+2026-05-05 06:13:04,632 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-05 06:13:04,633 [INFO] ANSWER connectAck {}
+2026-05-05 06:13:04,634 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:13:05,645 [INFO] REQUEST placeOrder {'orderId': 30, 'contract': 4313214256: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4313211088: 0,0,0: MKT SELL 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:13:05,646 [INFO] SENDING placeOrder b'\x00\x00\x0183\x0030\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00SELL\x001\x00MKT\x00\x00\x00\x00\x00\x00\x000\x00\x000\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:13:05,848 [INFO] REQUEST placeOrder {'orderId': 31, 'contract': 4313214256: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4463914912: 0,0,0: STP BUY 1@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 }
+2026-05-05 06:13:05,848 [INFO] SENDING placeOrder b'\x00\x00\x01@3\x0031\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00STP\x00\x0082038.69\x00\x00\x00\x00\x000\x00\x000\x0030\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:13:06,054 [INFO] REQUEST placeOrder {'orderId': 32, 'contract': 4313214256: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4463913136: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:13:06,054 [INFO] SENDING placeOrder b'\x00\x00\x01?3\x0032\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x0030\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:13:07,770 [INFO] disconnecting
+2026-05-05 06:13:07,771 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:13:07,771 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-05 06:13:09,608 [INFO] Trailing stop: BTC PnL -3.74%
+2026-05-05 06:13:22,335 [INFO] sent startApi
+2026-05-05 06:13:22,335 [INFO] REQUEST startApi {}
+2026-05-05 06:13:22,335 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0030\x00\x00'
+2026-05-05 06:13:22,335 [INFO] ANSWER connectAck {}
+2026-05-05 06:13:22,337 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:13:23,342 [INFO] REQUEST placeOrder {'orderId': 1, 'contract': 4475984384: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4475983904: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:13:23,343 [INFO] SENDING placeOrder b'\x00\x00\x01=3\x001\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:13:26,345 [INFO] disconnecting
+2026-05-05 06:13:26,345 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:13:28,292 [INFO] sent startApi
+2026-05-05 06:13:28,292 [INFO] REQUEST startApi {}
+2026-05-05 06:13:28,292 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0030\x00\x00'
+2026-05-05 06:13:28,292 [INFO] ANSWER connectAck {}
+2026-05-05 06:13:28,293 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 06:13:29,295 [INFO] REQUEST placeOrder {'orderId': 1, 'contract': 4475101824: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'order': 4475396928: 0,0,0: LMT BUY 1@80800.000000 }
+2026-05-05 06:13:29,295 [INFO] SENDING placeOrder b'\x00\x00\x01=3\x001\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x00\x00\x00BUY\x001\x00LMT\x0080800.0\x00\x00\x00\x00\x00\x000\x00\x001\x000\x000\x000\x000\x000\x000\x000\x00\x000\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00-1\x000\x00\x00\x000\x00\x00\x000\x000\x00\x000\x00\x00\x00\x00\x00\x000\x00\x00\x00\x00\x000\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x000\x00\x00\x000\x000\x00\x00\x000\x00\x000\x000\x000\x000\x00\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x001.7976931348623157e+308\x000\x00\x00\x00\x001.7976931348623157e+308\x00\x00\x00\x00\x000\x000\x000\x00\x00'
+2026-05-05 06:13:32,305 [INFO] disconnecting
+2026-05-05 06:13:32,308 [INFO] ANSWER connectionClosed {}
+2026-05-05 06:13:33,400 [INFO] Cierre: BTC TRAILING STOP PnL -3.75%
+2026-05-05 06:13:33,400 [INFO] Cierre: BTC TAKE PROFIT PnL -0.01%

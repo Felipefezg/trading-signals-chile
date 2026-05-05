@@ -252,6 +252,8 @@ def calcular_riesgo_total():
         sl       = p.get("sl", entrada)
         cantidad = p.get("cantidad", 0)
         accion   = p.get("accion", "COMPRAR")
+        if sl is None or entrada is None:
+            continue
         if accion == "COMPRAR":
             riesgo_unit = max(0, entrada - sl)
         else:
@@ -316,7 +318,18 @@ def validar_señal(recomendacion):
     if not recomendacion.get("stop_loss"):
         return False, "Stop Loss no definido — orden no permitida"
 
-    # 9. Precio disponible
+    # 9. Precio disponible — obtener si no está disponible
+    if not recomendacion.get("precio_actual"):
+        try:
+            import yfinance as yf
+            from engine.universo import UNIVERSO_COMPLETO
+            activo = recomendacion.get("activo", "")
+            yf_ticker = activo if activo in UNIVERSO_COMPLETO else activo.replace("_LOCAL_SPREAD","")
+            h = yf.Ticker(yf_ticker if yf_ticker != "BTC" else "BTC-USD").history(period="1d")
+            if not h.empty:
+                recomendacion["precio_actual"] = float(h["Close"].iloc[-1])
+        except:
+            pass
     if not recomendacion.get("precio_actual"):
         return False, "Precio actual no disponible"
 

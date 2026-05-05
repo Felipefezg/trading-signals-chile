@@ -3426,3 +3426,72 @@ Posiciones sincronizadas: 2 en IB
 
 [2026-05-05 05:50:04] Iniciando ciclo automático...
 ERROR en ciclo: unsupported operand type(s) for -: 'NoneType' and 'float'
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 05:55:06] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 65, in main
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 257
+    continue
+    ^
+IndentationError: expected an indented block
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:00:05] Iniciando ciclo automático...
+ERROR en ciclo: expected an indented block (motor_automatico.py, line 257)
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+Posiciones eliminadas (no están en IB): ['BTC']
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:05:04] Iniciando ciclo automático...
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+ERROR en ciclo: name 'precio_actual' is not defined
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 139, in main
+    resumen_trail = verificar_trailing_stops()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 288, in verificar_trailing_stops
+    inicializar_trails_existentes()
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 157, in inicializar_trails_existentes
+    inicializar_trail(ticker, pos)
+  File "/Users/felipefernandez/trading_signals/engine/trailing_stop.py", line 115, in inicializar_trail
+    trail_pct  = _calcular_trail_atr(ticker, precio_actual, TRAIL_PCT.get(ticker, TRAIL_PCT.get("default", 0.03)))
+NameError: name 'precio_actual' is not defined
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:10:04] Iniciando ciclo automático...
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+ERROR en ciclo: name 'precio_actual' is not defined
