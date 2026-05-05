@@ -36,13 +36,24 @@ TRAIL_PCT = {
 }
 
 TICKER_YF_MAP = {
-    "BTC":   "BTC-USD",
-    "SQM":   "SQM",
-    "COPEC": "COPEC.SN",
-    "ECH":   "ECH",
-    "SPY":   "SPY",
-    "GLD":   "GLD",
-    "LTM":   "LTM.SN",
+    # Crypto / Futuros
+    "BTC": "BTC-USD", "ETH": "ETH-USD",
+    "GC": "GC=F", "CL": "CL=F", "HG": "HG=F",
+    # ADRs NYSE / ETFs
+    "SQM": "SQM", "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
+    "ECH": "ECH", "SPY": "SPY", "GLD": "GLD", "TLT": "TLT",
+    # Acciones Chile (.SN)
+    "COPEC": "COPEC.SN", "FALABELLA": "FALABELLA.SN", "CMPC": "CMPC.SN",
+    "BCI": "BCI.SN", "COLBUN": "COLBUN.SN", "ENELCHILE": "ENELCHILE.SN",
+    "ENELAM": "ENELAM.SN", "ENTEL": "ENTEL.SN", "CAP": "CAP.SN",
+    "CCU": "CCU.SN", "CENCOSUD": "CENCOSUD.SN", "ITAUCL": "ITAUCL.SN",
+    "PARAUCO": "PARAUCO.SN", "MALLPLAZA": "MALLPLAZA.SN", "RIPLEY": "RIPLEY.SN",
+    "AGUAS-A": "AGUAS-A.SN", "VAPORES": "VAPORES.SN", "ANDINA-B": "ANDINA-B.SN",
+    "ILC": "ILC.SN", "CONCHATORO": "CONCHATORO.SN", "FORUS": "FORUS.SN",
+    "SMU": "SMU.SN", "ECL": "ECL.SN", "SONDA": "SONDA.SN",
+    "BESALCO": "BESALCO.SN", "SALFACORP": "SALFACORP.SN", "SOCOVESA": "SOCOVESA.SN",
+    "MOLYMET": "MOLYMET.SN", "QUINENCO": "QUINENCO.SN", "MASISA": "MASISA.SN",
+    "HABITAT": "HABITAT.SN", "PROVIDA": "PROVIDA.SN", "MARINSA": "MARINSA.SN",
 }
 
 def _calcular_trail_atr(ticker, precio_actual, trail_pct_default=0.03):

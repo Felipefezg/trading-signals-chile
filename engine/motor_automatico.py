@@ -59,19 +59,61 @@ PARAMS = {
     "timezone":              "America/New_York",
 }
 
-# Sectores por ticker
+# Sectores por ticker IB — universo completo (51 activos)
+# Fuente: engine/universo.py → campo "sector"
 SECTORES = {
-    "ECH":    "ETF Chile",
-    "SQM":    "Minería",
-    "COPEC":  "Energía",
-    "BCI":    "Bancos",
-    "CHILE":  "Bancos",
-    "CMPC":   "Industria",
-    "LTM":    "Transporte",
-    "BTC":    "Crypto",
-    "SPY":    "ETF USA",
-    "GLD":    "Commodities",
-    "HG":     "Commodities",
+    # IPSA 30
+    "SQM":        "Minería",
+    "COPEC":      "Energía",
+    "BCI":        "Bancos",
+    "BSAC":       "Bancos",
+    "BCH":        "Bancos",
+    "FALABELLA":  "Retail",
+    "CENCOSUD":   "Retail",
+    "CMPC":       "Industria",
+    "COLBUN":     "Energía",
+    "ENELCHILE":  "Energía",
+    "ENELAM":     "Energía",
+    "ENTEL":      "Telecomunicaciones",
+    "LTM":        "Transporte",
+    "CAP":        "Minería",
+    "CCU":        "Consumo",
+    "ITAUCL":     "Bancos",
+    "PARAUCO":    "Inmobiliario",
+    "MALLPLAZA":  "Inmobiliario",
+    "RIPLEY":     "Retail",
+    "AGUAS-A":    "Utilities",
+    "VAPORES":    "Transporte",
+    "ANDINA-B":   "Consumo",
+    "ILC":        "Financiero",
+    "CONCHATORO": "Consumo",
+    "FORUS":      "Retail",
+    "SMU":        "Retail",
+    "ECL":        "Energía",
+    "SONDA":      "Tecnología",
+    # Small caps
+    "BESALCO":    "Construcción",
+    "SALFACORP":  "Construcción",
+    "SOCOVESA":   "Inmobiliario",
+    "INGEVEC":    "Construcción",
+    "HITES":      "Retail",
+    "MOLYMET":    "Minería",
+    "QUINENCO":   "Holding",
+    "MASISA":     "Industria",
+    "HABITAT":    "Financiero",
+    "PROVIDA":    "Financiero",
+    "MARINSA":    "Transporte",
+    # ETFs
+    "ECH":        "ETF Chile",
+    "SPY":        "ETF USA",
+    "TLT":        "Renta Fija",
+    "GLD":        "Commodities",
+    # Commodities / Futuros
+    "GC":         "Commodities",
+    "HG":         "Commodities",
+    "CL":         "Energía",
+    # Crypto
+    "BTC":        "Crypto",
 }
 
 # ── ESTADO DEL MOTOR ──────────────────────────────────────────────────────────

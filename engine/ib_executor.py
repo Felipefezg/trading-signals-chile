@@ -377,15 +377,15 @@ def ejecutar_orden(señal, modo_test=False):
                         "error": f"Ya existe orden activa {accion_ib_existente} para {ib_ticker} en IB (ID:{oid})"
                     }
 
-        # Crypto: no permitir short sin posición larga previa.
+        # Crypto / Acción Chile: no permitir short sin posición larga previa.
         # Paper trading PAXOS rechaza (error 201) ventas en corto de crypto.
-        # Solo ejecutar VENDER Crypto si hay posición larga existente en IB.
-        if tipo == "Crypto" and accion == "VENDER":
-            pos_crypto = client._posiciones.get(ib_ticker, {}).get("position", 0)
-            if pos_crypto <= 0:
+        # IB paper tampoco permite short en Bolsa Santiago (SN).
+        if accion == "VENDER" and tipo in ("Crypto", "Acción Chile"):
+            pos_existente = client._posiciones.get(ib_ticker, {}).get("position", 0)
+            if pos_existente <= 0:
                 return {
                     "exito": False,
-                    "error": f"VENDER {ib_ticker} bloqueado: no hay posición larga en IB (short crypto no permitido en paper trading)"
+                    "error": f"VENDER {ib_ticker} bloqueado: no hay posición larga en IB (short no permitido en paper trading para {tipo})"
                 }
 
         # Crear contrato y orden
