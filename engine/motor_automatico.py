@@ -442,43 +442,79 @@ def ciclo_trading_automatico():
 
     # ── ABRIR POSICIONES NUEVAS
     try:
-        from data.polymarket import get_mercados_chile
-        from data.kalshi import get_kalshi_resumen
-        from data.macro_usa import get_macro_usa, get_correlaciones_chile
-        from data.noticias_chile import get_noticias_google
-        from engine.nlp_sentiment import analizar_noticias_batch
+        from engine.data_loader import get_datos_para_motor
         from engine.recomendaciones import consolidar_señales, generar_recomendaciones
 
-        poly_df     = get_mercados_chile(limit=200)
-        kalshi_list = get_kalshi_resumen()
-        macro_raw   = get_macro_usa()
-        macro_corr  = get_correlaciones_chile(macro_raw)
-        noticias    = analizar_noticias_batch(get_noticias_google())
-        activos     = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
+        # Cargar las 19 fuentes en paralelo — misma base que el dashboard
+        datos = get_datos_para_motor(verbose=False)
+        activos = consolidar_señales(
+            datos["poly_df"],
+            datos["kalshi_list"],
+            datos["macro_corr"],
+            datos["noticias"],
+            fear_greed=datos.get("fear_greed"),
+            cmf_hechos=datos.get("cmf_hechos"),
+            vol_alertas=datos.get("vol_alertas"),
+            put_call=datos.get("put_call"),
+            analisis_tecnico=datos.get("analisis_tecnico"),
+            google_trends=datos.get("google_trends"),
+            ib_data=datos.get("ib_data"),
+            mercado_local=datos.get("mercado_local"),
+            renta_fija=datos.get("renta_fija"),
+            mtf=datos.get("mtf"),
+            sec_13f=datos.get("sec_13f"),
+            order_flow=datos.get("order_flow"),
+            correlaciones=datos.get("correlaciones"),
+            iv_opciones=datos.get("iv_opciones"),
+            ml=datos.get("ml"),
+        )
         recomendaciones = generar_recomendaciones(activos)
 
+        meta = datos.get("meta", {})
+        logging.info(
+            f"Fuentes cargadas: {len([k for k,v in datos.items() if v is not None and k != 'meta'])} | "
+            f"Errores: {list(meta.get('errores', {}).keys()) or 'ninguno'} | "
+            f"Tiempo: {meta.get('t_total', '?')}s"
+        )
+
         for r in recomendaciones:
+            # Check de horario por tipo de activo específico
+            tipo_activo = r.get("tipo", "ETF")
+            en_horario_activo, msg_horario_activo = es_horario_mercado(tipo_activo)
+            if not en_horario_activo:
+                resultados["rechazadas"].append({
+                    "ticker": r.get("ib_ticker", ""),
+                    "razon":  f"Fuera de horario ({tipo_activo}): {msg_horario_activo}",
+                })
+                continue
+
             valida, razon = validar_señal(r)
             if valida:
                 logging.info(f"APERTURA: {r['accion']} {r['ib_ticker']} | Conv {r['conviccion']}% | Riesgo {r['riesgo']}/10")
                 resultado = ejecutar_señal_automatica(r)
                 if resultado.get("ordenes_enviadas"):
                     resultados["aperturas"].append({
-                        "ticker":    r["ib_ticker"],
-                        "accion":    r["accion"],
+                        "ticker":     r["ib_ticker"],
+                        "accion":     r["accion"],
                         "conviccion": r["conviccion"],
-                        "riesgo":    r["riesgo"],
+                        "riesgo":     r["riesgo"],
                     })
                     _registrar_evento("APERTURA", f"{r['accion']} {r['ib_ticker']}", r)
                     estado["ordenes_hoy"] = estado.get("ordenes_hoy", 0) + 1
+                else:
+                    logging.warning(f"APERTURA FALLIDA: {r['ib_ticker']} — {resultado.get('error','sin detalle')}")
             else:
                 resultados["rechazadas"].append({
-                    "ticker": r.get("ib_ticker",""),
+                    "ticker": r.get("ib_ticker", ""),
                     "razon":  razon,
                 })
+                logging.info(
+                    f"RECHAZADA: {r.get('ib_ticker','')} ({r.get('accion','')}) "
+                    f"conv={r.get('conviccion',0)}% — {razon}"
+                )
 
     except Exception as e:
-        logging.error(f"Error en apertura automática: {e}")
+        logging.error(f"Error en apertura automática: {e}", exc_info=True)
 
     estado["ultima_verificacion"] = datetime.now().isoformat()
     estado["pnl_dia"]             = pnl_dia

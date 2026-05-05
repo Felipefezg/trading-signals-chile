@@ -197,7 +197,43 @@ def _proximo_vencimiento():
 def get_precio_actual(ib_ticker, tipo):
     """Obtiene precio actual desde Yahoo Finance como fallback confiable"""
     yf_map = {
+        # Futuros / Crypto
         "BTC": "BTC-USD", "GC": "GC=F", "HG": "HG=F", "CL": "CL=F",
+        # ADRs chilenos en NYSE — ya tienen ticker USA directo
+        # Acciones chilenas locales — sufijo .SN para Yahoo Finance
+        "COPEC":      "COPEC.SN",
+        "FALABELLA":  "FALABELLA.SN",
+        "CMPC":       "CMPC.SN",
+        "BCI":        "BCI.SN",
+        "COLBUN":     "COLBUN.SN",
+        "ENELCHILE":  "ENELCHILE.SN",
+        "ENELAM":     "ENELAM.SN",
+        "ENTEL":      "ENTEL.SN",
+        "CAP":        "CAP.SN",
+        "CCU":        "CCU.SN",
+        "CENCOSUD":   "CENCOSUD.SN",
+        "ITAUCL":     "ITAUCL.SN",
+        "PARAUCO":    "PARAUCO.SN",
+        "MALLPLAZA":  "MALLPLAZA.SN",
+        "RIPLEY":     "RIPLEY.SN",
+        "AGUAS-A":    "AGUAS-A.SN",
+        "VAPORES":    "VAPORES.SN",
+        "ANDINA-B":   "ANDINA-B.SN",
+        "ILC":        "ILC.SN",
+        "CONCHATORO": "CONCHATORO.SN",
+        "FORUS":      "FORUS.SN",
+        "SMU":        "SMU.SN",
+        "ECL":        "ECL.SN",
+        "SONDA":      "SONDA.SN",
+        "BESALCO":    "BESALCO.SN",
+        "SALFACORP":  "SALFACORP.SN",
+        "SOCOVESA":   "SOCOVESA.SN",
+        "MOLYMET":    "MOLYMET.SN",
+        "QUINENCO":   "QUINENCO.SN",
+        "MASISA":     "MASISA.SN",
+        "HABITAT":    "HABITAT.SN",
+        "PROVIDA":    "PROVIDA.SN",
+        "MARINSA":    "MARINSA.SN",
         "SQM": "SQM", "ECH": "ECH", "SPY": "SPY", "GLD": "GLD",
         "TLT": "TLT", "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
     }
@@ -211,37 +247,67 @@ def get_precio_actual(ib_ticker, tipo):
     return None
 
 # ── CALCULAR CANTIDAD ─────────────────────────────────────────────────────────
+_USD_CLP_CACHE = {"rate": None, "ts": 0}
+
+def _get_usd_clp():
+    """Tipo de cambio USD/CLP con caché de 10 minutos."""
+    import time as _t
+    now = _t.time()
+    if _USD_CLP_CACHE["rate"] and now - _USD_CLP_CACHE["ts"] < 600:
+        return _USD_CLP_CACHE["rate"]
+    try:
+        h = yf.Ticker("CLP=X").history(period="2d")
+        rate = float(h["Close"].iloc[-1]) if not h.empty else 950.0
+    except Exception:
+        rate = 950.0
+    _USD_CLP_CACHE["rate"] = rate
+    _USD_CLP_CACHE["ts"]   = now
+    return rate
+
+
 def calcular_cantidad(precio, tipo, conviccion=75, capital=100_000,
                       max_usd=15_000, sl=None):
     """
     Calcula cantidad usando Half-Kelly simplificado.
-    Limita riesgo por operación al 2% del capital.
+
+    - Acciones Chile: precio en CLP → convierte a USD antes de dividir.
+    - Futuros: máximo 1 contrato (nocional enorme — CL=1000 bbl, GC=100 oz).
+    - Crypto: sizing reducido al 30%.
+    - Todo lo demás: tamaño basado en USD.
     """
     if not precio or precio <= 0:
         return 0
 
-    # Sizing base según convicción
+    # Sizing base según convicción (Half-Kelly simplificado)
     pct_capital = min(0.15, (conviccion - 50) / 100 * 0.3)
     usd_base    = capital * pct_capital
     usd_op      = min(usd_base, max_usd)
 
-    # Reducir sizing para activos volátiles
+    # ── Futuros: máximo 1 contrato para controlar exposición nocional ──────────
+    # CL (WTI) = 1000 barriles × ~$62 = $62k/contrato
+    # GC (Oro) = 100 oz × ~$3300 = $330k/contrato
+    # HG (Cobre) = 25000 lb × ~$4.80 = $120k/contrato
+    if tipo == "Futuro":
+        return 1
+
+    # ── Crypto: sizing reducido ────────────────────────────────────────────────
     if tipo == "Crypto":
-        usd_op *= 0.3
-    elif tipo == "Futuro":
-        usd_op *= 0.5
+        usd_op  *= 0.3
+        cantidad = usd_op / precio
+        return round(max(0.001, cantidad), 4)
 
+    # ── Acciones chilenas: precio en CLP → convertir a USD ────────────────────
+    if tipo == "Acción Chile":
+        clp_por_usd = _get_usd_clp()
+        precio_usd  = precio / clp_por_usd      # CLP → USD
+        if precio_usd <= 0:
+            return 0
+        cantidad = usd_op / precio_usd
+        return max(1, int(cantidad))
+
+    # ── Acciones USA / ETFs / ADRs ─────────────────────────────────────────────
     cantidad = usd_op / precio
-
-    # Para acciones chilenas — redondear a enteros
-    if tipo in ("Acción Chile",):
-        cantidad = max(1, int(cantidad))
-    elif tipo == "Crypto":
-        cantidad = round(max(0.001, cantidad), 4)
-    else:
-        cantidad = max(1, int(cantidad))
-
-    return cantidad
+    return max(1, int(cantidad))
 
 # ── EJECUTAR ORDEN ────────────────────────────────────────────────────────────
 def ejecutar_orden(señal, modo_test=False):
