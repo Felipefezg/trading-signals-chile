@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.trading.trigger</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/felipefernandez/trading_signals/venv/bin/python3</string>
+        <string>/Users/felipefernandez/trading_signals/trigger.py</string>
+    </array>
+
+    <!-- Arrancar automáticamente al login -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Reiniciar si el proceso muere -->
+    <key>KeepAlive</key>
+    <true/>
+
+    <!-- Directorio de trabajo -->
+    <key>WorkingDirectory</key>
+    <string>/Users/felipefernandez/trading_signals</string>
+
+    <!-- Logs -->
+    <key>StandardOutPath</key>
+    <string>/tmp/trading_trigger.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/trading_trigger_err.log</string>
+
+    <!-- Variables de entorno -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/felipefernandez/trading_signals/venv/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>PYTHONPATH</key>
+        <string>/Users/felipefernandez/trading_signals</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+
+    <!-- Esperar 5s si se reinicia por crash (evita bucle de crashes rápidos) -->
+    <key>ThrottleInterval</key>
+    <integer>5</integer>
+</dict>
+</plist>

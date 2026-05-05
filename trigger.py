@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
 """
-Trigger de ejecución inmediata.
-Monitorea señales continuamente y ejecuta órdenes al instante
-cuando detecta convicción >= umbral, sin esperar el cron.
+Trigger de ejecución continua.
+Llama a ciclo_trading_automatico() cada INTERVALO segundos.
 
-Corre en background como proceso separado.
+Arquitectura limpia:
+- UN SOLO punto de entrada para ejecución: ciclo_trading_automatico()
+- Toda la lógica de riesgo, validación, horario y deduplicación vive ahí
+- Este proceso simplemente lo llama frecuentemente para reaccionar rápido
+
+Deduplicación:
+- IB rechaza órdenes duplicadas (reqAllOpenOrders check en ejecutar_orden)
+- Estado local en posiciones.json evita re-ejecutar el mismo ticker
+- Archivo señales_ejecutadas_hoy.json persiste entre reinicios del trigger
+
+Corre en background: nohup python3 trigger.py > /tmp/trigger.log 2>&1 &
 """
 
 import sys
 import os
 import time
+import json
 import logging
-from datetime import datetime
+from datetime import datetime, date
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
@@ -22,149 +32,154 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 
-# Configuración
-CONVICCION_TRIGGER  = 85   # % mínimo para ejecución inmediata
-INTERVALO_SCAN      = 60   # segundos entre scans (1 minuto)
-MAX_ORDENES_DIA     = 10   # límite diario de órdenes automáticas
-SEÑALES_EJECUTADAS  = set() # evitar duplicados en misma sesión
+# ── CONFIGURACIÓN ─────────────────────────────────────────────────────────────
+INTERVALO_MERCADO   = 90    # segundos entre ciclos en horario de mercado
+INTERVALO_FUERA     = 300   # segundos entre ciclos fuera de horario (SL/TP/Crypto)
+MAX_CICLOS_DIA      = 200   # límite de seguridad diario (evita bucle infinito)
+SEÑALES_FILE        = os.path.join(BASE_DIR, "señales_ejecutadas_hoy.json")
 
-def es_horario_mercado(tipo_activo=None):
-    import pytz
-    tz  = pytz.timezone("America/New_York")
-    now = datetime.now(tz)
-    if tipo_activo == "Crypto":
-        return True  # BTC opera 24/7
-    if now.weekday() >= 5:
-        return False
-    from datetime import time as dtime
-    return dtime(9, 30) <= now.time() <= dtime(15, 45)
 
-def get_ordenes_hoy():
-    """Cuenta órdenes ejecutadas hoy"""
+# ── SEÑALES EJECUTADAS (PERSISTENTE) ─────────────────────────────────────────
+def _cargar_señales_hoy():
+    """Carga el set de señales ejecutadas hoy. Limpia automáticamente al nuevo día."""
     try:
-        import json
+        if os.path.exists(SEÑALES_FILE):
+            with open(SEÑALES_FILE) as f:
+                data = json.load(f)
+            # Si el archivo es de otro día, resetear
+            if data.get("fecha") != date.today().isoformat():
+                return set()
+            return set(data.get("señales", []))
+    except Exception:
+        pass
+    return set()
+
+
+def _guardar_señales_hoy(señales: set):
+    """Persiste las señales ejecutadas hoy en disco."""
+    try:
+        with open(SEÑALES_FILE, "w") as f:
+            json.dump({
+                "fecha":   date.today().isoformat(),
+                "señales": list(señales),
+            }, f)
+    except Exception as e:
+        logging.warning(f"No se pudo guardar señales_hoy: {e}")
+
+
+def _señales_ejecutadas_hoy() -> set:
+    """Retorna tickers ya ejecutados hoy desde log_automatico.json."""
+    try:
         log_path = os.path.join(BASE_DIR, "log_automatico.json")
         if not os.path.exists(log_path):
-            return 0
+            return set()
         with open(log_path) as f:
             log = json.load(f)
-        hoy = datetime.now().date().isoformat()
-        return sum(1 for e in log
-                  if e.get("tipo") == "APERTURA"
-                  and e.get("timestamp", "")[:10] == hoy)
-    except:
-        return 0
+        hoy = date.today().isoformat()
+        return {
+            e.get("datos", {}).get("ib_ticker", "")
+            for e in log
+            if e.get("tipo") == "APERTURA"
+            and e.get("timestamp", "")[:10] == hoy
+        }
+    except Exception:
+        return set()
 
-def scan_y_ejecutar():
-    """
-    Escanea señales y ejecuta inmediatamente si hay alta convicción.
-    Retorna número de órdenes ejecutadas.
-    """
-    if not es_horario_mercado():
-        return 0
 
-    ordenes_hoy = get_ordenes_hoy()
-    if ordenes_hoy >= MAX_ORDENES_DIA:
-        logging.info(f"Límite diario alcanzado: {ordenes_hoy} órdenes")
-        return 0
-
-    try:
-        from engine.data_loader import get_datos_para_motor
-        from engine.recomendaciones import consolidar_señales, generar_recomendaciones
-        from engine.motor_automatico import get_resumen_motor, validar_señal
-        from engine.ib_executor import ejecutar_señales
-
-        # Verificar motor activo
-        estado = get_resumen_motor()
-        if not estado.get("activo") or estado.get("pausado"):
-            return 0
-
-        # Cargar datos en paralelo
-        datos = get_datos_para_motor(verbose=False)
-        activos = consolidar_señales(
-            datos["poly_df"], datos["kalshi_list"],
-            datos["macro_corr"], datos["noticias"],
-            fear_greed=datos["fear_greed"],
-            cmf_hechos=datos["cmf_hechos"],
-            vol_alertas=datos["vol_alertas"],
-            put_call=datos["put_call"],
-            analisis_tecnico=datos["analisis_tecnico"],
-            google_trends=datos["google_trends"],
-            ib_data=datos["ib_data"],
-            mercado_local=datos.get("mercado_local"),
-            renta_fija=datos.get("renta_fija"),
-        )
-        recomendaciones = generar_recomendaciones(activos)
-
-        # Filtrar señales de alta convicción no ejecutadas
-        señales_trigger = [
-            r for r in recomendaciones
-            if r["conviccion"] >= CONVICCION_TRIGGER
-            and f"{r['accion']}_{r['ib_ticker']}" not in SEÑALES_EJECUTADAS
-        ]
-
-        if not señales_trigger:
-            return 0
-
-        ordenes_ejecutadas = 0
-        for señal in señales_trigger:
-            key = f"{señal['accion']}_{señal['ib_ticker']}"
-
-            # Validar con salvaguardas del motor
-            valida, razon = validar_señal(señal)
-            if not valida:
-                logging.info(f"Trigger rechazado: {key} — {razon}")
-                continue
-
-            # Ejecutar inmediatamente
-            logging.info(f"TRIGGER EJECUTANDO: {key} Conv:{señal['conviccion']}%")
-            print(f"\n⚡ TRIGGER: {señal['accion']} {señal['ib_ticker']} "
-                  f"Conv:{señal['conviccion']}% — ejecutando ahora...")
-
-            resultado = ejecutar_señales([señal], modo_test=False)
-
-            if resultado.get("ordenes_enviadas"):
-                SEÑALES_EJECUTADAS.add(key)
-                ordenes_ejecutadas += 1
-                logging.info(f"TRIGGER OK: {key} ejecutado")
-                print(f"✅ Orden enviada a IB")
-            else:
-                logging.warning(f"TRIGGER FALLÓ: {key} — {resultado.get('errores')}")
-
-        return ordenes_ejecutadas
-
-    except Exception as e:
-        logging.error(f"Error en trigger: {e}")
-        return 0
-
+# ── CICLO PRINCIPAL ───────────────────────────────────────────────────────────
 def run_trigger():
-    """Loop principal del trigger"""
+    """
+    Loop principal — llama ciclo_trading_automatico() continuamente.
+    """
     print(f"[{datetime.now().strftime('%H:%M:%S')}] Trigger iniciado")
-    print(f"Convicción mínima: {CONVICCION_TRIGGER}%")
-    print(f"Scan cada: {INTERVALO_SCAN}s")
-    print(f"Máx órdenes/día: {MAX_ORDENES_DIA}")
+    print(f"  Intervalo en horario: {INTERVALO_MERCADO}s")
+    print(f"  Intervalo fuera:      {INTERVALO_FUERA}s")
     logging.info("Trigger iniciado")
+
+    ciclos_hoy  = 0
+    fecha_hoy   = date.today()
 
     while True:
         try:
-            if es_horario_mercado():
-                t0 = time.time()
-                ordenes = scan_y_ejecutar()
-                elapsed = time.time() - t0
-                if ordenes > 0:
-                    print(f"[{datetime.now().strftime('%H:%M:%S')}] "
-                          f"{ordenes} orden(es) ejecutada(s) en {elapsed:.1f}s")
-                else:
-                    print(f"[{datetime.now().strftime('%H:%M:%S')}] "
-                          f"Scan completado en {elapsed:.1f}s — sin señales trigger")
-            else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] "
-                      f"Fuera de horario — esperando...")
+            # Resetear contador al nuevo día
+            if date.today() != fecha_hoy:
+                fecha_hoy  = date.today()
+                ciclos_hoy = 0
+                logging.info("Nuevo día — contadores reseteados")
 
+            # Límite de seguridad diario
+            if ciclos_hoy >= MAX_CICLOS_DIA:
+                logging.warning(f"Límite de ciclos diarios alcanzado ({MAX_CICLOS_DIA})")
+                time.sleep(600)  # pausa 10 min y reintenta
+                continue
+
+            t0 = time.time()
+
+            # ── EJECUTAR CICLO COMPLETO ──────────────────────────────────────
+            try:
+                from engine.motor_automatico import (
+                    ciclo_trading_automatico,
+                    es_horario_mercado,
+                )
+
+                resultado = ciclo_trading_automatico()
+                ciclos_hoy += 1
+
+                aperturas  = resultado.get("aperturas", [])
+                cierres    = resultado.get("cierres", [])
+                rechazadas = resultado.get("rechazadas", [])
+                pausas     = resultado.get("pausas", [])
+                elapsed    = round(time.time() - t0, 1)
+
+                ts = datetime.now().strftime("%H:%M:%S")
+
+                if pausas:
+                    logging.warning(f"Motor pausado: {pausas[0]}")
+                    print(f"[{ts}] ⚠️  Motor PAUSADO: {pausas[0]}")
+
+                if aperturas:
+                    for a in aperturas:
+                        msg = f"✅ APERTURA: {a['accion']} {a['ticker']} | Conv {a['conviccion']}%"
+                        print(f"[{ts}] {msg}")
+                        logging.info(msg)
+
+                if cierres:
+                    for c in cierres:
+                        msg = f"🔒 CIERRE: {c['ticker']} | {c.get('razon','')} | PnL {c.get('pnl_pct',0):+.2f}%"
+                        print(f"[{ts}] {msg}")
+                        logging.info(msg)
+
+                if not aperturas and not cierres and not pausas:
+                    print(f"[{ts}] Ciclo #{ciclos_hoy} OK ({elapsed}s) — sin operaciones")
+
+            except Exception as e:
+                logging.error(f"Error en ciclo_trading_automatico: {e}", exc_info=True)
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] ERROR ciclo: {e}")
+
+            # ── INTERVALO ADAPTATIVO ─────────────────────────────────────────
+            # En horario de mercado: scan frecuente (90s)
+            # Fuera de horario (solo SL/TP/Crypto): scan menos frecuente (5min)
+            try:
+                from engine.motor_automatico import es_horario_mercado
+                en_horario, _ = es_horario_mercado()
+            except Exception:
+                en_horario = False
+
+            intervalo = INTERVALO_MERCADO if en_horario else INTERVALO_FUERA
+
+            # Descontar tiempo ya consumido por el ciclo
+            ya_pasado = time.time() - t0
+            espera    = max(5, intervalo - ya_pasado)
+            time.sleep(espera)
+
+        except KeyboardInterrupt:
+            print("\nTrigger detenido manualmente")
+            logging.info("Trigger detenido (KeyboardInterrupt)")
+            break
         except Exception as e:
-            logging.error(f"Error en loop: {e}")
+            logging.error(f"Error inesperado en loop principal: {e}", exc_info=True)
+            time.sleep(30)  # pausa breve antes de reintentar
 
-        time.sleep(INTERVALO_SCAN)
 
 if __name__ == "__main__":
     run_trigger()
