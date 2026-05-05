@@ -5814,3 +5814,58 @@ Traceback (most recent call last):
   File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
     riesgo_unit = max(0, sl - entrada)
 TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-04 21:25:01,041 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-04 21:25:01,257 [INFO] sent startApi
+2026-05-04 21:25:01,257 [INFO] REQUEST startApi {}
+2026-05-04 21:25:01,257 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0055\x00\x00'
+2026-05-04 21:25:01,257 [INFO] ANSWER connectAck {}
+2026-05-04 21:25:01,267 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-04 21:25:01,768 [INFO] REQUEST reqPositions {}
+2026-05-04 21:25:01,769 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-04 21:25:01,787 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4383581568: Object}
+2026-05-04 21:25:01,787 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-04 21:25:01,792 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-04 21:25:01,793 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-04 21:25:01,794 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-04 21:25:01,794 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-04 21:25:01,990 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-04 21:25:04,867 [INFO] disconnecting
+2026-05-04 21:25:04,868 [INFO] ANSWER connectionClosed {}
+2026-05-04 21:25:07,074 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'
+2026-05-04 21:29:59,325 [ERROR] $CFR.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-04 21:29:59,694 [ERROR] $ENDESA.SN: possibly delisted; no price data found  (period=3mo)
+2026-05-04 21:30:01,050 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-04 21:30:01,125 [ERROR] $BANMEDICA.SN: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+2026-05-04 21:30:01,569 [INFO] sent startApi
+2026-05-04 21:30:01,570 [INFO] REQUEST startApi {}
+2026-05-04 21:30:01,570 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0055\x00\x00'
+2026-05-04 21:30:01,570 [INFO] ANSWER connectAck {}
+2026-05-04 21:30:01,593 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-04 21:30:02,107 [INFO] REQUEST reqPositions {}
+2026-05-04 21:30:02,134 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-04 21:30:02,174 [INFO] REQUEST reqExecutions {'reqId': 1, 'execFilter': 4310455728: Object}
+2026-05-04 21:30:02,174 [INFO] SENDING reqExecutions b'\x00\x00\x00\x0e7\x003\x001\x000\x00\x00\x00\x00\x00\x00\x00'
+2026-05-04 21:30:02,189 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-04 21:30:02,189 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-04 21:30:02,202 [INFO] REQUEST reqAccountSummary {'reqId': 2, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,UnrealizedPnL'}
+2026-05-04 21:30:02,204 [INFO] SENDING reqAccountSummary b'\x00\x00\x00762\x001\x002\x00All\x00NetLiquidation,TotalCashValue,UnrealizedPnL\x00'
+2026-05-04 21:30:02,397 [INFO] ANSWER accountSummaryEnd {'reqId': 2}
+2026-05-04 21:30:05,225 [INFO] disconnecting
+2026-05-04 21:30:05,231 [INFO] ANSWER connectionClosed {}
+2026-05-04 21:30:08,308 [ERROR] Error en ciclo automático: unsupported operand type(s) for -: 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 68, in main
+    resumen = get_resumen_motor()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 458, in get_resumen_motor
+    riesgo     = calcular_riesgo_total()
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 258, in calcular_riesgo_total
+    riesgo_unit = max(0, sl - entrada)
+TypeError: unsupported operand type(s) for -: 'NoneType' and 'float'

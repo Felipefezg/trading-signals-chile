@@ -3018,3 +3018,19 @@ CIERRE: BTC | TAKE PROFIT | PnL +0.00%
 
 [2026-05-04 21:20:00] Iniciando ciclo automático...
 ERROR en ciclo: unsupported operand type(s) for -: 'NoneType' and 'float'
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-04 21:25:04] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for -: 'NoneType' and 'float'
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-04 21:30:05] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for -: 'NoneType' and 'float'
