@@ -250,9 +250,21 @@ def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
         precio_salida  = resultado_ib.get("precio_fill", condicion.get("precio", 0))
         pnl_pct        = condicion.get("pnl_pct", 0)
         cantidad       = posicion.get("cantidad", 1)
-        pnl_usd        = (precio_salida - precio_entrada) * cantidad
+        tipo_pos       = posicion.get("tipo", "ETF")
         if posicion.get("accion") == "VENDER":
-            pnl_usd = (precio_entrada - precio_salida) * cantidad
+            pnl_raw = (precio_entrada - precio_salida) * cantidad
+        else:
+            pnl_raw = (precio_salida - precio_entrada) * cantidad
+        # Normalizar CLP → USD para acciones Chile
+        if tipo_pos == "Acción Chile":
+            try:
+                from engine.ib_executor import _get_usd_clp
+                tasa = _get_usd_clp()
+                pnl_usd = pnl_raw / tasa if tasa else pnl_raw
+            except Exception:
+                pnl_usd = pnl_raw
+        else:
+            pnl_usd = pnl_raw
         alerta_cierre_posicion(ticker, condicion["razon"], pnl_pct, pnl_usd,
                                precio_entrada, precio_salida)
     except Exception:
@@ -275,6 +287,7 @@ def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
         fecha_entrada  = posicion.get("fecha_entrada", datetime.now().isoformat()),
         fecha_salida   = datetime.now().isoformat(),
         confirmado_ib  = resultado_ib.get("confirmado_ib", False),
+        tipo           = posicion.get("tipo"),  # necesario para normalización CLP→USD
     )
 
     del posiciones[ticker]

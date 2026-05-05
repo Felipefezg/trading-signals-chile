@@ -35,20 +35,25 @@ def _guardar_trades_cerrados(trades):
 
 def registrar_trade_cerrado(ticker, accion, cantidad, precio_entrada,
                              precio_salida, fecha_entrada, fecha_salida=None,
-                             confirmado_ib=True):
+                             confirmado_ib=True, tipo=None):
     """
     Registra un trade cerrado para el cálculo de PnL histórico.
 
     Args:
         confirmado_ib: True si la orden de cierre fue confirmada por IB.
                        False = trade fantasma (no debería sumarse a métricas reales).
+        tipo: tipo de activo ('Acción Chile', 'Crypto', 'ETF', etc.).
+              Necesario para normalizar CLP→USD en métricas de riesgo.
     """
     trades = _cargar_trades_cerrados()
     pnl_unit  = precio_salida - precio_entrada if accion == "COMPRAR" else precio_entrada - precio_salida
     pnl_total = round(pnl_unit * cantidad, 2)
     pnl_pct   = round((pnl_unit / precio_entrada) * 100, 2) if precio_entrada > 0 else 0
 
-    trades.append({
+    # Para acciones Chile, pnl_pct ya es correcto (% no depende de divisa).
+    # pnl_total está en CLP — motor_automatico lo normaliza a USD al leer.
+
+    trade_entry = {
         "ticker":          ticker,
         "accion":          accion,
         "cantidad":        cantidad,
@@ -60,7 +65,11 @@ def registrar_trade_cerrado(ticker, accion, cantidad, precio_entrada,
         "fecha_salida":    str(fecha_salida or datetime.now().isoformat()),
         "resultado":       "ganador" if pnl_total > 0 else "perdedor",
         "confirmado_ib":   confirmado_ib,
-    })
+    }
+    if tipo:
+        trade_entry["tipo"] = tipo
+
+    trades.append(trade_entry)
     _guardar_trades_cerrados(trades)
     return pnl_total
 

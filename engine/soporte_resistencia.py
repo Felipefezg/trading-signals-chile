@@ -235,46 +235,72 @@ def calcular_sl_tp_calibrado(ticker, accion, precio_actual, atr=None):
     """
     Calcula SL/TP usando niveles de soporte/resistencia reales.
     Más preciso que el método basado solo en ATR.
+
+    Garantías mínimas de R/R:
+    - TP debe estar al menos a la misma distancia que SL (R/R >= 1:1).
+    - Si el nivel S/R está demasiado cerca (< 0.5% del precio), se ignora
+      y se usa ATR/porcentaje para no generar TPs ridículos.
+    - R/R mínimo final: 2:1 (TP = entry + 2 * (entry - SL)).
     """
     analisis = analizar_soporte_resistencia(ticker)
     if not analisis:
         return None, None
 
+    MIN_DIST = 0.005  # nivel S/R debe estar al menos 0.5% alejado del precio
+
     if accion == "COMPRAR":
-        # SL debajo del soporte más cercano
         sop = analisis["sop_cercano"]
         res = analisis["res_cercana"]
-        if sop:
-            sl = round(sop["nivel"] * 0.99, 4)  # 1% debajo del soporte
+
+        # SL: soporte más cercano (debe estar debajo)
+        if sop and sop["nivel"] < precio_actual * (1 - MIN_DIST):
+            sl = round(sop["nivel"] * 0.99, 4)
         elif atr:
             sl = round(precio_actual - atr * 1.5, 4)
         else:
             sl = round(precio_actual * 0.95, 4)
 
-        if res:
-            tp = round(res["nivel"] * 0.99, 4)  # 1% debajo de la resistencia
+        # TP: resistencia más cercana (debe estar encima con distancia mínima)
+        if res and res["nivel"] > precio_actual * (1 + MIN_DIST):
+            tp = round(res["nivel"] * 0.99, 4)
         elif atr:
             tp = round(precio_actual + atr * 3.0, 4)
         else:
             tp = round(precio_actual * 1.08, 4)
 
     else:  # VENDER
-        # SL encima de la resistencia más cercana
         res = analisis["res_cercana"]
         sop = analisis["sop_cercano"]
-        if res:
-            sl = round(res["nivel"] * 1.01, 4)  # 1% sobre la resistencia
+
+        # SL: resistencia más cercana (debe estar encima)
+        if res and res["nivel"] > precio_actual * (1 + MIN_DIST):
+            sl = round(res["nivel"] * 1.01, 4)
         elif atr:
             sl = round(precio_actual + atr * 1.5, 4)
         else:
             sl = round(precio_actual * 1.05, 4)
 
-        if sop:
-            tp = round(sop["nivel"] * 1.01, 4)  # 1% sobre el soporte
+        # TP: soporte más cercano (debe estar debajo con distancia mínima)
+        if sop and sop["nivel"] < precio_actual * (1 - MIN_DIST):
+            tp = round(sop["nivel"] * 1.01, 4)
         elif atr:
             tp = round(precio_actual - atr * 3.0, 4)
         else:
             tp = round(precio_actual * 0.92, 4)
+
+    # ── GARANTÍA R/R MÍNIMO 2:1 ──────────────────────────────────────────────
+    # Si el TP calculado no da al menos 2x el riesgo del SL → recalcular con ATR o %
+    if sl is not None and tp is not None:
+        riesgo = abs(precio_actual - sl)
+        ganancia = abs(tp - precio_actual)
+        if riesgo > 0 and ganancia < riesgo * 1.5:
+            # TP insuficiente — forzar mínimo R/R 2:1
+            if accion == "COMPRAR":
+                tp_minimo = round(precio_actual + riesgo * 2.0, 4)
+                tp = max(tp, tp_minimo)
+            else:
+                tp_minimo = round(precio_actual - riesgo * 2.0, 4)
+                tp = min(tp, tp_minimo)
 
     return sl, tp
 
