@@ -592,6 +592,198 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
                 "prob": None, "direccion": "BAJA", "peso": round(peso_pc, 2),
             })
 
+    # ── MERCADO LOCAL (Análisis técnico IPSA 30) ──────────────────────────────
+    # Estructura: [{"ticker": "COPEC.SN", "nombre": "Copec", "direccion": "ALZA", "puntos": 5, "señales": [...]}]
+    for ml_local in (mercado_local or []):
+        activo_ml_local = ml_local.get("ticker") or ml_local.get("activo_motor")
+        if not activo_ml_local:
+            continue
+        if activo_ml_local not in activos:
+            activos[activo_ml_local] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        dir_ml_local   = ml_local.get("direccion", "NEUTRO")
+        puntos_ml_local = ml_local.get("puntos", 0)
+        peso_ml_local  = puntos_ml_local * 1.0
+        if dir_ml_local in ("ALZA", "BAJA") and peso_ml_local > 0:
+            activos[activo_ml_local][dir_ml_local.lower()] += peso_ml_local
+            activos[activo_ml_local]["fuentes"].append("Mercado Local")
+            señales_ml = " | ".join(
+                (s if isinstance(s, str) else s.get("descripcion", ""))[:30]
+                for s in ml_local.get("señales", [])[:2]
+            )
+            activos[activo_ml_local]["evidencia"].append({
+                "fuente": "Mercado Local",
+                "señal":  f"{ml_local.get('nombre', activo_ml_local)}: {señales_ml[:80]}",
+                "prob":   None, "direccion": dir_ml_local, "peso": round(peso_ml_local, 2),
+            })
+
+    # ── MTF (Multi-TimeFrame — alineación 1h/4h/1d) ───────────────────────────
+    # Estructura: [{"activo_motor": "SQM.SN", "direccion": "ALZA", "puntos": 8, "n_alineados": 3, "nombre": "SQM"}]
+    for mtf_signal in (mtf or []):
+        activo_mtf = mtf_signal.get("activo_motor") or mtf_signal.get("ticker")
+        if not activo_mtf:
+            continue
+        if activo_mtf not in activos:
+            activos[activo_mtf] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        dir_mtf      = mtf_signal.get("direccion", "NEUTRO")
+        puntos_mtf   = mtf_signal.get("puntos", 0)
+        n_alineados  = mtf_signal.get("n_alineados", 1)
+        peso_mtf     = puntos_mtf * 1.2   # bonus por confirmación multi-timeframe
+        if dir_mtf in ("ALZA", "BAJA") and peso_mtf > 0:
+            activos[activo_mtf][dir_mtf.lower()] += peso_mtf
+            activos[activo_mtf]["fuentes"].append("MTF")
+            activos[activo_mtf]["evidencia"].append({
+                "fuente": "MTF",
+                "señal":  f"{mtf_signal.get('nombre', activo_mtf)}: {n_alineados} TF alineados — {dir_mtf}",
+                "prob":   None, "direccion": dir_mtf, "peso": round(peso_mtf, 2),
+            })
+
+    # ── RENTA FIJA (curva de tasas, spreads, T10Y) ────────────────────────────
+    # Estructura: [{"activo": "ECH", "score": 2, "direccion": "ALZA", "descripcion": "T10Y subió..."}]
+    for rf in (renta_fija or []):
+        activo_rf = rf.get("activo")
+        if not activo_rf:
+            continue
+        if activo_rf not in activos:
+            activos[activo_rf] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        score_rf = rf.get("score", 0)
+        dir_rf   = rf.get("direccion", "")
+        if score_rf < 1 or dir_rf not in ("ALZA", "BAJA"):
+            continue
+        peso_rf = score_rf * 0.4
+        activos[activo_rf][dir_rf.lower()] += peso_rf
+        activos[activo_rf]["fuentes"].append("Renta Fija")
+        activos[activo_rf]["evidencia"].append({
+            "fuente": "Renta Fija",
+            "señal":  rf.get("descripcion", "")[:80],
+            "prob":   None, "direccion": dir_rf, "peso": round(peso_rf, 2),
+        })
+
+    # ── SEC 13F (flujos institucionales — bullish por definición si score ≥ 1) ─
+    # Estructura: {"SQM": {"activo_motor": "SQM.SN", "score": 3, "señal": "ACUMULACIÓN...", "n_fondos": 8}}
+    for ticker_13f, data_13f in (sec_13f or {}).items():
+        activo_13f = data_13f.get("activo_motor", ticker_13f)
+        score_13f  = data_13f.get("score", 0)
+        if score_13f < 1:
+            continue
+        if activo_13f not in activos:
+            activos[activo_13f] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        peso_13f = score_13f * 0.5
+        activos[activo_13f]["alza"] += peso_13f
+        activos[activo_13f]["fuentes"].append("13F SEC")
+        activos[activo_13f]["evidencia"].append({
+            "fuente": "13F SEC",
+            "señal":  f"{ticker_13f}: {data_13f.get('señal', '')} ({data_13f.get('n_fondos', 0)} fondos)",
+            "prob":   None, "direccion": "ALZA", "peso": round(peso_13f, 2),
+        })
+
+    # ── ORDER FLOW (Level 2 — bid/ask imbalance) ──────────────────────────────
+    # Estructura: [{"activo_motor": "SQM.SN", "score": 2, "direccion": "ALZA", "descripcion": "..."}]
+    for of_signal in (order_flow or []):
+        activo_of = of_signal.get("activo_motor") or of_signal.get("activo", "")
+        if not activo_of:
+            continue
+        if activo_of not in activos:
+            activos[activo_of] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        score_of = of_signal.get("score", 0)
+        dir_of   = of_signal.get("direccion", "")
+        if score_of < 1 or dir_of not in ("ALZA", "BAJA"):
+            continue
+        peso_of = score_of * 0.5
+        activos[activo_of][dir_of.lower()] += peso_of
+        activos[activo_of]["fuentes"].append("Order Flow")
+        activos[activo_of]["evidencia"].append({
+            "fuente": "Order Flow",
+            "señal":  of_signal.get("descripcion", "")[:80],
+            "prob":   None, "direccion": dir_of, "peso": round(peso_of, 2),
+        })
+
+    # ── CORRELACIONES (divergencias entre pares relacionados) ─────────────────
+    # Estructura: {"pares": [{"ticker1": "ECH", "accion_t1": "COMPRAR", "score": 4, "descripcion": "ECH rezagado..."}]}
+    for par in (correlaciones or {}).get("pares", []):
+        score_corr = par.get("score", 0)
+        if score_corr < 2:
+            continue
+        ticker1   = par.get("ticker1")
+        accion_t1 = par.get("accion_t1")
+        if not ticker1 or not accion_t1:
+            continue
+        if ticker1 not in activos:
+            activos[ticker1] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        dir_corr  = "alza" if accion_t1 == "COMPRAR" else "baja"
+        peso_corr = score_corr * 0.4
+        activos[ticker1][dir_corr] += peso_corr
+        activos[ticker1]["fuentes"].append("Correlaciones")
+        activos[ticker1]["evidencia"].append({
+            "fuente": "Correlaciones",
+            "señal":  par.get("descripcion", "")[:80],
+            "prob":   None, "direccion": dir_corr.upper(), "peso": round(peso_corr, 2),
+        })
+
+    # ── IV OPCIONES (implied volatility + posicionamiento calls/puts) ─────────
+    # Estructura: {"SQM": {"activo_motor": "SQM.SN", "impacto": ["SQM.SN","SQM-B.SN"], "direccion": "ALZA", "score": 2, "señales": [...]}}
+    for ticker_iv, data_iv in (iv_opciones or {}).items():
+        score_iv = data_iv.get("score", 0)
+        dir_iv   = data_iv.get("direccion", "")
+        if score_iv < 1 or dir_iv not in ("ALZA", "BAJA"):
+            continue
+        impacto_iv = data_iv.get("impacto") or [data_iv.get("activo_motor", ticker_iv)]
+        señales_iv = " | ".join(data_iv.get("señales", [])[:2])
+        for activo_iv in impacto_iv:
+            if not activo_iv:
+                continue
+            if activo_iv not in activos:
+                activos[activo_iv] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+            peso_iv = score_iv * 0.6
+            activos[activo_iv][dir_iv.lower()] += peso_iv
+            activos[activo_iv]["fuentes"].append("IV Opciones")
+            activos[activo_iv]["evidencia"].append({
+                "fuente": "IV Opciones",
+                "señal":  f"{ticker_iv}: {señales_iv[:80]}",
+                "prob":   None, "direccion": dir_iv, "peso": round(peso_iv, 2),
+            })
+
+    # ── ML (GradientBoosting con balanced accuracy) ───────────────────────────
+    # Estructura: [{"activo": "COPEC.SN", "activo_motor": "COPEC.SN", "direccion": "ALZA", "score": 3, "prob_alza": 0.90, "auc": 0.61}]
+    for señal_ml in (ml or []):
+        activo_ml_key = señal_ml.get("activo_motor") or señal_ml.get("activo", "")
+        dir_ml        = señal_ml.get("direccion", "")
+        score_ml      = señal_ml.get("score", 0)
+        if not activo_ml_key or dir_ml not in ("ALZA", "BAJA") or score_ml < 1:
+            continue
+        if activo_ml_key not in activos:
+            activos[activo_ml_key] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        peso_ml_sig = score_ml * 0.7
+        activos[activo_ml_key][dir_ml.lower()] += peso_ml_sig
+        activos[activo_ml_key]["fuentes"].append("ML")
+        activos[activo_ml_key]["evidencia"].append({
+            "fuente": "ML",
+            "señal":  señal_ml.get("descripcion",
+                      f"ML: prob_alza={señal_ml.get('prob_alza', 0):.0%} AUC={señal_ml.get('auc', 0):.2f}")[:80],
+            "prob":   round(señal_ml.get("prob_alza", 0.5) * 100, 1),
+            "direccion": dir_ml, "peso": round(peso_ml_sig, 2),
+        })
+
+    # ── IB DATA (datos live de mercado durante horario activo) ────────────────
+    # Estructura: [{"symbol": "SQM", "activo_motor": "SQM.SN", "score": 2, "direccion": "ALZA", "descripcion": "..."}]
+    for ib_signal in (ib_data or []):
+        activo_ib = ib_signal.get("activo_motor") or ib_signal.get("symbol", "")
+        if not activo_ib:
+            continue
+        if activo_ib not in activos:
+            activos[activo_ib] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        score_ib = ib_signal.get("score", 0)
+        dir_ib   = ib_signal.get("direccion", "")
+        if score_ib < 1 or dir_ib not in ("ALZA", "BAJA"):
+            continue
+        peso_ib = score_ib * 0.5
+        activos[activo_ib][dir_ib.lower()] += peso_ib
+        activos[activo_ib]["fuentes"].append("IB Data")
+        activos[activo_ib]["evidencia"].append({
+            "fuente": "IB Data",
+            "señal":  ib_signal.get("descripcion", "")[:80],
+            "prob":   None, "direccion": dir_ib, "peso": round(peso_ib, 2),
+        })
+
     return activos
 
 
@@ -667,31 +859,39 @@ def generar_recomendaciones(activos_dict):
     return sorted(recomendaciones, key=lambda x: (x["score"], -x["riesgo"]), reverse=True)
 
 def _generar_tesis_resumida(activo, accion, evidencia, fuentes):
-    at_ev     = [e for e in evidencia if e["fuente"] == "Análisis Técnico"]
-    pc_ev     = [e for e in evidencia if e["fuente"] == "Put/Call"]
-    poly_ev  = [e for e in evidencia if e["fuente"] == "Polymarket"]
-    kalshi_ev = [e for e in evidencia if e["fuente"] == "Kalshi"]
-    macro_ev  = [e for e in evidencia if e["fuente"] == "Macro USA"]
-    cmf_ev    = [e for e in evidencia if e["fuente"] == "CMF"]
-    vol_ev    = [e for e in evidencia if e["fuente"] == "Volumen"]
-    fg_ev     = [e for e in evidencia if e["fuente"] == "Fear&Greed"]
+    def _ev(fuente): return [e for e in evidencia if e["fuente"] == fuente]
+    at_ev      = _ev("Análisis Técnico")
+    pc_ev      = _ev("Put/Call")
+    poly_ev    = _ev("Polymarket")
+    kalshi_ev  = _ev("Kalshi")
+    macro_ev   = _ev("Macro USA")
+    cmf_ev     = _ev("CMF")
+    vol_ev     = _ev("Volumen")
+    fg_ev      = _ev("Fear&Greed")
+    ml_ev      = _ev("ML")
+    iv_ev      = _ev("IV Opciones")
+    mtf_ev     = _ev("MTF")
+    f13_ev     = _ev("13F SEC")
+    corr_ev    = _ev("Correlaciones")
+    loc_ev     = _ev("Mercado Local")
+    rf_ev      = _ev("Renta Fija")
+
     partes = []
-    if poly_ev:
-        partes.append(f"Polymarket señala {poly_ev[0]['direccion'].lower()} ({poly_ev[0].get('prob','?')}%)")
-    if kalshi_ev:
-        partes.append(f"Kalshi confirma {kalshi_ev[0]['direccion'].lower()}")
-    if macro_ev:
-        partes.append(macro_ev[0]["señal"][:50])
-    if cmf_ev:
-        partes.append(f"CMF: {cmf_ev[0]['señal'][:50]}")
-    if vol_ev:
-        partes.append(f"Volumen: {vol_ev[0]['señal'][:40]}")
-    if fg_ev:
-        partes.append(fg_ev[0]["señal"][:40])
-    if at_ev:
-        partes.append(f"AT: {at_ev[0]['señal'][:50]}")
-    if pc_ev:
-        partes.append(f"Put/Call: {pc_ev[0]['señal'][:40]}")
+    if poly_ev:  partes.append(f"Polymarket señala {poly_ev[0]['direccion'].lower()} ({poly_ev[0].get('prob','?')}%)")
+    if kalshi_ev:partes.append(f"Kalshi confirma {kalshi_ev[0]['direccion'].lower()}")
+    if macro_ev: partes.append(macro_ev[0]["señal"][:50])
+    if cmf_ev:   partes.append(f"CMF: {cmf_ev[0]['señal'][:50]}")
+    if vol_ev:   partes.append(f"Volumen: {vol_ev[0]['señal'][:40]}")
+    if fg_ev:    partes.append(fg_ev[0]["señal"][:40])
+    if at_ev:    partes.append(f"AT: {at_ev[0]['señal'][:50]}")
+    if mtf_ev:   partes.append(f"MTF: {mtf_ev[0]['señal'][:50]}")
+    if ml_ev:    partes.append(f"ML: {ml_ev[0]['señal'][:50]}")
+    if iv_ev:    partes.append(f"IV: {iv_ev[0]['señal'][:40]}")
+    if f13_ev:   partes.append(f"13F: {f13_ev[0]['señal'][:40]}")
+    if corr_ev:  partes.append(f"Corr: {corr_ev[0]['señal'][:40]}")
+    if loc_ev:   partes.append(f"Mdo.Local: {loc_ev[0]['señal'][:40]}")
+    if rf_ev:    partes.append(f"RF: {rf_ev[0]['señal'][:40]}")
+    if pc_ev:    partes.append(f"Put/Call: {pc_ev[0]['señal'][:40]}")
     if partes:
-        return f"{accion} {activo}: " + " | ".join(partes[:3])
+        return f"{accion} {activo}: " + " | ".join(partes[:4])
     return f"{accion} {activo} basado en {', '.join(fuentes)}"

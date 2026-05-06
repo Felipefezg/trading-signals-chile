@@ -145,6 +145,9 @@ def entrenar_modelo(ticker, periodo="2y", horizonte=5, umbral=0.02):
         y_train, y_test = y[:split], y[split:]
 
         # Modelo — Gradient Boosting por mejor rendimiento
+        from sklearn.utils.class_weight import compute_sample_weight
+        from sklearn.metrics import balanced_accuracy_score
+
         pipeline = Pipeline([
             ("scaler", StandardScaler()),
             ("model", GradientBoostingClassifier(
@@ -155,12 +158,15 @@ def entrenar_modelo(ticker, periodo="2y", horizonte=5, umbral=0.02):
             ))
         ])
 
-        pipeline.fit(X_train, y_train)
+        # Balancear clases para evitar sesgo hacia la clase mayoritaria
+        # (target >2% en 5 días ocurre ~16-20% del tiempo → modelo trivial da 80%+ accuracy)
+        sample_weights = compute_sample_weight("balanced", y_train)
+        pipeline.fit(X_train, y_train, model__sample_weight=sample_weights)
 
-        # Métricas
+        # Métricas — usar balanced_accuracy para evitar falsos positivos por desbalance
         y_pred      = pipeline.predict(X_test)
         y_prob      = pipeline.predict_proba(X_test)[:, 1]
-        accuracy    = accuracy_score(y_test, y_pred)
+        accuracy    = balanced_accuracy_score(y_test, y_pred)   # balanced, no naive
         auc         = roc_auc_score(y_test, y_prob) if len(set(y_test)) > 1 else 0.5
         win_rate_bt = sum(y_test == 1) / len(y_test)  # base rate
 
@@ -235,7 +241,7 @@ def predecir_señal_ml(ticker, modelo_info):
         return None
 
 # ── ANÁLISIS COMPLETO UNIVERSO ────────────────────────────────────────────────
-def get_señales_ml(min_accuracy=0.52, min_auc=0.52, max_activos=20):
+def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_activos=20):
     """
     Entrena modelos y genera señales ML para el universo de activos.
     Retorna señales compatibles con el motor de recomendaciones.
