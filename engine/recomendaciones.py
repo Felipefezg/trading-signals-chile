@@ -659,11 +659,13 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         })
 
     # ── SEC 13F (flujos institucionales — bullish por definición si score ≥ 1) ─
-    # Estructura: {"SQM": {"activo_motor": "SQM.SN", "score": 3, "señal": "ACUMULACIÓN...", "n_fondos": 8}}
-    for ticker_13f, data_13f in (sec_13f or {}).items():
-        activo_13f = data_13f.get("activo_motor", ticker_13f)
+    # Estructura: lista de {"activo": "SQM.SN", "ticker": "SQM", "score": 3, "n_fondos": 8, ...}
+    _sec_list = sec_13f if isinstance(sec_13f, list) else list((sec_13f or {}).values())
+    for data_13f in _sec_list:
+        activo_13f = data_13f.get("activo") or data_13f.get("activo_motor", "")
+        ticker_13f = data_13f.get("ticker", activo_13f)
         score_13f  = data_13f.get("score", 0)
-        if score_13f < 1:
+        if score_13f < 1 or not activo_13f:
             continue
         if activo_13f not in activos:
             activos[activo_13f] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
@@ -672,7 +674,7 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         activos[activo_13f]["fuentes"].append("13F SEC")
         activos[activo_13f]["evidencia"].append({
             "fuente": "13F SEC",
-            "señal":  f"{ticker_13f}: {data_13f.get('señal', '')} ({data_13f.get('n_fondos', 0)} fondos)",
+            "señal":  f"{ticker_13f}: {data_13f.get('descripcion', '')} ({data_13f.get('n_fondos', 0)} fondos)",
             "prob":   None, "direccion": "ALZA", "peso": round(peso_13f, 2),
         })
 
