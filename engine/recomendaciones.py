@@ -700,49 +700,46 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         })
 
     # ── CORRELACIONES (divergencias entre pares relacionados) ─────────────────
-    # Estructura: {"pares": [{"ticker1": "ECH", "accion_t1": "COMPRAR", "score": 4, "descripcion": "ECH rezagado..."}]}
-    for par in (correlaciones or {}).get("pares", []):
+    # Estructura: lista de {"activo": "ECH", "score": 4, "direccion": "ALZA", "descripcion": "..."}
+    _corr_list = correlaciones if isinstance(correlaciones, list) else (correlaciones or {}).get("pares", [])
+    for par in _corr_list:
         score_corr = par.get("score", 0)
         if score_corr < 2:
             continue
-        ticker1   = par.get("ticker1")
-        accion_t1 = par.get("accion_t1")
-        if not ticker1 or not accion_t1:
+        ticker1  = par.get("activo") or par.get("ticker1")
+        dir_corr = par.get("direccion", "").upper()
+        if not ticker1 or dir_corr not in ("ALZA", "BAJA"):
             continue
         if ticker1 not in activos:
             activos[ticker1] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-        dir_corr  = "alza" if accion_t1 == "COMPRAR" else "baja"
         peso_corr = score_corr * 0.4
-        activos[ticker1][dir_corr] += peso_corr
+        activos[ticker1][dir_corr.lower()] += peso_corr
         activos[ticker1]["fuentes"].append("Correlaciones")
         activos[ticker1]["evidencia"].append({
             "fuente": "Correlaciones",
             "señal":  par.get("descripcion", "")[:80],
-            "prob":   None, "direccion": dir_corr.upper(), "peso": round(peso_corr, 2),
+            "prob":   None, "direccion": dir_corr, "peso": round(peso_corr, 2),
         })
 
     # ── IV OPCIONES (implied volatility + posicionamiento calls/puts) ─────────
-    # Estructura: {"SQM": {"activo_motor": "SQM.SN", "impacto": ["SQM.SN","SQM-B.SN"], "direccion": "ALZA", "score": 2, "señales": [...]}}
-    for ticker_iv, data_iv in (iv_opciones or {}).items():
+    # Estructura: lista de {"activo": "SQM.SN", "score": 2, "direccion": "ALZA", "descripcion": "..."}
+    _iv_list = iv_opciones if isinstance(iv_opciones, list) else list((iv_opciones or {}).values())
+    for data_iv in _iv_list:
         score_iv = data_iv.get("score", 0)
-        dir_iv   = data_iv.get("direccion", "")
-        if score_iv < 1 or dir_iv not in ("ALZA", "BAJA"):
+        dir_iv   = data_iv.get("direccion", "").upper()
+        activo_iv = data_iv.get("activo") or data_iv.get("activo_motor", "")
+        if score_iv < 1 or dir_iv not in ("ALZA", "BAJA") or not activo_iv:
             continue
-        impacto_iv = data_iv.get("impacto") or [data_iv.get("activo_motor", ticker_iv)]
-        señales_iv = " | ".join(data_iv.get("señales", [])[:2])
-        for activo_iv in impacto_iv:
-            if not activo_iv:
-                continue
-            if activo_iv not in activos:
-                activos[activo_iv] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-            peso_iv = score_iv * 0.6
-            activos[activo_iv][dir_iv.lower()] += peso_iv
-            activos[activo_iv]["fuentes"].append("IV Opciones")
-            activos[activo_iv]["evidencia"].append({
-                "fuente": "IV Opciones",
-                "señal":  f"{ticker_iv}: {señales_iv[:80]}",
-                "prob":   None, "direccion": dir_iv, "peso": round(peso_iv, 2),
-            })
+        if activo_iv not in activos:
+            activos[activo_iv] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        peso_iv = score_iv * 0.6
+        activos[activo_iv][dir_iv.lower()] += peso_iv
+        activos[activo_iv]["fuentes"].append("IV Opciones")
+        activos[activo_iv]["evidencia"].append({
+            "fuente": "IV Opciones",
+            "señal":  data_iv.get("descripcion", "")[:80],
+            "prob":   None, "direccion": dir_iv, "peso": round(peso_iv, 2),
+        })
 
     # ── ML (GradientBoosting con balanced accuracy) ───────────────────────────
     # Estructura: [{"activo": "COPEC.SN", "activo_motor": "COPEC.SN", "direccion": "ALZA", "score": 3, "prob_alza": 0.90, "auc": 0.61}]
