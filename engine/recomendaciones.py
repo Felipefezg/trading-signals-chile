@@ -131,15 +131,31 @@ def _calcular_horizonte(n_fuentes, conviccion, cierre_mas_proximo=None, tipo_pro
 # ── VOLATILIDAD Y SL/TP ───────────────────────────────────────────────────────
 def _get_volatilidad(yf_ticker):
     """Obtiene volatilidad histórica 20 días (ATR simplificado)"""
+    # Rangos de precio razonables por instrumento — rechaza datos corruptos
+    PRECIO_MAX = {
+        "CL=F": 300,    # Petróleo WTI — nunca superó $150/barril
+        "HG=F": 20,     # Cobre — precio por libra, nunca > $15
+        "GC=F": 5000,   # Oro — precio por onza, máximo razonable $5,000
+        "BTC-USD": 500_000,
+        "ETH-USD": 50_000,
+    }
     try:
         t = yf.Ticker(yf_ticker)
         h = t.history(period="30d")
         if len(h) < 5:
             return None, None
-        precio_actual = h["Close"].iloc[-1]
+        precio_actual = float(h["Close"].iloc[-1])
+
+        # Validar que el precio no sea el valor nocional del contrato
+        max_precio = PRECIO_MAX.get(yf_ticker, 100_000)
+        if precio_actual > max_precio:
+            import logging
+            logging.warning(f"_get_volatilidad: precio {yf_ticker} = {precio_actual:.2f} excede máximo {max_precio} — dato corrupto, descartando")
+            return None, None
+
         retornos = h["Close"].pct_change().dropna()
         vol_diaria = retornos.std()
-        vol_20d = vol_diaria * (20 ** 0.5)  # volatilidad 20 días
+        vol_20d = vol_diaria * (20 ** 0.5)
         return precio_actual, vol_20d
     except:
         return None, None
@@ -425,26 +441,32 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
 
 
     # Fear & Greed — ajusta peso global de señales
+    # IMPORTANTE: aplica reducción real a señales contrarias, no solo multiplica baja=0
     if fear_greed:
         fg_score  = fear_greed.get("score", 50)
         fg_mult   = fear_greed.get("multiplicador", 1.0)
         fg_señal  = fear_greed.get("señal_trading", "NEUTRO")
-        # Si Fear & Greed indica compra/venta, refuerza señales alineadas
         for activo in activos:
-            if fg_señal == "COMPRAR" and fg_score <= 45:
-                activos[activo]["alza"] *= fg_mult
+            if fg_señal == "COMPRAR" and fg_score <= 25:
+                # Miedo extremo (≤25) → refuerza señales ALZA (oportunidad contrarian)
+                if activos[activo]["alza"] > 0:
+                    activos[activo]["alza"] *= fg_mult
+                    activos[activo]["fuentes"].append("Fear&Greed")
+                    activos[activo]["evidencia"].append({
+                        "fuente": "Fear&Greed", "señal": f"Miedo extremo ({fg_score}/100) → oportunidad compra contrarian",
+                        "prob": None, "direccion": "ALZA", "peso": round(fg_mult - 1, 2),
+                    })
+            elif fg_señal == "VENDER" and fg_score >= 70:
+                # Codicia extrema (≥70) → penaliza señales ALZA y refuerza BAJA
+                if activos[activo]["alza"] > 0:
+                    activos[activo]["alza"] *= (2.0 - fg_mult)  # reduce alza
+                activos[activo]["baja"] += activos[activo].get("baja", 0) * (fg_mult - 1)
                 activos[activo]["fuentes"].append("Fear&Greed")
                 activos[activo]["evidencia"].append({
-                    "fuente": "Fear&Greed", "señal": f"Miedo ({fg_score}/100) → oportunidad compra contrarian",
-                    "prob": None, "direccion": "ALZA", "peso": round(fg_mult - 1, 2),
-                })
-            elif fg_señal == "VENDER" and fg_score >= 55:
-                activos[activo]["baja"] *= fg_mult
-                activos[activo]["fuentes"].append("Fear&Greed")
-                activos[activo]["evidencia"].append({
-                    "fuente": "Fear&Greed", "señal": f"Codicia ({fg_score}/100) → reducir exposición",
+                    "fuente": "Fear&Greed", "señal": f"Codicia extrema ({fg_score}/100) → reducir exposición larga",
                     "prob": None, "direccion": "BAJA", "peso": round(fg_mult - 1, 2),
                 })
+            # Entre 25-70: Fear&Greed neutro — no modifica señales, no se agrega a fuentes
 
     # CMF Hechos Esenciales — señales de alta convicción por empresa IPSA
     CMF_TICKER_MAP = {
@@ -806,6 +828,12 @@ def generar_recomendaciones(activos_dict):
         conviccion_pct = round(conviccion * 100, 1)
         fuentes_unicas = list(set(data["fuentes"]))
         n_fuentes = len(fuentes_unicas)
+
+        # Cap de convicción por número de fuentes independientes
+        # Con pocas fuentes no se puede llegar a convicción alta aunque estén alineadas
+        CAP_FUENTES = {1: 60, 2: 72, 3: 82, 4: 88, 5: 93}
+        cap = CAP_FUENTES.get(n_fuentes, 95)
+        conviccion_pct = min(conviccion_pct, cap)
 
         ib_info   = INSTRUMENTOS_IB.get(activo, {})
         tipo      = ib_info.get("tipo", "ETF")
