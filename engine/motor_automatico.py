@@ -121,13 +121,7 @@ SECTORES = {
 COOLDOWN_MINUTOS = 60  # Tiempo mínimo entre cierre y reapertura del mismo ticker
 
 def _cargar_estado():
-    try:
-        if os.path.exists(ESTADO_AUTO_FILE):
-            with open(ESTADO_AUTO_FILE) as f:
-                return json.load(f)
-    except:
-        pass
-    return {
+    _defaults = {
         "activo":               False,
         "pausado":              False,
         "razon_pausa":          None,
@@ -138,6 +132,21 @@ def _cargar_estado():
         "log":                  [],
         "cooldown_tickers":     {},   # {ib_ticker: iso_timestamp_cierre}
     }
+    try:
+        if os.path.exists(ESTADO_AUTO_FILE):
+            with open(ESTADO_AUTO_FILE) as f:
+                guardado = json.load(f)
+            # Merge: defaults primero, luego valores guardados — garantiza que
+            # claves nuevas (ej: cooldown_tickers) siempre estén presentes
+            # aunque el archivo sea de una versión anterior del motor.
+            merged = {**_defaults, **guardado}
+            # cooldown_tickers nunca debe heredar None del archivo viejo
+            if not isinstance(merged.get("cooldown_tickers"), dict):
+                merged["cooldown_tickers"] = {}
+            return merged
+    except Exception:
+        pass
+    return dict(_defaults)
 
 def _registrar_cierre_cooldown(estado, ib_ticker):
     """Registra timestamp de cierre para el cooldown del ticker."""
