@@ -16,6 +16,24 @@ el fallback basado en convicción del motor.
 """
 
 from __future__ import annotations
+import os as _os
+import json as _json
+
+# ── KELLY STATS LIVE (trades reales — prioridad sobre backtest) ───────────────
+# Generado por engine/feedback_loop.py → actualizar_kelly_live()
+# Prioridad sobre KELLY_STATS cuando n_trades >= MIN_TRADES_STATS.
+_KELLY_LIVE_FILE = _os.path.join(_os.path.dirname(__file__), "..", "data", "kelly_stats_live.json")
+
+def _cargar_kelly_live() -> dict:
+    """Stats de trades reales. Prioridad sobre KELLY_STATS hardcodeado."""
+    try:
+        if _os.path.exists(_KELLY_LIVE_FILE):
+            with open(_KELLY_LIVE_FILE) as f:
+                data = _json.load(f)
+            return {k: v for k, v in data.items() if not k.startswith("_")}
+    except Exception:
+        pass
+    return {}
 
 # ── STATS DE BACKTEST POR TICKER IB ──────────────────────────────────────────
 # Formato: "IB_TICKER": {"win_rate": float (0-1), "rr": float, "n_trades": int}
@@ -84,8 +102,18 @@ def calcular_kelly(ib_ticker: str) -> float:
       - 0.0 si no hay stats o Kelly negativo
       - Half-Kelly si stats válidos con n_trades >= MIN_TRADES_STATS
       - Fallback 0.075 (= convicción 75% en el esquema anterior) si n_trades < MIN_TRADES_STATS
+
+    Prioridad de stats:
+      1. kelly_stats_live.json (trades reales confirmados por IB)
+      2. KELLY_STATS (backtest 2 años — fallback)
     """
-    stats = KELLY_STATS.get(ib_ticker)
+    # 1. Stats live de trades reales (prioridad)
+    live = _cargar_kelly_live()
+    stats = live.get(ib_ticker)
+
+    # 2. Fallback a backtest si no hay datos live suficientes
+    if not stats or stats.get("n_trades", 0) < MIN_TRADES_STATS:
+        stats = KELLY_STATS.get(ib_ticker)
 
     if not stats or stats["n_trades"] < MIN_TRADES_STATS:
         # Sin datos suficientes — fallback neutro (7.5% del capital = $7,500 en $100k)

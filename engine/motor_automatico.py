@@ -563,6 +563,25 @@ def ciclo_trading_automatico():
                 _registrar_cierre_cooldown(estado, ticker_cerrado)
                 logging.info(f"COOLDOWN: {ticker_cerrado} bloqueado {COOLDOWN_MINUTOS} min")
 
+            # Feedback loop: vincula APERTURA (evidencia fuentes) ↔ CIERRE (PnL).
+            # Solo para trades confirmados por IB — no registrar cierres fantasma.
+            if c.get("confirmado_ib", False) and ticker_cerrado:
+                try:
+                    from engine.feedback_loop import (
+                        registrar_cierre_con_contexto,
+                        actualizar_kelly_live,
+                    )
+                    registrar_cierre_con_contexto(
+                        ib_ticker=ticker_cerrado,
+                        pnl_pct=c.get("pnl_pct", 0),
+                        razon=c.get("razon", ""),
+                        precio_salida=c.get("precio_actual"),
+                        confirmado_ib=True,
+                    )
+                    actualizar_kelly_live(min_trades=3)
+                except Exception as _fe:
+                    logging.warning(f"Feedback loop (no crítico): {_fe}")
+
             # Actualizar consecutivos perdedores SOLO si IB confirmó el cierre.
             # Un cierre no confirmado por IB no es un trade real — ignorar para
             # evitar que posiciones fantasma activen la pausa del motor.
