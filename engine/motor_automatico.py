@@ -118,6 +118,8 @@ SECTORES = {
 }
 
 # ── ESTADO DEL MOTOR ──────────────────────────────────────────────────────────
+COOLDOWN_MINUTOS = 60  # Tiempo mínimo entre cierre y reapertura del mismo ticker
+
 def _cargar_estado():
     try:
         if os.path.exists(ESTADO_AUTO_FILE):
@@ -134,7 +136,33 @@ def _cargar_estado():
         "ultima_verificacion":  None,
         "ordenes_hoy":          0,
         "log":                  [],
+        "cooldown_tickers":     {},   # {ib_ticker: iso_timestamp_cierre}
     }
+
+def _registrar_cierre_cooldown(estado, ib_ticker):
+    """Registra timestamp de cierre para el cooldown del ticker."""
+    if "cooldown_tickers" not in estado:
+        estado["cooldown_tickers"] = {}
+    estado["cooldown_tickers"][ib_ticker] = datetime.now().isoformat()
+
+def _en_cooldown(estado, ib_ticker):
+    """
+    Retorna (True, minutos_restantes) si el ticker está en cooldown,
+    (False, 0) si puede operarse.
+    """
+    cooldowns = estado.get("cooldown_tickers", {})
+    ts_str = cooldowns.get(ib_ticker)
+    if not ts_str:
+        return False, 0
+    try:
+        ts_cierre = datetime.fromisoformat(ts_str)
+        elapsed = (datetime.now() - ts_cierre).total_seconds() / 60
+        if elapsed < COOLDOWN_MINUTOS:
+            restantes = round(COOLDOWN_MINUTOS - elapsed, 1)
+            return True, restantes
+    except Exception:
+        pass
+    return False, 0
 
 def _guardar_estado(estado):
     with open(ESTADO_AUTO_FILE, "w") as f:
@@ -361,12 +389,14 @@ def calcular_drawdown_total():
     return abs(pnl) / PARAMS["capital_total"] * 100
 
 # ── VALIDAR SEÑAL ─────────────────────────────────────────────────────────────
-def validar_señal(recomendacion):
+def validar_señal(recomendacion, estado=None):
     """
     Valida si una señal cumple todos los criterios para ejecutarse automáticamente.
     Retorna (bool, razon)
     """
     posiciones = _cargar_posiciones()
+    if estado is None:
+        estado = _cargar_estado()
     ticker     = recomendacion.get("ib_ticker", "")
     conviccion = recomendacion.get("conviccion", 0)
     riesgo     = recomendacion.get("riesgo", 10)
@@ -389,6 +419,11 @@ def validar_señal(recomendacion):
     # 4. No duplicar ticker
     if ticker in posiciones:
         return False, f"Ya existe posición abierta en {ticker}"
+
+    # 4b. Cooldown post-cierre — evita el loop de reapertura inmediata
+    en_cd, minutos_restantes = _en_cooldown(estado, ticker)
+    if en_cd:
+        return False, f"Cooldown activo en {ticker} — {minutos_restantes} min restantes (espera {COOLDOWN_MINUTOS} min post-cierre)"
 
     # 5. Máximo posiciones
     if len(posiciones) >= PARAMS["max_posiciones"]:
@@ -520,6 +555,14 @@ def ciclo_trading_automatico():
                 f"| IB={'OK' if c.get('confirmado_ib') else 'NO CONFIRMADO'}"
             )
 
+            # Registrar cooldown para este ticker — evita reapertura inmediata en el
+            # siguiente ciclo (causa del loop COPEC 23x / BTC 14x).
+            # Se aplica a TODOS los cierres, independientemente de confirmación IB.
+            ticker_cerrado = c.get("ticker", "")
+            if ticker_cerrado:
+                _registrar_cierre_cooldown(estado, ticker_cerrado)
+                logging.info(f"COOLDOWN: {ticker_cerrado} bloqueado {COOLDOWN_MINUTOS} min")
+
             # Actualizar consecutivos perdedores SOLO si IB confirmó el cierre.
             # Un cierre no confirmado por IB no es un trade real — ignorar para
             # evitar que posiciones fantasma activen la pausa del motor.
@@ -589,7 +632,7 @@ def ciclo_trading_automatico():
                 })
                 continue
 
-            valida, razon = validar_señal(r)
+            valida, razon = validar_señal(r, estado=estado)
             if valida:
                 # Alerta señal detectada antes de intentar ejecutar
                 try:
@@ -601,18 +644,32 @@ def ciclo_trading_automatico():
                 logging.info(f"APERTURA: {r['accion']} {r['ib_ticker']} | Conv {r['conviccion']}% | Riesgo {r['riesgo']}/10")
                 resultado = ejecutar_señal_automatica(r)
                 if resultado.get("ordenes_enviadas"):
-                    orden = resultado["ordenes_enviadas"][0]
+                    orden     = resultado["ordenes_enviadas"][0]
                     cantidad  = orden.get("cantidad", 0)
                     precio    = orden.get("precio", r.get("precio_actual", 0))
                     monto_usd = round(cantidad * precio, 0)
+                    orden_id  = orden.get("orden_id")
 
                     resultados["aperturas"].append({
-                        "ticker":     r["ib_ticker"],
-                        "accion":     r["accion"],
-                        "conviccion": r["conviccion"],
-                        "riesgo":     r["riesgo"],
+                        "ticker":        r["ib_ticker"],
+                        "accion":        r["accion"],
+                        "conviccion":    r["conviccion"],
+                        "riesgo":        r["riesgo"],
+                        "confirmado_ib": True,
+                        "orden_id":      orden_id,
+                        "cantidad":      cantidad,
+                        "precio":        precio,
+                        "monto_usd":     monto_usd,
                     })
-                    _registrar_evento("APERTURA", f"{r['accion']} {r['ib_ticker']}", r)
+                    # Log con confirmado_ib=True y datos de ejecución real
+                    _registrar_evento("APERTURA", f"{r['accion']} {r['ib_ticker']}", {
+                        **r,
+                        "confirmado_ib": True,
+                        "orden_id":      orden_id,
+                        "cantidad":      cantidad,
+                        "precio":        precio,
+                        "monto_usd":     monto_usd,
+                    })
                     estado["ordenes_hoy"] = estado.get("ordenes_hoy", 0) + 1
 
                     # Alerta Telegram — orden ejecutada con confirmación IB
@@ -624,6 +681,12 @@ def ciclo_trading_automatico():
                 else:
                     error_ib = resultado.get("error", "sin detalle")
                     logging.warning(f"APERTURA FALLIDA: {r['ib_ticker']} — {error_ib}")
+                    # Loguear intento fallido para trazabilidad
+                    _registrar_evento("APERTURA_FALLIDA", f"{r['accion']} {r['ib_ticker']}", {
+                        **r,
+                        "confirmado_ib": False,
+                        "error_ib":      error_ib,
+                    })
                     try:
                         from engine.telegram_alertas import alerta_riesgo
                         alerta_riesgo("ERROR", f"Apertura fallida: {r['accion']} {r['ib_ticker']}", {"Error": error_ib, "Convicción": f"{r['conviccion']}%"})

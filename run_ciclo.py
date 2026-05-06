@@ -7,7 +7,10 @@ Independiente del dashboard Streamlit.
 
 import sys
 import os
+import fcntl
+import errno
 import logging
+from contextlib import contextmanager
 from datetime import datetime
 
 # Agregar directorio del proyecto al path
@@ -20,6 +23,30 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
+
+# ── LOCKFILE (compartido con trigger.py) ──────────────────────────────────────
+LOCKFILE = "/tmp/trading_motor.lock"
+
+@contextmanager
+def _ciclo_lock():
+    """Exclusión mutua por ciclo. Lanza IOError si el lock ya está tomado."""
+    fd = open(LOCKFILE, "w")
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fd.write(f"{os.getpid()}\n")
+        fd.flush()
+        yield
+    except IOError as e:
+        fd.close()
+        if e.errno in (errno.EACCES, errno.EAGAIN):
+            raise RuntimeError("Ciclo ya en ejecución — lockfile activo (trigger.py corriendo)")
+        raise
+    finally:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+            fd.close()
+        except Exception:
+            pass
 
 def enviar_revision_semanal():
     """Envía reporte de revisión los lunes a las 9:00 AM ET"""
@@ -53,6 +80,27 @@ def main():
     logging.info("=== CICLO AUTOMÁTICO INICIADO ===")
     enviar_resumen_si_corresponde()
     enviar_revision_semanal()
+
+    # ── LOCKFILE: abortar si trigger.py ya tiene un ciclo en curso ────────────
+    try:
+        lock_ctx = _ciclo_lock()
+        lock_ctx.__enter__()
+    except RuntimeError as e:
+        logging.warning(str(e))
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] ⏭  {e} — abortando run_ciclo")
+        return
+
+    try:
+        _run_main_logic()
+    finally:
+        try:
+            lock_ctx.__exit__(None, None, None)
+        except Exception:
+            pass
+
+
+def _run_main_logic():
+    """Lógica principal de main() — separada para usar con lockfile."""
     # Sincronizar con IB cada ciclo
     try:
         from engine.ib_sync import sincronizar_posiciones_local

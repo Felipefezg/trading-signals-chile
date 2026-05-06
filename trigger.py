@@ -21,9 +21,43 @@ import os
 import time
 import json
 import logging
+import fcntl
+import errno
+from contextlib import contextmanager
 from datetime import datetime, date
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# ── LOCKFILE ───────────────────────────────────────────────────────────────────
+LOCKFILE = "/tmp/trading_motor.lock"
+
+@contextmanager
+def _ciclo_lock():
+    """
+    Mutex por ciclo: garantiza que solo un proceso ejecute ciclo_trading_automatico()
+    a la vez. Si el lock ya está tomado, lanza CicloEnCurso para que el llamador
+    lo capture y salte el ciclo sin hacer nada.
+    """
+    fd = open(LOCKFILE, "w")
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fd.write(f"{os.getpid()}\n")
+        fd.flush()
+        yield
+    except IOError as e:
+        if e.errno in (errno.EACCES, errno.EAGAIN):
+            fd.close()
+            raise _CicloEnCurso("Ciclo ya en ejecución — lockfile activo")
+        raise
+    finally:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+            fd.close()
+        except Exception:
+            pass
+
+class _CicloEnCurso(Exception):
+    pass
 sys.path.insert(0, BASE_DIR)
 
 logging.basicConfig(
@@ -127,7 +161,8 @@ def run_trigger():
                     es_horario_mercado,
                 )
 
-                resultado = ciclo_trading_automatico()
+                with _ciclo_lock():
+                    resultado = ciclo_trading_automatico()
                 ciclos_hoy += 1
 
                 # Detectar errores IB en el ciclo (apertura fallida por IB)
@@ -185,6 +220,9 @@ def run_trigger():
                 if not aperturas and not cierres and not pausas:
                     print(f"[{ts}] Ciclo #{ciclos_hoy} OK ({elapsed}s) — sin operaciones")
 
+            except _CicloEnCurso as e:
+                logging.warning(f"Ciclo saltado — {e}")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] ⏭  {e}")
             except Exception as e:
                 logging.error(f"Error en ciclo_trading_automatico: {e}", exc_info=True)
                 print(f"[{datetime.now().strftime('%H:%M:%S')}] ERROR ciclo: {e}")
