@@ -640,6 +640,18 @@ def ciclo_trading_automatico():
             f"Tiempo: {meta.get('t_total', '?')}s"
         )
 
+        # ── SOURCE HEALTH MONITOR: registrar estado de fuentes por ciclo ─────
+        try:
+            from engine.source_health import registrar_ciclo_fuentes
+            _sh = registrar_ciclo_fuentes(datos, meta.get("errores", {}))
+            if _sh.get("alertas"):
+                for _f, _e, _c in _sh["alertas"]:
+                    logging.warning(
+                        f"[SourceHealth] ⚠ '{_f}' sin datos {_c} ciclos consecutivos ({_e})"
+                    )
+        except Exception as _she:
+            logging.warning(f"Source health monitor (no crítico): {_she}")
+
         for r in recomendaciones:
             # Check de horario por tipo de activo específico
             tipo_activo = r.get("tipo", "ETF")
