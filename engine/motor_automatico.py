@@ -502,13 +502,13 @@ def ciclo_trading_automatico():
             pass
         return resultados
 
-    # ── VERIFICAR HORARIO
-    en_horario, msg_horario = es_horario_mercado()
-    if not en_horario:
-        logging.info(f"Fuera de horario: {msg_horario}")
-        return {"ejecutado": False, "razon": msg_horario}
-
-    # ── CERRAR POSICIONES (SL/TP/Horizonte)
+    # ── CERRAR POSICIONES (SL/TP/Horizonte/Trailing) ─────────────────────────
+    # Se ejecuta ANTES del check de horario para NYSE/Santiago porque:
+    # • Crypto opera 24/7 — BTC/ETH deben tener SL/TP monitoreado en todo momento.
+    # • Acciones: si el precio tocó SL/TP fuera de horario, detectamos el estado
+    #   y ejecutamos el cierre al primer ciclo dentro de horario.
+    # verificar_posiciones() respeta internamente el tipo de activo y horario de
+    # exchange al enviar la orden real a IB.
     try:
         from engine.cierre_automatico import verificar_posiciones
         resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
@@ -530,6 +530,16 @@ def ciclo_trading_automatico():
                     estado["consecutivos_perdedor"] = 0
     except Exception as e:
         logging.error(f"Error en cierre automático: {e}")
+
+    # ── VERIFICAR HORARIO (solo para abrir nuevas posiciones) ─────────────────
+    en_horario, msg_horario = es_horario_mercado()
+    if not en_horario:
+        logging.info(f"Fuera de horario para aperturas: {msg_horario}")
+        # Guardar estado con cierres ya procesados y retornar sin abrir posiciones
+        _guardar_estado(estado)
+        resultados["ejecutado"] = True
+        resultados["razon"]     = msg_horario
+        return resultados
 
     # ── ABRIR POSICIONES NUEVAS
     try:

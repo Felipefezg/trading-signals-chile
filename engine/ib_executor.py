@@ -27,9 +27,10 @@ from datetime import datetime
 BASE_DIR        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POSICIONES_FILE = os.path.join(BASE_DIR, "posiciones.json")
 
-IB_HOST      = "127.0.0.1"
-IB_PORT      = 7497
-IB_CLIENT_ID = 10  # ID fijo para el ejecutor
+IB_HOST           = "127.0.0.1"
+IB_PORT           = 7497
+IB_CLIENT_ID      = 10   # ID fijo para el ejecutor (motor / trigger)
+IB_CLIENT_DASH    = 98   # ID exclusivo para lecturas del dashboard (read-only)
 
 try:
     from ibapi.client import EClient
@@ -852,21 +853,154 @@ def get_posiciones_abiertas():
     return sincronizar_desde_ib()
 
 def get_resumen_cuenta():
-    """Resumen de cuenta IB"""
+    """Resumen de cuenta IB — compatible con dashboard."""
+    return get_datos_ib_dashboard().get("cuenta", {})
+
+
+def get_datos_ib_dashboard():
+    """
+    Lectura completa de IB para el dashboard (clientId=98, read-only).
+    Retorna dict con:
+      cuenta    → NetLiquidation, TotalCashValue, BuyingPower, UnrealizedPnL
+      posiciones → {symbol: {position, avgCost, secType, pnl_pct, pnl_usd, precio_actual}}
+      ordenes   → lista de órdenes abiertas
+      conectado → bool
+      error     → str | None
+    """
+    vacio = {"cuenta": {}, "posiciones": {}, "ordenes": [], "conectado": False, "error": None}
+
     if not IB_DISPONIBLE:
-        return {}
+        return {**vacio, "error": "ibapi no instalada"}
 
-    client = IBEjecutor()
-    if not client.conectar():
-        return {}
+    # Para el dashboard usamos clientId=IB_CLIENT_DASH (98) — nunca el 10 del motor
+    class DashClient(EWrapper, EClient):
+        def __init__(self):
+            EClient.__init__(self, self)
+            self._ready    = threading.Event()
+            self._cuenta   = {}
+            self._done_acct= threading.Event()
+            self._posiciones = {}
+            self._done_pos = threading.Event()
+            self._open_orders = []
+            self._done_orders = threading.Event()
 
+        def nextValidId(self, orderId):
+            self._ready.set()
+
+        def accountSummary(self, reqId, account, tag, value, currency):
+            try:
+                self._cuenta[tag] = round(float(value), 2)
+            except:
+                self._cuenta[tag] = value
+
+        def accountSummaryEnd(self, reqId):
+            self._done_acct.set()
+
+        def position(self, account, contract, position, avgCost):
+            if position != 0:
+                self._posiciones[contract.symbol] = {
+                    "position": round(float(position), 4),
+                    "avgCost":  round(float(avgCost), 4),
+                    "secType":  contract.secType,
+                    "currency": contract.currency,
+                }
+
+        def positionEnd(self):
+            self._done_pos.set()
+
+        def openOrder(self, orderId, contract, order, orderState):
+            self._open_orders.append({
+                "orderId": orderId,
+                "symbol":  contract.symbol,
+                "action":  order.action,
+                "qty":     float(order.totalQuantity),
+                "tipo":    order.orderType,
+                "precio":  getattr(order, "lmtPrice", 0) or getattr(order, "auxPrice", 0),
+                "status":  orderState.status,
+            })
+
+        def openOrderEnd(self):
+            self._done_orders.set()
+
+        def error(self, reqId, errorCode, errorString, *args):
+            ignorar = {2104, 2106, 2158, 2103, 2119, 2110, 2105, 2157, 10349, 2107}
+            if errorCode not in ignorar:
+                import logging as _l
+                _l.debug(f"DashClient [{errorCode}]: {errorString[:80]}")
+
+    client = DashClient()
     try:
-        time.sleep(0.3)
-        client.reqAccountSummary(1, "All", "NetLiquidation,TotalCashValue,UnrealizedPnL")
+        client.connect(IB_HOST, IB_PORT, IB_CLIENT_DASH)
+        t = threading.Thread(target=client.run, daemon=True)
+        t.start()
+        if not client._ready.wait(timeout=6):
+            return {**vacio, "error": "IB Gateway no responde (timeout 6s)"}
+
+        time.sleep(0.2)
+
+        # Cuenta completa
+        client.reqAccountSummary(
+            9801, "All",
+            "NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL,RealizedPnL,AvailableFunds"
+        )
         client._done_acct.wait(timeout=8)
-        return {"capital": client._capital}
-    except:
-        return {}
+
+        # Posiciones
+        client.reqPositions()
+        client._done_pos.wait(timeout=8)
+
+        # Órdenes abiertas
+        client._done_orders.clear()
+        client.reqAllOpenOrders()
+        client._done_orders.wait(timeout=6)
+
+        # Enriquecer posiciones con PnL aproximado
+        pos_locales = {}
+        try:
+            with open(POSICIONES_FILE) as f:
+                pos_locales = json.load(f)
+        except:
+            pass
+
+        posiciones_enriquecidas = {}
+        for sym, pos in client._posiciones.items():
+            local = pos_locales.get(sym, {})
+            precio_entrada = local.get("precio_entrada") or pos["avgCost"]
+            precio_actual  = pos["avgCost"]  # mejor aproximación sin reqMktData en dashboard
+            qty = abs(pos["position"])
+            if precio_entrada and precio_entrada > 0:
+                if local.get("accion") == "COMPRAR" or pos["position"] > 0:
+                    pnl_pct = (precio_actual - precio_entrada) / precio_entrada * 100
+                else:
+                    pnl_pct = (precio_entrada - precio_actual) / precio_entrada * 100
+                pnl_usd = pnl_pct / 100 * precio_entrada * qty
+            else:
+                pnl_pct = pnl_usd = 0.0
+
+            posiciones_enriquecidas[sym] = {
+                **pos,
+                "precio_entrada": precio_entrada,
+                "sl":             local.get("sl"),
+                "tp":             local.get("tp"),
+                "accion":         local.get("accion", "COMPRAR" if pos["position"] > 0 else "VENDER"),
+                "conviccion":     local.get("conviccion", 0),
+                "tesis":          local.get("tesis", ""),
+                "fecha_entrada":  local.get("fecha_entrada", ""),
+                "tipo":           local.get("tipo", pos["secType"]),
+                "pnl_pct":        round(pnl_pct, 2),
+                "pnl_usd":        round(pnl_usd, 2),
+            }
+
+        return {
+            "cuenta":     client._cuenta,
+            "posiciones": posiciones_enriquecidas,
+            "ordenes":    client._open_orders,
+            "conectado":  True,
+            "error":      None,
+        }
+
+    except Exception as e:
+        return {**vacio, "error": str(e)}
     finally:
         try:
             client.disconnect()

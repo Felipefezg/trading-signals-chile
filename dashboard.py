@@ -38,7 +38,10 @@ from engine.portafolio import get_analisis_portafolio, UNIVERSO_DEFAULT, TASA_LI
 from engine.nlp_sentiment import analizar_noticias_batch, get_resumen_sentiment, get_sentiment_por_activo
 
 try:
-    from engine.ib_executor import ejecutar_señales, get_posiciones_abiertas, get_resumen_cuenta
+    from engine.ib_executor import (
+        ejecutar_señales, get_posiciones_abiertas, get_resumen_cuenta,
+        get_datos_ib_dashboard
+    )
     IB_DISPONIBLE = True
 except ImportError:
     IB_DISPONIBLE = False
@@ -56,46 +59,21 @@ st_autorefresh(interval=15 * 60 * 1000, key="autorefresh")
 if "alertas_enviadas" not in st.session_state:
     st.session_state.alertas_enviadas = set()
 
-# Motor automático — ejecutar ciclo si está activo
+# Dashboard es READ-ONLY — nunca llama ciclo_trading_automatico() ni ejecuta órdenes.
+# El ciclo de trading lo maneja trigger.py / run_ciclo.py en background (clientId=10).
+# Aquí solo leemos estado del motor y posiciones para mostrar en UI.
+if "estado_motor_cache" not in st.session_state:
+    st.session_state.estado_motor_cache = {}
 if "ultima_verificacion" not in st.session_state:
     st.session_state.ultima_verificacion = None
 
 ahora = datetime.now()
 ultima = st.session_state.ultima_verificacion
-if ultima is None or (ahora - ultima).seconds > 300:
+if ultima is None or (ahora - ultima).seconds > 60:
     try:
-        estado_motor = get_resumen_motor()
-        if estado_motor.get("activo") and not estado_motor.get("pausado"):
-            resultado_ciclo = ciclo_trading_automatico()
-            st.session_state.resultado_ciclo = resultado_ciclo
-        else:
-            resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
-            st.session_state.resumen_cierre = resumen_cierre
-            if resumen_cierre.get("cierres"):
-                st.session_state.alertas_cierre = resumen_cierre["cierres"]
+        st.session_state.estado_motor_cache = get_resumen_motor()
         st.session_state.ultima_verificacion = ahora
-    except Exception as e:
-        pass
-
-# Motor automático — ejecutar ciclo si está activo
-if "ultima_verificacion" not in st.session_state:
-    st.session_state.ultima_verificacion = None
-
-ahora = datetime.now()
-ultima = st.session_state.ultima_verificacion
-if ultima is None or (ahora - ultima).seconds > 300:
-    try:
-        estado_motor = get_resumen_motor()
-        if estado_motor.get("activo") and not estado_motor.get("pausado"):
-            resultado_ciclo = ciclo_trading_automatico()
-            st.session_state.resultado_ciclo = resultado_ciclo
-        else:
-            resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
-            st.session_state.resumen_cierre = resumen_cierre
-            if resumen_cierre.get("cierres"):
-                st.session_state.alertas_cierre = resumen_cierre["cierres"]
-        st.session_state.ultima_verificacion = ahora
-    except Exception as e:
+    except Exception:
         pass
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
@@ -335,6 +313,13 @@ with tab_resumen:
                 google_trends=datos["google_trends"],
                 ib_data=datos["ib_data"],
                 mercado_local=datos.get("mercado_local"),
+                renta_fija=datos.get("renta_fija"),
+                mtf=datos.get("mtf"),
+                sec_13f=datos.get("sec_13f"),
+                order_flow=datos.get("order_flow"),
+                correlaciones=datos.get("correlaciones"),
+                iv_opciones=datos.get("iv_opciones"),
+                ml=datos.get("ml"),
             )
         except Exception as e:
             activos = consolidar_señales(poly_df, kalshi_list, macro_corr, noticias)
@@ -1489,7 +1474,7 @@ with tab_portafolio:
 # TAB 5 — EJECUCIÓN
 # ════════════════════════════════════════════════════════════════════════════════
 with tab_ejecucion:
-    sub_motor, sub_ib, sub_hist, sub_cierre = st.tabs(["Motor Automático", "IB Manual", "Historial", "Cierres"])
+    sub_motor, sub_ib, sub_hist, sub_cierre = st.tabs(["Motor Automático", "IB Gateway", "Historial", "Cierres"])
 
     with sub_motor:
         st.markdown("### Motor de Trading Automático")
@@ -1671,98 +1656,177 @@ with tab_ejecucion:
         # ── Estado conexión IB en tiempo real ─────────────────────────────────
         st.markdown("**Estado conexión IB**")
         try:
-            from engine.ib_executor import IB_DISPONIBLE as ib_disp
-            if ib_disp:
-                # Intentar ping rápido
-                from engine.ib_executor import IBEjecutor as _IBE
-                _c = _IBE()
-                ib_ok = _c.conectar(timeout=4, reintentos=1, pausa_entre_intentos=1)
-                if ib_ok:
-                    try: _c.disconnect()
-                    except: pass
-                    st.success("● IB Gateway/TWS conectado — listo para operar")
+            if IB_DISPONIBLE:
+                # Ping usando clientId=98 (dashboard) — NUNCA el 10 del motor
+                datos_ib_ping = get_datos_ib_dashboard()
+                if datos_ib_ping.get("conectado"):
+                    cuenta_ping = datos_ib_ping.get("cuenta", {})
+                    nlv = cuenta_ping.get("NetLiquidation", 0)
+                    st.success(f"● IB Gateway conectado — NLV: USD {nlv:,.0f}")
                 else:
-                    st.error("✗ IB Gateway/TWS no responde — verificar que esté corriendo en puerto 7497")
+                    err = datos_ib_ping.get("error", "sin respuesta")
+                    st.error(f"✗ IB Gateway no responde: {err}")
             else:
                 st.warning("ibapi no instalada")
         except Exception as _e:
             st.warning(f"No se pudo verificar IB: {_e}")
 
     with sub_ib:
+        st.markdown("### IB Gateway — Espejo en tiempo real")
+        st.caption("Lectura directa de Interactive Brokers (clientId=98, read-only). El motor opera en background con clientId=10.")
+
         if not IB_DISPONIBLE:
             st.error("ibapi no instalado. Ejecuta: pip install ibapi")
         else:
-            st.markdown(
-                '<div style="background:#0d1521;border:1px solid #1e293b;border-radius:5px;'
-                'padding:0.5rem 0.9rem;margin-bottom:1rem;font-size:0.75rem;color:#475569">'
-                '<span style="color:#3b82f6;font-weight:600">Política de Inversión</span>'
-                ' — Capital: USD 100.000 · Máx por operación: USD 10.000 · '
-                'Horizonte: 3 días · Posiciones máx: 5 · Convicción mínima: 75% · Riesgo máx: 6/10'
-                '</div>',
-                unsafe_allow_html=True
-            )
-            col1, col2 = st.columns([4,1])
-            with col2:
-                if st.button("Actualizar cuenta", use_container_width=True):
-                    st.session_state.cuenta_ib = get_resumen_cuenta()
+            col_hdr, col_btn = st.columns([5, 1])
+            with col_btn:
+                if st.button("Actualizar IB", use_container_width=True, key="btn_actualizar_ib"):
+                    with st.spinner("Conectando a IB..."):
+                        st.session_state.datos_ib_live = get_datos_ib_dashboard()
 
-            if "cuenta_ib" in st.session_state and st.session_state.cuenta_ib:
-                cuenta = st.session_state.cuenta_ib
-                col1,col2,col3 = st.columns(3)
-                with col1: st.metric("Liquidación neta", f"USD {cuenta.get('NetLiquidation',0):,.0f}")
-                with col2: st.metric("Cash disponible", f"USD {cuenta.get('TotalCashValue',0):,.0f}")
-                with col3: st.metric("Buying power", f"USD {cuenta.get('BuyingPower',0):,.0f}")
+            # Carga automática si no hay datos en session
+            if "datos_ib_live" not in st.session_state:
+                with st.spinner("Cargando datos IB..."):
+                    st.session_state.datos_ib_live = get_datos_ib_dashboard()
 
-            st.divider()
-            st.markdown("**Posiciones Abiertas**")
-            posiciones = get_posiciones_abiertas()
-            if posiciones:
-                rows_pos = [{"Ticker":t,"Acción":p["accion"],"Cantidad":p["cantidad"],
-                    "Precio entrada":p.get("precio_entrada","N/D"),
-                    "SL":p.get("sl","N/D"), "TP":p.get("tp","N/D"),
-                    "Días":(datetime.now()-datetime.fromisoformat(p["fecha_entrada"])).days,
-                    "Vence en":f"{max(0,3-(datetime.now()-datetime.fromisoformat(p['fecha_entrada'])).days)} días"}
-                    for t,p in posiciones.items()]
-                st.dataframe(pd.DataFrame(rows_pos), use_container_width=True, hide_index=True)
+            datos_ib = st.session_state.get("datos_ib_live", {})
+            conectado = datos_ib.get("conectado", False)
+            error_ib  = datos_ib.get("error")
+
+            if not conectado:
+                st.error(f"✗ IB Gateway no disponible: {error_ib or 'sin respuesta'}")
+                st.info("Verifica que IB Gateway / TWS esté corriendo en puerto 7497 con paper trading account DUP838882.")
             else:
-                st.caption("Sin posiciones abiertas en este momento.")
+                # ── KPIs de cuenta ─────────────────────────────────────────────
+                cuenta = datos_ib.get("cuenta", {})
+                nlv    = cuenta.get("NetLiquidation", 0)
+                cash   = cuenta.get("TotalCashValue", 0)
+                bp     = cuenta.get("BuyingPower", 0)
+                upnl   = cuenta.get("UnrealizedPnL", 0)
+                rpnl   = cuenta.get("RealizedPnL", 0)
 
-            st.divider()
-            st.markdown("**Señales disponibles para ejecutar**")
-            recomendaciones = st.session_state.get("recomendaciones", [])
-            sv = [r for r in recomendaciones if r["conviccion"]>=75 and r["riesgo"]<=6 and r["n_fuentes"]>=2]
+                col1, col2, col3, col4, col5 = st.columns(5)
+                with col1: st.metric("Liquidación neta", f"USD {nlv:,.0f}")
+                with col2: st.metric("Cash disponible", f"USD {cash:,.0f}")
+                with col3: st.metric("Buying power", f"USD {bp:,.0f}")
+                with col4:
+                    delta_upnl = f"{upnl:+,.0f}"
+                    st.metric("PnL no realizado", f"USD {upnl:,.0f}", delta=delta_upnl)
+                with col5:
+                    st.metric("PnL realizado", f"USD {rpnl:,.0f}")
 
-            if sv:
-                for r in sv:
-                    color_a = "#22c55e" if r["accion"]=="COMPRAR" else "#ef4444"
+                st.divider()
+
+                # ── Posiciones IB ───────────────────────────────────────────────
+                st.markdown("**Posiciones abiertas en IB**")
+                posiciones_ib = datos_ib.get("posiciones", {})
+                if posiciones_ib:
+                    rows_pos = []
+                    for sym, pos in posiciones_ib.items():
+                        pnl_pct = pos.get("pnl_pct", 0)
+                        pnl_usd = pos.get("pnl_usd", 0)
+                        dias = 0
+                        if pos.get("fecha_entrada"):
+                            try:
+                                dias = (datetime.now() - datetime.fromisoformat(pos["fecha_entrada"])).days
+                            except:
+                                dias = 0
+                        rows_pos.append({
+                            "Ticker":          sym,
+                            "Tipo":            pos.get("secType", ""),
+                            "Acción":          pos.get("accion", ""),
+                            "Qty":             pos.get("position", 0),
+                            "Entrada":         pos.get("precio_entrada", 0),
+                            "AvgCost IB":      pos.get("avgCost", 0),
+                            "SL":              pos.get("sl", "—"),
+                            "TP":              pos.get("tp", "—"),
+                            "PnL %":           pnl_pct,
+                            "PnL USD":         pnl_usd,
+                            "Días":            dias,
+                            "Convicción":      pos.get("conviccion", 0),
+                        })
+                    df_pos = pd.DataFrame(rows_pos)
+                    st.dataframe(df_pos, use_container_width=True, hide_index=True,
+                        column_config={
+                            "PnL %":   st.column_config.NumberColumn(format="%+.2f%%"),
+                            "PnL USD": st.column_config.NumberColumn(format="$%+,.0f"),
+                            "Entrada": st.column_config.NumberColumn(format="%.4f"),
+                            "AvgCost IB": st.column_config.NumberColumn(format="%.4f"),
+                            "Convicción": st.column_config.ProgressColumn(min_value=0, max_value=100, format="%d%%"),
+                        })
+
+                    # PnL total de cartera
+                    pnl_total_usd  = sum(p.get("pnl_usd", 0) for p in posiciones_ib.values())
+                    pnl_color      = "#22c55e" if pnl_total_usd >= 0 else "#ef4444"
                     st.markdown(
-                        f'<div style="padding:0.25rem 0;border-bottom:1px solid #1a2535;font-size:0.82rem">'
-                        f'<span style="color:{color_a};font-weight:600">{r["accion"]} {r["ib_ticker"]}</span>'
-                        f'<span style="color:#475569;margin-left:12px">Convicción: {r["conviccion"]}% · Riesgo: {r["riesgo"]}/10</span></div>',
+                        f'<div style="text-align:right;font-size:0.82rem;color:{pnl_color};font-weight:600">'
+                        f'PnL total cartera: USD {pnl_total_usd:+,.2f}</div>',
                         unsafe_allow_html=True
                     )
+                else:
+                    st.caption("Sin posiciones abiertas en IB.")
+
                 st.divider()
-                col1,col2 = st.columns(2)
-                with col1:
-                    if st.button("Simular (sin enviar)", use_container_width=True):
-                        with st.spinner("Simulando..."):
-                            res = ejecutar_señales(recomendaciones, modo_test=True)
-                        st.json(res)
-                with col2:
-                    if st.button("Ejecutar en IB Paper Trading", type="primary", use_container_width=True):
-                        with st.spinner("Conectando a IB y ejecutando órdenes..."):
-                            res = ejecutar_señales(recomendaciones, modo_test=False)
-                        if res["ordenes_enviadas"]:
-                            st.success(f"{len(res['ordenes_enviadas'])} orden(es) enviada(s)")
-                            for o in res["ordenes_enviadas"]:
-                                st.caption(f"→ {o['accion']} {o['ticker']}")
-                        if res.get("ordenes_rechazadas"):
-                            for o in res["ordenes_rechazadas"]:
-                                st.warning(f"Rechazada: {o['ticker']} — {o['razon']}")
-                        if res["errores"]: st.error(" | ".join(res["errores"]))
-                        st.rerun()
-            else:
-                st.caption("No hay señales que cumplan la política de inversión en este momento.")
+
+                # ── Órdenes abiertas ────────────────────────────────────────────
+                st.markdown("**Órdenes pendientes en IB**")
+                ordenes_ib = datos_ib.get("ordenes", [])
+                if ordenes_ib:
+                    rows_ord = []
+                    for o in ordenes_ib:
+                        rows_ord.append({
+                            "OrderId": o.get("orderId", ""),
+                            "Symbol":  o.get("symbol", ""),
+                            "Acción":  o.get("action", ""),
+                            "Qty":     o.get("qty", 0),
+                            "Tipo":    o.get("tipo", ""),
+                            "Precio":  o.get("precio", 0) or "MKT",
+                            "Estado":  o.get("status", ""),
+                        })
+                    st.dataframe(pd.DataFrame(rows_ord), use_container_width=True, hide_index=True)
+                else:
+                    st.caption("Sin órdenes pendientes en IB.")
+
+                st.divider()
+
+                # ── Ejecución manual desde dashboard ───────────────────────────
+                st.markdown("**Ejecutar señales manualmente**")
+                st.caption("El motor automático opera en background. Usa esta sección solo para ejecución manual excepcional.")
+                recomendaciones = st.session_state.get("recomendaciones", [])
+                sv = [r for r in recomendaciones if r["conviccion"] >= 75 and r["riesgo"] <= 6 and r["n_fuentes"] >= 2]
+                if sv:
+                    for r in sv:
+                        color_a = "#22c55e" if r["accion"] == "COMPRAR" else "#ef4444"
+                        st.markdown(
+                            f'<div style="padding:0.25rem 0;border-bottom:1px solid #1a2535;font-size:0.82rem">'
+                            f'<span style="color:{color_a};font-weight:600">{r["accion"]} {r["ib_ticker"]}</span>'
+                            f'<span style="color:#475569;margin-left:12px">Convicción: {r["conviccion"]}% · '
+                            f'Riesgo: {r["riesgo"]}/10 · Fuentes: {r["n_fuentes"]}</span></div>',
+                            unsafe_allow_html=True
+                        )
+                    st.divider()
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        if st.button("Simular (sin enviar)", use_container_width=True, key="btn_sim_ib"):
+                            with st.spinner("Simulando..."):
+                                res = ejecutar_señales(recomendaciones, modo_test=True)
+                            st.json(res)
+                    with col2:
+                        if st.button("Ejecutar en IB Paper", type="primary", use_container_width=True, key="btn_exec_ib"):
+                            with st.spinner("Enviando órdenes a IB..."):
+                                res = ejecutar_señales(recomendaciones, modo_test=False)
+                            if res.get("ordenes_enviadas"):
+                                st.success(f"{len(res['ordenes_enviadas'])} orden(es) enviada(s)")
+                                for o in res["ordenes_enviadas"]:
+                                    st.caption(f"→ {o['accion']} {o['ticker']}")
+                            if res.get("ordenes_rechazadas"):
+                                for o in res["ordenes_rechazadas"]:
+                                    st.warning(f"Rechazada: {o['ticker']} — {o['razon']}")
+                            if res.get("errores"):
+                                st.error(" | ".join(res["errores"]))
+                            st.rerun()
+                else:
+                    st.caption("No hay señales que cumplan la política de inversión en este momento.")
 
     with sub_hist:
         stats = get_estadisticas()
@@ -1879,86 +1943,3 @@ with tab_ejecucion:
             st.markdown("**Horizonte:** Cierre por tiempo cuando se cumple el plazo")
             st.markdown("**Verificación:** Cada 5 minutos automáticamente")
 
-    with sub_cierre:
-        st.markdown("**Cierre Automático de Posiciones — SL/TP/Horizonte**")
-        st.caption("El sistema verifica cada 5 minutos si alguna posición debe cerrarse por Stop Loss, Take Profit o vencimiento del horizonte.")
-
-        # Estado actual
-        col1, col2 = st.columns([3, 1])
-        with col2:
-            modo_auto = st.toggle("Cierre automático activo", value=True, key="toggle_cierre_auto_2")
-            if st.button("Verificar ahora", use_container_width=True, key="btn_verificar_ahora_2"):
-                with st.spinner("Verificando posiciones..."):
-                    resumen = verificar_posiciones(modo_test=False, auto_cerrar=modo_auto)
-                    st.session_state.resumen_cierre = resumen
-                st.rerun()
-
-        resumen = st.session_state.get("resumen_cierre", {})
-        if resumen:
-            col1, col2, col3 = st.columns(3)
-            with col1: st.metric("Posiciones activas", resumen.get("posiciones", 0))
-            with col2: st.metric("Cierres ejecutados", len(resumen.get("cierres", [])))
-            with col3: st.metric("Sin precio", len(resumen.get("sin_datos", [])))
-
-            # Posiciones OK
-            if resumen.get("ok"):
-                st.divider()
-                st.markdown("**Posiciones monitoreadas**")
-                for p in resumen["ok"]:
-                    color = "#22c55e" if p["pnl_pct"] >= 0 else "#ef4444"
-                    st.markdown(
-                        f'<div style="display:flex;justify-content:space-between;padding:0.25rem 0;border-bottom:1px solid #1a2535">' +
-                        f'<span style="color:#94a3b8;font-size:0.82rem">{p["ticker"]}</span>' +
-                        f'<span style="color:#64748b;font-size:0.78rem">Precio: {p["precio"]:,.2f}</span>' +
-                        f'<span style="color:{color};font-family:monospace;font-size:0.82rem;font-weight:600">PnL: {p["pnl_pct"]:+.2f}%</span>' +
-                        f'<span style="color:#475569;font-size:0.72rem">{p["dias"]} días</span></div>',
-                        unsafe_allow_html=True
-                    )
-
-            # Cierres ejecutados
-            if resumen.get("cierres"):
-                st.divider()
-                st.markdown("**Cierres en esta sesión**")
-                for c in resumen["cierres"]:
-                    color = "#ef4444" if c["razon"] == "STOP LOSS" else "#22c55e"
-                    st.markdown(
-                        f'<div style="background:{color}15;border:1px solid {color}33;border-radius:5px;padding:0.4rem 0.8rem;margin:0.2rem 0">' +
-                        f'<span style="color:{color};font-weight:600">{c["razon"]}</span> — ' +
-                        f'<span style="color:#f1f5f9">{c["ticker"]}</span> | ' +
-                        f'<span style="color:{color}">PnL: {c["pnl_pct"]:+.2f}%</span>' +
-                        (f' | ✅ Ejecutado' if c.get("ejecutado") else f' | ⚠️ {c.get("error","")}') +
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
-
-        st.divider()
-
-        # Historial de cierres
-        st.markdown("**Historial de cierres automáticos**")
-        log_cierres = get_log_cierres(20)
-        if log_cierres:
-            rows_log = []
-            for entry in log_cierres:
-                orden = entry.get("orden_ib", {})
-                rows_log.append({
-                    "Fecha":    entry.get("timestamp","")[:16],
-                    "Ticker":   entry.get("ticker",""),
-                    "Razón":    entry.get("razon",""),
-                    "PnL %":    entry.get("pnl_pct", 0),
-                    "Precio":   entry.get("precio", 0),
-                    "Estado":   "✅" if orden.get("ejecutado") else "❌",
-                })
-            st.dataframe(pd.DataFrame(rows_log), use_container_width=True, hide_index=True,
-                column_config={"PnL %": st.column_config.NumberColumn(format="%+.2f%%")})
-        else:
-            st.caption("Sin cierres automáticos registrados aún.")
-
-        st.divider()
-        st.markdown("**Configuración de cierre**")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("**Stop Loss (SL):** Orden de mercado inmediata → protege capital")
-            st.markdown("**Take Profit (TP):** Orden límite → captura ganancia objetivo")
-        with col2:
-            st.markdown("**Horizonte:** Cierre por tiempo cuando se cumple el plazo")
-            st.markdown("**Verificación:** Cada 5 minutos automáticamente")
