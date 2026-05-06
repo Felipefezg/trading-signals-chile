@@ -136,7 +136,7 @@ if IB_DISPONIBLE:
         # ── ERRORES ───────────────────────────────────────────────────────────
         def error(self, reqId, errorCode, errorString, *args):
             import logging as _log
-            ignorar = {2104, 2106, 2158, 2103, 2119, 2110, 2105, 2157, 10349}
+            ignorar = {2104, 2105, 2106, 2107, 2108, 2110, 2119, 2157, 2158, 2103, 10349}
             if errorCode not in ignorar:
                 if errorCode == 1104:
                     pass  # Pending orders — ignorar
@@ -939,7 +939,7 @@ def get_datos_ib_dashboard():
             self._done_orders.set()
 
         def error(self, reqId, errorCode, errorString, *args):
-            ignorar = {2104, 2106, 2158, 2103, 2119, 2110, 2105, 2157, 10349, 2107}
+            ignorar = {2104, 2105, 2106, 2107, 2108, 2110, 2119, 2157, 2158, 2103, 10349}
             if errorCode not in ignorar:
                 import logging as _l
                 _l.debug(f"DashClient [{errorCode}]: {errorString[:80]}")
