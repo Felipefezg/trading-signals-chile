@@ -209,6 +209,7 @@ def _run_main_logic():
                 order_flow=datos.get("order_flow"),
                 correlaciones=datos.get("correlaciones"),
                 iv_opciones=datos.get("iv_opciones"),
+                ml=datos.get("ml"),
             )
             recomendaciones = generar_recomendaciones(activos)
 
