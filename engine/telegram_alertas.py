@@ -241,6 +241,30 @@ _Evaluando ejecución..._"""
 
     return _enviar(msg)
 
+# ── ALERTA PIRÁMIDE ───────────────────────────────────────────────────────────
+def alerta_piramide(resultado: dict):
+    """Notifica ejecución de pirámide — escalado de posición ganadora."""
+    ticker  = resultado.get("ib_ticker", "?")
+    accion  = resultado.get("accion", "COMPRAR")
+    qty     = resultado.get("cantidad", 0)
+    monto   = resultado.get("monto_usd", 0)
+    pnl     = resultado.get("pnl_pct", 0)
+    sl      = resultado.get("sl_nuevo", 0)
+    precio  = resultado.get("precio_actual", 0)
+
+    msg = f"""📐 *PIRÁMIDE EJECUTADA*
+━━━━━━━━━━━━━━━━━━━━━━
+🎯 {accion} +{qty}x *{ticker}* @ ${precio:.2f}
+💰 Adición: ${monto:,.0f}
+📈 PnL entrada: *+{pnl:.2f}%*
+🛡 SL → breakeven: ${sl:.4f}
+━━━━━━━━━━━━━━━━━━━━━━
+_Riesgo neto = 0 · Solo puede ganar_
+_{datetime.now().strftime('%H:%M:%S')}_"""
+
+    return _enviar(msg)
+
+
 # ── ALERTA DE RIESGO ──────────────────────────────────────────────────────────
 def alerta_riesgo(tipo, mensaje, datos=None):
     """Alerta de riesgo — drawdown, pausa motor, etc."""
