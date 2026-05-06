@@ -194,7 +194,7 @@ def crear_contrato(ib_ticker, tipo):
         c.secType  = "FUT"
         c.exchange = "NYMEX" if ib_ticker in ("CL", "NG") else "COMEX"
         c.currency = "USD"
-        c.lastTradeDateOrContractMonth = _proximo_vencimiento()
+        c.lastTradeDateOrContractMonth = _proximo_vencimiento(ib_ticker)
     else:
         # Acción USA, ETF, ADR
         c.secType  = "STK"
@@ -203,15 +203,105 @@ def crear_contrato(ib_ticker, tipo):
 
     return c
 
-def _proximo_vencimiento():
-    """Retorna el próximo mes de vencimiento para futuros"""
-    now = datetime.now()
-    if now.day < 15:
-        return now.strftime("%Y%m")
+def _proximo_vencimiento(ib_ticker="CL"):
+    """
+    Retorna el contrato front-month correcto para cada futuro.
+
+    Reglas por exchange:
+    ─────────────────────────────────────────────────────────
+    CL (NYMEX WTI): vence el 3er día hábil ANTES del día 25
+                    del mes PREVIO al mes de delivery.
+                    → delivery month D expira ~día 22 de D-1.
+                    → si hoy.día ≤ 20: front-month = mes+1
+                    → si hoy.día  > 20: front-month = mes+2
+                    (buffer de 2 días sobre el ~día 22)
+
+    GC (COMEX Gold): meses activos Feb,Apr,Jun,Aug,Oct,Dec.
+                     Vence últimos días hábiles del mes de delivery.
+                     → si hoy está en un mes activo y día ≤ 25: usar ese mes
+                     → si no, próximo mes activo
+
+    HG (COMEX Copper): meses activos Mar,May,Jul,Sep,Dec.
+                       Misma lógica que GC pero con sus meses.
+
+    NG (NYMEX Nat Gas): vence 3 días hábiles antes del 1er del mes.
+                        → front-month casi siempre es el mes siguiente.
+                        → si hoy.día ≤ 20: mes+1, si no: mes+2
+    """
+    import calendar
+    today = datetime.now()
+
+    def _adelantar_mes(year, month, offset):
+        m = month + offset
+        y = year
+        while m > 12:
+            m -= 12
+            y += 1
+        return y, m
+
+    if ib_ticker == "CL":
+        # CL delivery month M expira ~día 22 de M-1
+        # Rollover conservador: si día > 20, evitar que el mes siguiente
+        # expire mientras esperamos una señal.
+        if today.day <= 20:
+            y, m = _adelantar_mes(today.year, today.month, 1)  # próximo mes
+        else:
+            y, m = _adelantar_mes(today.year, today.month, 2)  # mes siguiente al próximo
+        return f"{y}{m:02d}"
+
+    elif ib_ticker == "GC":
+        # GC meses activos: Feb(2), Apr(4), Jun(6), Aug(8), Oct(10), Dec(12)
+        # Vence ~últimos 2-3 días hábiles del mes de delivery
+        GC_MONTHS = {2, 4, 6, 8, 10, 12}
+        dias_mes   = calendar.monthrange(today.year, today.month)[1]
+
+        if today.month in GC_MONTHS and today.day <= dias_mes - 5:
+            return f"{today.year}{today.month:02d}"
+
+        # Buscar próximo mes activo
+        for offset in range(1, 7):
+            y, m = _adelantar_mes(today.year, today.month, offset)
+            if m in GC_MONTHS:
+                return f"{y}{m:02d}"
+
+        # Fallback: mes siguiente
+        y, m = _adelantar_mes(today.year, today.month, 1)
+        return f"{y}{m:02d}"
+
+    elif ib_ticker == "HG":
+        # HG meses activos: Mar(3), May(5), Jul(7), Sep(9), Dec(12)
+        # Vence ~último día hábil del mes de delivery
+        HG_MONTHS  = {3, 5, 7, 9, 12}
+        dias_mes   = calendar.monthrange(today.year, today.month)[1]
+
+        if today.month in HG_MONTHS and today.day <= dias_mes - 5:
+            return f"{today.year}{today.month:02d}"
+
+        for offset in range(1, 7):
+            y, m = _adelantar_mes(today.year, today.month, offset)
+            if m in HG_MONTHS:
+                return f"{y}{m:02d}"
+
+        y, m = _adelantar_mes(today.year, today.month, 1)
+        return f"{y}{m:02d}"
+
+    elif ib_ticker == "NG":
+        # NG vence 3 días hábiles antes del 1er del mes de delivery
+        # → expira ~día 26-28 del mes PREVIO
+        # → si día ≤ 20: front-month = mes+1; si no: mes+2
+        if today.day <= 20:
+            y, m = _adelantar_mes(today.year, today.month, 1)
+        else:
+            y, m = _adelantar_mes(today.year, today.month, 2)
+        return f"{y}{m:02d}"
+
     else:
-        mes = now.month + 1 if now.month < 12 else 1
-        año = now.year if now.month < 12 else now.year + 1
-        return f"{año}{mes:02d}"
+        # Fallback genérico: si día ≤ 15, mes actual; si no, mes siguiente
+        if today.day <= 15:
+            return today.strftime("%Y%m")
+        else:
+            y, m = _adelantar_mes(today.year, today.month, 1)
+            return f"{y}{m:02d}"
 
 # ── OBTENER PRECIO ACTUAL ─────────────────────────────────────────────────────
 def get_precio_actual(ib_ticker, tipo):
