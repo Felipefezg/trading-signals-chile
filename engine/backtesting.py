@@ -55,6 +55,31 @@ EXCLUIR_BT = {
     "MOLYMET.SN", "BESALCO.SN", "CAP.SN", "MALLPLAZA.SN", "ITAUCL.SN",
     # PnL < -15% en backtest
     "SALFACORP.SN", "SOCOVESA.SN",
+    # 0% win rate — AT sistemáticamente incorrecto en estos activos
+    "QUINENCO.SN", "CONCHATORO.SN", "ECL.SN",
+    # Over-trading severo
+    "PROVIDA.SN",
+    # R/R estructuralmente < 0.50x — señal AT incompatible con la dinámica del activo
+    "CL=F",          # Petróleo WTI: intraday vol invalida señales en cierre diario
+    "SONDA.SN",      # R/R=0.24x — SL siempre se activa antes que el TP
+    "FORUS.SN",      # Over-trading (10 trades), R/R=0.64x
+    # Win rate < 25% — señal AT sistemáticamente en dirección incorrecta
+    "LTM.SN",        # LATAM local: 16.7% win rate (ticker correcto — ADR es "LTM")
+    "ENTEL.SN",      # 25% win rate, -12.9%
+    "BCI.SN",        # R/R=0.03x
+    # Win rate < 22% con 5+ trades — patrón sistemático, no ruido
+    "ECH",           # iShares MSCI Chile ETF: 20% win rate, -7.4%
+    # Over-trading + win rate < 38%
+    "ILC.SN",        # 8 trades, 37.5% win rate, -7.6%
+}
+
+# Parámetros AT por tipo de activo
+# Crypto: SL más estrecho (1.5x) + TP más amplio (4.5x) para capturar momentum
+#         El SL ancho (2.5x) probado en backtest empeoró R/R: BTC bajó de 1.61x a 1.39x
+# Futuros: eliminados de EXCLUIR_BT los problemáticos; GC/HG/NG conservan default
+PARAMS_BT = {
+    "default":  {"sl_atr": 2.0, "tp_atr": 4.0},
+    "Crypto":   {"sl_atr": 1.5, "tp_atr": 4.5},  # SL ajustado: captura momentum, limita pérdidas
 }
 ACTIVOS_BT = {k: v for k, v in ACTIVOS_BT.items() if k not in EXCLUIR_BT}
 
@@ -386,7 +411,12 @@ def run_backtest_completo():
 
     def bt(item):
         ticker, config = item
-        return backtest_activo(ticker, config["nombre"], config["capital"])
+        tipo   = config.get("tipo", "default")
+        params = PARAMS_BT.get(tipo, PARAMS_BT["default"])
+        return backtest_activo(
+            ticker, config["nombre"], config["capital"],
+            sl_atr=params["sl_atr"], tp_atr=params["tp_atr"]
+        )
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         futures = {executor.submit(bt, item): item for item in ACTIVOS_BT.items()}
