@@ -154,11 +154,38 @@ def _generar_señal(row, prev_row):
 
     return None, 0
 
+# ── TIPO DE CAMBIO CLP/USD (aproximado para normalizar PnL) ───────────────────
+def _get_tipo_cambio_clp():
+    """Retorna CLP/USD aproximado. Intenta yf, fallback 900."""
+    try:
+        tc = yf.Ticker("USDCLP=X").history(period="5d")
+        if len(tc) > 0:
+            return float(tc["Close"].iloc[-1])
+    except:
+        pass
+    return 900.0  # fallback conservador
+
+_TIPO_CAMBIO_CLP = None  # se inicializa lazy una vez por run
+
+def _clp_to_usd(monto_clp):
+    global _TIPO_CAMBIO_CLP
+    if _TIPO_CAMBIO_CLP is None:
+        _TIPO_CAMBIO_CLP = _get_tipo_cambio_clp()
+    return monto_clp / _TIPO_CAMBIO_CLP
+
 # ── BACKTEST INDIVIDUAL ───────────────────────────────────────────────────────
 def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=2.0, tp_atr=4.0):
     """
     Backtest completo para un activo.
+    capital_inicial siempre en USD.
+    Para activos en CLP (sufijo .SN), los precios se convierten a USD antes de
+    calcular cantidad y PnL — evita el bug int(10000/14800) = 0.
     """
+    # Detectar moneda del activo
+    es_clp = ticker.endswith(".SN")
+    es_crypto = ticker in ("BTC-USD", "ETH-USD")
+    es_futuro  = ticker in ("CL=F", "GC=F", "HG=F", "NG=F")
+
     try:
         h = yf.Ticker(ticker).history(period="2y")
         if len(h) < 60:
@@ -175,8 +202,19 @@ def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=2.0, tp_atr=4
             row      = h.iloc[i]
             prev_row = h.iloc[i-1]
             fecha    = h.index[i]
-            precio   = float(row["Close"])
-            atr      = float(row["atr"])
+            precio_raw = float(row["Close"])
+            atr_raw    = float(row["atr"])
+
+            # Normalizar a USD para cálculo de cantidad
+            if es_clp:
+                global _TIPO_CAMBIO_CLP
+                if _TIPO_CAMBIO_CLP is None:
+                    _TIPO_CAMBIO_CLP = _get_tipo_cambio_clp()
+                precio = precio_raw / _TIPO_CAMBIO_CLP
+                atr    = atr_raw    / _TIPO_CAMBIO_CLP
+            else:
+                precio = precio_raw
+                atr    = atr_raw
 
             if not en_posicion:
                 señal, puntos = _generar_señal(row, prev_row)
@@ -233,20 +271,31 @@ def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=2.0, tp_atr=4
                     razon  = "HORIZONTE"
 
                 if salida:
-                    # Calcular PnL
+                    # Calcular PnL en % (siempre sobre precio normalizado en USD)
                     if entrada["accion"] == "COMPRAR":
                         pnl_pct = (salida - entrada["precio_entrada"]) / entrada["precio_entrada"] * 100
                     else:
                         pnl_pct = (entrada["precio_entrada"] - salida) / entrada["precio_entrada"] * 100
 
-                    cantidad  = int(capital_inicial / entrada["precio_entrada"])
-                    pnl_usd   = pnl_pct / 100 * entrada["precio_entrada"] * cantidad
+                    # Cantidad: crypto admite fracciones; futuros usan lotes mínimos; resto enteros
+                    ep = entrada["precio_entrada"]
+                    if es_crypto:
+                        # Fraccional — siempre > 0
+                        cantidad = capital_inicial / ep
+                    elif es_futuro:
+                        # Al menos 1 contrato si el capital lo permite, si no 0.5 (simulado)
+                        cantidad = max(1, int(capital_inicial / ep))
+                    else:
+                        # Acciones — precio ya normalizado a USD (CLP convertido arriba)
+                        cantidad = max(1, int(capital_inicial / ep))
+
+                    pnl_usd = pnl_pct / 100 * ep * cantidad
 
                     trades.append({
                         "fecha_entrada":  entrada["fecha_entrada"].strftime("%Y-%m-%d"),
                         "fecha_salida":   fecha.strftime("%Y-%m-%d"),
                         "accion":         entrada["accion"],
-                        "precio_entrada": round(entrada["precio_entrada"], 4),
+                        "precio_entrada": round(ep, 4),
                         "precio_salida":  round(salida, 4),
                         "sl":             round(entrada["sl"], 4),
                         "tp":             round(entrada["tp"], 4),
@@ -269,9 +318,19 @@ def backtest_activo(ticker, nombre, capital_inicial=10_000, sl_atr=2.0, tp_atr=4
         win_rate    = len(ganadores) / n_trades * 100
 
         pnl_total   = sum(t["pnl_usd"] for t in trades)
-        avg_ganador = np.mean([t["pnl_usd"] for t in ganadores]) if ganadores else 0
-        avg_perdedor= abs(np.mean([t["pnl_usd"] for t in perdedores])) if perdedores else 1
-        rr_ratio    = avg_ganador / avg_perdedor if avg_perdedor > 0 else 0
+
+        # R/R en % de retorno (no en USD absolutos — evita distorsión por tamaño de posición)
+        avg_ganador_pct  = np.mean([t["pnl_pct"] for t in ganadores])  if ganadores  else 0.0
+        avg_perdedor_pct = abs(np.mean([t["pnl_pct"] for t in perdedores])) if perdedores else None
+        if avg_perdedor_pct and avg_perdedor_pct > 0:
+            rr_ratio = round(avg_ganador_pct / avg_perdedor_pct, 2)
+        else:
+            # Sin trades perdedores — R/R teórico basado en parámetros ATR (tp_atr/sl_atr)
+            rr_ratio = round(tp_atr / sl_atr, 2)
+
+        # También mantener avg_usd para reporting
+        avg_ganador  = np.mean([t["pnl_usd"] for t in ganadores])  if ganadores  else 0
+        avg_perdedor = abs(np.mean([t["pnl_usd"] for t in perdedores])) if perdedores else 0
 
         # Equity curve y drawdown
         equity = capital_inicial
