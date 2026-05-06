@@ -31,6 +31,7 @@ ACTIVOS_OPCIONES = {
     "ECH":  {"nombre": "iShares Chile",   "activo_motor": "ECH",           "impacto": ["ECH", "BSANTANDER.SN", "CHILE.SN"]},
     "GLD":  {"nombre": "Gold ETF",        "activo_motor": "GC=F",          "impacto": ["GC=F"]},
     "GDX":  {"nombre": "Gold Miners ETF", "activo_motor": "GC=F",          "impacto": ["GC=F", "CAP.SN"]},
+    "SLV":  {"nombre": "Silver ETF",      "activo_motor": "SLV",           "impacto": ["SLV", "GLD", "GC=F"]},
     "SPY":  {"nombre": "S&P 500 ETF",     "activo_motor": "^GSPC",         "impacto": ["ECH", "^GSPC"]},
     "TLT":  {"nombre": "20Y Treasury",    "activo_motor": "TLT",           "impacto": ["COLBUN.SN", "AGUAS-A.SN", "MALLPLAZA.SN"]},
     "EEM":  {"nombre": "Emerging Markets","activo_motor": "ECH",           "impacto": ["ECH", "CLP/USD"]},

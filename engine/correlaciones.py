@@ -54,6 +54,11 @@ PARES_CONOCIDOS = [
     ("ECH",         "BTC-USD",  "ECH vs BTC",            0.35),
     ("GC=F",        "^TNX",     "Oro vs T10Y",           -0.60),
     ("SPY",         "^TNX",     "S&P 500 vs T10Y",       -0.45),
+    # Metales preciosos y commodities nuevos
+    ("GLD",         "SLV",      "Oro vs Plata",           0.92),
+    ("GDX",         "GC=F",     "Gold Miners vs Oro",     0.85),
+    ("SLV",         "HG=F",     "Plata vs Cobre",         0.65),
+    ("GLD",         "HG=F",     "Oro vs Cobre",           0.55),
 ]
 
 # ── CARGA DE DATOS ────────────────────────────────────────────────────────────
@@ -318,26 +323,104 @@ if __name__ == "__main__":
 
 
 # ── ALIASES PARA COMPATIBILIDAD CON DASHBOARD ────────────────────────────────
+
 def get_correlaciones_ipsa_completo(periodo="90d"):
-    """Alias compatible con el dashboard"""
-    return get_resumen_correlaciones()
-
-def get_correlacion_rodante(ticker1, ticker2, ventana=30):
-    """Correlación rodante entre dos activos"""
+    """
+    Retorna lista de dicts con formato exacto que consume el dashboard:
+        [{"corr": float, "nombre": str, "señal": str}, ...]
+    Filtra pares que incluyen ECH (proxy IPSA) vs variables macro.
+    """
     try:
-        import yfinance as yf
-        h1 = yf.Ticker(ticker1).history(period="6mo")["Close"]
-        h2 = yf.Ticker(ticker2).history(period="6mo")["Close"]
-        df = pd.DataFrame({"a": h1, "b": h2}).dropna()
-        return df["a"].rolling(ventana).corr(df["b"]).dropna()
-    except:
-        return pd.Series()
+        resumen = get_resumen_correlaciones()
+        pares   = resumen.get("todos", [])
+        resultado = []
+        for p in pares:
+            # Solo pares donde ECH es uno de los activos
+            if "ECH" not in (p.get("ticker1",""), p.get("ticker2","")):
+                continue
+            corr = p.get("corr_30d", p.get("corr_6m", 0)) or 0
+            resultado.append({
+                "corr":   round(float(corr), 3),
+                "nombre": p.get("par", f"{p.get('ticker1')} vs {p.get('ticker2')}"),
+                "señal":  p.get("tipo", "NORMAL"),
+            })
+        # Ordenar por correlación absoluta descendente
+        return sorted(resultado, key=lambda x: abs(x["corr"]), reverse=True)
+    except Exception:
+        return []
 
-def get_divergencias_correlacion(min_score=2):
-    """Alias — retorna pares con divergencias"""
-    resumen = get_resumen_correlaciones()
-    return [p for p in resumen.get("alertas", []) if p.get("score", 0) >= min_score]
+
+def get_correlacion_rodante(ticker1, ticker2, ventana=30, periodo="6mo"):
+    """
+    Correlación rodante entre dos activos.
+    Retorna dict con actual/promedio/min/max/valores/fechas.
+    """
+    try:
+        _map = {"180d": "6mo", "90d": "3mo", "60d": "2mo", "365d": "1y", "30d": "1mo"}
+        periodo_yf = _map.get(periodo, periodo)
+        h1 = yf.Ticker(ticker1).history(period=periodo_yf)["Close"]
+        h2 = yf.Ticker(ticker2).history(period=periodo_yf)["Close"]
+        df = pd.DataFrame({"a": h1, "b": h2}).dropna()
+        serie = df["a"].rolling(ventana).corr(df["b"]).dropna()
+        if serie.empty:
+            return None
+        return {
+            "actual":   round(float(serie.iloc[-1]), 4),
+            "promedio": round(float(serie.mean()), 4),
+            "min":      round(float(serie.min()), 4),
+            "max":      round(float(serie.max()), 4),
+            "serie":    serie,
+            "valores":  [round(float(v), 4) if v == v else None for v in serie.tolist()],
+            "fechas":   [str(f)[:10] for f in serie.index.tolist()],
+        }
+    except Exception:
+        return None
+
+
+def get_divergencias_correlacion(periodo="6mo", min_score=2):
+    """
+    Retorna lista de dicts con formato exacto que consume el dashboard:
+        [{color, señal, ech_real, ech_esperado, divergencia,
+          nombre, macro_mov, corr_hist}, ...]
+    """
+    try:
+        resumen = get_resumen_correlaciones()
+        alertas = [p for p in resumen.get("alertas", [])
+                   if p.get("score", 0) >= min_score]
+        resultado = []
+        for p in alertas:
+            # ech_real  = movimiento real de ECH en 5d
+            # macro_mov = movimiento del activo correlacionado en 5d
+            if p.get("ticker1") == "ECH":
+                ech_real  = p.get("ret_t1_5d", 0)
+                macro_mov = p.get("ret_t2_5d", 0)
+            elif p.get("ticker2") == "ECH":
+                ech_real  = p.get("ret_t2_5d", 0)
+                macro_mov = p.get("ret_t1_5d", 0)
+            else:
+                ech_real  = p.get("ret_t1_5d", 0)
+                macro_mov = p.get("ret_t2_5d", 0)
+
+            corr_hist    = p.get("corr_6m", p.get("corr_esperada", 0)) or 0
+            ech_esperado = round(macro_mov * corr_hist, 2)
+            div_val      = round(ech_real - ech_esperado, 2)
+
+            resultado.append({
+                "color":        p.get("color", "#f59e0b"),
+                "señal":        p.get("tipo", "DIVERGENCIA"),
+                "ech_real":     round(float(ech_real), 2),
+                "ech_esperado": round(float(ech_esperado), 2),
+                "divergencia":  round(float(div_val), 2),
+                "nombre":       p.get("par", f"{p.get('ticker1')} vs {p.get('ticker2')}"),
+                "macro_mov":    round(float(macro_mov), 2),
+                "corr_hist":    round(float(corr_hist), 3),
+                "score":        p.get("score", 0),
+            })
+        return sorted(resultado, key=lambda x: abs(x["divergencia"]), reverse=True)
+    except Exception:
+        return []
+
 
 def get_correlaciones_ipsa_interno():
-    """Correlaciones internas del IPSA"""
+    """Correlaciones internas del IPSA — retorna resumen completo."""
     return get_resumen_correlaciones()
