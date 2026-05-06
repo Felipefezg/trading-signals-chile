@@ -1547,6 +1547,67 @@ with tab_ejecucion:
 
         st.divider()
 
+        # ── Fuentes de datos ──────────────────────────────────────────────────
+        st.markdown("**Fuentes de datos — estado último ciclo**")
+        try:
+            from engine.source_health import get_resumen_health, ALERTA_CONSECUTIVOS
+            _sh = get_resumen_health()
+            if _sh["ciclos_total"] == 0:
+                st.caption("Sin datos aún — se registran a partir del primer ciclo en horario de mercado.")
+            else:
+                _n_ok    = sum(1 for _f in _sh["fuentes"] if _f["estado"] == "ok")
+                _n_empty = sum(1 for _f in _sh["fuentes"] if _f["estado"] == "empty")
+                _n_err   = sum(1 for _f in _sh["fuentes"] if _f["estado"] == "error")
+                _n_alrt  = _sh["n_alertas"]
+                _ultimo  = (_sh["ultimo_ciclo"] or "")[:16]
+
+                col1, col2, col3, col4 = st.columns(4)
+                with col1: st.metric("Fuentes activas", f"{_n_ok}/19")
+                with col2: st.metric("Vacías", _n_empty, delta=None)
+                with col3: st.metric("Con error", _n_err, delta=None)
+                with col4:
+                    st.metric("Alertas", _n_alrt,
+                              delta=f"{_n_alrt} persistentes" if _n_alrt else None,
+                              delta_color="inverse")
+
+                # Grid 2 columnas — ordenado: error primero, luego empty, luego ok
+                _fuentes_ord = sorted(
+                    _sh["fuentes"],
+                    key=lambda _f: (0 if _f["estado"]=="error" else 1 if _f["estado"]=="empty" else 2, _f["fuente"])
+                )
+
+                def _badge(estado, consec):
+                    if estado == "ok":    return "✓", "#22c55e"
+                    if estado == "error": return "✗", "#ef4444"
+                    if consec >= ALERTA_CONSECUTIVOS: return "⚠", "#f97316"
+                    return "○", "#eab308"
+
+                _mid = (len(_fuentes_ord) + 1) // 2
+                _col_a, _col_b = st.columns(2)
+                for _col, _grupo in [(_col_a, _fuentes_ord[:_mid]), (_col_b, _fuentes_ord[_mid:])]:
+                    with _col:
+                        for _f in _grupo:
+                            _ico, _clr = _badge(_f["estado"], _f["consecutivos_vacios"])
+                            _items_s   = f"{_f['ultimo_n_items']} items" if _f["ultimo_n_items"] > 0 else "vacía"
+                            _consec_s  = f"  {_f['consecutivos_vacios']}×" if _f["consecutivos_vacios"] > 0 else ""
+                            _tasa_s    = f"{_f['tasa_ok_pct']:.0f}%" if _f["tasa_ok_pct"] is not None else "N/A"
+                            st.markdown(
+                                f'<div style="display:flex;align-items:center;gap:4px;padding:0.16rem 0;'
+                                f'border-bottom:1px solid #1a2535">'
+                                f'<span style="color:{_clr};font-size:0.78rem;width:12px;flex-shrink:0">{_ico}</span>'
+                                f'<span style="color:#94a3b8;font-size:0.77rem;flex:1">{_f["fuente"]}</span>'
+                                f'<span style="color:#64748b;font-size:0.72rem">{_items_s}{_consec_s}</span>'
+                                f'<span style="color:#475569;font-size:0.72rem;width:34px;text-align:right">{_tasa_s}</span>'
+                                f'</div>',
+                                unsafe_allow_html=True
+                            )
+
+                st.caption(f"Último ciclo: {_ultimo}  ·  Total ciclos registrados: {_sh['ciclos_total']}")
+        except Exception as _she:
+            st.caption(f"Sin datos de fuentes disponibles: {_she}")
+
+        st.divider()
+
         # Parámetros
         st.markdown("**Parámetros del motor**")
         col1, col2 = st.columns(2)
@@ -1786,6 +1847,50 @@ with tab_ejecucion:
                     st.dataframe(pd.DataFrame(rows_ord), use_container_width=True, hide_index=True)
                 else:
                     st.caption("Sin órdenes pendientes en IB.")
+
+                st.divider()
+
+                # ── Salud de fuentes — resumen compacto ────────────────────────
+                st.markdown("**Fuentes de datos activas**")
+                try:
+                    from engine.source_health import get_resumen_health, ALERTA_CONSECUTIVOS as _AC
+                    _sh2 = get_resumen_health()
+                    if _sh2["ciclos_total"] == 0:
+                        st.caption("Sin ciclos registrados aún.")
+                    else:
+                        _ok2    = [_f for _f in _sh2["fuentes"] if _f["estado"] == "ok"]
+                        _bad2   = [_f for _f in _sh2["fuentes"] if _f["estado"] != "ok"]
+                        _alrts2 = [_f for _f in _sh2["fuentes"] if _f["alerta"]]
+
+                        # Chips de estado
+                        _chips = ""
+                        for _f in sorted(_ok2, key=lambda x: x["fuente"]):
+                            _chips += (
+                                f'<span style="display:inline-block;background:#22c55e18;border:1px solid #22c55e44;'
+                                f'color:#22c55e;border-radius:4px;padding:1px 7px;font-size:0.70rem;margin:2px">'
+                                f'{_f["fuente"]} {_f["ultimo_n_items"]}</span>'
+                            )
+                        for _f in sorted(_bad2, key=lambda x: x["fuente"]):
+                            _bc = "#ef4444" if _f["estado"] == "error" else ("#f97316" if _f["alerta"] else "#eab308")
+                            _chips += (
+                                f'<span style="display:inline-block;background:{_bc}18;border:1px solid {_bc}44;'
+                                f'color:{_bc};border-radius:4px;padding:1px 7px;font-size:0.70rem;margin:2px">'
+                                f'{_f["fuente"]} {"✗" if _f["estado"]=="error" else "○"}</span>'
+                            )
+                        st.markdown(f'<div style="line-height:1.8">{_chips}</div>', unsafe_allow_html=True)
+
+                        if _alrts2:
+                            st.warning(
+                                f"⚠ {len(_alrts2)} fuente(s) sin datos por ≥{_AC} ciclos: "
+                                f"{', '.join(_f['fuente'] for _f in _alrts2)}"
+                            )
+                        else:
+                            st.caption(
+                                f"✓ {len(_ok2)}/19 fuentes activas — "
+                                f"último ciclo: {(_sh2['ultimo_ciclo'] or '')[:16]}"
+                            )
+                except Exception:
+                    st.caption("Fuentes: sin datos disponibles aún.")
 
                 st.divider()
 
