@@ -612,6 +612,25 @@ def ciclo_trading_automatico():
         resultados["razon"]     = msg_horario
         return resultados
 
+    # ── PIRÁMIDE: escalar posiciones ganadoras (antes de buscar aperturas nuevas)
+    try:
+        from engine.piramide import verificar_y_ejecutar_piramide
+        _pirs = verificar_y_ejecutar_piramide()
+        for _p in _pirs:
+            _log_desc = (
+                f"Pirámide {_p['accion']} +{_p['cantidad']}x {_p['ib_ticker']} "
+                f"@ {_p.get('precio_actual', 0):.4f} | "
+                f"PnL entrada {_p.get('pnl_pct', 0):+.2f}% | "
+                f"SL→breakeven {_p.get('sl_nuevo', 0):.4f}"
+            )
+            estado_pir = "PIRAMIDE_OK" if _p["ok"] else "PIRAMIDE_ERROR"
+            _registrar_evento(estado_pir, _log_desc, _p)
+            resultados["aperturas"].append({**_p, "tipo": "PIRAMIDE"})
+            if not _p["ok"]:
+                logging.warning(f"Pirámide fallida {_p['ib_ticker']}: {_p.get('error')}")
+    except Exception as _pe:
+        logging.warning(f"Módulo pirámide (no crítico): {_pe}")
+
     # ── ABRIR POSICIONES NUEVAS
     try:
         from engine.data_loader import get_datos_para_motor

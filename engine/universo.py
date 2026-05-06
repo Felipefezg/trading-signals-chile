@@ -80,6 +80,8 @@ ETFS = {
     "SPY":  {"nombre": "S&P 500 ETF",        "sector": "ETF USA",    "peso_ipsa": 0, "ib": "SPY",  "tipo": "ETF", "yf": "SPY"},
     "TLT":  {"nombre": "20Y Treasury ETF",   "sector": "Renta Fija", "peso_ipsa": 0, "ib": "TLT",  "tipo": "ETF", "yf": "TLT"},
     "GLD":  {"nombre": "Gold ETF",           "sector": "Commodity",  "peso_ipsa": 0, "ib": "GLD",  "tipo": "ETF", "yf": "GLD"},
+    "SLV":  {"nombre": "Silver ETF",         "sector": "Commodity",  "peso_ipsa": 0, "ib": "SLV",  "tipo": "ETF", "yf": "SLV"},
+    "GDX":  {"nombre": "Gold Miners ETF",    "sector": "Commodity",  "peso_ipsa": 0, "ib": "GDX",  "tipo": "ETF", "yf": "GDX"},
 }
 
 # ── COMMODITIES ───────────────────────────────────────────────────────────────

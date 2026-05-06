@@ -83,7 +83,12 @@ KELLY_STATS: dict[str, dict] = {
 
     # ── FUTUROS ─────────────────────────────────────────────────────────────
     "GC":        {"win_rate": 0.333,"rr": 6.36, "n_trades": 3},   # Oro futuro +4.0%
+    "HG":        {"win_rate": 0.50, "rr": 2.00, "n_trades": 0},   # Cobre futuro — sin historial → fallback $7.5k
     # CL excluido del universo activo (R/R=0.44x, estructuralmente roto en señal diaria)
+
+    # ── NUEVOS (ETF commodities) ──────────────────────────────────────────────
+    "SLV":       {"win_rate": 0.50, "rr": 2.34, "n_trades": 0},   # Silver ETF — mismos stats iniciales que GLD
+    "GDX":       {"win_rate": 0.50, "rr": 2.00, "n_trades": 0},   # Gold Miners ETF — sin historial → fallback $7.5k
 }
 
 # ── PARÁMETROS DE SIZING ─────────────────────────────────────────────────────
