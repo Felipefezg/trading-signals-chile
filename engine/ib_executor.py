@@ -377,22 +377,36 @@ def _get_usd_clp():
 
 
 def calcular_cantidad(precio, tipo, conviccion=75, capital=100_000,
-                      max_usd=15_000, sl=None):
+                      max_usd=15_000, sl=None, ib_ticker=None):
     """
-    Calcula cantidad usando Half-Kelly simplificado.
+    Calcula cantidad usando Kelly sizing dinámico por activo.
+
+    Si el activo tiene stats de backtest (kelly_sizing.py), usa Half-Kelly
+    calibrado con su win_rate y R/R histórico.
+    Si no tiene stats suficientes, usa fallback basado en convicción.
 
     - Acciones Chile: precio en CLP → convierte a USD antes de dividir.
     - Futuros: máximo 1 contrato (nocional enorme — CL=1000 bbl, GC=100 oz).
-    - Crypto: sizing reducido al 30%.
-    - Todo lo demás: tamaño basado en USD.
+    - Crypto: sizing fraccional, Kelly aplica directo.
+    - Todo lo demás: tamaño basado en USD calculado por Kelly.
     """
     if not precio or precio <= 0:
         return 0
 
-    # Sizing base según convicción (Half-Kelly simplificado)
-    pct_capital = min(0.15, (conviccion - 50) / 100 * 0.3)
-    usd_base    = capital * pct_capital
-    usd_op      = min(usd_base, max_usd)
+    # ── Sizing basado en Kelly dinámico por activo ────────────────────────────
+    try:
+        from engine.kelly_sizing import calcular_kelly_usd
+        if ib_ticker:
+            usd_op = calcular_kelly_usd(ib_ticker, capital=capital,
+                                        max_usd=max_usd, conviccion=conviccion)
+        else:
+            # Sin ticker conocido: fallback convicción (comportamiento anterior)
+            pct_capital = min(0.15, (conviccion - 50) / 100 * 0.3)
+            usd_op = min(capital * pct_capital, max_usd)
+    except Exception:
+        # Si kelly_sizing falla por cualquier razón, no bloquear ejecución
+        pct_capital = min(0.15, (conviccion - 50) / 100 * 0.3)
+        usd_op = min(capital * pct_capital, max_usd)
 
     # ── Futuros: máximo 1 contrato para controlar exposición nocional ──────────
     # CL (WTI) = 1000 barriles × ~$62 = $62k/contrato
@@ -446,8 +460,10 @@ def ejecutar_orden(señal, modo_test=False):
     if not precio:
         return {"exito": False, "error": "No se pudo obtener precio"}
 
-    # Calcular cantidad
-    cantidad = calcular_cantidad(precio, tipo, conviccion, sl=sl)
+    # Calcular cantidad usando Kelly dinámico por activo
+    cantidad = calcular_cantidad(precio, tipo, conviccion,
+                                  capital=100_000, max_usd=15_000,
+                                  sl=sl, ib_ticker=ib_ticker)
     if cantidad <= 0:
         return {"exito": False, "error": "Cantidad calculada = 0"}
 
