@@ -1516,7 +1516,12 @@ with tab_ejecucion:
         # KPIs del motor
         col1, col2, col3, col4, col5 = st.columns(5)
         with col1: st.metric("Posiciones", f"{resumen_motor['posiciones_abiertas']}/{resumen_motor['max_posiciones']}")
-        with col2: st.metric("Riesgo total", f"USD {resumen_motor['riesgo_total_usd']:,.0f}", delta=f"límite {resumen_motor['max_riesgo_usd']:,.0f}")
+        with col2:
+            _capital_ib  = resumen_motor.get("capital_ib", 100_000)
+            _riesgo_pct  = resumen_motor.get("riesgo_total_pct", 0)
+            _max_riesgo  = resumen_motor.get("max_riesgo_pct", 20)
+            _riesgo_usd  = _capital_ib * _riesgo_pct / 100
+            st.metric("Riesgo total", f"{_riesgo_pct:.1f}% (${_riesgo_usd:,.0f})", delta=f"límite {_max_riesgo:.0f}%")
         with col3:
             pnl_d = resumen_motor["pnl_dia_pct"]
             st.metric("PnL del día", f"{pnl_d:+.2f}%", delta=f"límite {PARAMS['pausa_pnl_dia_pct']}%")
@@ -1530,7 +1535,7 @@ with tab_ejecucion:
         condiciones = [
             ("Horario de mercado", resumen_motor["en_horario"], resumen_motor["msg_horario"]),
             ("Posiciones disponibles", resumen_motor["posiciones_abiertas"] < resumen_motor["max_posiciones"], f"{resumen_motor['posiciones_abiertas']}/{resumen_motor['max_posiciones']}"),
-            ("Riesgo bajo límite", resumen_motor["riesgo_total_usd"] < resumen_motor["max_riesgo_usd"], f"USD {resumen_motor['riesgo_total_usd']:,.0f}"),
+            ("Riesgo bajo límite", resumen_motor.get("riesgo_total_pct", 0) < resumen_motor.get("max_riesgo_pct", 20), f"{resumen_motor.get('riesgo_total_pct', 0):.1f}% / {resumen_motor.get('max_riesgo_pct', 20):.0f}%"),
             ("PnL día aceptable", resumen_motor["pnl_dia_pct"] > PARAMS["pausa_pnl_dia_pct"], f"{resumen_motor['pnl_dia_pct']:+.2f}%"),
             ("Drawdown bajo límite", resumen_motor["drawdown_pct"] < PARAMS["max_drawdown_pct"], f"{resumen_motor['drawdown_pct']:.2f}%"),
             ("Consecutivos OK", resumen_motor["consecutivos_perdedor"] < PARAMS["pausa_consecutivos"], f"{resumen_motor['consecutivos_perdedor']} perdedores"),
