@@ -47,9 +47,9 @@ PARAMS = {
     "max_usd_por_operacion": 15_000,
     "max_riesgo_total_usd":  30_000,
     "capital_total":         100_000,
-    "conviccion_minima":     75,
+    "conviccion_minima":     78,   # Subido de 75 → 78 para reducir señales espurias
     "riesgo_maximo":         7,
-    "fuentes_minimas":       2,
+    "fuentes_minimas":       3,    # Subido de 2 → 3 (mínimo diversidad de fuentes)
     "max_drawdown_pct":      10.0,
     "pausa_pnl_dia_pct":    -3.0,
     "pausa_consecutivos":    3,
@@ -58,6 +58,14 @@ PARAMS = {
     "horario_fin":           "15:45",
     "timezone":              "America/New_York",
 }
+
+# ── BLACKLIST AUTO-TRADING ────────────────────────────────────────────────────
+# Tickers PROHIBIDOS para ejecución automática por nocional masivo o liquidez insuficiente.
+# CL (WTI crude futures): ~$95.000 USD/contrato (1.000 barriles × ~$95)
+# HG (copper futures):    ~$25.000 USD/contrato (25.000 lbs × ~$1.00/lb)
+# Ambos exceden max_usd_por_operacion y producen PnL completamente deformado.
+# Para operar estos activos: hacerlo MANUALMENTE desde IB Gateway.
+BLACKLIST_AUTO = {"CL", "HG"}
 
 # Sectores por ticker IB — universo completo (51 activos)
 # Fuente: engine/universo.py → campo "sector"
@@ -108,6 +116,8 @@ SECTORES = {
     "SPY":        "ETF USA",
     "TLT":        "Renta Fija",
     "GLD":        "Commodities",
+    "SLV":        "Commodities",   # Silver ETF
+    "GDX":        "Commodities",   # Gold Miners ETF
     # Commodities / Futuros
     "GC":         "Commodities",
     "HG":         "Commodities",
@@ -398,12 +408,20 @@ def calcular_drawdown_total():
     return abs(pnl) / PARAMS["capital_total"] * 100
 
 # ── VALIDAR SEÑAL ─────────────────────────────────────────────────────────────
-def validar_señal(recomendacion, estado=None):
+def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     """
     Valida si una señal cumple todos los criterios para ejecutarse automáticamente.
     Retorna (bool, razon)
+
+    posiciones_cache: dict opcional {ticker: {...}} que incluye posiciones ya
+    abiertas en este ciclo pero aún no escritas a posiciones.json. Permite
+    prevenir el race condition intra-ciclo donde múltiples señales ven el JSON
+    vacío y todas pasan los checks simultáneamente.
     """
-    posiciones = _cargar_posiciones()
+    # Usar cache intra-ciclo si se provee; si no, leer el archivo.
+    # La cache refleja el estado REAL durante el ciclo actual (incluye
+    # posiciones abiertas en iteraciones anteriores del mismo ciclo).
+    posiciones = posiciones_cache if posiciones_cache is not None else _cargar_posiciones()
     if estado is None:
         estado = _cargar_estado()
     ticker     = recomendacion.get("ib_ticker", "")
@@ -412,6 +430,12 @@ def validar_señal(recomendacion, estado=None):
     fuentes_list = recomendacion.get("fuentes", [])
     n_fuentes  = recomendacion.get("n_fuentes", len(fuentes_list))
     sector     = SECTORES.get(ticker, "Otros")
+
+    # 0. Blacklist de activos prohibidos para auto-trading
+    # CL (WTI crude futures) ~$95k/contrato, HG (copper futures) ~$25k/contrato.
+    # Ambos exceden max_usd_por_operacion y generan PnL completamente deformado.
+    if ticker in BLACKLIST_AUTO:
+        return False, f"{ticker} en blacklist auto-trading (nocional masivo — operar manualmente)"
 
     # 1. Convicción mínima
     if conviccion < PARAMS["conviccion_minima"]:
@@ -434,17 +458,20 @@ def validar_señal(recomendacion, estado=None):
     if en_cd:
         return False, f"Cooldown activo en {ticker} — {minutos_restantes} min restantes (espera {COOLDOWN_MINUTOS} min post-cierre)"
 
-    # 5. Máximo posiciones
+    # 5. Máximo posiciones (incluye las abiertas en iteraciones previas del ciclo)
     if len(posiciones) >= PARAMS["max_posiciones"]:
         return False, f"Máximo {PARAMS['max_posiciones']} posiciones alcanzado"
 
-    # 6. Máximo mismo sector
+    # 6. Máximo mismo sector (incluye posiciones abiertas en este ciclo)
     sector_count = sum(1 for t, p in posiciones.items()
                       if SECTORES.get(t, "Otros") == sector)
     if sector_count >= PARAMS["max_mismo_sector"]:
         return False, f"Máximo {PARAMS['max_mismo_sector']} posiciones en sector {sector}"
 
-    # 7. Riesgo total
+    # 7. Riesgo total — calcular sobre posiciones reales (JSON ya escrito por ib_executor)
+    # Nota: posiciones abiertas en este ciclo todavía no tienen SL calculado en JSON,
+    # pero calcular_riesgo_total() solo suma riesgo unitario × cantidad de lo que está
+    # ya en disco. El límite conservador de $30k cubre esta asimetría.
     riesgo_actual = calcular_riesgo_total()
     if riesgo_actual >= PARAMS["max_riesgo_total_usd"]:
         return False, f"Riesgo total USD {riesgo_actual:,.0f} >= límite USD {PARAMS['max_riesgo_total_usd']:,.0f}"
@@ -680,6 +707,13 @@ def ciclo_trading_automatico():
         except Exception as _she:
             logging.warning(f"Source health monitor (no crítico): {_she}")
 
+        # ── CACHE INTRA-CICLO: previene race condition ────────────────────────────
+        # Se inicializa con el estado REAL de IB (ya sincronizado arriba).
+        # Después de cada apertura exitosa se inserta el ticker con un dict mínimo,
+        # de modo que las señales siguientes del mismo ciclo ven el slot ocupado
+        # aunque posiciones.json aún no se haya escrito.
+        _posiciones_ciclo = _cargar_posiciones()
+
         for r in recomendaciones:
             # Check de horario por tipo de activo específico
             tipo_activo = r.get("tipo", "ETF")
@@ -691,7 +725,8 @@ def ciclo_trading_automatico():
                 })
                 continue
 
-            valida, razon = validar_señal(r, estado=estado)
+            # Pasar cache intra-ciclo: incluye posiciones ya abiertas este ciclo
+            valida, razon = validar_señal(r, estado=estado, posiciones_cache=_posiciones_ciclo)
             if valida:
                 # Alerta señal detectada antes de intentar ejecutar
                 try:
@@ -708,6 +743,19 @@ def ciclo_trading_automatico():
                     precio    = orden.get("precio", r.get("precio_actual", 0))
                     monto_usd = round(cantidad * precio, 0)
                     orden_id  = orden.get("orden_id")
+
+                    # ── Actualizar cache intra-ciclo INMEDIATAMENTE ──────────
+                    # Esto impide que el siguiente r en este mismo ciclo vea
+                    # el slot vacío y abra una segunda posición sobre el mismo
+                    # ticker o que exceda max_posiciones.
+                    _posiciones_ciclo[r["ib_ticker"]] = {
+                        "accion":        r["accion"],
+                        "precio_entrada": precio,
+                        "cantidad":      cantidad,
+                        "sl":            r.get("stop_loss"),
+                        "tipo":          r.get("tipo", "ETF"),
+                        "_intra_ciclo":  True,  # marcador de trazabilidad
+                    }
 
                     resultados["aperturas"].append({
                         "ticker":        r["ib_ticker"],
