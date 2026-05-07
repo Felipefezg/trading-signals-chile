@@ -72,6 +72,40 @@ PARAMS = {
 # Para operar estos activos: hacerlo MANUALMENTE desde IB Gateway.
 BLACKLIST_AUTO = {"CL", "HG", "GC"}  # Futuros con nocional masivo — operar via ETF (GLD/SLV/GDX)
 
+# ── GRUPOS DE FUENTES (independencia de señal) ────────────────────────────────
+# Cada grupo mide un fenómeno distinto. Una señal convincente debe tener al menos
+# 2 grupos representados — previene aprobar señales puramente momentum (AT+MTF+
+# Correlaciones son todas precio) sin respaldo de sentimiento o fundamental.
+#
+# Grupo TECNICO:      precio, tendencia, momentum — fuentes correlacionadas entre sí
+# Grupo SENTIMIENTO:  opciones, fear/greed — estado emocional del mercado
+# Grupo FUNDAMENTAL:  flujos reales, macro, institucionales — causas subyacentes
+# Grupo PREDICCION:   mercados de predicción — probabilidades agregadas externas
+# Grupo ALTERNATIVO:  datos alternativos — búsquedas, spreads locales, renta fija
+#
+# Si una fuente no está en ningún grupo, cuenta como OTRO (no suma diversidad).
+GRUPOS_FUENTES = {
+    # Nombres exactos tal como los usa recomendaciones.py en fuentes.append(...)
+    "TECNICO":     {"Análisis Técnico", "MTF", "Correlaciones", "ML", "IB Data", "Volumen"},
+    "SENTIMIENTO": {"IV Opciones", "Put/Call", "Fear&Greed", "VolAlertas"},
+    "FUNDAMENTAL": {"Macro USA", "Noticias", "13F SEC", "Order Flow", "CMF", "Renta Fija"},
+    "PREDICCION":  {"Polymarket", "Kalshi"},
+    "ALTERNATIVO": {"Google Trends", "Mercado Local"},
+}
+
+# Construir mapa inverso fuente→grupo para lookup O(1)
+_FUENTE_A_GRUPO: dict = {}
+for _grupo, _fuentes in GRUPOS_FUENTES.items():
+    for _f in _fuentes:
+        _FUENTE_A_GRUPO[_f] = _grupo
+
+def _grupos_presentes(fuentes: list) -> set:
+    """Retorna el conjunto de grupos representados en la lista de fuentes."""
+    return {_FUENTE_A_GRUPO.get(f, "OTRO") for f in fuentes} - {"OTRO"}
+
+# Mínimo de grupos distintos para ejecutar (2 = técnico + al menos uno externo)
+MIN_GRUPOS_FUENTES = 2
+
 # Sectores por ticker IB — universo completo (51 activos)
 # Fuente: engine/universo.py → campo "sector"
 SECTORES = {
@@ -462,6 +496,18 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     # 3. Fuentes mínimas
     if n_fuentes < PARAMS["fuentes_minimas"]:
         return False, f"Solo {n_fuentes} fuentes < mínimo {PARAMS['fuentes_minimas']}"
+
+    # 3b. Diversidad de grupos de fuentes
+    # Exige al menos MIN_GRUPOS_FUENTES grupos distintos (ej: técnico + sentimiento).
+    # Previene señales puramente momentum donde AT + MTF + Correlaciones cuentan
+    # como 3 fuentes independientes midiendo exactamente lo mismo (precio).
+    grupos = _grupos_presentes(fuentes_list)
+    if len(grupos) < MIN_GRUPOS_FUENTES:
+        grupos_str = ", ".join(sorted(grupos)) if grupos else "ninguno"
+        return False, (
+            f"Diversidad insuficiente: {len(grupos)} grupo(s) [{grupos_str}] "
+            f"< mínimo {MIN_GRUPOS_FUENTES} — señal puramente {grupos_str or 'sin clasificar'}"
+        )
 
     # 4. No duplicar ticker
     if ticker in posiciones:
