@@ -132,18 +132,30 @@ def entrenar_modelo(ticker, periodo="2y", horizonte=5, umbral=0.02):
         from sklearn.model_selection import TimeSeriesSplit
         from sklearn.utils.class_weight import compute_sample_weight
 
-        N_SPLITS    = 5      # folds walk-forward
-        MIN_TRAIN   = 120    # mínimo de muestras de train por fold
-        MIN_TEST    = 30     # mínimo de muestras de test por fold
-        MIN_AUC     = 0.55   # AUC promedio mínimo para aceptar el modelo
-        MAX_AUC_STD = 0.15   # estabilidad mínima entre regímenes
+        N_SPLITS       = 5      # folds walk-forward
+        MIN_TRAIN      = 120    # mínimo de muestras de train por fold
+        MIN_TEST       = 30     # mínimo de muestras de test por fold
+        MIN_AUC        = 0.58   # AUC promedio mínimo — elevado de 0.55 (barely-random)
+        MAX_AUC_STD    = 0.12   # estabilidad más exigente — reducido de 0.15
+        MIN_FOLDS_VALIDOS = 3   # requiere al menos 3 períodos temporales (era 2)
 
         h = yf.Ticker(ticker).history(period=periodo)
         if len(h) < 200:
             return None
 
+        # Target dinámico: umbral ajustado a la volatilidad del activo.
+        # Un umbral fijo 2% es demasiado fácil para BTC (vol diaria ~3%) y
+        # demasiado exigente para acciones de baja volatilidad (COPEC ~0.8%).
+        # Se usa: max(1.5%, min(5%, σ_diaria × √5 × 0.8))
+        # Esto equivale a "requiere que el movimiento sea ≥ 0.8σ en 5 días".
+        if len(h) >= 60:
+            vol_diaria = float(h["Close"].pct_change().dropna().std())
+            umbral_dinamico = round(max(0.015, min(0.05, vol_diaria * (5 ** 0.5) * 0.8)), 4)
+        else:
+            umbral_dinamico = umbral
+
         features_df = calcular_features(h)
-        target      = calcular_target(h["Close"], horizonte, umbral)
+        target      = calcular_target(h["Close"], horizonte, umbral_dinamico)
 
         idx_comun = features_df.index.intersection(target.index)
         X = features_df.loc[idx_comun].values
@@ -189,8 +201,8 @@ def entrenar_modelo(ticker, periodo="2y", horizonte=5, umbral=0.02):
             aucs.append(roc_auc_score(y_te, y_prob))
             accs.append(balanced_accuracy_score(y_te, y_pred))
 
-        if len(aucs) < 2:
-            # Menos de 2 folds válidos — datos insuficientes para evaluar
+        if len(aucs) < MIN_FOLDS_VALIDOS:
+            # Menos de MIN_FOLDS_VALIDOS folds válidos — evidencia insuficiente
             return None
 
         auc_mean = float(np.mean(aucs))
@@ -256,15 +268,17 @@ def predecir_señal_ml(ticker, modelo_info):
         prob_alza = float(pipeline.predict_proba(ultimo)[0, 1])
         prediccion = int(pipeline.predict(ultimo)[0])
 
-        # Convertir a señal
-        if prob_alza >= 0.65:
+        # Umbrales elevados de 0.65/0.35 a 0.67/0.33:
+        # Con MIN_AUC=0.58, una prob de 0.65 en un modelo marginal es señal débil.
+        # Se requiere mayor separación de la probabilidad base (50%).
+        if prob_alza >= 0.67:
             direccion  = "ALZA"
             accion     = "COMPRAR"
-            conviccion = int(50 + prob_alza * 50)
-        elif prob_alza <= 0.35:
+            conviccion = round(50 + prob_alza * 50)
+        elif prob_alza <= 0.33:
             direccion  = "BAJA"
             accion     = "VENDER"
-            conviccion = int(50 + (1 - prob_alza) * 50)
+            conviccion = round(50 + (1 - prob_alza) * 50)
         else:
             direccion  = "NEUTRO"
             accion     = "MANTENER"
@@ -308,7 +322,9 @@ def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_auc_std=0.15, max_activ
     prioridad = ["SQM", "ECH", "COPEC.SN", "BTC-USD", "GC=F", "SPY",
                  "FALABELLA.SN", "BCI.SN", "CHILE.SN", "BSANTANDER.SN",
                  "CMPC.SN", "CENCOSUD.SN", "COLBUN.SN", "ENELCHILE.SN",
-                 "LTM.SN", "CAP.SN", "CCU.SN", "VAPORES.SN", "ANDINA-B.SN", "GLD"]
+                 "LTM.SN", "CAP.SN", "CCU.SN", "VAPORES.SN", "ANDINA-B.SN", "GLD",
+                 # Nuevos commodities — SLV/GDX correlados con GLD, HG con SQM/COPEC
+                 "SLV", "GDX", "HG=F"]
 
     for ticker in prioridad:
         if ticker in UNIVERSO_COMPLETO:
@@ -337,11 +353,23 @@ def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_auc_std=0.15, max_activ
             return None
         n_folds   = modelo.get("n_folds", 1)
         auc_std   = modelo.get("auc_std", 0)
+        auc_val   = modelo.get("auc", 0.55)
+
+        # Score ajustado por calidad del modelo:
+        # - base_score depende de la probabilidad de predicción
+        # - auc_factor escala el score según cuánto supera el modelo la línea base
+        #   AUC=0.58 → factor≈0.4; AUC=0.65 → factor≈0.75; AUC=0.72+ → factor=1.0
+        # Esto evita que modelos marginales (AUC≈0.58) contribuyan igual que
+        # modelos bien calibrados (AUC≈0.70).
+        base_score = max(1, round((pred["conviccion"] - 50) / 10))
+        auc_factor = min(1.0, max(0.3, (auc_val - 0.50) / 0.22))
+        score_ajustado = max(1, round(base_score * auc_factor))
+
         return {
             "activo":        yf_ticker,
             "activo_motor":  yf_ticker,
             "fuente":        "ML",
-            "score":         max(1, int((pred["conviccion"] - 50) / 10)),
+            "score":         score_ajustado,
             "direccion":     pred["direccion"],
             "prob_alza":     pred["prob_alza"],
             "conviccion_ml": pred["conviccion"],

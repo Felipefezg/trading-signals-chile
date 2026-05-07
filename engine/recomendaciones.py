@@ -723,7 +723,15 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
 
     # ── CORRELACIONES (divergencias entre pares relacionados) ─────────────────
     # Estructura: lista de {"activo": "ECH", "score": 4, "direccion": "ALZA", "descripcion": "..."}
+    #
+    # FIX: Un activo puede aparecer en N pares simultáneamente (ej. SQM en pares
+    # vs ECH, vs GLD, vs cobre). Sumar todos los pares infla el peso con señales
+    # que NO son independientes — todas miden la misma divergencia de correlación.
+    # Solución: conservar solo el par de mayor score por ticker (best-of-N).
+    # Multiplier bajado a 0.3 (era 0.4) — equiparado con Google Trends y Put/Call,
+    # señales de validación de momentum relativo, no de momentum directo.
     _corr_list = correlaciones if isinstance(correlaciones, list) else (correlaciones or {}).get("pares", [])
+    _corr_best: dict = {}  # ticker → {"score": int, "dir": str, "desc": str}
     for par in _corr_list:
         score_corr = par.get("score", 0)
         if score_corr < 2:
@@ -732,15 +740,24 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         dir_corr = par.get("direccion", "").upper()
         if not ticker1 or dir_corr not in ("ALZA", "BAJA"):
             continue
+        prev = _corr_best.get(ticker1)
+        if prev is None or score_corr > prev["score"]:
+            _corr_best[ticker1] = {
+                "score": score_corr,
+                "dir":   dir_corr,
+                "desc":  par.get("descripcion", ""),
+            }
+
+    for ticker1, best in _corr_best.items():
         if ticker1 not in activos:
             activos[ticker1] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-        peso_corr = score_corr * 0.4
-        activos[ticker1][dir_corr.lower()] += peso_corr
+        peso_corr = best["score"] * 0.3   # reducido de 0.4 — señal de momentum relativo
+        activos[ticker1][best["dir"].lower()] += peso_corr
         activos[ticker1]["fuentes"].append("Correlaciones")
         activos[ticker1]["evidencia"].append({
             "fuente": "Correlaciones",
-            "señal":  par.get("descripcion", "")[:80],
-            "prob":   None, "direccion": dir_corr, "peso": round(peso_corr, 2),
+            "señal":  best["desc"][:80],
+            "prob":   None, "direccion": best["dir"], "peso": round(peso_corr, 2),
         })
 
     # ── IV OPCIONES (implied volatility + posicionamiento calls/puts) ─────────
@@ -773,7 +790,10 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             continue
         if activo_ml_key not in activos:
             activos[activo_ml_key] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-        peso_ml_sig = score_ml * 0.7
+        # Peso reducido de 0.7 → 0.55: el modelo ML usa solo datos técnicos
+        # (mismo input que AT/MTF), con riesgo de overfitting en períodos cortos.
+        # El score ya viene ajustado por AUC desde ml_signals.py.
+        peso_ml_sig = score_ml * 0.55
         activos[activo_ml_key][dir_ml.lower()] += peso_ml_sig
         activos[activo_ml_key]["fuentes"].append("ML")
         activos[activo_ml_key]["evidencia"].append({

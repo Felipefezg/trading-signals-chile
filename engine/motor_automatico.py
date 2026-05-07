@@ -666,6 +666,18 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     if bloqueado:
         return False, razon_ventana
 
+    # 11. Filtro earnings — evitar entrar con anuncio de resultados en T-1 o T
+    # Riesgo: gap overnight que salta el stop-loss; IV crush que invalida la señal.
+    # Fail-open: si yfinance no responde o no hay datos, NO se bloquea la señal.
+    # Solo aplica a acciones individuales (ADRs y Acción Chile) — no a ETFs ni Crypto.
+    try:
+        from engine.earnings_filter import tiene_earnings_proximos
+        bloq_earn, razon_earn = tiene_earnings_proximos(ticker, tipo_activo)
+        if bloq_earn:
+            return False, razon_earn
+    except Exception:
+        pass  # fallo silencioso — no penalizar por indisponibilidad de datos
+
     return True, "OK"
 
 # ── EJECUTAR SEÑAL AUTOMÁTICA ─────────────────────────────────────────────────
