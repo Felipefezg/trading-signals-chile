@@ -43,17 +43,22 @@ logging.basicConfig(
 
 # ── PARÁMETROS (ajustables) ───────────────────────────────────────────────────
 PARAMS = {
-    "max_posiciones":        8,
-    "max_usd_por_operacion": 15_000,
-    "max_riesgo_total_usd":  30_000,
+    # ── Sizing (fase de validación — conservador) ─────────────────────────────
+    "max_posiciones":        5,        # Reducido 8→5: exposición máxima $40k (40% capital)
+    "max_usd_por_operacion": 8_000,    # Reducido 15k→8k: 1 posición = 8% capital
+    "max_riesgo_total_usd":  20_000,   # Reducido 30k→20k: riesgo simultáneo máx 20%
     "capital_total":         100_000,
-    "conviccion_minima":     78,   # Subido de 75 → 78 para reducir señales espurias
+    # ── Filtros de calidad ────────────────────────────────────────────────────
+    "conviccion_minima":     78,       # Subido 75→78 (sesión anterior)
     "riesgo_maximo":         7,
-    "fuentes_minimas":       3,    # Subido de 2 → 3 (mínimo diversidad de fuentes)
-    "max_drawdown_pct":      10.0,
-    "pausa_pnl_dia_pct":    -3.0,
+    "fuentes_minimas":       3,        # Subido 2→3 (sesión anterior)
+    # ── Protección de capital ─────────────────────────────────────────────────
+    "max_drawdown_pct":      8.0,      # Reducido 10→8%: pausa más temprana
+    "pausa_pnl_dia_pct":    -2.0,      # Reducido -3→-2%: cortar el día antes
     "pausa_consecutivos":    3,
+    # ── Diversificación ───────────────────────────────────────────────────────
     "max_mismo_sector":      2,
+    # ── Horario NYSE (ajustar para Santiago si es necesario) ──────────────────
     "horario_inicio":        "09:30",
     "horario_fin":           "15:45",
     "timezone":              "America/New_York",
@@ -65,7 +70,7 @@ PARAMS = {
 # HG (copper futures):    ~$25.000 USD/contrato (25.000 lbs × ~$1.00/lb)
 # Ambos exceden max_usd_por_operacion y producen PnL completamente deformado.
 # Para operar estos activos: hacerlo MANUALMENTE desde IB Gateway.
-BLACKLIST_AUTO = {"CL", "HG"}
+BLACKLIST_AUTO = {"CL", "HG", "GC"}  # Futuros con nocional masivo — operar via ETF (GLD/SLV/GDX)
 
 # Sectores por ticker IB — universo completo (51 activos)
 # Fuente: engine/universo.py → campo "sector"
@@ -431,11 +436,20 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     n_fuentes  = recomendacion.get("n_fuentes", len(fuentes_list))
     sector     = SECTORES.get(ticker, "Otros")
 
-    # 0. Blacklist de activos prohibidos para auto-trading
+    # 0a. Blacklist explícita — futuros con nocional masivo
     # CL (WTI crude futures) ~$95k/contrato, HG (copper futures) ~$25k/contrato.
-    # Ambos exceden max_usd_por_operacion y generan PnL completamente deformado.
     if ticker in BLACKLIST_AUTO:
         return False, f"{ticker} en blacklist auto-trading (nocional masivo — operar manualmente)"
+
+    # 0b. Universo ejecutable — filtro de liquidez IB
+    # Acciones .SN chilenas de bajo peso IPSA tienen spread 1–3% en IB y fills
+    # muy lentos. Solo activos con liquidez verificada pueden ejecutarse.
+    try:
+        from engine.universo import is_ejecutable
+        if not is_ejecutable(ticker):
+            return False, f"{ticker} fuera del universo ejecutable (liquidez insuficiente en IB)"
+    except Exception:
+        pass  # Si falla el import, no bloquear — continuar con otras validaciones
 
     # 1. Convicción mínima
     if conviccion < PARAMS["conviccion_minima"]:

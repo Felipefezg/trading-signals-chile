@@ -134,6 +134,52 @@ def get_tickers_ipsa_peso(min_peso=2.0):
     """IPSA filtrado por peso mínimo"""
     return {k: v for k, v in IPSA_30.items() if v.get("peso_ipsa", 0) >= min_peso}
 
+# ── UNIVERSO EJECUTABLE EN IB ─────────────────────────────────────────────────
+# Subconjunto de UNIVERSO_COMPLETO aptos para ejecución AUTOMÁTICA en IB.
+# Criterios de inclusión:
+#   1. Liquidez verificada en IB (spread bajo, fill rápido)
+#   2. Precio por acción manejable (no futuros con nocional masivo)
+#   3. Precio en USD o ADR cotizando en NYSE (no acciones locales .SN illíquidas)
+#
+# NOTA: CL y HG están en BLACKLIST_AUTO en motor_automatico.py — también quedan
+#       excluidos aquí como segunda capa de seguridad.
+#
+# Acciones chilenas .SN: la bolsa de Santiago tiene liquidez muy reducida en IB.
+# El spread bid/ask puede ser del 1–3%, y muchas órdenes no se llenan en horas.
+# Se mantienen en el universo de ANÁLISIS (señales, AT, correlaciones) pero NO
+# en el universo de ejecución automática.
+
+# IPSA de alta liquidez en IB (solo los más líquidos, peso IPSA >= 4%)
+IPSA_EJECUTABLE = {k: v for k, v in IPSA_30.items() if v.get("peso_ipsa", 0) >= 4.0}
+
+# ETFs y ADRs tienen liquidez en NYSE — todos ejecutables
+# Futuros de commodities: TODOS excluidos del universo ejecutable automático.
+#   GC=F (Gold): 100 oz × ~$3.300 = ~$330.000 USD/contrato → nocional masivo
+#   CL=F (WTI):  1.000 bbl × ~$95  = ~$95.000  USD/contrato → nocional masivo
+#   HG=F (Cobre): 25.000 lbs × ~$1  = ~$25.000  USD/contrato → nocional masivo
+# Exposición a commodities se canaliza vía ETFs: GLD (oro), SLV (plata), GDX (miners)
+COMMODITIES_EJECUTABLES = {}  # Sin futuros en ejecución automática
+
+UNIVERSO_EJECUTABLE = {
+    **IPSA_EJECUTABLE,
+    **ADRS_CHILE,
+    **ETFS,
+    **COMMODITIES_EJECUTABLES,
+    **CRYPTO,
+}
+
+def get_tickers_ejecutables():
+    """
+    Activos con liquidez suficiente para ejecución automática en IB.
+    Usar en motor_automatico.py para filtrar señales antes de ejecutar.
+    El universo de análisis (51 activos) no cambia — solo la ejecución.
+    """
+    return UNIVERSO_EJECUTABLE
+
+def is_ejecutable(ib_ticker):
+    """Retorna True si el ticker IB puede ejecutarse automáticamente."""
+    return ib_ticker in {v["ib"] for v in UNIVERSO_EJECUTABLE.values()}
+
 if __name__ == "__main__":
     print(f"=== UNIVERSO MAESTRO ===")
     print(f"IPSA 30:      {len(IPSA_30)} acciones")
