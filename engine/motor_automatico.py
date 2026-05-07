@@ -41,27 +41,29 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 
-# ── PARÁMETROS (ajustables) ───────────────────────────────────────────────────
+# ── PARÁMETROS (todos en porcentaje del capital — agnósticos al monto) ────────
+# Capital real se lee desde IB en runtime via get_capital_ib().
+# Ningún límite está expresado en USD — escalan automáticamente con la cuenta.
 PARAMS = {
-    # ── Sizing (fase de validación — conservador) ─────────────────────────────
-    "max_posiciones":        5,        # Reducido 8→5: exposición máxima $40k (40% capital)
-    "max_usd_por_operacion": 8_000,    # Reducido 15k→8k: 1 posición = 8% capital
-    "max_riesgo_total_usd":  20_000,   # Reducido 30k→20k: riesgo simultáneo máx 20%
-    "capital_total":         100_000,
+    # ── Sizing — % del capital real de IB ────────────────────────────────────
+    "max_posiciones":           5,     # Posiciones simultáneas máximas
+    "max_pct_por_operacion":    8.0,   # % capital máx por operación (8% de $100k = $8k)
+    "max_pct_riesgo_total":    20.0,   # % capital máx en riesgo simultáneo
+    "min_pct_por_operacion":    2.0,   # % capital mínimo (floor para señales sin Kelly)
     # ── Filtros de calidad ────────────────────────────────────────────────────
-    "conviccion_minima":     78,       # Subido 75→78 (sesión anterior)
-    "riesgo_maximo":         7,
-    "fuentes_minimas":       3,        # Subido 2→3 (sesión anterior)
+    "conviccion_minima":       78,
+    "riesgo_maximo":            7,
+    "fuentes_minimas":          3,
     # ── Protección de capital ─────────────────────────────────────────────────
-    "max_drawdown_pct":      8.0,      # Reducido 10→8%: pausa más temprana
-    "pausa_pnl_dia_pct":    -2.0,      # Reducido -3→-2%: cortar el día antes
-    "pausa_consecutivos":    3,
+    "max_drawdown_pct":         8.0,   # Pausa si drawdown desde máximo >= 8%
+    "pausa_pnl_dia_pct":       -2.0,   # Pausa si PnL día <= -2%
+    "pausa_consecutivos":       3,     # Pausa tras N trades consecutivos perdedores
     # ── Diversificación ───────────────────────────────────────────────────────
-    "max_mismo_sector":      2,
-    # ── Horario NYSE (ajustar para Santiago si es necesario) ──────────────────
-    "horario_inicio":        "09:30",
-    "horario_fin":           "15:45",
-    "timezone":              "America/New_York",
+    "max_mismo_sector":         2,
+    # ── Horario ───────────────────────────────────────────────────────────────
+    "horario_inicio":           "09:30",
+    "horario_fin":              "15:45",
+    "timezone":                 "America/New_York",
 }
 
 # ── BLACKLIST AUTO-TRADING ────────────────────────────────────────────────────
@@ -165,6 +167,51 @@ SECTORES = {
     "BTC":        "Crypto",
     "ETH":        "Crypto",
 }
+
+# ── CAPITAL REAL DESDE IB ─────────────────────────────────────────────────────
+# Archivo de caché donde ib_executor.py escribe el capital actualizado tras
+# cada sync. Motor lo lee para que todos los límites escalen con el capital real.
+_CAPITAL_CACHE_FILE = os.path.join(BASE_DIR, "data", "capital_ib.json")
+_CAPITAL_FALLBACK   = 100_000.0   # Usado solo si IB no está conectado
+
+def get_capital_ib() -> float:
+    """
+    Retorna el capital real de la cuenta IB (net liquidation en USD).
+
+    Jerarquía:
+      1. data/capital_ib.json — escrito por ib_executor tras cada sync
+      2. estado_automatico.json campo "capital_ib" — fallback si el cache falta
+      3. _CAPITAL_FALLBACK ($100k) — último recurso, registra advertencia
+
+    Esta función es la ÚNICA fuente de capital para todos los cálculos del motor.
+    Nunca usar un valor hardcodeado en ninguna otra parte del código.
+    """
+    # 1. Cache dedicado (más fresco — escrito por ib_executor)
+    try:
+        if os.path.exists(_CAPITAL_CACHE_FILE):
+            with open(_CAPITAL_CACHE_FILE) as f:
+                data = json.load(f)
+            capital = float(data.get("net_liquidation", 0))
+            if capital > 0:
+                return capital
+    except Exception:
+        pass
+
+    # 2. Fallback: estado_automatico.json
+    try:
+        estado = _cargar_estado()
+        capital = float(estado.get("capital_ib", 0))
+        if capital > 0:
+            return capital
+    except Exception:
+        pass
+
+    # 3. Último recurso — advertir en log
+    logging.warning(
+        f"get_capital_ib: no se pudo leer capital desde IB — usando fallback "
+        f"${_CAPITAL_FALLBACK:,.0f}. Verificar conexión IB Gateway."
+    )
+    return _CAPITAL_FALLBACK
 
 # ── ESTADO DEL MOTOR ──────────────────────────────────────────────────────────
 COOLDOWN_MINUTOS = 60  # Tiempo mínimo entre cierre y reapertura del mismo ticker
@@ -346,6 +393,55 @@ def es_horario_mercado_legacy():
 
     return True, "Mercado abierto"
 
+
+def _en_ventana_bloqueada(tipo_activo=None):
+    """
+    Detecta ventanas de baja calidad de ejecución para nuevas APERTURAS.
+    Los cierres/SL/TP NO pasan por este filtro.
+
+    Ventanas bloqueadas:
+      - 9:30–10:00 ET  : apertura NYSE — spreads amplios, market-makers ajustando,
+                         fills impredecibles. Esperar a que se estabilice el libro.
+      - 15:30–15:45 ET : pre-cierre NYSE — rebalanceos institucionales, MOC/LOC
+                         distorsionan el precio. Nueva posición quedaría expuesta
+                         al gap de apertura del día siguiente.
+
+    Para Bolsa Santiago (Acción Chile) se aplican ventanas equivalentes en hora local:
+      - 9:30–10:00 hora Chile  : apertura Bolsa Santiago
+      - 17:15–17:30 hora Chile : pre-cierre Bolsa Santiago
+
+    Retorna: (bloqueado: bool, razon: str)
+    """
+    import pytz
+    from datetime import time as dtime
+
+    # Crypto opera 24/7 y sus spreads no presentan este patrón intraday
+    if tipo_activo == "Crypto":
+        return False, ""
+
+    tz_et  = pytz.timezone("America/New_York")
+    hora_et = datetime.now(tz_et).time()
+
+    # Apertura NYSE: primeros 30 min
+    if dtime(9, 30) <= hora_et < dtime(10, 0):
+        return True, "Ventana bloqueada — apertura NYSE (9:30–10:00 ET), spreads amplios"
+
+    # Pre-cierre NYSE: últimos 15 min de sesión regular
+    if dtime(15, 30) <= hora_et <= dtime(15, 45):
+        return True, "Ventana bloqueada — pre-cierre NYSE (15:30–15:45 ET), rebalanceos institucionales"
+
+    # Bolsa Santiago — ventanas en hora Chile
+    if tipo_activo == "Acción Chile":
+        tz_cl   = pytz.timezone("America/Santiago")
+        hora_cl = datetime.now(tz_cl).time()
+        if dtime(9, 30) <= hora_cl < dtime(10, 0):
+            return True, "Ventana bloqueada — apertura Bolsa Santiago (9:30–10:00 hora Chile)"
+        if dtime(17, 15) <= hora_cl <= dtime(17, 30):
+            return True, "Ventana bloqueada — pre-cierre Bolsa Santiago (17:15–17:30 hora Chile)"
+
+    return False, ""
+
+
 # ── VALIDACIONES DE PORTAFOLIO ────────────────────────────────────────────────
 def _cargar_posiciones():
     try:
@@ -400,11 +496,12 @@ def calcular_pnl_dia():
 
 def calcular_riesgo_total():
     """
-    Calcula riesgo total en posiciones abiertas (basado en SL) en USD.
-    Acciones Chile tienen precios en CLP — normaliza antes de sumar.
+    Calcula riesgo total en posiciones abiertas como % del capital IB real.
+    (entrada - SL) × cantidad para cada posición, normalizado a USD y expresado
+    como porcentaje del capital actual de la cuenta.
     """
     posiciones = _cargar_posiciones()
-    riesgo = 0
+    riesgo_usd = 0.0
     for ticker, p in posiciones.items():
         entrada  = p.get("precio_entrada", 0)
         sl       = p.get("sl", entrada)
@@ -427,14 +524,17 @@ def calcular_riesgo_total():
                     riesgo_pos = riesgo_pos / tasa
             except Exception:
                 pass
-        riesgo += riesgo_pos
-    return riesgo
+        riesgo_usd += riesgo_pos
+    # Expresar como % del capital real
+    capital = get_capital_ib()
+    if capital <= 0:
+        return 0.0
+    return round(riesgo_usd / capital * 100, 2)
 
 def calcular_drawdown_total():
     """
-    Calcula drawdown total desde el capital inicial en USD.
+    Calcula drawdown total desde máximo histórico como % del capital IB real.
     Solo trades confirmados por IB.
-    Normaliza acciones Chile (CLP) a USD.
     """
     trades = _cargar_trades()
     pnl    = sum(
@@ -443,8 +543,11 @@ def calcular_drawdown_total():
         if t.get("confirmado_ib", True) is not False
     )
     if pnl >= 0:
-        return 0
-    return abs(pnl) / PARAMS["capital_total"] * 100
+        return 0.0
+    capital = get_capital_ib()
+    if capital <= 0:
+        return 0.0
+    return round(abs(pnl) / capital * 100, 2)
 
 # ── VALIDAR SEÑAL ─────────────────────────────────────────────────────────────
 def validar_señal(recomendacion, estado=None, posiciones_cache=None):
@@ -528,13 +631,13 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     if sector_count >= PARAMS["max_mismo_sector"]:
         return False, f"Máximo {PARAMS['max_mismo_sector']} posiciones en sector {sector}"
 
-    # 7. Riesgo total — calcular sobre posiciones reales (JSON ya escrito por ib_executor)
-    # Nota: posiciones abiertas en este ciclo todavía no tienen SL calculado en JSON,
-    # pero calcular_riesgo_total() solo suma riesgo unitario × cantidad de lo que está
-    # ya en disco. El límite conservador de $30k cubre esta asimetría.
-    riesgo_actual = calcular_riesgo_total()
-    if riesgo_actual >= PARAMS["max_riesgo_total_usd"]:
-        return False, f"Riesgo total USD {riesgo_actual:,.0f} >= límite USD {PARAMS['max_riesgo_total_usd']:,.0f}"
+    # 7. Riesgo total — expresado en % del capital IB real
+    riesgo_actual_pct = calcular_riesgo_total()  # retorna %
+    if riesgo_actual_pct >= PARAMS["max_pct_riesgo_total"]:
+        return False, (
+            f"Riesgo total {riesgo_actual_pct:.1f}% del capital "
+            f">= límite {PARAMS['max_pct_riesgo_total']:.0f}%"
+        )
 
     # 8. SL obligatorio
     if not recomendacion.get("stop_loss"):
@@ -554,6 +657,14 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
             pass
     if not recomendacion.get("precio_actual"):
         return False, "Precio actual no disponible"
+
+    # 10. Ventana horaria de calidad de ejecución
+    # Bloquea NUEVAS APERTURAS en open (9:30–10:00 ET) y pre-cierre (15:30–15:45 ET).
+    # Los cierres SL/TP son gestionados por cierre_automatico.py y no pasan por aquí.
+    tipo_activo = recomendacion.get("tipo", "ETF")
+    bloqueado, razon_ventana = _en_ventana_bloqueada(tipo_activo)
+    if bloqueado:
+        return False, razon_ventana
 
     return True, "OK"
 
@@ -598,7 +709,7 @@ def ciclo_trading_automatico():
 
     # ── VERIFICAR CONDICIONES DE PAUSA
     pnl_dia = calcular_pnl_dia()
-    pnl_dia_pct = (pnl_dia / PARAMS["capital_total"]) * 100
+    pnl_dia_pct = (pnl_dia / get_capital_ib()) * 100
     if pnl_dia_pct <= PARAMS["pausa_pnl_dia_pct"]:
         razon = f"PnL del día {pnl_dia_pct:.2f}% < límite {PARAMS['pausa_pnl_dia_pct']}%"
         pausar_motor(razon)
@@ -910,10 +1021,11 @@ def get_resumen_motor():
         "msg_horario":         msg_horario,
         "posiciones_abiertas": len(posiciones),
         "max_posiciones":      PARAMS["max_posiciones"],
-        "riesgo_total_usd":    round(riesgo, 0),
-        "max_riesgo_usd":      PARAMS["max_riesgo_total_usd"],
+        "capital_ib":          round(get_capital_ib(), 0),
+        "riesgo_total_pct":    round(riesgo, 2),       # % del capital IB
+        "max_riesgo_pct":      PARAMS["max_pct_riesgo_total"],
         "pnl_dia":             round(pnl_dia, 2),
-        "pnl_dia_pct":         round((pnl_dia / PARAMS["capital_total"]) * 100, 2),
+        "pnl_dia_pct":         round((pnl_dia / get_capital_ib()) * 100, 2),
         "drawdown_pct":        round(drawdown, 2),
         "consecutivos_perdedor": estado.get("consecutivos_perdedor", 0),
         "ordenes_hoy":         estado.get("ordenes_hoy", 0),

@@ -91,12 +91,18 @@ KELLY_STATS: dict[str, dict] = {
     "GDX":       {"win_rate": 0.50, "rr": 2.00, "n_trades": 0},   # Gold Miners ETF — sin historial → fallback $7.5k
 }
 
-# ── PARÁMETROS DE SIZING ─────────────────────────────────────────────────────
+# ── PARÁMETROS DE SIZING (en % del capital — agnósticos al monto) ────────────
 KELLY_FRACTION    = 0.5    # Half-Kelly — estándar conservador para live trading
 MIN_TRADES_STATS  = 3      # Mínimo de trades para confiar en stats propios
-MIN_USD_POSICION  = 2_000  # Floor mínimo — cualquier señal que pase filtros merece al menos esto
-MAX_USD_POSICION  = 15_000 # Cap máximo (coincide con PARAMS["max_usd_por_operacion"])
+MIN_PCT_POSICION  = 2.0    # Floor mínimo: 2% del capital (era $2k fijo en $100k)
+MAX_PCT_POSICION  = 8.0    # Cap máximo:   8% del capital (era $15k fijo en $100k)
 KELLY_MIN_EDGE    = 0.02   # Kelly < 2% → no hay edge suficiente, usar floor
+
+# Compatibilidad hacia atrás — calcular USD desde capital real si algún módulo
+# antiguo los referencia directamente. Se eliminarán en la próxima limpieza.
+# NO usar en código nuevo — usar MIN_PCT_POSICION / MAX_PCT_POSICION.
+def _min_usd(capital: float) -> float: return capital * MIN_PCT_POSICION / 100
+def _max_usd(capital: float) -> float: return capital * MAX_PCT_POSICION / 100
 
 
 def calcular_kelly(ib_ticker: str) -> float:
@@ -141,38 +147,45 @@ def calcular_kelly(ib_ticker: str) -> float:
 
 def calcular_kelly_usd(
     ib_ticker:  str,
-    capital:    float = 100_000,
-    max_usd:    float = MAX_USD_POSICION,
+    capital:    float = None,
+    max_pct:    float = MAX_PCT_POSICION,
+    min_pct:    float = MIN_PCT_POSICION,
     conviccion: float = 75,
 ) -> float:
     """
-    Retorna el monto en USD óptimo para una posición en un activo dado.
+    Retorna el monto en USD óptimo para una posición dado el capital REAL de IB.
 
     Parámetros:
         ib_ticker:  IB ticker del activo (ej. "VAPORES", "BTC", "SQM")
-        capital:    Capital total de la cuenta en USD
-        max_usd:    Límite máximo por operación
-        conviccion: Convicción del motor (0-100) — se usa como multiplicador
-                    de ajuste fino sobre el Kelly base: activos con Kelly bajo
-                    se escalan más con convicción que activos con Kelly alto.
+        capital:    Capital real de IB en USD. Si None, se lee desde get_capital_ib().
+        max_pct:    % máximo del capital por operación (default: MAX_PCT_POSICION=8%)
+        min_pct:    % mínimo del capital por operación (default: MIN_PCT_POSICION=2%)
+        conviccion: Convicción del motor (0-100) — ajuste fino sobre Kelly base.
 
-    Retorna: float — USD a invertir en la posición
+    Retorna: float — USD a invertir en la posición, escalado al capital real.
     """
+    # Capital real desde IB si no se pasa explícitamente
+    if capital is None or capital <= 0:
+        from engine.motor_automatico import get_capital_ib
+        capital = get_capital_ib()
+
+    min_usd = capital * min_pct / 100
+    max_usd = capital * max_pct / 100
+
     kelly_frac = calcular_kelly(ib_ticker)
 
     if kelly_frac == 0.0:
-        # Kelly negativo o sin edge → mínimo absoluto (señal pasó filtros pero no tiene historial)
-        return float(MIN_USD_POSICION)
+        # Kelly negativo o sin edge → mínimo absoluto
+        return round(min_usd, 0)
 
-    # Ajuste por convicción: amplifica linealmente entre 0.8x (conv=75%) y 1.2x (conv=95%)
-    # Esto evita que convicción alta sobreestime un activo con Kelly bajo
+    # Ajuste por convicción: amplifica entre 0.8x (conv=75%) y 1.2x (conv=95%)
     conv_factor = 0.8 + (conviccion - 75) / 100.0
     conv_factor = max(0.7, min(1.3, conv_factor))
 
     usd_kelly = capital * kelly_frac * conv_factor
 
-    # Aplicar floor y cap
-    usd_final = max(MIN_USD_POSICION, min(usd_kelly, max_usd))
+    # Aplicar floor y cap sobre capital real
+    usd_final = max(min_usd, min(usd_kelly, max_usd))
 
     return round(usd_final, 0)
 

@@ -376,37 +376,51 @@ def _get_usd_clp():
     return rate
 
 
-def calcular_cantidad(precio, tipo, conviccion=75, capital=100_000,
-                      max_usd=15_000, sl=None, ib_ticker=None):
+def calcular_cantidad(precio, tipo, conviccion=75, capital=None,
+                      max_usd=None, sl=None, ib_ticker=None):
     """
     Calcula cantidad usando Kelly sizing dinámico por activo.
 
-    Si el activo tiene stats de backtest (kelly_sizing.py), usa Half-Kelly
-    calibrado con su win_rate y R/R histórico.
-    Si no tiene stats suficientes, usa fallback basado en convicción.
+    El capital se lee desde IB en runtime (get_capital_ib()) si no se pasa.
+    Todos los límites son porcentuales — no hay montos USD hardcodeados.
 
     - Acciones Chile: precio en CLP → convierte a USD antes de dividir.
     - Futuros: máximo 1 contrato (nocional enorme — CL=1000 bbl, GC=100 oz).
-    - Crypto: sizing fraccional, Kelly aplica directo.
-    - Todo lo demás: tamaño basado en USD calculado por Kelly.
+    - Crypto: sizing reducido (30% del sizing base), fraccional.
+    - Todo lo demás: tamaño basado en USD calculado por Kelly sobre capital real.
     """
     if not precio or precio <= 0:
         return 0
+
+    # Capital real desde IB — nunca hardcodeado
+    if capital is None or capital <= 0:
+        from engine.motor_automatico import get_capital_ib
+        capital = get_capital_ib()
+
+    # Límite por operación desde PARAMS porcentuales
+    from engine.motor_automatico import PARAMS as _PARAMS
+    max_pct = _PARAMS.get("max_pct_por_operacion", 8.0)
+    min_pct = _PARAMS.get("min_pct_por_operacion", 2.0)
+    # max_usd como parámetro legacy — ignorar si se pasa (ya no aplica)
+    max_usd_real = capital * max_pct / 100
+    min_usd_real = capital * min_pct / 100
 
     # ── Sizing basado en Kelly dinámico por activo ────────────────────────────
     try:
         from engine.kelly_sizing import calcular_kelly_usd
         if ib_ticker:
-            usd_op = calcular_kelly_usd(ib_ticker, capital=capital,
-                                        max_usd=max_usd, conviccion=conviccion)
+            usd_op = calcular_kelly_usd(
+                ib_ticker, capital=capital,
+                max_pct=max_pct, min_pct=min_pct,
+                conviccion=conviccion,
+            )
         else:
-            # Sin ticker conocido: fallback convicción (comportamiento anterior)
-            pct_capital = min(0.15, (conviccion - 50) / 100 * 0.3)
-            usd_op = min(capital * pct_capital, max_usd)
+            # Sin ticker: fallback basado en convicción sobre capital real
+            pct_capital = min(max_pct / 100, (conviccion - 50) / 100 * 0.3)
+            usd_op = max(min_usd_real, min(capital * pct_capital, max_usd_real))
     except Exception:
-        # Si kelly_sizing falla por cualquier razón, no bloquear ejecución
-        pct_capital = min(0.15, (conviccion - 50) / 100 * 0.3)
-        usd_op = min(capital * pct_capital, max_usd)
+        pct_capital = min(max_pct / 100, (conviccion - 50) / 100 * 0.3)
+        usd_op = max(min_usd_real, min(capital * pct_capital, max_usd_real))
 
     # ── Futuros: máximo 1 contrato para controlar exposición nocional ──────────
     # CL (WTI) = 1000 barriles × ~$62 = $62k/contrato
@@ -553,7 +567,9 @@ def ejecutar_orden(señal, modo_test=False):
         orden.transmit      = True
         orden.eTradeOnly    = False
         orden.firmQuoteOnly = False
-        orden.tif           = "GTC"
+        # DAY para acciones/ETFs (evita ejecución de orden stale al día siguiente)
+        # GTC solo para Crypto (mercado 24/7, orden válida hasta cancelación manual)
+        orden.tif           = "GTC" if tipo == "Crypto" else "DAY"
 
         orden_id = client._next_id()
         client.placeOrder(orden_id, contrato, orden)
@@ -735,6 +751,30 @@ def sincronizar_desde_ib():
         with open(POSICIONES_FILE, "w") as f:
             json.dump(pos_nueva, f, indent=2)
 
+        # ── Persistir capital real para get_capital_ib() ─────────────────────
+        # Solicitar NetLiquidation al broker y guardar en data/capital_ib.json.
+        # Esto permite que motor_automatico.py lea el capital sin conectar a IB.
+        try:
+            client._done_acct.clear()
+            client.reqAccountSummary(
+                9001, "All",
+                "NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL"
+            )
+            client._done_acct.wait(timeout=5)
+            if client._capital and client._capital > 0:
+                import os as _os
+                _cap_dir  = _os.path.join(_os.path.dirname(POSICIONES_FILE), "data")
+                _os.makedirs(_cap_dir, exist_ok=True)
+                _cap_file = _os.path.join(_cap_dir, "capital_ib.json")
+                with open(_cap_file, "w") as _f:
+                    import datetime as _dt
+                    json.dump({
+                        "net_liquidation": round(client._capital, 2),
+                        "updated":         _dt.datetime.now().isoformat(),
+                    }, _f, indent=2)
+        except Exception as _ce:
+            pass  # No crítico — get_capital_ib() tiene fallback
+
         return pos_nueva
 
     except Exception as e:
@@ -790,7 +830,8 @@ def cerrar_posicion_ib(ib_ticker, tipo, cantidad, accion_original):
         orden.transmit      = True
         orden.eTradeOnly    = False
         orden.firmQuoteOnly = False
-        orden.tif           = "GTC"
+        # Cierre: mismo criterio TIF que apertura
+        orden.tif           = "GTC" if tipo == "Crypto" else "DAY"
 
         orden_id = client._next_id()
         client.placeOrder(orden_id, contrato, orden)
