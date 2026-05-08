@@ -90,6 +90,107 @@ RIESGO_BASE = {
     "Índice":          5,
 }
 
+# ── FUENTES APLICABLES POR TIPO DE ACTIVO ─────────────────────────────────────
+# Previene phantom confirmations: CMF no confirma SPY, 13F no confirma COPEC.SN,
+# IV Opciones no confirma acciones sin opciones líquidas, etc.
+# Fuentes fuera del set para un tipo son excluidas del cálculo de convicción.
+FUENTES_APLICABLES: dict = {
+    "Acción Chile": {
+        # Técnico y precio (Bolsa Santiago)
+        "Análisis Técnico", "MTF", "Mercado Local", "Volumen",
+        # Regulatorio chileno
+        "CMF",
+        # Macro e indirecto (Chile es precio-aceptante, no excluir)
+        "Macro USA", "Fear&Greed", "Noticias",
+        # Tasas (Chile sigue curva global via BCCh)
+        "Renta Fija",
+        # Cross-asset (CLP y cobre correlacionados con IPSA)
+        "Correlaciones",
+        # Cuantitativo entrenado sobre estos activos
+        "ML",
+        # Sentimiento macro indirecto
+        "Polymarket", "Kalshi",
+        # NO: 13F SEC, IV Opciones, Order Flow, Put/Call, IB Data, Momentum
+        # (no hay opciones líquidas sobre .SN, 13F no cubre empresas solo listadas en Santiago)
+    },
+    "Acción USA/Chile": {
+        # Técnico
+        "Análisis Técnico", "MTF", "Momentum",
+        # Chile (lado local del dual-listado)
+        "CMF", "Mercado Local", "Volumen",
+        # USA (lado NYSE del ADR)
+        "13F SEC", "IV Opciones", "Order Flow", "Put/Call", "IB Data",
+        # Macro
+        "Macro USA", "Fear&Greed", "Noticias",
+        # Tasas y cross-asset
+        "Renta Fija", "Correlaciones",
+        # Cuantitativo
+        "ML",
+        # Sentimiento
+        "Polymarket", "Kalshi",
+    },
+    "ETF": {
+        # Técnico
+        "Análisis Técnico", "MTF", "Momentum",
+        # USA (ETFs cotizan en NYSE, opciones líquidas)
+        "13F SEC", "IV Opciones", "Order Flow", "Put/Call", "IB Data",
+        # Macro y tasas
+        "Macro USA", "Fear&Greed", "Renta Fija",
+        # Cross-asset y volumen
+        "Correlaciones", "Volumen",
+        # Sentimiento
+        "Polymarket", "Kalshi", "Noticias",
+        # Cuantitativo
+        "ML",
+        # NO: CMF (regulador chileno), Mercado Local (flujo IPSA local)
+    },
+    "Futuro": {
+        # Técnico
+        "Análisis Técnico", "MTF",
+        # Macro (commodities son esencialmente macro-driven)
+        "Macro USA", "Fear&Greed",
+        # Cross-asset (cobre ↔ USD, oro ↔ tasas)
+        "Correlaciones",
+        # Datos live
+        "IB Data",
+        # Sentimiento (geopolítica mueve commodities)
+        "Polymarket", "Kalshi", "Noticias",
+        # Cuantitativo
+        "ML",
+        # NO: CMF, Mercado Local, 13F, IV, Order Flow, Put/Call, Renta Fija, Volumen, Momentum
+    },
+    "Crypto": {
+        # Técnico
+        "Análisis Técnico", "MTF", "Momentum",
+        # Macro (BTC correlaciona con risk-on/off y liquidez global)
+        "Macro USA", "Fear&Greed",
+        # Volumen significativo en crypto
+        "Volumen",
+        # Cross-asset (BTC vs USD, gold en períodos de stress)
+        "Correlaciones",
+        # Sentimiento (Polymarket/Kalshi cubren eventos crypto)
+        "Polymarket", "Kalshi", "Noticias",
+        # Cuantitativo
+        "ML",
+        # NO: CMF, Mercado Local, 13F, IV Opciones, Order Flow, Put/Call, Renta Fija
+    },
+    "Forex": {
+        # Técnico
+        "Análisis Técnico", "MTF",
+        # Macro (Forex es determinado por macro y diferenciales de tasa)
+        "Macro USA", "Fear&Greed",
+        # Tasas (diferencial de tasas mueve FX)
+        "Renta Fija",
+        # Cross-asset
+        "Correlaciones",
+        # Sentimiento
+        "Polymarket", "Kalshi", "Noticias",
+        # Cuantitativo
+        "ML",
+        # NO: CMF, Mercado Local, 13F, IV, Order Flow, Put/Call, Volumen
+    },
+}
+
 # ── HORIZONTE ─────────────────────────────────────────────────────────────────
 def _calcular_horizonte(n_fuentes, conviccion, cierre_mas_proximo=None, tipo_producto=None):
     """
@@ -867,8 +968,37 @@ def generar_recomendaciones(activos_dict):
     recomendaciones = []
 
     for activo, data in activos_dict.items():
+        # ── Tipo de activo → determinar fuentes aplicables ────────────────
+        # Busca en INSTRUMENTOS_IB primero, luego en universo maestro.
+        ib_info_pre = INSTRUMENTOS_IB.get(activo, {})
+        tipo_pre    = ib_info_pre.get("tipo", "")
+        if not tipo_pre:
+            try:
+                from engine.universo import UNIVERSO_COMPLETO
+                tipo_pre = UNIVERSO_COMPLETO.get(activo, {}).get("tipo", "ETF")
+            except Exception:
+                tipo_pre = "ETF"
+
+        fuentes_ok   = FUENTES_APLICABLES.get(tipo_pre, set())
+        evidencia_raw = data.get("evidencia", [])
+
+        # Separar evidencia aplicable de la no aplicable
+        evidencia_ok  = [e for e in evidencia_raw if e["fuente"] in fuentes_ok]
+        evidencia_out = [e for e in evidencia_raw if e["fuente"] not in fuentes_ok]
+
+        # Restar contribuciones de fuentes no aplicables a los pesos acumulados.
+        # Fear&Greed es multiplicativo (no aparece en evidencia_out si está en todos
+        # los tipos), por eso se resta solo el peso aditivo registrado en evidencia.
         alza = data["alza"]
         baja = data["baja"]
+        for e in evidencia_out:
+            dir_e = e.get("direccion", "")
+            peso_e = e.get("peso", 0.0)
+            if dir_e == "ALZA":
+                alza = max(0.0, alza - peso_e)
+            elif dir_e == "BAJA":
+                baja = max(0.0, baja - peso_e)
+
         total = alza + baja
         if total < 0.5: continue
 
@@ -880,8 +1010,11 @@ def generar_recomendaciones(activos_dict):
             continue
 
         conviccion_pct = round(conviccion * 100, 1)
-        fuentes_unicas = list(set(data["fuentes"]))
-        n_fuentes = len(fuentes_unicas)
+        # Fuentes y n_fuentes basados solo en evidencia aplicable al tipo
+        fuentes_unicas = list(set(e["fuente"] for e in evidencia_ok))
+        n_fuentes      = len(fuentes_unicas)
+        # Fuentes descartadas por tipo (para trazabilidad en dashboard)
+        fuentes_excluidas = list(set(e["fuente"] for e in evidencia_out))
 
         # Cap de convicción por número de fuentes independientes
         # Con pocas fuentes no se puede llegar a convicción alta aunque estén alineadas
@@ -936,7 +1069,7 @@ def generar_recomendaciones(activos_dict):
         except Exception:
             pass
 
-        tesis = _generar_tesis_resumida(activo, accion, data["evidencia"], fuentes_unicas)
+        tesis = _generar_tesis_resumida(activo, accion, evidencia_ok, fuentes_unicas)
 
         recomendaciones.append({
             "activo":              activo,
@@ -955,7 +1088,8 @@ def generar_recomendaciones(activos_dict):
             "instrumentos":        instrumentos_sugeridos,
             "fuentes":             fuentes_unicas,
             "n_fuentes":           n_fuentes,
-            "evidencia":           data["evidencia"],
+            "evidencia":           evidencia_ok,
+            "fuentes_excluidas":   fuentes_excluidas,
             "tesis":               tesis,
             "boost_persistencia":  round(boost_persistencia, 1),
             "factor_calidad":      factor_calidad,
