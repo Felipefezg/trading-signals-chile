@@ -901,6 +901,38 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             "prob":   None, "direccion": best["dir"], "peso": round(peso_corr, 2),
         })
 
+    # ── PROPAGACIÓN FUTURO → ETF EQUIVALENTE ─────────────────────────────────
+    # Cuando un futuro tiene señal neta fuerte, propagar al ETF que lo replica.
+    # Factor 0.5x: mismo subyacente pero vehículo diferente — no es señal independiente.
+    # Esto cierra la brecha GC=F (87-93%) → GLD (~65%) que existe porque GLD solo recibe
+    # AT/MTF de su propia serie de precio, sin capturar el consenso macro del futuro.
+    _FUTURO_ETF_MAP = {
+        "GC=F": ["GLD", "GDX"],   # Oro → SPDR Gold ETF + Gold Miners
+        "SI=F": ["SLV"],          # Plata → iShares Silver ETF
+        "CL=F": ["USO"],          # Petróleo → United States Oil Fund (si lo hay en universo)
+    }
+    for futuro, etfs in _FUTURO_ETF_MAP.items():
+        if futuro not in activos:
+            continue
+        f_data  = activos[futuro]
+        neto_f  = f_data["alza"] - f_data["baja"]
+        if abs(neto_f) < 1.0:   # solo propagar si la señal neta supera umbral mínimo
+            continue
+        dir_prop  = "alza" if neto_f > 0 else "baja"
+        peso_prop = round(abs(neto_f) * 0.5, 2)   # 50% del diferencial neto
+        for etf in etfs:
+            if etf not in activos:
+                activos[etf] = {"alza": 0.0, "baja": 0.0, "fuentes": [], "evidencia": []}
+            activos[etf][dir_prop] += peso_prop
+            activos[etf]["fuentes"].append("Correlaciones")
+            activos[etf]["evidencia"].append({
+                "fuente":    "Correlaciones",
+                "señal":     f"{futuro}→{etf}: propagación señal futuro equivalente (neto {neto_f:+.2f})",
+                "prob":      None,
+                "direccion": dir_prop.upper(),
+                "peso":      peso_prop,
+            })
+
     # ── IV OPCIONES (implied volatility + posicionamiento calls/puts) ─────────
     # Estructura: lista de {"activo": "SQM.SN", "score": 2, "direccion": "ALZA", "descripcion": "..."}
     _iv_list = iv_opciones if isinstance(iv_opciones, list) else list((iv_opciones or {}).values())

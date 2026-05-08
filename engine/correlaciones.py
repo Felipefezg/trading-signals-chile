@@ -55,6 +55,7 @@ PARES_CONOCIDOS = [
     ("GC=F",        "^TNX",     "Oro vs T10Y",           -0.60),
     ("SPY",         "^TNX",     "S&P 500 vs T10Y",       -0.45),
     # Metales preciosos y commodities nuevos
+    ("GLD",         "GC=F",     "GLD vs Oro Futuro",      0.99),   # ETF sigue al futuro: brecha = señal real
     ("GLD",         "SLV",      "Oro vs Plata",           0.92),
     ("GDX",         "GC=F",     "Gold Miners vs Oro",     0.85),
     ("SLV",         "HG=F",     "Plata vs Cobre",         0.65),
@@ -195,7 +196,7 @@ def analizar_correlaciones_universo():
     benchmarks = {
         "Acción Chile":     [("ECH", 0.70), ("HG=F", 0.50), ("SPY", 0.55)],
         "Acción USA/Chile": [("ECH", 0.75), ("SPY", 0.65), ("HG=F", 0.55)],
-        "ETF":              [("SPY", 0.80), ("ECH", 0.60)],
+        "ETF":              [("SPY", 0.80), ("ECH", 0.60), ("GC=F", 0.50)],  # ETFs commodity capturan relación con oro
         "Futuro":           [("SPY", 0.45), ("GC=F", 0.50)],
         "Crypto":           [("SPY", 0.55), ("GC=F", 0.40)],
     }

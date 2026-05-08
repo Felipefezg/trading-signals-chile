@@ -5,7 +5,7 @@ MACRO_USA = {
     "^VIX":     {"nombre": "VIX (Volatilidad)",  "impacto_chile": ["ECH", "CLP/USD"], "inverso": True},
     "^TNX":     {"nombre": "Treasury 10Y (%)",   "impacto_chile": ["CLP/USD", "ECH"], "inverso": True},
     "DX-Y.NYB": {"nombre": "DXY (Dólar Index)",  "impacto_chile": ["CLP/USD", "SQM.SN"], "inverso": True},
-    "GC=F":     {"nombre": "Oro (USD/oz)",        "impacto_chile": ["CLP/USD"], "inverso": False},
+    "GC=F":     {"nombre": "Oro (USD/oz)",        "impacto_chile": ["CLP/USD", "GLD", "SLV", "GDX"], "inverso": False},
     "CL=F":     {"nombre": "Petróleo WTI",        "impacto_chile": ["COPEC.SN", "ECH"], "inverso": False},
     "HG=F":     {"nombre": "Cobre LME (USD/lb)",  "impacto_chile": ["SQM.SN", "COPEC.SN", "ECH"], "inverso": False},
     "^GSPC":    {"nombre": "S&P 500",             "impacto_chile": ["ECH", "SQM.SN"], "inverso": False},
