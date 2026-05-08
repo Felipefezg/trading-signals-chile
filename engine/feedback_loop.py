@@ -298,6 +298,36 @@ def get_resumen_feedback() -> dict:
     }
 
 
+# ── FACTORES DE CALIDAD POR FUENTE ───────────────────────────────────────────
+
+def get_source_quality_factors(min_trades: int = 3) -> dict:
+    """
+    Retorna factores de calidad por fuente basados en win_rate histórico.
+
+    Factor en [0.85, 1.10] interpolado linealmente:
+      WR ≤ 0.40 → 0.85  (fuente de baja calidad — penalizar)
+      WR = 0.50 → 0.90  (aleatorio — leve penalización)
+      WR = 0.55 → 1.00  (neutral — ligeramente mejor que random)
+      WR ≥ 0.65 → 1.10  (fuente con buen track record — premiar)
+
+    Fuentes con < min_trades no se incluyen → el caller usa 1.0 por defecto
+    (sin evidencia suficiente → sin ajuste).
+
+    Returns:
+        dict[str, float]  p.ej. {"Análisis Técnico": 1.08, "ML": 0.92, ...}
+    """
+    stats = calcular_stats_por_fuente(min_trades=min_trades)
+    factores: Dict[str, float] = {}
+
+    for s in stats:
+        wr = s["win_rate"]
+        # Interpolación lineal: [0.40, 0.65] → [0.85, 1.10]
+        factor = 0.85 + (wr - 0.40) / (0.65 - 0.40) * 0.25
+        factores[s["fuente"]] = round(max(0.85, min(1.10, factor)), 3)
+
+    return factores
+
+
 # ── DATOS DE ENTRENAMIENTO PARA ML ────────────────────────────────────────────
 
 def get_training_data_ml() -> List[dict]:
