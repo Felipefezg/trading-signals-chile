@@ -26,7 +26,8 @@ from typing import Dict, List, Optional
 BASE_DIR        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTCOMES_FILE   = os.path.join(BASE_DIR, "data", "trade_outcomes.json")
 KELLY_LIVE_FILE = os.path.join(BASE_DIR, "data", "kelly_stats_live.json")
-LOG_FILE        = os.path.join(BASE_DIR, "log_automatico.json")
+LOG_FILE           = os.path.join(BASE_DIR, "log_automatico.json")
+LOG_APERTURAS_FILE = os.path.join(BASE_DIR, "log_aperturas.json")
 
 os.makedirs(os.path.join(BASE_DIR, "data"), exist_ok=True)
 
@@ -52,25 +53,32 @@ def _guardar_outcomes(outcomes: List[dict]):
 
 def _buscar_apertura_en_log(ib_ticker: str) -> Optional[dict]:
     """
-    Busca la última APERTURA confirmada por IB para ib_ticker en log_automatico.json.
-    Retorna el evento completo (con datos y evidencia) o None si no se encuentra.
+    Busca la última APERTURA confirmada por IB para ib_ticker.
+    Busca primero en log_aperturas.json (fuente dedicada, nunca desplazada)
+    y cae al log general log_automatico.json como fallback.
     """
-    try:
-        with open(LOG_FILE) as f:
-            log = json.load(f)
-    except Exception:
+    def _buscar_en(filepath: str) -> Optional[dict]:
+        try:
+            with open(filepath) as f:
+                log = json.load(f)
+        except Exception:
+            return None
+        for evento in reversed(log):
+            if (
+                evento.get("tipo") == "APERTURA"
+                and evento.get("datos", {}).get("ib_ticker") == ib_ticker
+                and evento.get("datos", {}).get("confirmado_ib", False)
+            ):
+                return evento
         return None
 
-    # Buscar la apertura más reciente, confirmada por IB, para este ticker
-    for evento in reversed(log):
-        if (
-            evento.get("tipo") == "APERTURA"
-            and evento.get("datos", {}).get("ib_ticker") == ib_ticker
-            and evento.get("datos", {}).get("confirmado_ib", False)
-        ):
-            return evento
+    # Primero el log dedicado (prioritario — nunca truncado por RECHAZADA)
+    resultado = _buscar_en(LOG_APERTURAS_FILE)
+    if resultado:
+        return resultado
 
-    return None
+    # Fallback al log general (útil para trades previos a este fix)
+    return _buscar_en(LOG_FILE)
 
 
 def registrar_cierre_con_contexto(

@@ -33,6 +33,7 @@ POSICIONES_FILE   = os.path.join(BASE_DIR, "posiciones.json")
 TRADES_FILE       = os.path.join(BASE_DIR, "trades_cerrados.json")
 ESTADO_AUTO_FILE  = os.path.join(BASE_DIR, "estado_automatico.json")
 LOG_AUTO_FILE     = os.path.join(BASE_DIR, "log_automatico.json")
+LOG_APERTURAS_FILE = os.path.join(BASE_DIR, "log_aperturas.json")
 
 # ── LOGGING ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -339,6 +340,14 @@ def pausar_motor(razon):
     _registrar_evento("PAUSA", razon, {})
 
 def _registrar_evento(tipo, descripcion, datos):
+    evento = {
+        "timestamp":   datetime.now().isoformat(),
+        "tipo":        tipo,
+        "descripcion": descripcion,
+        "datos":       datos,
+    }
+
+    # ── Log general (RECHAZADA, CIERRE, PAUSA, etc.) ──────────────────────────
     log = []
     if os.path.exists(LOG_AUTO_FILE):
         try:
@@ -346,16 +355,24 @@ def _registrar_evento(tipo, descripcion, datos):
                 log = json.load(f)
         except:
             pass
-    log.append({
-        "timestamp":   datetime.now().isoformat(),
-        "tipo":        tipo,
-        "descripcion": descripcion,
-        "datos":       datos,
-    })
-    # Mantener solo últimos 200 eventos
+    log.append(evento)
     log = log[-200:]
     with open(LOG_AUTO_FILE, "w") as f:
         json.dump(log, f, indent=2, default=str)
+
+    # ── Log dedicado de aperturas — nunca desplazado por RECHAZADA ────────────
+    if tipo in ("APERTURA", "APERTURA_FALLIDA"):
+        aperturas = []
+        if os.path.exists(LOG_APERTURAS_FILE):
+            try:
+                with open(LOG_APERTURAS_FILE) as f:
+                    aperturas = json.load(f)
+            except:
+                pass
+        aperturas.append(evento)
+        aperturas = aperturas[-500:]   # guarda últimas 500 aperturas
+        with open(LOG_APERTURAS_FILE, "w") as f:
+            json.dump(aperturas, f, indent=2, default=str)
 
 def get_log_auto(limit=50):
     if not os.path.exists(LOG_AUTO_FILE):
