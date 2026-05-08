@@ -88,12 +88,29 @@ BLACKLIST_AUTO = {"CL", "HG", "GC"}  # Futuros con nocional masivo — operar vi
 # Si una fuente no está en ningún grupo, cuenta como OTRO (no suma diversidad).
 GRUPOS_FUENTES = {
     # Nombres exactos tal como los usa recomendaciones.py en fuentes.append(...)
-    "TECNICO":     {"Análisis Técnico", "MTF", "Correlaciones", "ML", "IB Data", "Volumen"},
+    "TECNICO":     {"Análisis Técnico", "MTF", "Correlaciones", "ML", "IB Data", "Volumen", "Momentum"},
     "SENTIMIENTO": {"IV Opciones", "Put/Call", "Fear&Greed", "VolAlertas"},
     "FUNDAMENTAL": {"Macro USA", "Noticias", "13F SEC", "Order Flow", "CMF", "Renta Fija"},
     "PREDICCION":  {"Polymarket", "Kalshi"},
     "ALTERNATIVO": {"Google Trends", "Mercado Local"},
 }
+
+# ── CLASIFICACIÓN FAST / SLOW ─────────────────────────────────────────────────
+# Fast: fuentes de timing — capturan el estado del mercado en el ciclo actual.
+# Slow: fuentes de contexto — lagging (horas, días, trimestres) o macroestructurales.
+#
+# Regla: toda señal ejecutable debe tener al menos MIN_FAST_SOURCES fuentes fast.
+# Impide que 13F (trimestral) + Renta Fija (semanal) + Correlaciones (lagging)
+# den el visto bueno a una entrada intraday sin ningún respaldo de timing.
+FUENTES_FAST = {
+    "Análisis Técnico", "MTF", "IV Opciones", "Order Flow",
+    "IB Data", "Mercado Local", "ML", "Volumen", "CMF", "Momentum",
+}
+FUENTES_SLOW = {
+    "Macro USA", "Fear&Greed", "Put/Call", "13F SEC", "Renta Fija",
+    "Correlaciones", "Polymarket", "Kalshi", "Noticias", "Google Trends",
+}
+MIN_FAST_SOURCES = 1  # Mínimo de fuentes fast para ejecutar
 
 # Construir mapa inverso fuente→grupo para lookup O(1)
 _FUENTE_A_GRUPO: dict = {}
@@ -578,6 +595,51 @@ def calcular_drawdown_total():
         return 0.0
     return round(abs(pnl) / capital * 100, 2)
 
+# ── LLM SINTETIZADOR DE TESIS ─────────────────────────────────────────────────
+def _enriquecer_con_llm(recomendaciones: list) -> list:
+    """
+    Post-proceso LLM sobre recomendaciones ya generadas por el motor cuantitativo.
+
+    El LLM actúa como analista senior que:
+      1. Reescribe la tesis en lenguaje claro y accionable
+      2. Identifica riesgos que el pipeline cuantitativo puede no detectar
+      3. Provee validación conceptual (CONFIRMAR / CUESTIONAR / RECHAZAR)
+
+    Principios:
+      - NO modifica conviction — el score cuantitativo es la fuente de verdad
+      - NO bloquea señales — solo enriquece metadata para auditoría y log
+      - Falla gracefully — si Groq no disponible, retorna lista sin cambios
+      - Timeout implícito: Groq/LLaMA responde en ~2s; max_activos=3 → ~8s total
+    """
+    if not recomendaciones:
+        return recomendaciones
+
+    try:
+        from engine.llm_signals import analizar_señales_llm
+        # Solo analizar top 3 por convicción para no ralentizar el ciclo
+        analisis = analizar_señales_llm(recomendaciones, max_activos=3)
+        if not analisis:
+            return recomendaciones
+
+        for rec in recomendaciones:
+            key = rec.get("ib_ticker") or rec.get("activo", "")
+            if key not in analisis:
+                continue
+            llm = analisis[key]
+            # Reemplazar tesis con versión mejorada (más clara y accionable)
+            if llm.get("tesis_mejorada"):
+                rec["tesis"] = llm["tesis_mejorada"]
+            # Agregar metadata LLM — disponible en log y dashboard
+            rec["llm_validacion"]    = llm.get("validacion", "CONFIRMAR")
+            rec["llm_riesgos"]       = llm.get("riesgos_principales", [])
+            rec["llm_catalizadores"] = llm.get("catalizadores", [])
+            rec["llm_razonamiento"]  = llm.get("razonamiento", "")
+    except Exception:
+        pass  # Fail gracefully — nunca bloquear el ciclo por el LLM
+
+    return recomendaciones
+
+
 # ── UMBRAL ADAPTATIVO POR VIX ─────────────────────────────────────────────────
 _vix_cache: dict = {"valor": None, "ts": 0.0}
 _VIX_TTL = 900  # seg — refrescar cada 15 minutos
@@ -683,6 +745,18 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
         return False, (
             f"Diversidad insuficiente: {len(grupos)} grupo(s) [{grupos_str}] "
             f"< mínimo {MIN_GRUPOS_FUENTES} — señal puramente {grupos_str or 'sin clasificar'}"
+        )
+
+    # 3c. Al menos 1 fuente fast (timing)
+    # Bloquea señales compuestas únicamente de fuentes lagging (13F trimestral,
+    # Renta Fija semanal, Correlaciones, etc.) que no tienen información del
+    # estado actual del mercado en el ciclo de ejecución.
+    fast_presentes = FUENTES_FAST & set(fuentes_list)
+    if len(fast_presentes) < MIN_FAST_SOURCES:
+        slow_str = ", ".join(sorted(set(fuentes_list) & FUENTES_SLOW)) or "ninguna"
+        return False, (
+            f"Sin fuente de timing: solo slow sources [{slow_str}] — "
+            f"requiere ≥{MIN_FAST_SOURCES} fuente fast (AT/MTF/ML/IV/OrderFlow/etc.)"
         )
 
     # 4. No duplicar ticker
@@ -953,8 +1027,10 @@ def ciclo_trading_automatico():
             correlaciones=datos.get("correlaciones"),
             iv_opciones=datos.get("iv_opciones"),
             ml=datos.get("ml"),
+            momentum=datos.get("momentum"),
         )
         recomendaciones = generar_recomendaciones(activos)
+        recomendaciones = _enriquecer_con_llm(recomendaciones)  # tesis + riesgos via LLM
 
         meta = datos.get("meta", {})
         logging.info(

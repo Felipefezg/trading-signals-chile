@@ -356,7 +356,7 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
     return enviadas, enviadas_cache
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
-def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None, ml=None):
+def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None, ml=None, momentum=None):
     # Cargar factores de calidad por fuente (win_rate histórico).
     # Dict vacío si aún no hay suficientes trades → factor default 1.0 por fuente.
     _source_quality: dict = {}
@@ -700,7 +700,10 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             continue
         if activo_13f not in activos:
             activos[activo_13f] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-        peso_13f = score_13f * 0.5
+        # 13F es SLOW/lagging (archivos trimestrales de hace ≤45 días).
+        # Peso reducido — solo contexto de posicionamiento institucional,
+        # nunca debe ser la fuente determinante de timing de entrada.
+        peso_13f = score_13f * 0.25
         activos[activo_13f]["alza"] += peso_13f
         activos[activo_13f]["fuentes"].append("13F SEC")
         activos[activo_13f]["evidencia"].append({
@@ -811,6 +814,28 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
                       f"ML: prob_alza={señal_ml.get('prob_alza', 0):.0%} AUC={señal_ml.get('auc', 0):.2f}")[:80],
             "prob":   round(señal_ml.get("prob_alza", 0.5) * 100, 1),
             "direccion": dir_ml, "peso": round(peso_ml_sig, 2),
+        })
+
+    # ── MOMENTUM INTRADAY (aceleración precio + volumen últimos 30 min) ─────────
+    # Fuente FAST: detecta movimientos sostenidos con confirmación de volumen.
+    # Peso mayor que otras fuentes técnicas — señal directa de acción de precio.
+    for mom in (momentum or []):
+        activo_mom = mom.get("activo_motor", "")
+        score_mom  = mom.get("score", 0)
+        dir_mom    = mom.get("direccion", "")
+        if not activo_mom or score_mom < 1 or dir_mom not in ("ALZA", "BAJA"):
+            continue
+        if activo_mom not in activos:
+            activos[activo_mom] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        peso_mom = score_mom * 1.2   # Fast source — peso elevado
+        activos[activo_mom][dir_mom.lower()] += peso_mom
+        activos[activo_mom]["fuentes"].append("Momentum")
+        activos[activo_mom]["evidencia"].append({
+            "fuente":    "Momentum",
+            "señal":     mom.get("descripcion", "")[:80],
+            "prob":      None,
+            "direccion": dir_mom,
+            "peso":      round(peso_mom, 2),
         })
 
     # ── IB DATA (datos live de mercado durante horario activo) ────────────────

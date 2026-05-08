@@ -58,13 +58,18 @@ def _cargar_analisis_tecnico():
     return get_señales_tecnicas(min_conviccion=60)
 
 def _cargar_google_trends():
-    from data.google_trends import get_señales_trends
-    return get_señales_trends(min_score=2)
+    # Fuente desactivada — 112+ ciclos consecutivos vacíos (pytrends bloqueado).
+    # Se mantiene la función para no romper el pipeline; retorna [] inmediatamente.
+    return []
 
 def _cargar_volumen():
     from data.volumen import get_resumen_volumen, correlacionar_con_cmf
     resumen = get_resumen_volumen()
     return correlacionar_con_cmf(resumen.get("top_alertas", []))
+
+def _cargar_momentum():
+    from engine.momentum_intraday import get_señales_momentum
+    return get_señales_momentum(min_score=1)
 
 def _cargar_ml():
     from engine.ml_signals import get_señales_ml
@@ -124,6 +129,7 @@ FUENTES = {
     "renta_fija":       (_cargar_renta_fija,        15),
     "sec_13f":          (_cargar_sec_13f,           30),
     "iv_opciones":      (_cargar_iv_opciones,       30),
+    "momentum":         (_cargar_momentum,          35),
     "ml":               (_cargar_ml,               120),
 }
 
@@ -218,6 +224,7 @@ def get_datos_para_motor(verbose=False):
         "renta_fija":       datos.get("renta_fija"),
         "sec_13f":          datos.get("sec_13f"),
         "iv_opciones":      datos.get("iv_opciones"),
+        "momentum":         datos.get("momentum"),
         "ml":               datos.get("ml"),
         "meta": {
             "t_total":  resultado["t_total"],
