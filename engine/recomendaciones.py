@@ -458,27 +458,19 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
 def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None, ml=None, momentum=None):
-    # Cargar factores de calidad por fuente (win_rate histórico).
-    # Dict vacío si aún no hay suficientes trades → factor default 1.0 por fuente.
-    _source_quality: dict = {}
-    try:
-        from engine.feedback_loop import get_source_quality_factors
-        _source_quality = get_source_quality_factors(min_trades=3)
-    except Exception:
-        pass
+    # _source_quality se carga en generar_recomendaciones() para que funcione
+    # también cuando es llamado directamente desde el dashboard.
 
-    # Inicializar todos los activos del universo maestro
+    # Inicializar todos los activos del universo maestro.
+    # SOLO con yf_tickers — NO agregar ib_tickers por separado.
+    # El segundo loop anterior creaba acumuladores duplicados para COPEC vs COPEC.SN,
+    # SQM vs SQM-B.SN, etc. causando señales fragmentadas y recomendaciones contradictorias.
     activos = {}
     try:
         from engine.universo import UNIVERSO_COMPLETO
         for yf_ticker in UNIVERSO_COMPLETO:
             activos[yf_ticker] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-        # Agregar tickers IB también
-        for yf_ticker, info in UNIVERSO_COMPLETO.items():
-            ib_ticker = info.get("ib", "")
-            if ib_ticker and ib_ticker not in activos:
-                activos[ib_ticker] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
-    except:
+    except Exception:
         pass
 
     # Polymarket
@@ -960,12 +952,101 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             "prob":   None, "direccion": dir_ib, "peso": round(peso_ib, 2),
         })
 
+    # ── Normalizar aliases — merge post-acumulación ───────────────────────────
+    # Mismo activo puede haber acumulado señales bajo keys distintos porque
+    # diferentes fuentes usan formatos distintos (SQM-B.SN vs SQM vs SQM.SN).
+    # Este map consolida todo al ticker canónico antes de retornar.
+    # Canónico = yf_ticker del UNIVERSO_COMPLETO (fuente de verdad).
+    _ALIAS_CANONICAL = {
+        # SQM: tres representaciones
+        "SQM":            "SQM-B.SN",   # ADR → yf local (el más usado en análisis)
+        "SQM.SN":         "SQM-B.SN",
+        # Santander Chile
+        "BSAC":           "BSANTANDER.SN",
+        # Banco de Chile
+        "BCH":            "CHILE.SN",
+        # LATAM Airlines
+        "LTM":            "LTM.SN",
+        # S&P 500 index vs ETF
+        "^GSPC":          "SPY",
+        # Bitcoin (key alternativo)
+        "BTC":            "BTC-USD",
+        "BTC_LOCAL_SPREAD": "BTC-USD",
+        # Futuros (ib ticker corto vs yf)
+        "GC":             "GC=F",
+        "HG":             "HG=F",
+        "CL":             "CL=F",
+        # Acciones Chile: ib_ticker corto → yf_ticker con .SN
+        # (el segundo loop de init ya fue eliminado, pero sources dinámicas
+        #  pueden haber creado estas keys)
+        "COPEC":          "COPEC.SN",
+        "BCI":            "BCI.SN",
+        "FALABELLA":      "FALABELLA.SN",
+        "CENCOSUD":       "CENCOSUD.SN",
+        "CMPC":           "CMPC.SN",
+        "COLBUN":         "COLBUN.SN",
+        "ENELCHILE":      "ENELCHILE.SN",
+        "ENELAM":         "ENELAM.SN",
+        "ENTEL":          "ENTEL.SN",
+        "CAP":            "CAP.SN",
+        "CCU":            "CCU.SN",
+        "ITAUCL":         "ITAUCL.SN",
+        "PARAUCO":        "PARAUCO.SN",
+        "MALLPLAZA":      "MALLPLAZA.SN",
+        "RIPLEY":         "RIPLEY.SN",
+        "AGUAS-A":        "AGUAS-A.SN",
+        "VAPORES":        "VAPORES.SN",
+        "ANDINA-B":       "ANDINA-B.SN",
+        "ILC":            "ILC.SN",
+        "CONCHATORO":     "CONCHATORO.SN",
+        "FORUS":          "FORUS.SN",
+        "SMU":            "SMU.SN",
+        "ECL":            "ECL.SN",
+        "SONDA":          "SONDA.SN",
+        "BESALCO":        "BESALCO.SN",
+        "SALFACORP":      "SALFACORP.SN",
+        "SOCOVESA":       "SOCOVESA.SN",
+        "INGEVEC":        "INGEVEC.SN",
+        "HITES":          "HITES.SN",
+        "MOLYMET":        "MOLYMET.SN",
+        "QUINENCO":       "QUINENCO.SN",
+        "MASISA":         "MASISA.SN",
+        "HABITAT":        "HABITAT.SN",
+        "PROVIDA":        "PROVIDA.SN",
+        "MARINSA":        "MARINSA.SN",
+    }
+
+    for alias, canon in _ALIAS_CANONICAL.items():
+        if alias not in activos:
+            continue
+        if alias == canon:
+            continue
+        # Asegurar que el canónico exista
+        if canon not in activos:
+            activos[canon] = {"alza": 0.0, "baja": 0.0, "fuentes": [], "evidencia": []}
+        # Merge: sumar pesos y concatenar evidencia
+        activos[canon]["alza"]     += activos[alias]["alza"]
+        activos[canon]["baja"]     += activos[alias]["baja"]
+        activos[canon]["fuentes"]  += activos[alias]["fuentes"]
+        activos[canon]["evidencia"] += activos[alias]["evidencia"]
+        del activos[alias]
+
     return activos
 
 
 # ── GENERACIÓN ────────────────────────────────────────────────────────────────
 def generar_recomendaciones(activos_dict):
     recomendaciones = []
+
+    # Cargar factores de calidad por fuente (win_rate histórico).
+    # Se carga una vez aquí para que generar_recomendaciones() funcione tanto
+    # cuando es llamado directamente (dashboard) como desde consolidar_señales().
+    _source_quality: dict = {}
+    try:
+        from engine.feedback_loop import get_source_quality_factors
+        _source_quality = get_source_quality_factors(min_trades=3)
+    except Exception:
+        pass
 
     for activo, data in activos_dict.items():
         # ── Tipo de activo → determinar fuentes aplicables ────────────────
@@ -1094,6 +1175,32 @@ def generar_recomendaciones(activos_dict):
             "boost_persistencia":  round(boost_persistencia, 1),
             "factor_calidad":      factor_calidad,
         })
+
+    # ── Dedup de seguridad: un ib_ticker → una recomendación ─────────────
+    # El merge post-acumulación en consolidar_señales() debería haber eliminado
+    # los duplicados. Este paso es red de seguridad para fuentes dinámicas que
+    # hayan creado keys no cubiertos por _ALIAS_CANONICAL.
+    # Si hay señales contradictorias (COMPRAR y VENDER mismo ib_ticker),
+    # conservamos la de mayor convicción y marcamos el conflicto.
+    visto_ib: dict = {}
+    for r in recomendaciones:
+        ib = r["ib_ticker"]
+        if ib not in visto_ib:
+            visto_ib[ib] = r
+        else:
+            prev = visto_ib[ib]
+            if r["accion"] != prev["accion"]:
+                # Conflicto de dirección — conservar mayor convicción, marcar
+                mejor = r if r["conviccion"] > prev["conviccion"] else prev
+                mejor = dict(mejor)  # copia para no mutar el original
+                mejor["tesis"] = "[⚠ SEÑAL CONFLICTIVA] " + mejor["tesis"]
+                visto_ib[ib] = mejor
+            else:
+                # Misma dirección — conservar el de mayor convicción
+                if r["conviccion"] > prev["conviccion"]:
+                    visto_ib[ib] = r
+
+    recomendaciones = list(visto_ib.values())
 
     # ── Registrar señales del ciclo para tracking de streaks ─────────────
     try:
