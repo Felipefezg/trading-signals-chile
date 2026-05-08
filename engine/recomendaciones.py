@@ -357,6 +357,15 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
 def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None, ml=None):
+    # Cargar factores de calidad por fuente (win_rate histórico).
+    # Dict vacío si aún no hay suficientes trades → factor default 1.0 por fuente.
+    _source_quality: dict = {}
+    try:
+        from engine.feedback_loop import get_source_quality_factors
+        _source_quality = get_source_quality_factors(min_trades=3)
+    except Exception:
+        pass
+
     # Inicializar todos los activos del universo maestro
     activos = {}
     try:
@@ -880,6 +889,16 @@ def generar_recomendaciones(activos_dict):
         except:
             sizing_macro = 1.0
 
+        # ── Ajuste por calidad histórica de fuentes ──────────────────────
+        # Factor promedio de las fuentes activas; 1.0 si sin datos suficientes.
+        # Rango: [0.85, 1.10] → máximo ajuste ±10% sobre convicción actual.
+        factor_calidad = 1.0
+        if _source_quality and fuentes_unicas:
+            factores = [_source_quality.get(f, 1.0) for f in fuentes_unicas]
+            factor_calidad = round(sum(factores) / len(factores), 3)
+            conviccion_pct = round(min(cap, conviccion_pct * factor_calidad), 1)
+            conviccion_pct = max(0, conviccion_pct)
+
         # ── Boost por señal persistente (mismo activo+dirección N ciclos) ──
         # streak=1 → +0%, streak=2 → +2%, streak=3 → +4%, streak≥5 → +8%
         boost_persistencia = 0.0
@@ -914,6 +933,7 @@ def generar_recomendaciones(activos_dict):
             "evidencia":           data["evidencia"],
             "tesis":               tesis,
             "boost_persistencia":  round(boost_persistencia, 1),
+            "factor_calidad":      factor_calidad,
         })
 
     # ── Registrar señales del ciclo para tracking de streaks ─────────────

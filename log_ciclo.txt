@@ -2105,3 +2105,10 @@ Posiciones sincronizadas con IB: 1
 Horario: Fuera de horario NYSE (09:30-15:45 ET)
 Señales AT guardadas: 2
 Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:25:35] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%

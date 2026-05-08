@@ -578,6 +578,48 @@ def calcular_drawdown_total():
         return 0.0
     return round(abs(pnl) / capital * 100, 2)
 
+# ── UMBRAL ADAPTATIVO POR VIX ─────────────────────────────────────────────────
+_vix_cache: dict = {"valor": None, "ts": 0.0}
+_VIX_TTL = 900  # seg — refrescar cada 15 minutos
+
+def _umbral_conviccion_efectivo() -> int:
+    """
+    Umbral de convicción ajustado al régimen de volatilidad actual (VIX).
+
+    VIX < 15  →  75%   mercado calmo, umbral relajado
+    VIX 15-25 →  78%   régimen normal (valor base PARAMS)
+    VIX 25-35 →  82%   stress, exigir mayor convicción
+    VIX > 35  →  85%   crisis, umbral máximo conservador
+
+    Caché de 15 minutos para no llamar yfinance en cada validación.
+    Fallback a PARAMS["conviccion_minima"] si no se puede leer VIX.
+    """
+    global _vix_cache
+    base = PARAMS["conviccion_minima"]
+    try:
+        ahora = time.time()
+        if _vix_cache["valor"] is None or (ahora - _vix_cache["ts"]) > _VIX_TTL:
+            fi = yf.Ticker("^VIX").fast_info
+            vix_val = getattr(fi, "last_price", None)
+            if vix_val and float(vix_val) > 0:
+                _vix_cache = {"valor": float(vix_val), "ts": ahora}
+
+        vix = _vix_cache.get("valor")
+        if not vix:
+            return base
+
+        if vix < 15:
+            return 75
+        elif vix < 25:
+            return 78
+        elif vix < 35:
+            return 82
+        else:
+            return 85
+    except Exception:
+        return base
+
+
 # ── VALIDAR SEÑAL ─────────────────────────────────────────────────────────────
 def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     """
@@ -617,9 +659,11 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     except Exception:
         pass  # Si falla el import, no bloquear — continuar con otras validaciones
 
-    # 1. Convicción mínima
-    if conviccion < PARAMS["conviccion_minima"]:
-        return False, f"Convicción {conviccion}% < mínimo {PARAMS['conviccion_minima']}%"
+    # 1. Convicción mínima (umbral adaptativo por VIX)
+    _umbral = _umbral_conviccion_efectivo()
+    _vix_str = f"VIX={_vix_cache['valor']:.1f}" if _vix_cache.get("valor") else "VIX=N/D"
+    if conviccion < _umbral:
+        return False, f"Convicción {conviccion}% < umbral {_umbral}% ({_vix_str})"
 
     # 2. Riesgo máximo
     if riesgo > PARAMS["riesgo_maximo"]:

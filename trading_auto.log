@@ -26418,3 +26418,31 @@ ModuleNotFoundError: No module named 'yfinance'
 2026-05-07 21:20:32,774 [INFO] SENDING reqAccountSummary b'\x00\x00\x00F62\x001\x009001\x00All\x00NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL\x00'
 2026-05-07 21:20:32,953 [INFO] disconnecting
 2026-05-07 21:20:32,953 [INFO] ANSWER connectionClosed {}
+2026-05-07 21:25:34,212 [INFO] === CICLO AUTOMÁTICO INICIADO ===
+2026-05-07 21:25:35,391 [INFO] sent startApi
+2026-05-07 21:25:35,403 [INFO] REQUEST startApi {}
+2026-05-07 21:25:35,403 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-07 21:25:35,403 [INFO] ANSWER connectAck {}
+2026-05-07 21:25:35,414 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-07 21:25:35,732 [INFO] REQUEST reqPositions {}
+2026-05-07 21:25:35,732 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-07 21:25:35,739 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-07 21:25:35,739 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-07 21:25:35,746 [INFO] REQUEST reqAccountSummary {'reqId': 9001, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL'}
+2026-05-07 21:25:35,746 [INFO] SENDING reqAccountSummary b'\x00\x00\x00F62\x001\x009001\x00All\x00NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL\x00'
+2026-05-07 21:25:35,922 [INFO] disconnecting
+2026-05-07 21:25:35,922 [INFO] ANSWER connectionClosed {}
+2026-05-07 21:25:35,967 [INFO] Fuera de horario: Fuera de horario NYSE (09:30-15:45 ET) — solo verificando posiciones
+2026-05-07 21:25:53,152 [INFO] sent startApi
+2026-05-07 21:25:53,153 [INFO] REQUEST startApi {}
+2026-05-07 21:25:53,153 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-07 21:25:53,153 [INFO] ANSWER connectAck {}
+2026-05-07 21:25:53,180 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-07 21:25:53,492 [INFO] REQUEST reqPositions {}
+2026-05-07 21:25:53,493 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-07 21:25:53,496 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-07 21:25:53,496 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-07 21:25:53,500 [INFO] REQUEST reqAccountSummary {'reqId': 9001, 'groupName': 'All', 'tags': 'NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL'}
+2026-05-07 21:25:53,500 [INFO] SENDING reqAccountSummary b'\x00\x00\x00F62\x001\x009001\x00All\x00NetLiquidation,TotalCashValue,BuyingPower,UnrealizedPnL\x00'
+2026-05-07 21:25:53,677 [INFO] disconnecting
+2026-05-07 21:25:53,677 [INFO] ANSWER connectionClosed {}
