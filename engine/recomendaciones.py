@@ -880,28 +880,48 @@ def generar_recomendaciones(activos_dict):
         except:
             sizing_macro = 1.0
 
+        # ── Boost por señal persistente (mismo activo+dirección N ciclos) ──
+        # streak=1 → +0%, streak=2 → +2%, streak=3 → +4%, streak≥5 → +8%
+        boost_persistencia = 0.0
+        try:
+            from engine.signal_persistence import get_boost
+            boost_persistencia = get_boost(activo, accion)
+            if boost_persistencia > 0:
+                conviccion_pct = min(cap, conviccion_pct + boost_persistencia)
+                conviccion_pct = round(conviccion_pct, 1)
+        except Exception:
+            pass
+
         tesis = _generar_tesis_resumida(activo, accion, data["evidencia"], fuentes_unicas)
 
         recomendaciones.append({
-            "activo":       activo,
-            "ib_ticker":    ib_info.get("ib", activo),
-            "tipo":         tipo,
-            "descripcion":  ib_info.get("descripcion", activo),
-            "accion":       accion,
-            "direccion":    direccion,
-            "conviccion":   conviccion_pct,
-            "score":        round(conviccion_pct / 10, 1),
-            "riesgo":       riesgo,
-            "horizonte":    horizonte,
-            "precio_actual":precio_actual,
-            "stop_loss":    sl,
-            "take_profit":  tp,
-            "instrumentos": instrumentos_sugeridos,
-            "fuentes":      fuentes_unicas,
-            "n_fuentes":    n_fuentes,
-            "evidencia":    data["evidencia"],
-            "tesis":        tesis,
+            "activo":              activo,
+            "ib_ticker":           ib_info.get("ib", activo),
+            "tipo":                tipo,
+            "descripcion":         ib_info.get("descripcion", activo),
+            "accion":              accion,
+            "direccion":           direccion,
+            "conviccion":          conviccion_pct,
+            "score":               round(conviccion_pct / 10, 1),
+            "riesgo":              riesgo,
+            "horizonte":           horizonte,
+            "precio_actual":       precio_actual,
+            "stop_loss":           sl,
+            "take_profit":         tp,
+            "instrumentos":        instrumentos_sugeridos,
+            "fuentes":             fuentes_unicas,
+            "n_fuentes":           n_fuentes,
+            "evidencia":           data["evidencia"],
+            "tesis":               tesis,
+            "boost_persistencia":  round(boost_persistencia, 1),
         })
+
+    # ── Registrar señales del ciclo para tracking de streaks ─────────────
+    try:
+        from engine.signal_persistence import registrar_señales_ciclo
+        registrar_señales_ciclo(recomendaciones)
+    except Exception:
+        pass
 
     return sorted(recomendaciones, key=lambda x: (x["score"], -x["riesgo"]), reverse=True)
 

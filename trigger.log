@@ -48620,3 +48620,29 @@ AttributeError: 'list' object has no attribute 'items'
 2026-05-07 21:19:10,767 [INFO] ANSWER connectionClosed {}
 2026-05-07 21:19:11,756 [WARNING] Ciclo saltado — Ciclo ya en ejecución — lockfile activo
 2026-05-07 21:19:11,922 [INFO] Fuera de horario para aperturas: Fuera de horario NYSE (09:30-15:45 ET)
+2026-05-07 21:23:21,886 [INFO] sent startApi
+2026-05-07 21:23:21,887 [INFO] REQUEST startApi {}
+2026-05-07 21:23:21,887 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-07 21:23:21,887 [INFO] ANSWER connectAck {}
+2026-05-07 21:23:21,893 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-07 21:23:21,893 [WARNING] IB Error [2107] reqId=-1: La conexión al centro de datos HMDS está inactiva pero debería estar disponible bajo demanda.ushmds
+2026-05-07 21:23:22,196 [INFO] REQUEST reqPositions {}
+2026-05-07 21:23:22,197 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-07 21:23:22,214 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-07 21:23:22,215 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-07 21:23:22,222 [INFO] disconnecting
+2026-05-07 21:23:22,222 [INFO] ANSWER connectionClosed {}
+2026-05-07 21:23:22,233 [INFO] sent startApi
+2026-05-07 21:23:22,237 [INFO] REQUEST startApi {}
+2026-05-07 21:23:22,237 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0010\x00\x00'
+2026-05-07 21:23:22,237 [INFO] ANSWER connectAck {}
+2026-05-07 21:23:22,239 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-07 21:23:22,239 [WARNING] IB Error [2107] reqId=-1: La conexión al centro de datos HMDS está inactiva pero debería estar disponible bajo demanda.ushmds
+2026-05-07 21:23:22,540 [INFO] REQUEST reqPositions {}
+2026-05-07 21:23:22,541 [INFO] SENDING reqPositions b'\x00\x00\x00\x0561\x001\x00'
+2026-05-07 21:23:22,543 [INFO] REQUEST reqAllOpenOrders {}
+2026-05-07 21:23:22,543 [INFO] SENDING reqAllOpenOrders b'\x00\x00\x00\x0516\x001\x00'
+2026-05-07 21:23:22,546 [INFO] disconnecting
+2026-05-07 21:23:22,546 [INFO] ANSWER connectionClosed {}
+2026-05-07 21:23:23,670 [INFO] Fuera de horario para aperturas: Fuera de horario NYSE (09:30-15:45 ET)
+2026-05-07 21:23:33,883 [WARNING] Límite de ciclos diarios alcanzado (200)
