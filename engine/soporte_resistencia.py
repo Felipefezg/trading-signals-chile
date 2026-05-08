@@ -288,6 +288,22 @@ def calcular_sl_tp_calibrado(ticker, accion, precio_actual, atr=None):
         else:
             tp = round(precio_actual * 0.92, 4)
 
+    # ── CAP DE TP POR ATR — evita targets inalcanzables ──────────────────────
+    # Problema detectado: para ETFs near ATH (GLD, SLV) no hay resistencia
+    # cercana → analizar_soporte_resistencia devuelve máximos históricos muy
+    # lejanos (ej. GLD $433 → TP $527, +21.7%) que son irreales en 1–4 semanas.
+    # Solución: si el TP requiere más de MAX_TP_ATR veces el ATR desde la
+    # entrada, descartarlo y usar el fallback ATR×4 (más conservador que ×3).
+    MAX_TP_ATR = 8   # si S/R TP está a más de 8 ATRs → usar ATR×4 en su lugar
+    if atr and atr > 0 and sl is not None and tp is not None:
+        dist_tp = abs(tp - precio_actual)
+        if dist_tp > atr * MAX_TP_ATR:
+            # Nivel S/R demasiado alejado para el horizonte operativo
+            if accion == "COMPRAR":
+                tp = round(precio_actual + atr * 4.0, 4)
+            else:
+                tp = round(precio_actual - atr * 4.0, 4)
+
     # ── GARANTÍA R/R MÍNIMO 2:1 ──────────────────────────────────────────────
     # Si el TP calculado no da al menos 2x el riesgo del SL → recalcular con ATR o %
     if sl is not None and tp is not None:

@@ -214,7 +214,8 @@ def get_capital_ib() -> float:
     return _CAPITAL_FALLBACK
 
 # ── ESTADO DEL MOTOR ──────────────────────────────────────────────────────────
-COOLDOWN_MINUTOS = 60  # Tiempo mínimo entre cierre y reapertura del mismo ticker
+COOLDOWN_MINUTOS = 240  # 4 horas — evita chasing intraday tras SL hit
+                        # (era 60 min: SQM perdió x2 en el mismo día mismo lado)
 
 def _cargar_estado():
     _defaults = {
@@ -243,6 +244,34 @@ def _cargar_estado():
     except Exception:
         pass
     return dict(_defaults)
+
+def _perdio_hoy_misma_direccion(ib_ticker: str, accion: str) -> bool:
+    """
+    Retorna True si el ticker ya tuvo un trade perdedor HOY en la misma
+    dirección (accion = 'COMPRAR' o 'VENDER').
+
+    Previene el patrón de chasing: SL tocado → re-entrada inmediata en el
+    mismo lado → segundo SL. SQM lo hizo x2 el 2026-05-07.
+
+    Lee trades_cerrados.json (confirmados_ib=True únicamente).
+    """
+    try:
+        if not os.path.exists(TRADES_FILE):
+            return False
+        with open(TRADES_FILE) as f:
+            trades = json.load(f)
+        hoy = datetime.now().date().isoformat()
+        for t in trades:
+            if (t.get("ticker") == ib_ticker
+                    and t.get("accion") == accion
+                    and t.get("resultado") == "perdedor"
+                    and t.get("confirmado_ib", False)
+                    and str(t.get("fecha_salida", ""))[:10] == hoy):
+                return True
+    except Exception:
+        pass
+    return False
+
 
 def _registrar_cierre_cooldown(estado, ib_ticker):
     """Registra timestamp de cierre para el cooldown del ticker."""
@@ -620,6 +649,18 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
     en_cd, minutos_restantes = _en_cooldown(estado, ticker)
     if en_cd:
         return False, f"Cooldown activo en {ticker} — {minutos_restantes} min restantes (espera {COOLDOWN_MINUTOS} min post-cierre)"
+
+    # 4c. Bloqueo same-day misma dirección tras pérdida
+    # Si el ticker ya perdió hoy en la misma dirección, no re-entrar.
+    # Ejemplo real: SQM COMPRAR SL a las 11:58 → re-entrada COMPRAR 12:58 → SL x2.
+    # El cooldown de 4h suele cubrir esto, pero como segunda línea de defensa
+    # se bloquea explícitamente durante todo el día calendario.
+    accion_señal = recomendacion.get("accion", "")
+    if _perdio_hoy_misma_direccion(ticker, accion_señal):
+        return False, (
+            f"{ticker} ya tuvo pérdida hoy en {accion_señal} — "
+            f"bloqueado re-entrada misma dirección hasta mañana"
+        )
 
     # 5. Máximo posiciones (incluye las abiertas en iteraciones previas del ciclo)
     if len(posiciones) >= PARAMS["max_posiciones"]:
