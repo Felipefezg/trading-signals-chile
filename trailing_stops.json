@@ -1,1 +1,299 @@
-{}
+{
+  "SQM": {
+    "accion": "COMPRAR",
+    "entrada": 94.0013,
+    "trail_pct": 0.05285442547307002,
+    "trail_nivel": 92.7208,
+    "precio_extremo": 97.8949966430664,
+    "activado": true,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-05T12:08:44.960909",
+        "precio": 94.0013,
+        "trail_nivel": 89.0329,
+        "evento": "INICIALIZADO"
+      },
+      {
+        "timestamp": "2026-05-07T09:32:48.382362",
+        "precio": 97.26000213623047,
+        "trail_nivel": 92.1194,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T10:14:48.206597",
+        "precio": 97.5,
+        "trail_nivel": 92.3467,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T10:15:11.589510",
+        "precio": 97.63999938964844,
+        "trail_nivel": 92.4793,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T10:16:18.259882",
+        "precio": 97.73500061035156,
+        "trail_nivel": 92.5693,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T10:19:18.223829",
+        "precio": 97.83000183105469,
+        "trail_nivel": 92.6593,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T10:20:48.236707",
+        "precio": 97.84249877929688,
+        "trail_nivel": 92.6711,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T10:21:11.605567",
+        "precio": 97.8949966430664,
+        "trail_nivel": 92.7208,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-07T13:15:37.452348",
+        "precio": 92.70500183105469,
+        "trail_nivel": 92.7208,
+        "evento": "CIERRE"
+      }
+    ],
+    "fecha_inicio": "2026-05-05T12:08:44.960917",
+    "precio_actual": 92.70500183105469,
+    "pnl_pct": -1.38,
+    "ultima_actualizacion": "2026-05-07T13:15:37.452334"
+  },
+  "GDX": {
+    "accion": "VENDER",
+    "entrada": 91.7056,
+    "trail_pct": 0.040113558417667554,
+    "trail_nivel": 95.3842,
+    "precio_extremo": 91.7056,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:19.343238",
+        "precio": 91.7056,
+        "trail_nivel": 95.3842,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:19.343246",
+    "precio_actual": 92.41000366210938,
+    "pnl_pct": -0.77,
+    "ultima_actualizacion": "2026-05-06T18:57:51.190204"
+  },
+  "TLT": {
+    "accion": "COMPRAR",
+    "entrada": 86.171,
+    "trail_pct": 0.015,
+    "trail_nivel": 84.8784,
+    "precio_extremo": 86.171,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:19.633709",
+        "precio": 86.171,
+        "trail_nivel": 84.8784,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:19.633726",
+    "precio_actual": 86.08000183105469,
+    "pnl_pct": -0.11,
+    "ultima_actualizacion": "2026-05-06T18:57:49.768060"
+  },
+  "BSAC": {
+    "accion": "COMPRAR",
+    "entrada": 31.0132,
+    "trail_pct": 0.03979300161310286,
+    "trail_nivel": 30.2849,
+    "precio_extremo": 31.540000915527344,
+    "activado": true,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:19.927375",
+        "precio": 31.0132,
+        "trail_nivel": 29.7791,
+        "evento": "INICIALIZADO"
+      },
+      {
+        "timestamp": "2026-05-06T15:11:10.821128",
+        "precio": 31.34000015258789,
+        "trail_nivel": 30.0929,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:12:40.567266",
+        "precio": 31.395000457763672,
+        "trail_nivel": 30.1457,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:14:10.185425",
+        "precio": 31.420000076293945,
+        "trail_nivel": 30.1697,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:17:11.163261",
+        "precio": 31.43000030517578,
+        "trail_nivel": 30.1793,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:18:25.204763",
+        "precio": 31.530000686645508,
+        "trail_nivel": 30.2753,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:32:49.956654",
+        "precio": 31.540000915527344,
+        "trail_nivel": 30.2849,
+        "evento": "TRAIL_MOVIDO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:19.927388",
+    "precio_actual": 31.520000457763672,
+    "pnl_pct": 1.63,
+    "ultima_actualizacion": "2026-05-06T18:57:50.330960"
+  },
+  "CL": {
+    "accion": "COMPRAR",
+    "entrada": 95382.37,
+    "trail_pct": 0.015,
+    "trail_nivel": 93951.6344,
+    "precio_extremo": 95382.37,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:20.173981",
+        "precio": 95382.37,
+        "trail_nivel": 93951.6344,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:20.173998",
+    "precio_actual": 96.0199966430664,
+    "pnl_pct": -99.9,
+    "ultima_actualizacion": "2026-05-06T18:57:50.922767"
+  },
+  "BCH": {
+    "accion": "COMPRAR",
+    "entrada": 37.16,
+    "trail_pct": 0.044234011146073254,
+    "trail_nivel": 36.1088,
+    "precio_extremo": 37.779998779296875,
+    "activado": true,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:20.454460",
+        "precio": 37.16,
+        "trail_nivel": 35.5163,
+        "evento": "INICIALIZADO"
+      },
+      {
+        "timestamp": "2026-05-06T15:11:11.753663",
+        "precio": 37.599998474121094,
+        "trail_nivel": 35.9368,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:18:26.594367",
+        "precio": 37.689998626708984,
+        "trail_nivel": 36.0228,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:23:11.409068",
+        "precio": 37.7599983215332,
+        "trail_nivel": 36.0897,
+        "evento": "TRAIL_MOVIDO"
+      },
+      {
+        "timestamp": "2026-05-06T15:32:50.954617",
+        "precio": 37.779998779296875,
+        "trail_nivel": 36.1088,
+        "evento": "TRAIL_MOVIDO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:20.454480",
+    "precio_actual": 37.66999816894531,
+    "pnl_pct": 1.37,
+    "ultima_actualizacion": "2026-05-06T18:57:50.596755"
+  },
+  "LTM": {
+    "accion": "VENDER",
+    "entrada": 51.21,
+    "trail_pct": 0.0536675083252011,
+    "trail_nivel": 53.9583,
+    "precio_extremo": 51.21,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:20.713339",
+        "precio": 51.21,
+        "trail_nivel": 53.9583,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:20.713353",
+    "precio_actual": 51.869998931884766,
+    "pnl_pct": -1.29,
+    "ultima_actualizacion": "2026-05-06T18:57:51.452825"
+  },
+  "HG": {
+    "accion": "VENDER",
+    "entrada": 6.17,
+    "trail_pct": 0.015,
+    "trail_nivel": 6.2625,
+    "precio_extremo": 6.17,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-06T14:03:21.015183",
+        "precio": 6.17,
+        "trail_nivel": 6.2625,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-05-06T14:03:21.015195",
+    "precio_actual": 6.190000057220459,
+    "pnl_pct": -0.32,
+    "ultima_actualizacion": "2026-05-06T18:57:51.800462"
+  },
+  "GLD": {
+    "accion": "COMPRAR",
+    "entrada": 433.36,
+    "trail_pct": 0.016461810850092542,
+    "trail_nivel": 426.2261,
+    "precio_extremo": 433.36,
+    "activado": false,
+    "umbral_activacion": 0.01,
+    "historial": [
+      {
+        "timestamp": "2026-05-07T12:11:45.897540",
+        "precio": 433.36,
+        "trail_nivel": 426.2261,
+        "evento": "INICIALIZADO"
+      }
+    ],
+    "fecha_inicio": "2026-05-07T12:11:45.897547",
+    "precio_actual": 431.70001220703125,
+    "pnl_pct": -0.38,
+    "ultima_actualizacion": "2026-05-07T21:19:11.687373"
+  }
+}

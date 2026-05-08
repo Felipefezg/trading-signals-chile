@@ -1,1 +1,25 @@
-{}
+{
+  "GLD": {
+    "accion": "COMPRAR",
+    "cantidad": 19.0,
+    "precio_entrada": 433.4126,
+    "sl": 425.7,
+    "tp": 527.7546,
+    "tipo": "ETF",
+    "fecha_entrada": "2026-05-07T12:11:41.634345",
+    "horizonte": {
+      "label": "Medio plazo",
+      "dias": "1\u20134 semanas",
+      "emoji": "\ud83d\udcc5"
+    },
+    "conviccion": 78.0,
+    "orden_id": 3,
+    "fuentes": [
+      "Correlaciones",
+      "IV Opciones",
+      "An\u00e1lisis T\u00e9cnico"
+    ],
+    "tesis": "COMPRAR GLD: AT: Gold ETF: MACD cruce alcista \u2014 histograma 0.3555 | IV: IV Silver ETF impacta GLD: Skew calls 26 | Corr: Gold ETF vs SPY: GLD adelantado vs SPY \u2192",
+    "confirmado_ib": true
+  }
+}

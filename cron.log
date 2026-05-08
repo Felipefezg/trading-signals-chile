@@ -3495,3 +3495,114 @@ Posiciones sincronizadas: 2 en IB
 Horario: Fuera de horario NYSE (09:30-15:45 ET)
 Ejecutando 1 señal(es) Crypto 24/7...
 ERROR en ciclo: name 'precio_actual' is not defined
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:15:04] Iniciando ciclo automático...
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Trail inicializado: ECH
+Trail inicializado: SQM
+Trail inicializado: BTC
+Señales AT guardadas: 0
+
+⚠️  CIERRE DETECTADO: BTC
+   Precio 80,695.97 alcanzó TP 80,800.00 → ganancia -0.01%
+   ✅ Cerrado
+CIERRE: BTC | TAKE PROFIT | PnL -0.01%
+Posición: ECH | precio 40.07 | PnL +5.47%
+Posición: SQM | precio 89.83 | PnL -0.59%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones eliminadas (no están en IB): ['BTC']
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:20:04] Iniciando ciclo automático...
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Señales AT guardadas: 0
+
+⚠️  CIERRE DETECTADO: BTC
+   Precio 80,735.93 alcanzó TP 80,800.00 → ganancia +0.00%
+   ✅ Cerrado
+CIERRE: BTC | TAKE PROFIT | PnL +0.00%
+Posición: ECH | precio 40.07 | PnL +5.47%
+Posición: SQM | precio 89.83 | PnL -0.59%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:25:05] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Señales AT guardadas: 0
+
+⚠️  CIERRE DETECTADO: BTC
+   Precio 80,738.40 alcanzó TP 80,800.00 → ganancia -0.01%
+   ✅ Cerrado
+CIERRE: BTC | TAKE PROFIT | PnL -0.01%
+Posición: ECH | precio 40.07 | PnL +5.47%
+Posición: SQM | precio 89.83 | PnL -0.59%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas: 2 en IB
+  ECH: VENDER 10.0 @ 42.39
+  SQM: VENDER 112.0 @ 89.30
+
+[2026-05-05 06:30:04] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Señales AT guardadas: 1
+
+⚠️  CIERRE DETECTADO: BTC
+   Precio 80,759.60 alcanzó TP 80,800.00 → ganancia +0.01%
+   ✅ Cerrado
+CIERRE: BTC | TAKE PROFIT | PnL +0.01%
+Posición: ECH | precio 40.07 | PnL +5.47%
+Posición: SQM | precio 89.83 | PnL -0.59%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones eliminadas (no están en IB): ['ECH']
+Posiciones sincronizadas: 1 en IB
+  SQM: VENDER 12.0 @ 92.08
+
+[2026-05-05 06:35:05] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Señales AT guardadas: 1
+Posición: SQM | precio 89.83 | PnL +2.45%
+Posición: BTC | precio 80,833.16 | PnL -0.01%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones eliminadas (no están en IB): ['SQM', 'BTC']
+Posiciones sincronizadas: 0 en IB
+
+[2026-05-05 06:40:03] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Ejecutando 1 señal(es) Crypto 24/7...
+✅ Orden Crypto: VENDER BTC
+Señales AT guardadas: 0
+Posición: BTC | precio 80,804.55 | PnL -0.00%

@@ -1,0 +1,2100 @@
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 159.0 @ 93.9463
+
+[2026-05-05 23:36:28] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 15
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posición: SQM | precio 92.57 | PnL -1.46%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 159.0 @ 93.9463
+
+[2026-05-05 23:39:51] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posición: SQM | precio 92.57 | PnL -1.46%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 159.0 @ 93.9463
+
+[2026-05-05 23:47:10] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: SQM | precio 92.57 | PnL -1.46%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 159.0 @ 93.9463
+
+[2026-05-06 00:03:06] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 8
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posición: SQM | precio 92.57 | PnL -1.46%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 159.0 @ 93.9463
+
+[2026-05-06 00:05:11] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posición: SQM | precio 92.57 | PnL -1.46%
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 08:35:16] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 12
+  IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible 
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 13:44:47] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 12.8s
+Error guardando señales: 'list' object has no attribute 'items'
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Sin operaciones en este ciclo — condiciones no cumplidas
+/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 13:47:05] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 12.9s
+Error guardando señales: 'list' object has no attribute 'items'
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 13:52:39] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.8s
+Error guardando señales: 'list' object has no attribute 'get'
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 13:58:10] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.6s
+Señales guardadas en DB: 26
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+  Ejecutando: COMPRAR SQM
+  ❌ COMPRAR SQM — Ya hay posición SQM en IB
+  Ejecutando: COMPRAR CCU
+  Orden enviada: COMPRAR 331 CCU @ 5390.0000 (ID:1)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR CCU — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR BSAC
+  Orden enviada: COMPRAR 76 BSAC @ 31.0200 (ID:1)
+  ✅ COMPRAR BSAC — confirmado por IB
+  Ejecutando: COMPRAR BCH
+  Orden enviada: COMPRAR 212 BCH @ 37.1600 (ID:2)
+  ✅ COMPRAR BCH — confirmado por IB
+  Ejecutando: COMPRAR TLT
+  Orden enviada: COMPRAR 91 TLT @ 86.1800 (ID:3)
+  ✅ COMPRAR TLT — confirmado por IB
+  Ejecutando: COMPRAR CL
+  Orden enviada: COMPRAR 1 CL @ 95.5300 (ID:4)
+  ✅ COMPRAR CL — confirmado por IB
+  Ejecutando: COMPRAR PARAUCO
+  Orden enviada: COMPRAR 1102 PARAUCO @ 3781.0000 (ID:5)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR PARAUCO — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR AGUAS-A
+  Orden enviada: COMPRAR 31531 AGUAS-A @ 331.0000 (ID:5)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR AGUAS-A — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR CONCHATORO
+  Orden enviada: COMPRAR 8097 CONCHATORO @ 868.0000 (ID:5)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR CONCHATORO — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR FORUS
+  Orden enviada: COMPRAR 3295 FORUS @ 2132.0000 (ID:5)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR FORUS — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR MASISA
+  Orden enviada: COMPRAR 525861 MASISA @ 13.0000 (ID:5)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR MASISA — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR PROVIDA
+  Orden enviada: COMPRAR 1364 PROVIDA @ 5151.0000 (ID:5)
+  IB Error [406]: No se permite la divisa CLP.
+  ❌ COMPRAR PROVIDA — IB no registró la orden (status: sin respuesta)
+  Ejecutando: VENDER CAP
+  ❌ VENDER CAP — VENDER CAP bloqueado: no hay posición larga en IB (short no permitido en paper trading para Acción Chile)
+  Ejecutando: VENDER LTM
+  Orden enviada: VENDER 39 LTM @ 51.2100 (ID:5)
+  ✅ VENDER LTM — confirmado por IB
+  Ejecutando: VENDER GDX
+  Orden enviada: VENDER 81 GDX @ 91.5700 (ID:6)
+  ✅ VENDER GDX — confirmado por IB
+  Ejecutando: VENDER HG
+  Orden enviada: VENDER 1 HG @ 6.1700 (ID:7)
+  ✅ VENDER HG — confirmado por IB
+  Ejecutando: VENDER BTC-USD
+  Orden enviada: VENDER 1 BTC-USD @ 81363.4600 (ID:8)
+  IB Error [200]: No se encuentra definición del activo solicitado
+  ❌ VENDER BTC-USD — IB no registró la orden (status: sin respuesta)
+  Ejecutando: VENDER SOCOVESA
+  ❌ VENDER SOCOVESA — VENDER SOCOVESA bloqueado: no hay posición larga en IB (short no permitido en paper trading para Acción Chile)
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+  Ejecutando: COMPRAR SQM
+  ❌ COMPRAR SQM — Ya hay posición SQM en IB
+  Ejecutando: COMPRAR USD.CLP
+  Orden enviada: COMPRAR 7 USD.CLP @ 892.3500 (ID:9)
+  IB Error [200]: No se encuentra definición del activo solicitado
+  ❌ COMPRAR USD.CLP — IB no registró la orden (status: sin respuesta)
+  Ejecutando: COMPRAR SQM
+  ❌ COMPRAR SQM — Ya hay posición SQM en IB
+✅ 7 apertura(s):
+   COMPRAR BSAC | Conv: 100%
+   COMPRAR BCH | Conv: 100%
+   COMPRAR TLT | Conv: 100%
+   COMPRAR CL | Conv: 100%
+   VENDER LTM | Conv: 95.0%
+   VENDER GDX | Conv: 95.0%
+   VENDER HG | Conv: 95.0%
+❌ 7 señal(es) rechazada(s):
+   BCI: Máximo 2 posiciones en sector Bancos
+   SPY: Solo 1 fuentes < mínimo 2
+   ECH: Convicción 73.8% < mínimo 75%
+[14:23:25] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 253, in _run_main_logic
+    print(f"   {a['accion']} {a['ticker']} | Conv: {a['conviccion']}%")
+KeyError: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  LTM: VENDER 39.0 @ 51.1831
+  BSAC: COMPRAR 76.0 @ 31.0132
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 14:28:27] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 14.5s
+Señales guardadas en DB: 26
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+✅ 3 apertura(s):
+ERROR en ciclo: 'ticker'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 253, in _run_main_logic
+    print(f"   {a['accion']} {a['ticker']} | Conv: {a['conviccion']}%")
+KeyError: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  LTM: VENDER 39.0 @ 51.1831
+  BSAC: COMPRAR 76.0 @ 31.0132
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 14:50:54] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 15.1s
+Señales guardadas en DB: 30
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+✅ 3 apertura(s):
+ERROR en ciclo: 'ticker'
+[15:12:44] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 253, in _run_main_logic
+    print(f"   {a['accion']} {a['ticker']} | Conv: {a['conviccion']}%")
+KeyError: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 15:17:46] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.3s
+Señales guardadas en DB: 29
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+✅ 3 apertura(s):
+ERROR en ciclo: 'ticker'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 253, in _run_main_logic
+    print(f"   {a['accion']} {a['ticker']} | Conv: {a['conviccion']}%")
+KeyError: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 15:24:06] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.5s
+Señales guardadas en DB: 30
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+✅ 3 apertura(s):
+ERROR en ciclo: 'ticker'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 253, in _run_main_logic
+    print(f"   {a['accion']} {a['ticker']} | Conv: {a['conviccion']}%")
+KeyError: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 15:32:12] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 15.5s
+Señales guardadas en DB: 29
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+✅ 3 apertura(s):
+ERROR en ciclo: 'ticker'
+[15:38:29] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 253, in _run_main_logic
+    print(f"   {a['accion']} {a['ticker']} | Conv: {a['conviccion']}%")
+KeyError: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 15:43:31] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.0s
+Señales guardadas en DB: 32
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+✅ 3 apertura(s):
+ERROR en ciclo: 'ticker'
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 15:49:48] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 12
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: GDX | precio 92.19 | PnL -0.53%
+Posición: TLT | precio 86.12 | PnL -0.05%
+Posición: BSAC | precio 31.45 | PnL +1.41%
+Posición: LTM | precio 51.67 | PnL -0.96%
+Posición: CL | precio 95.20 | PnL -99.90%
+Posición: BCH | precio 37.68 | PnL +1.40%
+Posición: HG | precio 6.18 | PnL -0.24%
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 15:55:07] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 5
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: GDX | precio 92.25 | PnL -0.60%
+Posición: TLT | precio 86.14 | PnL -0.03%
+Posición: BSAC | precio 31.44 | PnL +1.38%
+Posición: LTM | precio 51.79 | PnL -1.19%
+Posición: CL | precio 95.16 | PnL -99.90%
+Posición: BCH | precio 37.72 | PnL +1.49%
+Posición: HG | precio 6.18 | PnL -0.15%
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  GDX: VENDER 81.0 @ 91.7056
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  LTM: VENDER 39.0 @ 51.1831
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 212 @ 37.1600
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 16:00:43] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 9
+  Manteniendo posición pendiente (orden abierta en IB): BCH
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.65%
+Posición: LTM | precio 51.86 | PnL -1.32%
+Posición: CL | precio 94.97 | PnL -99.90%
+Posición: BCH | precio 37.67 | PnL +1.37%
+Posición: HG | precio 6.18 | PnL -0.22%
+[16:06:00] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:11:00] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:16:00] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:21:00] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:26:00] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:31:01] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:38:02] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:43:02] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:48:02] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:53:02] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[16:58:50] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[17:05:19] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  CL: COMPRAR 1.0 @ 95,382.3700
+  BCH: COMPRAR 100.0 @ 37.1700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 17:24:57] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 6
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 17:30:16] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 17:35:33] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 17:43:55] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 17:49:12] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 17:54:29] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:02:18] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:09:34] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.21 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.38%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:14:50] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 95.83 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.18 | PnL -0.23%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:20:20] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 95.87 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.28%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:25:36] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 95.83 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.25%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:31:04] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 95.83 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.29%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:36:25] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 95.82 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.31%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:41:46] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 95.94 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.32%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:47:03] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.12 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.34%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:52:17] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.03 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.33%
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posiciones sincronizadas con IB: 7
+  TLT: COMPRAR 91.0 @ 86.1710
+  BSAC: COMPRAR 76.0 @ 31.0132
+  BCH: COMPRAR 100.0 @ 37.1700
+  CL: COMPRAR 1.0 @ 95,382.3700
+  GDX: VENDER 81.0 @ 91.7056
+  LTM: VENDER 39.0 @ 51.1831
+  HG: VENDER 1 @ 6.1700
+
+[2026-05-06 18:57:35] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+  Manteniendo posición pendiente (orden abierta en IB): HG
+Posición: TLT | precio 86.08 | PnL -0.11%
+Posición: BSAC | precio 31.52 | PnL +1.63%
+Posición: BCH | precio 37.67 | PnL +1.35%
+Posición: CL | precio 96.02 | PnL -99.90%
+Posición: GDX | precio 92.41 | PnL -0.77%
+Posición: LTM | precio 51.87 | PnL -1.34%
+Posición: HG | precio 6.19 | PnL -0.32%
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:02:54] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:07:57] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:13:00] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:18:03] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:23:05] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:28:08] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:33:11] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:38:14] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:43:16] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 19:48:19] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:20:30] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:25:34] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:30:36] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:35:39] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:40:42] Iniciando ciclo automático...
+Motor INACTIVO — sin acción
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:45:44] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:51:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 20:56:16] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:01:32] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:16:23] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:21:39] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:26:52] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:32:08] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:37:21] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 21:42:40] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 22:03:14] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 22:54:28] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-06 23:45:48] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 00:28:41] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 13
+[01:33:21] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[02:24:11] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[03:15:04] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 04:23:25] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 05:24:53] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error analizando SQM-B.SN: 'NoneType' object is not subscriptable
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 06:26:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error analizando SQM-B.SN: 'NoneType' object is not subscriptable
+Señales AT guardadas: 1
+[08:27:31] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 08:32:32] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 08:37:47] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 08:43:00] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 08:48:13] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 08:53:27] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 08:58:39] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 09:03:57] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 09:09:11] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 09:14:26] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 09:19:39] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 09:24:52] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-07 09:30:05] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 15.7s
+Señales guardadas en DB: 7
+❌ 34 señal(es) rechazada(s):
+   SQM: Ventana bloqueada — apertura NYSE (9:30–10:00 ET), spreads amplios
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[09:36:18] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 09:41:20] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 11.0s
+Señales guardadas en DB: 7
+❌ 35 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 09:47:36] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 10.9s
+Señales guardadas en DB: 7
+❌ 34 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 09:53:48] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 11.1s
+Señales guardadas en DB: 8
+❌ 35 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   SQM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[09:59:56] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[10:04:56] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 10:09:58] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 22.5s
+Señales guardadas en DB: 9
+❌ 36 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   SQM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[10:16:21] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[10:21:21] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 10:26:23] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 11.4s
+Señales guardadas en DB: 8
+❌ 36 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   SQM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[10:35:27] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[10:47:32] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 10:52:33] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 18.0s
+Señales guardadas en DB: 10
+❌ 32 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   SQM: Convicción 77% < mínimo 78%
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 10:58:55] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 13.2s
+Señales guardadas en DB: 10
+❌ 32 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   SQM: Convicción 77% < mínimo 78%
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+[11:05:06] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[11:10:06] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 11:15:11] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 11.4s
+Señales guardadas en DB: 8
+❌ 31 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   CAP: CAP fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 11:21:13] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 11.4s
+Señales guardadas en DB: 10
+❌ 32 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   SQM: Convicción 77% < mínimo 78%
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 11:27:16] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Datos cargados en 11.3s
+Señales guardadas en DB: 10
+❌ 33 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   SQM: Convicción 77% < mínimo 78%
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 11:33:22] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Datos cargados en 11.5s
+Señales guardadas en DB: 9
+❌ 33 señal(es) rechazada(s):
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+   CAP: CAP fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 11:39:28] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 22.2s
+Señales guardadas en DB: 9
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 33 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+[11:45:55] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[11:50:55] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  SQM: COMPRAR 91.0 @ 97.0110
+
+[2026-05-07 11:55:57] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 22.9s
+Señales guardadas en DB: 8
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 33 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   SQM: Ya existe posición abierta en SQM
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+[12:02:18] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[12:07:18] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+  Manteniendo posición pendiente (orden abierta en IB): GLD
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19 @ 433.3600
+
+[2026-05-07 12:12:20] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.1s
+Señales guardadas en DB: 9
+  Manteniendo posición pendiente (orden abierta en IB): GLD
+  Manteniendo posición pendiente (orden abierta en IB): GLD
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 37 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   GLD: Ya existe posición abierta en GLD
+   SQM: Cooldown activo en SQM — 44.8 min restantes (espera 60 min post-cierre)
+Sin operaciones en este ciclo — condiciones no cumplidas
+  Manteniendo posición pendiente (orden abierta en IB): GLD
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19 @ 433.3600
+
+[2026-05-07 12:18:32] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.8s
+Señales guardadas en DB: 10
+  Manteniendo posición pendiente (orden abierta en IB): GLD
+  Manteniendo posición pendiente (orden abierta en IB): GLD
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+  Cargando precios de 54 activos...
+  Precios disponibles: 54/54
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 36 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   GLD: Ya existe posición abierta en GLD
+   ENELCHILE: ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)
+Sin operaciones en este ciclo — condiciones no cumplidas
+[12:24:45] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[12:29:45] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 12:34:47] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.5s
+Señales guardadas en DB: 8
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 34 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   GLD: Ya existe posición abierta en GLD
+   COPEC: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 12:41:03] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.3s
+Señales guardadas en DB: 8
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 32 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   COPEC: Earnings COPEC HOY (2026-05-07) — gap riesgo sobre SL, evitar apertura
+   GLD: Ya existe posición abierta en GLD
+Sin operaciones en este ciclo — condiciones no cumplidas
+[12:47:12] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[12:52:15] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 12:57:17] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 20.6s
+Señales guardadas en DB: 8
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+  Ejecutando: COMPRAR SQM
+  Orden enviada: COMPRAR 85 SQM @ 93.2400 (ID:4)
+  ✅ COMPRAR SQM — confirmado por IB
+✅ 1 apertura(s):
+   COMPRAR SQM | Conv: 87%
+❌ 32 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   COPEC: Earnings COPEC HOY (2026-05-07) — gap riesgo sobre SL, evitar apertura
+   GLD: Ya existe posición abierta en GLD
+[13:03:46] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[13:08:47] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 2
+  GLD: COMPRAR 19.0 @ 433.4126
+  SQM: COMPRAR 85.0 @ 93.2518
+
+[2026-05-07 13:13:49] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 12.9s
+Señales guardadas en DB: 7
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 34 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   GLD: Ya existe posición abierta en GLD
+   COPEC: Convicción 76.7% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 13:20:05] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 14.0s
+Señales guardadas en DB: 7
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+  Cargando precios de 54 activos...
+  Precios disponibles: 54/54
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 34 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   GLD: Ya existe posición abierta en GLD
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[13:26:20] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[13:31:22] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 13:36:24] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 15.0s
+Señales guardadas en DB: 6
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 35 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   GLD: Ya existe posición abierta en GLD
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[13:42:43] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[13:50:28] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[13:58:57] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[14:05:04] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[14:10:05] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 14:15:07] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — horario normal
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 12.4s
+Señales guardadas en DB: 7
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 33 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   COPEC: Earnings COPEC HOY (2026-05-07) — gap riesgo sobre SL, evitar apertura
+   GLD: Ya existe posición abierta en GLD
+Sin operaciones en este ciclo — condiciones no cumplidas
+[14:21:16] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+[14:27:06] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 14:32:08] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 15.9s
+Señales guardadas en DB: 9
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+  Buscando 13F para SQM...
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+  Buscando 13F para ECH...
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+  Buscando 13F para BSAC...
+  Buscando 13F para BCH...
+  Buscando 13F para LTM...
+❌ 35 señal(es) rechazada(s):
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   COPEC: Convicción 77.9% < mínimo 78%
+   GLD: Ya existe posición abierta en GLD
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 14:38:28] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.9s
+Señales guardadas en DB: 9
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 34 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   COPEC: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 14:44:50] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.0s
+Señales guardadas en DB: 9
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 35 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   COPEC: Convicción 76.9% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[14:51:01] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 14:56:03] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.1s
+Señales guardadas en DB: 11
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 35 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[15:02:18] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:07:27] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.0s
+Señales guardadas en DB: 11
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 36 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[15:13:40] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:18:42] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 12.9s
+Señales guardadas en DB: 11
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 37 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+[15:25:01] ⏭  Ciclo ya en ejecución — lockfile activo (trigger.py corriendo) — abortando run_ciclo
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:30:02] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 19.3s
+Señales guardadas en DB: 12
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 36 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:36:23] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 12.8s
+Señales guardadas en DB: 11
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 36 señal(es) rechazada(s):
+   GLD: Ya existe posición abierta en GLD
+   GC: GC en blacklist auto-trading (nocional masivo — operar manualmente)
+   LTM: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:42:34] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — hora cierre
+Ejecutando ciclo completo...
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+Datos cargados en 13.4s
+Señales guardadas en DB: 9
+Error Trends ['SQM', 'litio chile', 'lithium chile']: The request failed: Google returned a response with code 429
+Error Trends ['Copec', 'bencina chile', 'petroleo chile']: The request failed: Google returned a response with code 429
+Error Trends ['IPSA', 'bolsa chile', 'acciones chile']: The request failed: Google returned a response with code 429
+Error Trends ['dolar chile', 'tipo de cambio', 'peso chileno']: The request failed: Google returned a response with code 429
+Error Trends ['bitcoin chile', 'crypto chile', 'BTC']: The request failed: Google returned a response with code 429
+❌ 34 señal(es) rechazada(s):
+   LTM: Convicción 77% < mínimo 78%
+   SQM: Convicción 77% < mínimo 78%
+   BSAC: Convicción 77% < mínimo 78%
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:48:47] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 12
+Posición: GLD | precio 432.07 | PnL -0.31%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:54:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error analizando SQM-B.SN: 'NoneType' object is not subscriptable
+Error analizando COPEC.SN: 'NoneType' object is not subscriptable
+Señales AT guardadas: 11
+Posición: GLD | precio 431.98 | PnL -0.33%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 15:59:52] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 9
+Posición: GLD | precio 431.77 | PnL -0.38%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:05:06] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 8
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:13:33] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 5
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:18:52] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 7
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:24:07] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 4
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:29:24] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:34:49] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:40:04] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 3
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:45:17] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 4
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:50:30] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 3
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 16:55:44] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:00:58] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 3
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:06:12] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 3
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:11:27] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 3
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:16:40] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:21:54] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:27:10] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:32:27] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:37:40] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:42:54] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:48:07] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:53:23] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 17:58:38] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:03:53] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:09:06] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:14:20] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:19:34] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:24:48] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:30:03] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:35:18] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:40:35] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:45:48] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:51:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 18:56:42] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:01:57] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:07:37] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:12:53] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:18:11] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:23:28] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:28:42] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:34:03] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:39:21] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 19:44:35] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 20:33:13] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 20:43:20] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 20:48:41] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:06:50] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:15:01] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%

@@ -1,3922 +1,2766 @@
 [
   {
-    "timestamp": "2026-04-29T09:30:33.333055",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
+    "timestamp": "2026-05-07T15:08:40.651364",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
     "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 84.5,
-      "score": 8.4,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6515.0,
-      "stop_loss": 6864.37,
-      "take_profit": 5816.26,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
       "fuentes": [
-        "Kalshi",
-        "Polymarket",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.03
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 53.5,
-          "direccion": "ALZA",
-          "peso": 0.14
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.77
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 4.5% in Q1 2026?",
-          "prob": 0.1,
-          "direccion": "BAJA",
-          "peso": 9.98
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 32.0,
-          "direccion": "BAJA",
-          "peso": 4.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +4.0% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 3.24
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME sube +0.8% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.62
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Petr\u00f3leo sube +4.0% \u2192 costos energ\u00eda \u2192 COPEC.SN AL"
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T09:30:49.099048",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.7,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.37
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:35:43.512220",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:35:55.846095",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.3,
-      "score": 7.7,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Kalshi",
-        "Macro USA",
-        "Polymarket"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.7% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.53
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.5% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.41
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.7% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:40:33.225563",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:40:47.007742",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 76.1,
-      "score": 7.6,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Macro USA",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.9% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.74
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.7% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.54
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Petr\u00f3leo sube +0.9% \u2192 costos energ\u00eda \u2192 COPEC.SN AL"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:43:01.808062",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:43:16.129177",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.7,
-      "score": 7.8,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.6% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.46
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.3% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.28
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.6% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:45:27.980685",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:45:44.076585",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.7,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Macro USA",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.39
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:50:31.514067",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:50:43.392233",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.6,
-      "score": 7.8,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Macro USA",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.36
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.3% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.28
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:55:35.429635",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:55:47.403222",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.6,
-      "score": 7.8,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Kalshi",
-        "Polymarket",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.4% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.29
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:58:01.503341",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T09:58:17.309919",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.0,
-      "score": 7.7,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.6% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.45
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.38
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Petr\u00f3leo sube +0.6% \u2192 costos energ\u00eda \u2192 COPEC.SN AL"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:00:52.614603",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:01:08.919676",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.4,
-      "score": 7.7,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Macro USA",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.6% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.5
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.5% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.38
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.6% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:05:34.753093",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:05:48.173515",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.4,
-      "score": 7.7,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Macro USA",
-        "Kalshi",
-        "Polymarket"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.4% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.35
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.4% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.34
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.4% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:10:36.785496",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:10:50.209822",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.7,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Macro USA",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.4% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.34
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.4% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:13:00.775291",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:13:15.514195",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.7,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 50.5,
-          "direccion": "ALZA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.38
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:15:37.098653",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:15:53.875984",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.7,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6303.0,
-      "stop_loss": 6407.7357,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Macro USA",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.6% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.49
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.6% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:20:26.116841",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.02,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:20:37.553863",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 76.7,
-      "score": 7.7,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6301.89990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Kalshi",
-        "Macro USA",
-        "Polymarket"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.8% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.61
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.7% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.56
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.8% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:25:38.115661",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:25:49.619665",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.7,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6301.89990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Macro USA",
-        "Kalshi",
-        "Polymarket"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.42
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:28:01.106143",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:28:16.322458",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 77.5,
-      "score": 7.8,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6301.89990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.38
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo sube +0.4% \u2192 costos energ\u00eda \u2192 COPEC.SN ALZA",
-          "prob": null,
-          "direccion": "ALZA",
-          "peso": 0.29
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.5% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:30:30.919230",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": -0.58,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:30:43.034256",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.8,
-      "score": 7.9,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6308.39990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Kalshi",
-        "Macro USA",
-        "Polymarket"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Petr\u00f3leo baja -0.4% \u2192 costos energ\u00eda \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.29
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.28
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Petr\u00f3leo baja -0.4% \u2192 costos energ\u00eda \u2192 COPEC.SN BA"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:35:29.140390",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:35:41.943855",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 78.5,
-      "score": 7.8,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6308.39990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
-      "fuentes": [
-        "Macro USA",
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.28
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:40:40.527092",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
-    "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.21,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:40:40.538305",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:40:55.002000",
-    "tipo": "APERTURA",
+    "timestamp": "2026-05-07T15:08:40.653825",
+    "tipo": "RECHAZADA",
     "descripcion": "VENDER BTC",
     "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79499.0390625,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 5,
       "fuentes": [
         "Polymarket",
         "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:40:58.564340",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
+    "timestamp": "2026-05-07T15:08:40.656139",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HITES.SN",
     "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 80.6,
-      "score": 8.1,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6308.39990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
+      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 8.0,
-          "direccion": "BAJA",
-          "peso": 10.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 23.0,
-          "direccion": "BAJA",
-          "peso": 6.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.28
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC"
+        "Mercado Local"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:44:15.355171",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:08:40.658383",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.3,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:44:15.365169",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:44:30.551626",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79571.2890625,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "Correlaciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:44:33.706522",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
+    "timestamp": "2026-05-07T15:08:40.660752",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
     "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 75.3,
-      "score": 7.5,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6308.39990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi",
-        "Macro USA"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 23.0,
-          "direccion": "BAJA",
-          "peso": 6.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 34.0,
-          "direccion": "BAJA",
-          "peso": 4.0
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.28
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC"
+        "Correlaciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:45:33.874999",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:08:40.662931",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.34,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:45:33.909720",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:45:46.173415",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79683.21875,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "An\u00e1lisis T\u00e9cnico"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:45:49.566762",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
+    "timestamp": "2026-05-07T15:08:40.665027",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
     "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 75.3,
-      "score": 7.5,
-      "riesgo": 1,
-      "horizonte": {
-        "label": "Corto-medio",
-        "dias": "1\u20132 semanas",
-        "emoji": "\ud83d\udcc5",
-        "nota": "Ajustado: Acci\u00f3n Chile liquidez limitada"
-      },
-      "precio_actual": 6308.39990234375,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.667130",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
+    "datos": {
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.670032",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
+    "datos": {
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.672163",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR MALLPLAZA",
+    "datos": {
+      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.674264",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR AGUAS-A",
+    "datos": {
+      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.676363",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CONCHATORO",
+    "datos": {
+      "razon": "CONCHATORO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.678623",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.680724",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SMU",
+    "datos": {
+      "razon": "SMU fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.682813",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SALFACORP",
+    "datos": {
+      "razon": "SALFACORP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.684910",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.687303",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.689491",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.691515",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENELCHILE",
+    "datos": {
+      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.693529",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENTEL",
+    "datos": {
+      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.695511",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER VAPORES",
+    "datos": {
+      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.697676",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:08:40.699678",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER USD.CLP",
+    "datos": {
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 52.3,
+      "riesgo": 3,
       "fuentes": [
         "Macro USA",
         "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 3,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 23.0,
-          "direccion": "BAJA",
-          "peso": 6.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 34.0,
-          "direccion": "BAJA",
-          "peso": 4.0
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 67.0,
-          "direccion": "ALZA",
-          "peso": 3.4
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        },
-        {
-          "fuente": "Macro USA",
-          "se\u00f1al": "Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC.SN BAJA",
-          "prob": null,
-          "direccion": "BAJA",
-          "peso": 0.24
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja | Cobre LME baja -0.3% \u2192 correlaci\u00f3n directa \u2192 COPEC"
+        "Renta Fija",
+        "Kalshi",
+        "Noticias",
+        "IV Opciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:50:41.177864",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:20:00.797993",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GLD",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -3.08,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:50:41.191370",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": -0.26,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T10:50:54.167441",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80170.0390625,
-      "stop_loss": 81332.1438,
-      "take_profit": 80800.0,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Ya existe posici\u00f3n abierta en GLD",
+      "conviccion": 78.0,
+      "riesgo": 1,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:50:57.588997",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER COPEC",
+    "timestamp": "2026-05-07T15:20:00.803997",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GC",
     "datos": {
-      "activo": "COPEC.SN",
-      "ib_ticker": "COPEC",
-      "tipo": "Acci\u00f3n Chile",
-      "descripcion": "Copec (Santiago)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 75.9,
-      "score": 7.6,
+      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 78.0,
+      "riesgo": 3,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.809380",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.814578",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
       "riesgo": 2,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 6324.5,
-      "stop_loss": 6407.0441,
-      "take_profit": 6350.9811,
-      "instrumentos": [
-        {
-          "vehiculo": "Acci\u00f3n directa",
-          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
-          "cuando": "Horizonte > 1 semana",
-          "pros": "Sin vencimiento, dividendos, simplicidad",
-          "contras": "Capital completo comprometido"
-        }
-      ],
       "fuentes": [
-        "Polymarket",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.818931",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.823101",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "13F SEC"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.827908",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.831519",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CMPC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.835432",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR MALLPLAZA",
+    "datos": {
+      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 77,
+      "riesgo": 3,
+      "fuentes": [
+        "IV Opciones",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.838769",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HG",
+    "datos": {
+      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 77,
+      "riesgo": 4,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.842036",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 73.7% < m\u00ednimo 78%",
+      "conviccion": 73.7,
+      "riesgo": 1,
+      "fuentes": [
+        "13F SEC",
+        "Noticias",
+        "IV Opciones",
+        "Macro USA",
+        "Put/Call",
         "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
-          "prob": 51.5,
-          "direccion": "ALZA",
-          "peso": 0.04
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Russia-Ukraine Ceasefire before GTA VI?",
-          "prob": 54.5,
-          "direccion": "ALZA",
-          "peso": 0.09
-        },
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Putin out as President of Russia by December 31, 2026?",
-          "prob": 11.5,
-          "direccion": "BAJA",
-          "peso": 0.39
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.00% following the Fed'",
-          "prob": 23.0,
-          "direccion": "BAJA",
-          "peso": 6.75
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will the upper bound of the federal funds rate be above 4.25% following the Fed'",
-          "prob": 34.0,
-          "direccion": "BAJA",
-          "peso": 4.0
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
-          "prob": 66.0,
-          "direccion": "ALZA",
-          "peso": 3.2
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Will **real GDP** increase by more than 2.5% in Q2 2026?",
-          "prob": 35.0,
-          "direccion": "BAJA",
-          "peso": 3.0
-        }
-      ],
-      "tesis": "VENDER COPEC.SN: Polymarket se\u00f1ala alza (51.5%) | Kalshi confirma baja"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:56:00.771325",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:20:00.844986",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER COPEC",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -3.49,
-      "ejecutado": true,
-      "error": null
+      "razon": "Convicci\u00f3n 74.1% < m\u00ednimo 78%",
+      "conviccion": 74.1,
+      "riesgo": 2,
+      "fuentes": [
+        "Macro USA",
+        "Kalshi",
+        "Polymarket"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:56:00.783558",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
+    "timestamp": "2026-05-07T15:20:00.847954",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR TLT",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": -0.39,
-      "ejecutado": true,
-      "error": null
+      "razon": "Convicci\u00f3n 66.5% < m\u00ednimo 78%",
+      "conviccion": 66.5,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:56:00.792658",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
+    "timestamp": "2026-05-07T15:20:00.850793",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GDX",
     "datos": {
-      "ticker": "COPEC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.0,
-      "ejecutado": true,
-      "error": null
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T10:56:12.434798",
-    "tipo": "APERTURA",
+    "timestamp": "2026-05-07T15:20:00.853576",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
+    "datos": {
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.856069",
+    "tipo": "RECHAZADA",
     "descripcion": "VENDER BTC",
     "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80448.140625,
-      "stop_loss": 85850.0,
-      "take_profit": 80800.0,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
-      "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:00:53.991101",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
-    "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -3.18,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:00:54.001793",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "BTC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.25,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:01:05.732973",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80281.9375,
-      "stop_loss": 81332.1438,
-      "take_profit": 80800.0,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 5,
       "fuentes": [
         "Kalshi",
         "Polymarket"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:05:46.539073",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:20:00.858497",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HITES.SN",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -3.03,
-      "ejecutado": true,
-      "error": null
+      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Mercado Local"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:05:46.549473",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
+    "timestamp": "2026-05-07T15:20:00.860810",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.19,
-      "ejecutado": true,
-      "error": null
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:05:57.578677",
-    "tipo": "APERTURA",
+    "timestamp": "2026-05-07T15:20:00.863127",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.865442",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.867607",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BTC-USD",
+    "datos": {
+      "razon": "BTC-USD fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.869764",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.871810",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
+    "datos": {
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.873917",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
+    "datos": {
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.875922",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR AGUAS-A",
+    "datos": {
+      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.877932",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CONCHATORO",
+    "datos": {
+      "razon": "CONCHATORO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.879945",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.881961",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.884303",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.886323",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR ECH",
+    "datos": {
+      "razon": "Convicci\u00f3n 61.9% < m\u00ednimo 78%",
+      "conviccion": 61.9,
+      "riesgo": 2,
+      "fuentes": [
+        "CMF",
+        "Correlaciones",
+        "13F SEC",
+        "Volumen",
+        "Noticias",
+        "Renta Fija",
+        "Macro USA",
+        "IV Opciones",
+        "Put/Call",
+        "Polymarket",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.888351",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.890369",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CENCOSUD",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.892430",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENELCHILE",
+    "datos": {
+      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.894450",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENTEL",
+    "datos": {
+      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.896467",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER VAPORES",
+    "datos": {
+      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.898481",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:20:00.900478",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER USD.CLP",
+    "datos": {
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 52.0,
+      "riesgo": 3,
+      "fuentes": [
+        "Renta Fija",
+        "Noticias",
+        "Macro USA",
+        "IV Opciones",
+        "Polymarket",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.496989",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GLD",
+    "datos": {
+      "razon": "Ya existe posici\u00f3n abierta en GLD",
+      "conviccion": 78.0,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.504071",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GC",
+    "datos": {
+      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 78.0,
+      "riesgo": 3,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.508249",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.514380",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.517770",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.520758",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "13F SEC",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.523577",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "Mercado Local",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.526543",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CMPC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 3,
+      "fuentes": [
+        "Mercado Local",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.529576",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HG",
+    "datos": {
+      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 77,
+      "riesgo": 4,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.533105",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER COPEC",
+    "datos": {
+      "razon": "Convicci\u00f3n 73.8% < m\u00ednimo 78%",
+      "conviccion": 73.8,
+      "riesgo": 2,
+      "fuentes": [
+        "Kalshi",
+        "Macro USA",
+        "Polymarket"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.536162",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 72.8% < m\u00ednimo 78%",
+      "conviccion": 72.8,
+      "riesgo": 1,
+      "fuentes": [
+        "IV Opciones",
+        "13F SEC",
+        "Put/Call",
+        "Kalshi",
+        "Noticias",
+        "Macro USA"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.539160",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR TLT",
+    "datos": {
+      "razon": "Convicci\u00f3n 66.5% < m\u00ednimo 78%",
+      "conviccion": 66.5,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.542154",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GDX",
+    "datos": {
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.545311",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
+    "datos": {
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
+      "fuentes": [
+        "Mercado Local",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.548092",
+    "tipo": "RECHAZADA",
     "descripcion": "VENDER BTC",
     "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80164.1015625,
-      "stop_loss": 81332.1438,
-      "take_profit": 80800.0,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 5,
       "fuentes": [
         "Kalshi",
         "Polymarket"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:10:21.740392",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:31:21.550815",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HITES.SN",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -3.0,
-      "ejecutado": true,
-      "error": null
+      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Mercado Local"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:10:21.753009",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
+    "timestamp": "2026-05-07T15:31:21.553580",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.07,
-      "ejecutado": true,
-      "error": null
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:10:32.137028",
-    "tipo": "APERTURA",
+    "timestamp": "2026-05-07T15:31:21.556043",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.558343",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.560618",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BTC-USD",
+    "datos": {
+      "razon": "BTC-USD fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.562927",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.565075",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
+    "datos": {
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.567215",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
+    "datos": {
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.569264",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR MALLPLAZA",
+    "datos": {
+      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.571289",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR AGUAS-A",
+    "datos": {
+      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.573303",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CONCHATORO",
+    "datos": {
+      "razon": "CONCHATORO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.575306",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.577415",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.579425",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.581415",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR ECH",
+    "datos": {
+      "razon": "Convicci\u00f3n 62.0% < m\u00ednimo 78%",
+      "conviccion": 62.0,
+      "riesgo": 2,
+      "fuentes": [
+        "Volumen",
+        "IV Opciones",
+        "13F SEC",
+        "Correlaciones",
+        "Put/Call",
+        "Kalshi",
+        "CMF",
+        "Renta Fija",
+        "Noticias",
+        "Macro USA",
+        "Polymarket"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.583433",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.585499",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENELCHILE",
+    "datos": {
+      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.587510",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENTEL",
+    "datos": {
+      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.589512",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER VAPORES",
+    "datos": {
+      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.591500",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:31:21.593506",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER USD.CLP",
+    "datos": {
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 52.1,
+      "riesgo": 3,
+      "fuentes": [
+        "IV Opciones",
+        "Kalshi",
+        "Renta Fija",
+        "Noticias",
+        "Macro USA",
+        "Polymarket"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.605048",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GLD",
+    "datos": {
+      "razon": "Ya existe posici\u00f3n abierta en GLD",
+      "conviccion": 78.0,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.610548",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GC",
+    "datos": {
+      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 78.0,
+      "riesgo": 3,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.615019",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.619121",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.622924",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.626556",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "13F SEC"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.629939",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "Mercado Local",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.633234",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CMPC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 3,
+      "fuentes": [
+        "Mercado Local",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.636172",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HG",
+    "datos": {
+      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 77,
+      "riesgo": 4,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.639411",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER COPEC",
+    "datos": {
+      "razon": "Convicci\u00f3n 73.3% < m\u00ednimo 78%",
+      "conviccion": 73.3,
+      "riesgo": 2,
+      "fuentes": [
+        "Polymarket",
+        "Kalshi",
+        "Macro USA"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.642219",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 72.4% < m\u00ednimo 78%",
+      "conviccion": 72.4,
+      "riesgo": 1,
+      "fuentes": [
+        "IV Opciones",
+        "Put/Call",
+        "Noticias",
+        "Macro USA",
+        "Kalshi",
+        "13F SEC"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.644972",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR TLT",
+    "datos": {
+      "razon": "Convicci\u00f3n 66.5% < m\u00ednimo 78%",
+      "conviccion": 66.5,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.647471",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GDX",
+    "datos": {
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.649916",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
+    "datos": {
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
+      "fuentes": [
+        "Mercado Local",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.652350",
+    "tipo": "RECHAZADA",
     "descripcion": "VENDER BTC",
     "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80035.9921875,
-      "stop_loss": 81332.1438,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 5,
       "fuentes": [
         "Polymarket",
         "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:10:43.573249",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:37:32.654700",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HITES.SN",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.9,
-      "ejecutado": true,
-      "error": null
+      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Mercado Local"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:10:54.354799",
-    "tipo": "APERTURA",
+    "timestamp": "2026-05-07T15:37:32.657014",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.659166",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.661658",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.663778",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BTC-USD",
+    "datos": {
+      "razon": "BTC-USD fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.665838",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.667850",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
+    "datos": {
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.669851",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
+    "datos": {
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.671912",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR MALLPLAZA",
+    "datos": {
+      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.673908",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR AGUAS-A",
+    "datos": {
+      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.675947",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CONCHATORO",
+    "datos": {
+      "razon": "CONCHATORO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.677954",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.679989",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.682013",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.684030",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.686040",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CENCOSUD",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.688055",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENELCHILE",
+    "datos": {
+      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.690105",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENTEL",
+    "datos": {
+      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.692133",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER VAPORES",
+    "datos": {
+      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.694144",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:37:32.696160",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER USD.CLP",
+    "datos": {
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 52.4,
+      "riesgo": 3,
+      "fuentes": [
+        "IV Opciones",
+        "Renta Fija",
+        "Noticias",
+        "Macro USA",
+        "Polymarket",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:45.981374",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:45.987460",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:45.992773",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:45.997963",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "13F SEC",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.001946",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.006006",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CMPC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.009833",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HG",
+    "datos": {
+      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 77,
+      "riesgo": 4,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.013744",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 76.1% < m\u00ednimo 78%",
+      "conviccion": 76.1,
+      "riesgo": 1,
+      "fuentes": [
+        "Kalshi",
+        "Put/Call",
+        "IV Opciones",
+        "13F SEC",
+        "Noticias",
+        "Macro USA"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.016894",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER COPEC",
+    "datos": {
+      "razon": "Convicci\u00f3n 74.2% < m\u00ednimo 78%",
+      "conviccion": 74.2,
+      "riesgo": 2,
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "Macro USA"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.019810",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GLD",
+    "datos": {
+      "razon": "Convicci\u00f3n 69.3% < m\u00ednimo 78%",
+      "conviccion": 69.3,
+      "riesgo": 1,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Correlaciones",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.022546",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GC",
+    "datos": {
+      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 69.3,
+      "riesgo": 4,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Correlaciones",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.025284",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GDX",
+    "datos": {
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 1,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.027874",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
+    "datos": {
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.030844",
+    "tipo": "RECHAZADA",
     "descripcion": "VENDER BTC",
     "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80066.421875,
-      "stop_loss": 81332.1438,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 5,
       "fuentes": [
         "Kalshi",
         "Polymarket"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:15:27.557237",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:43:46.033276",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HITES.SN",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -3.06,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:15:38.656953",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 80175.9296875,
-      "stop_loss": 81332.1438,
-      "take_profit": 80800.0,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "Mercado Local"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:20:45.657923",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:43:46.035622",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.28,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:20:45.673566",
-    "tipo": "CIERRE",
-    "descripcion": "TAKE PROFIT",
-    "datos": {
-      "ticker": "BTC",
-      "razon": "TAKE PROFIT",
-      "pnl_pct": 0.79,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:20:56.343220",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79575.9375,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "Correlaciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:25:13.577132",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:43:46.038033",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.29,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:25:23.593843",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79555.0,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "Correlaciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:25:34.235449",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:43:46.040260",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.35,
-      "ejecutado": true,
-      "error": null
-    }
-  },
-  {
-    "timestamp": "2026-05-04T11:25:49.967484",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79589.90625,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
       "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "An\u00e1lisis T\u00e9cnico"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:30:45.898316",
-    "tipo": "CIERRE",
-    "descripcion": "TRAILING STOP",
+    "timestamp": "2026-05-07T15:43:46.042406",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
     "datos": {
-      "ticker": "BTC",
-      "razon": "TRAILING STOP",
-      "pnl_pct": -2.48,
-      "ejecutado": true,
-      "error": null
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:30:58.647702",
-    "tipo": "APERTURA",
-    "descripcion": "VENDER BTC",
+    "timestamp": "2026-05-07T15:43:46.044465",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
     "datos": {
-      "activo": "BTC_LOCAL_SPREAD",
-      "ib_ticker": "BTC",
-      "tipo": "Crypto",
-      "descripcion": "Bitcoin (IBKR Crypto)",
-      "accion": "VENDER",
-      "direccion": "BAJA",
-      "conviccion": 95.0,
-      "score": 9.5,
-      "riesgo": 4,
-      "horizonte": {
-        "label": "Medio plazo",
-        "dias": "1\u20134 semanas",
-        "emoji": "\ud83d\udcc5"
-      },
-      "precio_actual": 79716.0,
-      "stop_loss": 80800.0,
-      "take_profit": 77624.414,
-      "instrumentos": [
-        {
-          "vehiculo": "Crypto directo (IB)",
-          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
-          "cuando": "Siempre disponible en IB",
-          "pros": "Simplicidad, sin derivados",
-          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
-        },
-        {
-          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
-          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
-          "cuando": "Si prefieres estructura regulada",
-          "pros": "Liquidez de ETF, sin wallet",
-          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
-        }
-      ],
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.046782",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR MALLPLAZA",
+    "datos": {
+      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.048861",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR AGUAS-A",
+    "datos": {
+      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.050984",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.053012",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SONDA",
+    "datos": {
+      "razon": "SONDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.055045",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.057113",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.059139",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER SLV",
+    "datos": {
+      "razon": "Convicci\u00f3n 61.7% < m\u00ednimo 78%",
+      "conviccion": 61.7,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.061167",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 5,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.063447",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.065507",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENELCHILE",
+    "datos": {
+      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.067542",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENTEL",
+    "datos": {
+      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.069655",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER VAPORES",
+    "datos": {
+      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.072204",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:43:46.074289",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER USD.CLP",
+    "datos": {
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 53.0,
+      "riesgo": 3,
       "fuentes": [
         "Kalshi",
-        "Polymarket"
-      ],
-      "n_fuentes": 2,
-      "evidencia": [
-        {
-          "fuente": "Polymarket",
-          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
-          "prob": 49.0,
-          "direccion": "BAJA",
-          "peso": 0.01
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        },
-        {
-          "fuente": "Kalshi",
-          "se\u00f1al": "Bitcoin price range  on May 4, 2026?",
-          "prob": 0.0,
-          "direccion": "BAJA",
-          "peso": 7.5
-        }
-      ],
-      "tesis": "VENDER BTC_LOCAL_SPREAD: Polymarket se\u00f1ala baja (49.0%) | Kalshi confirma baja"
+        "Renta Fija",
+        "Polymarket",
+        "Noticias",
+        "Macro USA"
+      ]
     }
   },
   {
-    "timestamp": "2026-05-04T11:35:22.343212",
-    "tipo": "PAUSA",
-    "descripcion": "3 trades consecutivos perdedores",
-    "datos": {}
+    "timestamp": "2026-05-07T15:44:23.514579",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
   },
   {
-    "timestamp": "2026-05-04T20:16:46.501172",
-    "tipo": "PAUSA",
-    "descripcion": "3 trades consecutivos perdedores",
-    "datos": {}
+    "timestamp": "2026-05-07T15:44:23.520405",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.524841",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.529060",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "13F SEC",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.532976",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR LTM",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 2,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.536648",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CMPC",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
+      "conviccion": 77,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.540082",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HG",
+    "datos": {
+      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 77,
+      "riesgo": 4,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.543883",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "razon": "Convicci\u00f3n 76.2% < m\u00ednimo 78%",
+      "conviccion": 76.2,
+      "riesgo": 1,
+      "fuentes": [
+        "Noticias",
+        "Kalshi",
+        "13F SEC",
+        "Macro USA",
+        "Put/Call",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.547017",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER COPEC",
+    "datos": {
+      "razon": "Convicci\u00f3n 74.5% < m\u00ednimo 78%",
+      "conviccion": 74.5,
+      "riesgo": 2,
+      "fuentes": [
+        "Macro USA",
+        "Polymarket",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.549875",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GLD",
+    "datos": {
+      "razon": "Convicci\u00f3n 69.3% < m\u00ednimo 78%",
+      "conviccion": 69.3,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.552662",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR GC",
+    "datos": {
+      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 69.3,
+      "riesgo": 4,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.555368",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GDX",
+    "datos": {
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.557935",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
+    "datos": {
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.560349",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
+      "conviccion": 67,
+      "riesgo": 5,
+      "fuentes": [
+        "Polymarket",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.562744",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR HITES.SN",
+    "datos": {
+      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.565253",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.567777",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.569943",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.572056",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
+    "datos": {
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.574083",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
+    "datos": {
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.576116",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR MALLPLAZA",
+    "datos": {
+      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.578183",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR AGUAS-A",
+    "datos": {
+      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.580339",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.582399",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SONDA",
+    "datos": {
+      "razon": "SONDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.584452",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.586481",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.588500",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER SLV",
+    "datos": {
+      "razon": "Convicci\u00f3n 61.7% < m\u00ednimo 78%",
+      "conviccion": 61.7,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.590542",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 5,
+      "fuentes": [
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.592571",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.594611",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENELCHILE",
+    "datos": {
+      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.596698",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER ENTEL",
+    "datos": {
+      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.598830",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER VAPORES",
+    "datos": {
+      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.600876",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-07T15:44:23.602915",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER USD.CLP",
+    "datos": {
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 53.2,
+      "riesgo": 3,
+      "fuentes": [
+        "Polymarket",
+        "Noticias",
+        "Renta Fija",
+        "Kalshi",
+        "Macro USA"
+      ]
+    }
   }
 ]

@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "ticker": "SQM",
+    "accion": "COMPRAR",
+    "cantidad": 91.0,
+    "precio_entrada": 97.011,
+    "precio_salida": 94.87,
+    "pnl_total": -194.83,
+    "pnl_pct": -2.21,
+    "fecha_entrada": "2026-05-07T09:32:17.257119",
+    "fecha_salida": "2026-05-07T11:58:18.744455",
+    "resultado": "perdedor",
+    "confirmado_ib": true,
+    "tipo": "Acci\u00f3n USA/Chile"
+  },
+  {
+    "ticker": "SQM",
+    "accion": "COMPRAR",
+    "cantidad": 85.0,
+    "precio_entrada": 93.2518,
+    "precio_salida": 92.52,
+    "pnl_total": -62.2,
+    "pnl_pct": -0.78,
+    "fecha_entrada": "2026-05-07T12:58:44.121967",
+    "fecha_salida": "2026-05-07T13:15:39.868923",
+    "resultado": "perdedor",
+    "confirmado_ib": true,
+    "tipo": "ETF"
+  }
+]

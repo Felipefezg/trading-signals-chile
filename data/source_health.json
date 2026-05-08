@@ -1,0 +1,196 @@
+{
+  "fuentes": {
+    "polymarket": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 4
+    },
+    "kalshi": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 10
+    },
+    "macro_usa": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 9
+    },
+    "noticias": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 30
+    },
+    "fear_greed": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 8
+    },
+    "cmf": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 187,
+      "n_vacios": 10,
+      "n_errores": 0,
+      "ultimo_n_items": 14
+    },
+    "put_call": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 3
+    },
+    "analisis_tecnico": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 13
+    },
+    "google_trends": {
+      "estado": "empty",
+      "consecutivos_vacios": 112,
+      "ultimo_ok": "2026-05-07T11:35:46.800874",
+      "n_ciclos": 197,
+      "n_ok": 78,
+      "n_vacios": 119,
+      "n_errores": 0,
+      "ultimo_n_items": 0
+    },
+    "volumen": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 101,
+      "n_vacios": 96,
+      "n_errores": 0,
+      "ultimo_n_items": 2
+    },
+    "ib_data": {
+      "estado": "empty",
+      "consecutivos_vacios": 197,
+      "ultimo_ok": null,
+      "n_ciclos": 197,
+      "n_ok": 0,
+      "n_vacios": 197,
+      "n_errores": 0,
+      "ultimo_n_items": 0
+    },
+    "order_flow": {
+      "estado": "empty",
+      "consecutivos_vacios": 197,
+      "ultimo_ok": null,
+      "n_ciclos": 197,
+      "n_ok": 0,
+      "n_vacios": 197,
+      "n_errores": 0,
+      "ultimo_n_items": 0
+    },
+    "correlaciones": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 19
+    },
+    "mercado_local": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 10
+    },
+    "mtf": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 12
+    },
+    "renta_fija": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 2
+    },
+    "sec_13f": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 3
+    },
+    "iv_opciones": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 15
+    },
+    "ml": {
+      "estado": "ok",
+      "consecutivos_vacios": 0,
+      "ultimo_ok": "2026-05-07T15:44:23.508904",
+      "n_ciclos": 197,
+      "n_ok": 197,
+      "n_vacios": 0,
+      "n_errores": 0,
+      "ultimo_n_items": 3
+    }
+  },
+  "ciclos_total": 197,
+  "ultimo_ciclo": "2026-05-07T15:44:23.508904"
+}

@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "ib_ticker": "SQM",
+    "fecha_cierre": "2026-05-07T11:58:18.781333",
+    "fecha_apertura": null,
+    "accion": null,
+    "activo": "SQM",
+    "tipo": null,
+    "precio_entrada": null,
+    "precio_salida": null,
+    "pnl_pct": -3.06,
+    "resultado": "PERDEDOR",
+    "razon_cierre": "STOP LOSS",
+    "conviccion": null,
+    "n_fuentes": 0,
+    "fuentes": [],
+    "evidencia": [],
+    "tesis": null
+  },
+  {
+    "ib_ticker": "SQM",
+    "fecha_cierre": "2026-05-07T13:15:40.092440",
+    "fecha_apertura": null,
+    "accion": null,
+    "activo": "SQM",
+    "tipo": null,
+    "precio_entrada": null,
+    "precio_salida": null,
+    "pnl_pct": -1.38,
+    "resultado": "PERDEDOR",
+    "razon_cierre": "TRAILING STOP",
+    "conviccion": null,
+    "n_fuentes": 0,
+    "fuentes": [],
+    "evidencia": [],
+    "tesis": null
+  }
+]

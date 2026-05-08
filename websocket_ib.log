@@ -1,0 +1,28 @@
+2026-05-05 23:44:58,507 [INFO] sent startApi
+2026-05-05 23:44:58,507 [INFO] REQUEST startApi {}
+2026-05-05 23:44:58,507 [INFO] SENDING startApi b'\x00\x00\x00\t71\x002\x0060\x00\x00'
+2026-05-05 23:44:58,507 [INFO] ANSWER connectAck {}
+2026-05-05 23:44:58,513 [INFO] ANSWER managedAccounts {'accountsList': 'DUP838882'}
+2026-05-05 23:44:58,513 [INFO] Conectado a IB TWS
+2026-05-05 23:44:58,517 [WARNING] IB Error [2107]: La conexión al centro de datos HMDS está inactiva pero debería estar disponible bajo demanda.ushmds
+2026-05-05 23:44:59,513 [INFO] REQUEST reqMktData {'reqId': 1, 'contract': 4308750448: 0,SQM,STK,,0.0,,,NYSE,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:44:59,513 [INFO] SENDING reqMktData b'\x00\x00\x00/1\x0011\x001\x000\x00SQM\x00STK\x00\x000.0\x00\x00\x00NYSE\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:44:59,615 [INFO] REQUEST reqMktData {'reqId': 2, 'contract': 4308750592: 0,ECH,STK,,0.0,,,NYSE,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:44:59,615 [INFO] SENDING reqMktData b'\x00\x00\x00/1\x0011\x002\x000\x00ECH\x00STK\x00\x000.0\x00\x00\x00NYSE\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:44:59,717 [INFO] REQUEST reqMktData {'reqId': 3, 'contract': 4308750448: 0,GLD,STK,,0.0,,,NYSE,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:44:59,721 [INFO] SENDING reqMktData b'\x00\x00\x00/1\x0011\x003\x000\x00GLD\x00STK\x00\x000.0\x00\x00\x00NYSE\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:44:59,822 [INFO] REQUEST reqMktData {'reqId': 4, 'contract': 4308750592: 0,SPY,STK,,0.0,,,NYSE,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:44:59,825 [INFO] SENDING reqMktData b'\x00\x00\x00/1\x0011\x004\x000\x00SPY\x00STK\x00\x000.0\x00\x00\x00NYSE\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:44:59,927 [INFO] REQUEST reqMktData {'reqId': 5, 'contract': 4308750448: 0,GC,FUT,202606,0.0,,,COMEX,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:44:59,927 [INFO] SENDING reqMktData b'\x00\x00\x0051\x0011\x005\x000\x00GC\x00FUT\x00202606\x000.0\x00\x00\x00COMEX\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:45:00,029 [INFO] REQUEST reqMktData {'reqId': 6, 'contract': 4308750544: 0,HG,FUT,202606,0.0,,,COMEX,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:45:00,029 [INFO] SENDING reqMktData b'\x00\x00\x0051\x0011\x006\x000\x00HG\x00FUT\x00202606\x000.0\x00\x00\x00COMEX\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:45:00,132 [INFO] REQUEST reqMktData {'reqId': 7, 'contract': 4308750928: 0,BTC,CRYPTO,,0.0,,,PAXOS,,USD,,,False,,combo:, 'genericTickList': '233', 'snapshot': False, 'regulatorySnapshot': False, 'mktDataOptions': []}
+2026-05-05 23:45:00,132 [INFO] SENDING reqMktData b'\x00\x00\x0031\x0011\x007\x000\x00BTC\x00CRYPTO\x00\x000.0\x00\x00\x00PAXOS\x00\x00USD\x00\x00\x000\x00233\x000\x000\x00\x00'
+2026-05-05 23:45:00,643 [WARNING] IB Error [10089]: Los datos de mercado solicitados requieren suscripciones adicionales para API. Consulte el enlace en 'Conexiones de Datos de Mercado' para ver más detalles.Hay disponibles datos de mercado en diferido.SQM NYSE/TOP/ALL
+2026-05-05 23:45:00,651 [WARNING] IB Error [10089]: Los datos de mercado solicitados requieren suscripciones adicionales para API. Consulte el enlace en 'Conexiones de Datos de Mercado' para ver más detalles.Hay disponibles datos de mercado en diferido.ECH BATS/TOP/ALL
+2026-05-05 23:45:00,651 [WARNING] IB Error [10089]: Los datos de mercado solicitados requieren suscripciones adicionales para API. Consulte el enlace en 'Conexiones de Datos de Mercado' para ver más detalles.Hay disponibles datos de mercado en diferido.GLD ARCA/TOP/ALL
+2026-05-05 23:45:00,651 [WARNING] IB Error [10089]: Los datos de mercado solicitados requieren suscripciones adicionales para API. Consulte el enlace en 'Conexiones de Datos de Mercado' para ver más detalles.Hay disponibles datos de mercado en diferido.SPY ARCA/TOP/ALL
+2026-05-05 23:45:00,653 [WARNING] IB Error [10285]: Su versión de API no admite las normas de volumen fraccionado. Actualice a una versión mínima 163.
+2026-05-05 23:45:01,069 [INFO] disconnecting
+2026-05-05 23:45:01,070 [INFO] ANSWER connectionClosed {}
