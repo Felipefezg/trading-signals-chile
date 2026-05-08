@@ -49,7 +49,7 @@ INSTRUMENTOS_IB = {
     "TLT":              {"ib": "TLT",       "tipo": "ETF",              "descripcion": "iShares 20Y Treasury",         "yf": "TLT"},
     "GLD":              {"ib": "GLD",       "tipo": "ETF",              "descripcion": "SPDR Gold ETF",                "yf": "GLD"},
     # IPSA 30 completo
-    "SQM-B.SN":         {"ib": "SQM",       "tipo": "Acción USA/Chile", "descripcion": "SQM ADR NYSE",                 "yf": "SQM"},
+    "SQM-B.SN":         {"ib": "SQM",       "tipo": "Acción Chile",     "descripcion": "SQM (Bolsa Santiago)",          "yf": "SQM-B.SN"},
     "CENCOSUD.SN":      {"ib": "CENCOSUD",  "tipo": "Acción Chile",     "descripcion": "Cencosud Santiago",            "yf": "CENCOSUD.SN"},
     "ENELAM.SN":        {"ib": "ENELAM",    "tipo": "Acción Chile",     "descripcion": "Enel Americas Santiago",       "yf": "ENELAM.SN"},
     "ENTEL.SN":         {"ib": "ENTEL",     "tipo": "Acción Chile",     "descripcion": "Entel Santiago",               "yf": "ENTEL.SN"},
@@ -572,10 +572,31 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
 
     # CMF Hechos Esenciales — señales de alta convicción por empresa IPSA
     CMF_TICKER_MAP = {
-        "SQM": "SQM.SN", "COPEC": "COPEC.SN", "FALABELLA": "COPEC.SN",
-        "BCI": "ECH", "SANTANDER": "ECH", "CHILE": "ECH",
-        "CMPC": "ECH", "LATAM": "ECH", "VAPORES": "ECH",
-        "CAP": "ECH", "COLBUN": "ECH", "ENELCHILE": "ECH",
+        # Cada empresa → su propio ticker .SN (no al ETF genérico ECH)
+        "SQM":        "SQM-B.SN",
+        "COPEC":      "COPEC.SN",
+        "FALABELLA":  "FALABELLA.SN",
+        "BCI":        "BCI.SN",
+        "SANTANDER":  "BSANTANDER.SN",
+        "CHILE":      "CHILE.SN",
+        "CMPC":       "CMPC.SN",
+        "LATAM":      "LTM.SN",
+        "VAPORES":    "VAPORES.SN",
+        "CAP":        "CAP.SN",
+        "COLBUN":     "COLBUN.SN",
+        "ENELCHILE":  "ENELCHILE.SN",
+        "CENCOSUD":   "CENCOSUD.SN",
+        "ENELAM":     "ENELAM.SN",
+        "ITAUCL":     "ITAUCL.SN",
+        "CCU":        "CCU.SN",
+        "PARAUCO":    "PARAUCO.SN",
+        "RIPLEY":     "RIPLEY.SN",
+        "ANDINA-B":   "ANDINA-B.SN",
+        "CONCHATORO": "CONCHATORO.SN",
+        "ILC":        "ILC.SN",
+        "SONDA":      "SONDA.SN",
+        "ECL":        "ECL.SN",
+        "SMU":        "SMU.SN",
     }
     for hecho in (cmf_hechos or []):
         ticker_ipsa = hecho.get("ticker_ipsa")
@@ -603,10 +624,25 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
 
     # Volumen Anormal — confirma señales existentes o genera nuevas
     VOL_TICKER_MAP = {
-        "SQM-B.SN": "SQM.SN", "COPEC.SN": "COPEC.SN",
-        "BCI.SN": "ECH", "CHILE.SN": "ECH", "BSANTANDER.SN": "ECH",
-        "FALABELLA.SN": "ECH", "CENCOSUD.SN": "ECH",
-        "ECH": "ECH", "SQM": "SQM.SN",
+        # Cada .SN → su propio ticker (señal de volumen específica por empresa)
+        "SQM-B.SN":     "SQM-B.SN",
+        "SQM":          "SQM-B.SN",
+        "COPEC.SN":     "COPEC.SN",
+        "BCI.SN":       "BCI.SN",
+        "CHILE.SN":     "CHILE.SN",
+        "BSANTANDER.SN":"BSANTANDER.SN",
+        "FALABELLA.SN": "FALABELLA.SN",
+        "CENCOSUD.SN":  "CENCOSUD.SN",
+        "CMPC.SN":      "CMPC.SN",
+        "COLBUN.SN":    "COLBUN.SN",
+        "ENELCHILE.SN": "ENELCHILE.SN",
+        "LTM.SN":       "LTM.SN",
+        "CAP.SN":       "CAP.SN",
+        "CCU.SN":       "CCU.SN",
+        "ECH":          "ECH",
+        "SPY":          "SPY",
+        "GLD":          "GLD",
+        "BTC-USD":      "BTC-USD",
     }
     for alerta in (vol_alertas or []):
         if alerta.get("nivel") not in ("ALTA", "MEDIA"):
@@ -958,9 +994,10 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
     # Este map consolida todo al ticker canónico antes de retornar.
     # Canónico = yf_ticker del UNIVERSO_COMPLETO (fuente de verdad).
     _ALIAS_CANONICAL = {
-        # SQM: tres representaciones
-        "SQM":            "SQM-B.SN",   # ADR → yf local (el más usado en análisis)
-        "SQM.SN":         "SQM-B.SN",
+        # SQM: "SQM.SN" es un key erróneo en INSTRUMENTOS_IB que apunta al ADR.
+        # Normalizar a "SQM" (ADR en UNIVERSO_COMPLETO/ADRS_CHILE).
+        # "SQM-B.SN" (Santiago) y "SQM" (NYSE ADR) son instrumentos distintos → no mergeados.
+        "SQM.SN":         "SQM",
         # Santander Chile
         "BSAC":           "BSANTANDER.SN",
         # Banco de Chile
