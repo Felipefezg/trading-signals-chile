@@ -294,6 +294,21 @@ def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
     with open(POSICIONES_FILE, "w") as f:
         json.dump(posiciones, f, indent=2)
 
+    # ── Limpiar trailing stop del ticker cerrado ──────────────────────────────
+    # Sin esto, la entrada stale del trail persiste y dispara cierres prematuros
+    # en la próxima posición del mismo ticker.
+    try:
+        from engine.trailing_stop import TRAIL_FILE
+        if os.path.exists(TRAIL_FILE):
+            with open(TRAIL_FILE) as f:
+                trails = json.load(f)
+            if ticker in trails:
+                del trails[ticker]
+                with open(TRAIL_FILE, "w") as f:
+                    json.dump(trails, f, indent=2)
+    except Exception:
+        pass
+
     # Log de cierres
     log = []
     if os.path.exists(LOG_FILE):

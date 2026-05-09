@@ -158,16 +158,31 @@ def inicializar_trails_existentes():
     """
     Inicializa trailing stops para posiciones ya abiertas
     que no tienen trail configurado.
+    También re-inicializa si el trail existente tiene una entrada diferente
+    a la posición actual — señal de que es un trail stale de un trade anterior
+    para el mismo ticker (bug: cerrar_posicion_local no limpiaba el trail).
     """
     posiciones = _cargar_posiciones()
     trails     = _cargar_trails()
     nuevos     = 0
 
     for ticker, pos in posiciones.items():
-        if ticker not in trails:
+        precio_pos = pos.get("precio_entrada", 0)
+        trail_existente = trails.get(ticker)
+
+        # Re-inicializar si:
+        # 1. No tiene trail, O
+        # 2. El trail tiene entrada distinta a la posición actual (stale de trade anterior)
+        if (trail_existente is None or
+                abs(trail_existente.get("entrada", 0) - precio_pos) > precio_pos * 0.001):
             inicializar_trail(ticker, pos)
             nuevos += 1
-            print(f"Trail inicializado: {ticker}")
+            if trail_existente is not None:
+                print(f"Trail re-inicializado (stale): {ticker} "
+                      f"entrada_trail={trail_existente.get('entrada')} "
+                      f"vs entrada_pos={precio_pos}")
+            else:
+                print(f"Trail inicializado: {ticker}")
 
     return nuevos
 

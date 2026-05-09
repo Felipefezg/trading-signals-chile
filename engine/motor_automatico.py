@@ -1147,7 +1147,10 @@ def ciclo_trading_automatico():
                     except Exception:
                         pass
                 else:
-                    error_ib = resultado.get("error", "sin detalle")
+                    # ejecutar_señales() retorna {"ordenes_enviadas":[], "errores":[{...}], "total":0}
+                    # El error real está en errores[0]["error"], no en el nivel raíz del dict.
+                    _errores_ib = resultado.get("errores", [])
+                    error_ib    = _errores_ib[0]["error"] if _errores_ib else resultado.get("error", "sin detalle")
                     logging.warning(f"APERTURA FALLIDA: {r['ib_ticker']} — {error_ib}")
                     # Loguear intento fallido para trazabilidad
                     _registrar_evento("APERTURA_FALLIDA", f"{r['accion']} {r['ib_ticker']}", {
