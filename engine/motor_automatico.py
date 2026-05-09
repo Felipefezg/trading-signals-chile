@@ -246,6 +246,7 @@ def _cargar_estado():
         "ordenes_hoy":          0,
         "log":                  [],
         "cooldown_tickers":     {},   # {ib_ticker: iso_timestamp_cierre}
+        "perdedores_dia":       {},   # {ib_ticker: "YYYY-MM-DD"} — ban same-day tras pérdida
     }
     try:
         if os.path.exists(ESTADO_AUTO_FILE):
@@ -255,9 +256,10 @@ def _cargar_estado():
             # claves nuevas (ej: cooldown_tickers) siempre estén presentes
             # aunque el archivo sea de una versión anterior del motor.
             merged = {**_defaults, **guardado}
-            # cooldown_tickers nunca debe heredar None del archivo viejo
             if not isinstance(merged.get("cooldown_tickers"), dict):
                 merged["cooldown_tickers"] = {}
+            if not isinstance(merged.get("perdedores_dia"), dict):
+                merged["perdedores_dia"] = {}
             return merged
     except Exception:
         pass
@@ -291,30 +293,50 @@ def _perdio_hoy_misma_direccion(ib_ticker: str, accion: str) -> bool:
     return False
 
 
-def _registrar_cierre_cooldown(estado, ib_ticker):
-    """Registra timestamp de cierre para el cooldown del ticker."""
+def _registrar_cierre_cooldown(estado, ib_ticker, fue_perdedor=False):
+    """
+    Registra timestamp de cierre para el cooldown del ticker.
+    Si fue_perdedor=True, también registra un ban same-day para evitar
+    re-entrada el mismo día de trading tras una pérdida.
+    """
     if "cooldown_tickers" not in estado:
         estado["cooldown_tickers"] = {}
+    if "perdedores_dia" not in estado:
+        estado["perdedores_dia"] = {}
     estado["cooldown_tickers"][ib_ticker] = datetime.now().isoformat()
+    if fue_perdedor:
+        # Guardar la fecha del día (YYYY-MM-DD) — se compara contra la fecha actual
+        estado["perdedores_dia"][ib_ticker] = datetime.now().strftime("%Y-%m-%d")
 
 def _en_cooldown(estado, ib_ticker):
     """
-    Retorna (True, minutos_restantes) si el ticker está en cooldown,
-    (False, 0) si puede operarse.
+    Retorna (True, razon) si el ticker está bloqueado, (False, "") si puede operarse.
+    Dos checks independientes:
+    1. Cooldown temporal (COOLDOWN_MINUTOS tras cualquier cierre)
+    2. Ban same-day (si el ticker perdió en la sesión de trading actual)
     """
+    # ── Check 1: same-day ban tras pérdida ────────────────────────────────────
+    perdedores = estado.get("perdedores_dia", {})
+    fecha_perdida = perdedores.get(ib_ticker)
+    if fecha_perdida:
+        hoy = datetime.now().strftime("%Y-%m-%d")
+        if fecha_perdida == hoy:
+            return True, f"{ib_ticker} perdió hoy — sin re-entrada hasta mañana"
+
+    # ── Check 2: cooldown temporal ────────────────────────────────────────────
     cooldowns = estado.get("cooldown_tickers", {})
     ts_str = cooldowns.get(ib_ticker)
     if not ts_str:
-        return False, 0
+        return False, ""
     try:
         ts_cierre = datetime.fromisoformat(ts_str)
         elapsed = (datetime.now() - ts_cierre).total_seconds() / 60
         if elapsed < COOLDOWN_MINUTOS:
             restantes = round(COOLDOWN_MINUTOS - elapsed, 1)
-            return True, restantes
+            return True, f"Cooldown {ib_ticker}: {restantes} min restantes"
     except Exception:
         pass
-    return False, 0
+    return False, ""
 
 def _guardar_estado(estado):
     with open(ESTADO_AUTO_FILE, "w") as f:
@@ -781,9 +803,9 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
         return False, f"Ya existe posición abierta en {ticker}"
 
     # 4b. Cooldown post-cierre — evita el loop de reapertura inmediata
-    en_cd, minutos_restantes = _en_cooldown(estado, ticker)
+    en_cd, razon_cd = _en_cooldown(estado, ticker)
     if en_cd:
-        return False, f"Cooldown activo en {ticker} — {minutos_restantes} min restantes (espera {COOLDOWN_MINUTOS} min post-cierre)"
+        return False, razon_cd
 
     # 4c. Bloqueo same-day misma dirección tras pérdida
     # Si el ticker ya perdió hoy en la misma dirección, no re-entrar.
@@ -955,8 +977,12 @@ def ciclo_trading_automatico():
             # Se aplica a TODOS los cierres, independientemente de confirmación IB.
             ticker_cerrado = c.get("ticker", "")
             if ticker_cerrado:
-                _registrar_cierre_cooldown(estado, ticker_cerrado)
-                logging.info(f"COOLDOWN: {ticker_cerrado} bloqueado {COOLDOWN_MINUTOS} min")
+                _fue_perdedor = c.get("confirmado_ib", False) and c.get("pnl_pct", 0) < 0
+                _registrar_cierre_cooldown(estado, ticker_cerrado, fue_perdedor=_fue_perdedor)
+                if _fue_perdedor:
+                    logging.info(f"COOLDOWN+BAN DÍA: {ticker_cerrado} perdió hoy — sin re-entrada hasta mañana")
+                else:
+                    logging.info(f"COOLDOWN: {ticker_cerrado} bloqueado {COOLDOWN_MINUTOS} min")
 
             # Feedback loop: vincula APERTURA (evidencia fuentes) ↔ CIERRE (PnL).
             # Solo para trades confirmados por IB — no registrar cierres fantasma.

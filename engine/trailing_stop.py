@@ -134,14 +134,27 @@ def inicializar_trail(ticker, posicion):
         trail_nivel = round(entrada * (1 - trail_pct), 4)
         precio_extremo = entrada  # precio máximo alcanzado
 
+    # Umbral de activación por tipo de activo:
+    # Crypto: 1.0% — se mueve rápido, trail debe activar pronto
+    # ETFs:   1.2% — diversificados, spreads menores
+    # Stocks/ADRs/Futuros: 1.5% — spread ~0.3-0.5%, necesita colchón
+    _ticker_up = ticker.upper()
+    if _ticker_up in ("BTC-USD", "BTC", "ETH-USD", "ETH"):
+        umbral_activ = 0.010
+    elif _ticker_up in ("SPY", "ECH", "GLD", "TLT", "SLV", "GDX"):
+        umbral_activ = 0.012
+    else:
+        umbral_activ = 0.015   # acciones Chile, ADRs, futuros
+
     trails[ticker] = {
         "accion":        accion,
         "entrada":       entrada,
         "trail_pct":     trail_pct,
         "trail_nivel":   trail_nivel,
         "precio_extremo": precio_extremo,
-        "activado":      False,  # True cuando el precio se aleja de la entrada
-        "umbral_activacion": 0.01,  # 1% de ganancia para activar el trailing
+        "activado":      False,
+        "umbral_activacion": umbral_activ,
+        "min_holding_minutos": 10,   # no activar trailing antes de 10 min
         "historial":     [{
             "timestamp":    datetime.now().isoformat(),
             "precio":       entrada,
@@ -211,12 +224,39 @@ def actualizar_trail(ticker, precio_actual):
     precio_ext   = trail["precio_extremo"]
     trail_nivel  = trail["trail_nivel"]
     activado     = trail["activado"]
-    umbral       = trail.get("umbral_activacion", 0.01)
+    umbral       = trail.get("umbral_activacion", 0.015)
     entrada      = trail["entrada"]
 
     cerrar       = False
     razon_cierre = None
     trail_movido = False
+
+    # Holding mínimo antes de activar trailing.
+    # Evita cierres inmediatos por ruido de mercado en los primeros minutos.
+    min_holding = trail.get("min_holding_minutos", 10)
+    try:
+        from datetime import datetime as _dt
+        _inicio = _dt.fromisoformat(trail.get("fecha_inicio", "2000-01-01"))
+        _minutos_abierto = (_dt.now() - _inicio).total_seconds() / 60
+        if _minutos_abierto < min_holding:
+            # Actualizar estado pero NO activar trailing ni cerrar aún
+            trail["precio_actual"]          = precio_actual
+            trail["ultima_actualizacion"]   = datetime.now().isoformat()
+            trails[ticker] = trail
+            _guardar_trails(trails)
+            pnl = ((precio_actual - entrada) / entrada * 100 if accion == "COMPRAR"
+                   else (entrada - precio_actual) / entrada * 100)
+            return {
+                "ticker": ticker, "accion": accion, "precio_actual": precio_actual,
+                "precio_extremo": precio_ext, "trail_nivel": trail_nivel,
+                "trail_pct": trail_pct * 100, "pnl_pct": round(pnl, 2),
+                "activado": False, "trail_movido": False, "cerrar": False,
+                "razon_cierre": None,
+                "_holding_bloqueado": True,
+                "_minutos_abierto": round(_minutos_abierto, 1),
+            }
+    except Exception:
+        pass
 
     if accion == "VENDER":
         # Ganancia en posición corta = precio baja

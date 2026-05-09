@@ -400,10 +400,25 @@ def verificar_posiciones(modo_test=False, auto_cerrar=True):
                 # Solo eliminar localmente si IB confirmó
                 if resultado_ib.get("confirmado_ib") or modo_test:
                     cerrar_posicion_local(ticker_t, posicion_t, condicion_trail, resultado_ib)
+
+            # pnl_pct definitivo: usar precio_fill IB si está disponible.
+            # El trailing stop computa pnl vs. su propia entrada (puede estar stale).
+            # El fill IB vs. posicion_t["precio_entrada"] es siempre la referencia correcta.
+            _precio_fill = resultado_ib.get("precio_fill") if auto_cerrar else None
+            _entrada     = posicion_t.get("precio_entrada", 0)
+            _accion_t    = posicion_t.get("accion", "COMPRAR")
+            if _precio_fill and _entrada:
+                if _accion_t == "COMPRAR":
+                    _pnl_real = round((_precio_fill - _entrada) / _entrada * 100, 2)
+                else:
+                    _pnl_real = round((_entrada - _precio_fill) / _entrada * 100, 2)
+            else:
+                _pnl_real = cierre_trail["pnl_pct"]  # fallback al estimado
+
             resumen["cierres"].append({
                 "ticker":        ticker_t,
                 "razon":         "TRAILING STOP",
-                "pnl_pct":       cierre_trail["pnl_pct"],
+                "pnl_pct":       _pnl_real,
                 "ejecutado":     resultado_ib.get("ejecutado", False) if auto_cerrar else False,
                 "confirmado_ib": resultado_ib.get("confirmado_ib", False) if auto_cerrar else False,
                 "error":         resultado_ib.get("error") if auto_cerrar else None,
@@ -432,10 +447,19 @@ def verificar_posiciones(modo_test=False, auto_cerrar=True):
                     print(f"   ✅ Cerrado en IB y eliminado localmente")
                 else:
                     print(f"   ⚠️  IB no confirmó cierre — posición local mantenida: {resultado_ib.get('error')}")
+                # pnl_pct definitivo: usar precio_fill IB si disponible
+                _pf = resultado_ib.get("precio_fill")
+                _en = posicion.get("precio_entrada", 0)
+                _ac = posicion.get("accion", "COMPRAR")
+                if _pf and _en:
+                    _pnl_def = round((_pf - _en) / _en * 100 if _ac == "COMPRAR"
+                                     else (_en - _pf) / _en * 100, 2)
+                else:
+                    _pnl_def = condicion["pnl_pct"]
                 resumen["cierres"].append({
                     "ticker":        ticker,
                     "razon":         condicion["razon"],
-                    "pnl_pct":       condicion["pnl_pct"],
+                    "pnl_pct":       _pnl_def,
                     "ejecutado":     resultado_ib.get("ejecutado", False),
                     "confirmado_ib": resultado_ib.get("confirmado_ib", False),
                     "error":         resultado_ib.get("error"),
