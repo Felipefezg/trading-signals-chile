@@ -41,6 +41,7 @@ INSTRUMENTOS_IB = {
     "CLP/USD":          {"ib": "USD.CLP",   "tipo": "Forex",            "descripcion": "Dólar / Peso Chileno",         "yf": "CLP=X"},
     # Crypto
     "BTC_LOCAL_SPREAD": {"ib": "BTC",       "tipo": "Crypto",           "descripcion": "Bitcoin (IBKR Crypto)",        "yf": "BTC-USD"},
+    "BTC-USD":          {"ib": "BTC",       "tipo": "Crypto",           "descripcion": "Bitcoin (IBKR Crypto)",        "yf": "BTC-USD"},
     # Futuros commodities
     "GC=F":             {"ib": "GC",        "tipo": "Futuro",           "descripcion": "Oro (COMEX)",                  "yf": "GC=F"},
     "CL=F":             {"ib": "CL",        "tipo": "Futuro",           "descripcion": "Petróleo WTI (NYMEX)",         "yf": "CL=F"},
@@ -265,9 +266,46 @@ def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
     """
     SL/TP calibrado usando soporte/resistencia real.
     Fallback a volatilidad si no hay niveles disponibles.
+
+    Cap de SL por tipo de activo:
+    - Crypto: 8%  — volatilidad estructuralmente alta; trailing stop cubre el resto
+    - ETF: 4%     — instrumentos diversificados, gaps menores
+    - Acciones: 5% — protección intraday compatible con trailing stop (umbral 1%)
+
+    El sistema usa trailing stop como protección principal de ganancias.
+    El SL fijo aquí es la red de seguridad ante caídas bruscas previas al
+    1% de ganancia necesario para activar el trailing. Un SL de largo plazo
+    (-20%) no cumple esa función de manera útil.
     """
     if precio is None:
         return None, None, None
+
+    # Cap de SL según tipo de activo (inferido desde el ticker)
+    _SL_CAP_CRYPTO  = 0.08
+    _SL_CAP_ETF     = 0.04
+    _SL_CAP_DEFAULT = 0.05
+
+    # Detectar tipo de activo por sufijo/nombre para aplicar el cap correcto
+    _ticker_str = (ticker or "").upper()
+    if _ticker_str in ("BTC-USD", "ETH-USD", "BTC", "ETH"):
+        _sl_cap_pct = _SL_CAP_CRYPTO
+    elif _ticker_str in ("SPY", "ECH", "GLD", "TLT", "SLV", "GDX", "GC=F", "CL=F", "HG=F"):
+        _sl_cap_pct = _SL_CAP_ETF
+    else:
+        _sl_cap_pct = _SL_CAP_DEFAULT
+
+    def _aplicar_cap(sl_raw, accion_):
+        """Fuerza SL dentro del cap máximo. Garantiza que el SL no sea peor que
+        el cap, pero respeta niveles más conservadores si soporte/resistencia
+        ya ofrece un SL más cercano."""
+        if sl_raw is None:
+            return None
+        if accion_ == "COMPRAR":
+            sl_min = round(precio * (1 - _sl_cap_pct), 4)
+            return max(sl_raw, sl_min)   # SL de compra: el más alto (menos agresivo)
+        else:
+            sl_max = round(precio * (1 + _sl_cap_pct), 4)
+            return min(sl_raw, sl_max)   # SL de venta: el más bajo (menos agresivo)
 
     # Intentar calibrar con soporte/resistencia
     if ticker:
@@ -276,7 +314,8 @@ def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
             atr = precio * volatilidad if volatilidad else None
             sl_sr, tp_sr = calcular_sl_tp_calibrado(ticker, accion, precio, atr)
             if sl_sr and tp_sr:
-                return precio, sl_sr, tp_sr
+                sl_capped = _aplicar_cap(sl_sr, accion)
+                return precio, sl_capped, tp_sr
         except:
             pass
 
@@ -300,6 +339,7 @@ def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
         sl = round(precio + mov, 2)
         tp = round(precio - mov * 2, 2)
 
+    sl = _aplicar_cap(sl, accion)
     return precio, sl, tp
 
 # ── TIPO DE INSTRUMENTO ───────────────────────────────────────────────────────

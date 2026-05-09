@@ -210,6 +210,8 @@ def analizar_mtf(ticker, info):
             "accion":        accion_mtf,
             "direccion":     direccion_mtf,
             "conviccion":    round(conviccion_mtf, 1),
+            "puntos":        round(score_total, 2),   # requerido por consolidar_señales()
+            "score_total":   round(score_total, 2),
             "alineacion":    alineacion,
             "color_alin":    color_alin,
             "n_alineados":   n_alineados,
