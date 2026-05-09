@@ -694,6 +694,15 @@ def _umbral_conviccion_efectivo() -> int:
 
     Caché de 15 minutos para no llamar yfinance en cada validación.
     Fallback a PARAMS["conviccion_minima"] si no se puede leer VIX.
+
+    Calibración (mayo 2026):
+    - Los datos del log muestran 8-10 activos consistentemente en 75-77%
+      con 3+ fuentes independientes. Umbral 78% bloqueaba el funnel completo
+      en régimen normal, dejando solo SQM ejecutable.
+    - VIX < 15: mercado muy calmo → 72% (permite alta frecuencia)
+    - VIX 15-25: régimen normal → 75% (calibración principal)
+    - VIX 25-35: stress → 80% (más exigente)
+    - VIX > 35: crisis → 85% (solo señales muy fuertes)
     """
     global _vix_cache
     base = PARAMS["conviccion_minima"]
@@ -710,11 +719,11 @@ def _umbral_conviccion_efectivo() -> int:
             return base
 
         if vix < 15:
-            return 75
+            return 72
         elif vix < 25:
-            return 78
+            return 75   # era 78 — bloqueaba funnel en VIX normal
         elif vix < 35:
-            return 82
+            return 80   # era 82
         else:
             return 85
     except Exception:
@@ -1202,8 +1211,12 @@ def ciclo_trading_automatico():
                 )
                 # Persistir en log para visibilidad en dashboard
                 _registrar_evento("RECHAZADA", f"{r.get('accion','')} {r.get('ib_ticker','')}", {
+                    "ticker":     r.get("ib_ticker", ""),
+                    "activo":     r.get("activo", ""),
+                    "accion":     r.get("accion", ""),
                     "razon":      razon,
                     "conviccion": r.get("conviccion", 0),
+                    "n_fuentes":  r.get("n_fuentes", 0),
                     "riesgo":     r.get("riesgo", 0),
                     "fuentes":    r.get("fuentes", []),
                 })

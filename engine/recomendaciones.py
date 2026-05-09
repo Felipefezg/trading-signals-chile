@@ -1208,7 +1208,14 @@ def generar_recomendaciones(activos_dict):
 
         # Cap de convicción por número de fuentes independientes
         # Con pocas fuentes no se puede llegar a convicción alta aunque estén alineadas
-        CAP_FUENTES = {1: 60, 2: 72, 3: 82, 4: 88, 5: 93}
+        # Cap de convicción por número de fuentes independientes.
+        # Calibrado para que señales de alta calidad con 2 fuentes puedan
+        # cruzar el umbral de 75% (VIX normal), mientras que el umbral de
+        # fuentes_minimas=3 sigue siendo la barrera de entrada real en validar_señal().
+        # Con 1 fuente: cap bajo (60%) — señal insuficiente por definición.
+        # Con 2 fuentes: 76% — permite pasar si las 2 fuentes son muy consistentes.
+        # Con 3+: incremento normal.
+        CAP_FUENTES = {1: 60, 2: 76, 3: 85, 4: 90, 5: 95}
         cap = CAP_FUENTES.get(n_fuentes, 95)
         conviccion_pct = min(conviccion_pct, cap)
 
