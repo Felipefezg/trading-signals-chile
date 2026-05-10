@@ -280,7 +280,8 @@ def _cargar_estado():
         "activo":               False,
         "pausado":              False,
         "razon_pausa":          None,
-        "consecutivos_perdedor": 0,
+        "consecutivos_perdedor":        0,  # streak NYSE/Santiago/ETFs — dispara pausa global
+        "consecutivos_perdedor_crypto": 0,  # streak Crypto — solo bloquea crypto (no NYSE)
         "pnl_dia":              0.0,
         "ultima_verificacion":  None,
         "ordenes_hoy":          0,
@@ -1066,13 +1067,42 @@ def ciclo_trading_automatico():
                     logging.warning(f"Feedback loop (no crítico): {_fe}")
 
             # Actualizar consecutivos perdedores SOLO si IB confirmó el cierre.
+            # Separado por tipo: Crypto NO alimenta el contador global que pausa NYSE.
             # Un cierre no confirmado por IB no es un trade real — ignorar para
             # evitar que posiciones fantasma activen la pausa del motor.
             if c.get("confirmado_ib", False):
-                if c.get("pnl_pct", 0) < 0:
-                    estado["consecutivos_perdedor"] = estado.get("consecutivos_perdedor", 0) + 1
+                _es_crypto = c.get("tipo", "ETF") == "Crypto"
+                _perdio    = c.get("pnl_pct", 0) < 0
+                if _es_crypto:
+                    # Crypto: contador independiente — no bloquea NYSE
+                    if _perdio:
+                        nuevo_streak = estado.get("consecutivos_perdedor_crypto", 0) + 1
+                        estado["consecutivos_perdedor_crypto"] = nuevo_streak
+                        # Streak Crypto >= límite → cooldown extendido (24h) en el ticker crypto
+                        if nuevo_streak >= PARAMS["pausa_consecutivos"]:
+                            _ib_tk_crypto = c.get("ticker", "")
+                            if _ib_tk_crypto:
+                                from datetime import timezone
+                                estado.setdefault("cooldown_tickers", {})[_ib_tk_crypto] = (
+                                    datetime.now(timezone.utc).isoformat()
+                                )
+                                # Forzar cooldown de 24h sobreescribiendo perdedores_dia
+                                estado.setdefault("perdedores_dia", {})[_ib_tk_crypto] = (
+                                    datetime.now().strftime("%Y-%m-%d")
+                                )
+                                logging.warning(
+                                    f"[Crypto streak] {_ib_tk_crypto}: {nuevo_streak} pérdidas "
+                                    f"consecutivas → cooldown 24h. NYSE/Chile NO afectado."
+                                )
+                            estado["consecutivos_perdedor_crypto"] = 0  # reset para próximo ciclo
+                    else:
+                        estado["consecutivos_perdedor_crypto"] = 0
                 else:
-                    estado["consecutivos_perdedor"] = 0
+                    # NYSE/Santiago/ETFs: contador global — pausa todo el motor si supera límite
+                    if _perdio:
+                        estado["consecutivos_perdedor"] = estado.get("consecutivos_perdedor", 0) + 1
+                    else:
+                        estado["consecutivos_perdedor"] = 0
     except Exception as e:
         logging.error(f"Error en cierre automático: {e}")
 
@@ -1310,7 +1340,8 @@ def get_resumen_motor():
         "pnl_dia":             round(pnl_dia, 2),
         "pnl_dia_pct":         round((pnl_dia / get_capital_ib()) * 100, 2),
         "drawdown_pct":        round(drawdown, 2),
-        "consecutivos_perdedor": estado.get("consecutivos_perdedor", 0),
+        "consecutivos_perdedor":        estado.get("consecutivos_perdedor", 0),
+        "consecutivos_perdedor_crypto": estado.get("consecutivos_perdedor_crypto", 0),
         "ordenes_hoy":         estado.get("ordenes_hoy", 0),
         "ultima_verificacion": estado.get("ultima_verificacion"),
         "trades_totales":      len(trades),
@@ -1329,7 +1360,8 @@ if __name__ == "__main__":
     print(f"Riesgo total: {resumen['riesgo_total_pct']:.1f}% (${_cap * resumen['riesgo_total_pct'] / 100:,.0f}) / límite {resumen['max_riesgo_pct']:.0f}%")
     print(f"PnL día: USD {resumen['pnl_dia']:+,.2f} ({resumen['pnl_dia_pct']:+.2f}%)")
     print(f"Drawdown: {resumen['drawdown_pct']:.2f}%")
-    print(f"Consecutivos perdedores: {resumen['consecutivos_perdedor']}")
+    print(f"Consecutivos perdedores NYSE/ETF: {resumen['consecutivos_perdedor']}")
+    print(f"Consecutivos perdedores Crypto:   {resumen['consecutivos_perdedor_crypto']}")
     print(f"\nParámetros activos:")
     for k, v in PARAMS.items():
         print(f"  {k}: {v}")

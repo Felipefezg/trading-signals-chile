@@ -437,6 +437,7 @@ def verificar_posiciones(modo_test=False, auto_cerrar=True):
 
             resumen["cierres"].append({
                 "ticker":        ticker_t,
+                "tipo":          posicion_t.get("tipo", "ETF"),  # necesario para contador por tipo en motor
                 "razon":         "TRAILING STOP",
                 "pnl_pct":       _pnl_real,
                 "ejecutado":     resultado_ib.get("ejecutado", False) if auto_cerrar else False,
@@ -478,6 +479,7 @@ def verificar_posiciones(modo_test=False, auto_cerrar=True):
                     _pnl_def = condicion["pnl_pct"]
                 resumen["cierres"].append({
                     "ticker":        ticker,
+                    "tipo":          posicion.get("tipo", "ETF"),  # necesario para contador por tipo en motor
                     "razon":         condicion["razon"],
                     "pnl_pct":       _pnl_def,
                     "ejecutado":     resultado_ib.get("ejecutado", False),
