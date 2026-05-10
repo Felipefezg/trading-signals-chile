@@ -95,6 +95,17 @@ RIESGO_BASE = {
     "Índice":          5,
 }
 
+# ── MAPA IB_TICKER → SECTOR ───────────────────────────────────────────────────
+# Derivado de UNIVERSO_COMPLETO (fuente única de verdad).
+# Permite que macro_filtro aplique el BENCHMARK_SECTOR correcto a cada activo.
+# Sin este mapa, sector_actual siempre era "" y todo el ajuste por sector
+# quedaba inactivo — BENCHMARK_SECTOR nunca se consultaba.
+try:
+    from engine.universo import UNIVERSO_COMPLETO as _UC
+    _IB_TO_SECTOR: dict = {v["ib"]: v.get("sector", "") for v in _UC.values() if v.get("ib")}
+except Exception:
+    _IB_TO_SECTOR = {}
+
 # ── FUENTES APLICABLES POR TIPO DE ACTIVO ─────────────────────────────────────
 # Previene phantom confirmations: CMF no confirma SPY, 13F no confirma COPEC.SN,
 # IV Opciones no confirma acciones sin opciones líquidas, etc.
@@ -1240,7 +1251,11 @@ def generar_recomendaciones(activos_dict):
         try:
             from engine.macro_filtro import evaluar_activo_vs_macro
             ib_info_actual = INSTRUMENTOS_IB.get(activo, {})
-            sector_actual  = ib_info_actual.get("sector", "")
+            # Derivar sector desde UNIVERSO_COMPLETO (fuente única de verdad).
+            # INSTRUMENTOS_IB no tiene campo "sector", así que sin este lookup
+            # sector_actual siempre era "" → BENCHMARK_SECTOR nunca se aplicaba.
+            _ib_tk_actual  = ib_info_actual.get("ib", activo)
+            sector_actual  = _IB_TO_SECTOR.get(_ib_tk_actual, "")
             macro_eval     = evaluar_activo_vs_macro(yf_ticker, accion, sector_actual)
             conviccion_pct += macro_eval["ajuste_conviccion"]
             conviccion_pct  = max(0, min(100, conviccion_pct))

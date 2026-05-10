@@ -278,6 +278,19 @@ def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
 
     precio_salida = resultado_ib.get("precio_fill", condicion["precio"])
 
+    # Normalizar razon del condicion a una de las categorías estándar
+    _razon_raw = condicion.get("razon", "").upper()
+    if "STOP" in _razon_raw and "TRAIL" in _razon_raw:
+        _razon_cierre = "TRAILING"
+    elif "STOP" in _razon_raw:
+        _razon_cierre = "SL"
+    elif "PROFIT" in _razon_raw or "TP" in _razon_raw or "TAKE" in _razon_raw:
+        _razon_cierre = "TP"
+    elif "HORIZONTE" in _razon_raw or "TIEMPO" in _razon_raw or "DÍAS" in _razon_raw or "DIAS" in _razon_raw:
+        _razon_cierre = "HORIZONTE"
+    else:
+        _razon_cierre = "MANUAL"
+
     registrar_trade_cerrado(
         ticker         = ticker,
         accion         = posicion["accion"],
@@ -287,7 +300,9 @@ def cerrar_posicion_local(ticker, posicion, condicion, resultado_ib):
         fecha_entrada  = posicion.get("fecha_entrada", datetime.now().isoformat()),
         fecha_salida   = datetime.now().isoformat(),
         confirmado_ib  = resultado_ib.get("confirmado_ib", False),
-        tipo           = posicion.get("tipo"),  # necesario para normalización CLP→USD
+        tipo           = posicion.get("tipo"),
+        razon_cierre   = _razon_cierre,
+        fuentes        = posicion.get("fuentes", []),  # para actualizar source_health
     )
 
     del posiciones[ticker]
