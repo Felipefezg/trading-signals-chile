@@ -964,7 +964,8 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
     _FUTURO_ETF_MAP = {
         "GC=F": ["GLD", "GDX"],   # Oro → SPDR Gold ETF + Gold Miners
         "SI=F": ["SLV"],          # Plata → iShares Silver ETF
-        "CL=F": ["USO"],          # Petróleo → United States Oil Fund (si lo hay en universo)
+        "CL=F": ["XLE"],          # Petróleo → Energy Select Sector ETF (ejecutable en IB)
+        # USO eliminado — no está en universo ejecutable; XLE es mejor proxy (beta ~0.88 vs CL=F)
     }
     for futuro, etfs in _FUTURO_ETF_MAP.items():
         if futuro not in activos:

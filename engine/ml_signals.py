@@ -299,7 +299,7 @@ def predecir_señal_ml(ticker, modelo_info):
         return None
 
 # ── ANÁLISIS COMPLETO UNIVERSO ────────────────────────────────────────────────
-def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_auc_std=0.15, max_activos=20):
+def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_auc_std=0.15, max_activos=26):
     """
     Entrena modelos y genera señales ML para el universo de activos.
     Retorna señales compatibles con el motor de recomendaciones.
@@ -319,12 +319,18 @@ def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_auc_std=0.15, max_activ
 
     # Seleccionar activos más líquidos para ML
     activos_ml = {}
-    prioridad = ["SQM", "ECH", "COPEC.SN", "BTC-USD", "GC=F", "SPY",
-                 "FALABELLA.SN", "BCI.SN", "CHILE.SN", "BSANTANDER.SN",
-                 "CMPC.SN", "CENCOSUD.SN", "COLBUN.SN", "ENELCHILE.SN",
-                 "LTM.SN", "CAP.SN", "CCU.SN", "VAPORES.SN", "ANDINA-B.SN", "GLD",
-                 # Nuevos commodities — SLV/GDX correlados con GLD, HG con SQM/COPEC
-                 "SLV", "GDX", "HG=F"]
+    prioridad = [
+        # ── ETFs USA ejecutables — alta liquidez, datos limpios para ML ────────
+        "SPY", "QQQ", "IWM", "XLE", "GLD", "SLV", "GDX",
+        # ── ADRs Chile — dual-listed, datos NYSE ────────────────────────────────
+        "SQM", "ECH",
+        # ── Crypto y commodities ────────────────────────────────────────────────
+        "BTC-USD", "GC=F", "HG=F",
+        # ── Acciones Chile más líquidas ─────────────────────────────────────────
+        "COPEC.SN", "FALABELLA.SN", "BCI.SN", "CHILE.SN", "BSANTANDER.SN",
+        "CMPC.SN", "CENCOSUD.SN", "LTM.SN", "CAP.SN", "CCU.SN",
+        "COLBUN.SN", "ENELCHILE.SN", "VAPORES.SN", "ANDINA-B.SN",
+    ]
 
     for ticker in prioridad:
         if ticker in UNIVERSO_COMPLETO:
