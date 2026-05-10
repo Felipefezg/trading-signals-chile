@@ -65,7 +65,11 @@ def _cargar_google_trends():
 def _cargar_volumen():
     from data.volumen import get_resumen_volumen, correlacionar_con_cmf
     resumen = get_resumen_volumen()
-    return correlacionar_con_cmf(resumen.get("top_alertas", []))
+    # Usar todos los tickers con alerta (no solo top_alertas[:5]) — así QQQ/IWM/XLE
+    # no quedan bloqueados por 5 alertas IPSA que los preceden en el ranking
+    todos = resumen.get("todos", [])
+    alertas = [a for a in todos if a.get("nivel") in ("ALTA", "MEDIA")]
+    return correlacionar_con_cmf(alertas)
 
 def _cargar_momentum():
     from engine.momentum_intraday import get_señales_momentum
@@ -164,20 +168,31 @@ def cargar_todas_las_fuentes(fuentes=None, max_workers=8, verbose=False):
             future = executor.submit(fn)
             futures[future] = (nombre, timeout, time.time())
 
-        # Recoger resultados
-        for future in as_completed(futures, timeout=60):
-            nombre, timeout, t_start = futures[future]
-            elapsed = time.time() - t_start
-            tiempos[nombre] = round(elapsed, 1)
-            try:
-                resultado = future.result(timeout=0.1)
-                resultados[nombre] = resultado
-                if verbose:
-                    print(f"  ✓ {nombre:<20} {elapsed:.1f}s")
-            except Exception as e:
-                errores[nombre] = str(e)
-                if verbose:
-                    print(f"  ✗ {nombre:<20} {elapsed:.1f}s — {str(e)[:50]}")
+        # Recoger resultados — timeout global = máximo de timeouts individuales
+        # (ML puede tardar hasta 120s entrenando modelos)
+        timeout_global = max(t for _, t in FUENTES.values())
+        try:
+            for future in as_completed(futures, timeout=timeout_global):
+                nombre, timeout, t_start = futures[future]
+                elapsed = time.time() - t_start
+                tiempos[nombre] = round(elapsed, 1)
+                try:
+                    resultado = future.result(timeout=0.1)
+                    resultados[nombre] = resultado
+                    if verbose:
+                        print(f"  ✓ {nombre:<20} {elapsed:.1f}s")
+                except Exception as e:
+                    errores[nombre] = str(e)
+                    if verbose:
+                        print(f"  ✗ {nombre:<20} {elapsed:.1f}s — {str(e)[:50]}")
+        except TimeoutError:
+            # Fuentes que no terminaron antes del timeout global → quedan como None
+            pendientes = [
+                futures[f][0] for f in futures
+                if not f.done() and futures[f][0] not in resultados
+            ]
+            if pendientes and verbose:
+                print(f"  ⚠ Timeout global {timeout_global}s — fuentes pendientes: {pendientes}")
 
     t_total = time.time() - t_inicio
 

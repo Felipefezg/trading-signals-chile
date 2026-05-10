@@ -46,15 +46,15 @@ IPSA_30 = {
 SMALL_CAPS = {
     "BESALCO.SN":   {"nombre": "Besalco",           "sector": "Construcción"},
     "SALFACORP.SN": {"nombre": "Salfacorp",         "sector": "Construcción"},
-    "CFR.SN":       {"nombre": "CFR Pharma",        "sector": "Salud"},
+    # CFR.SN eliminado — delisted (privatizado)
     "SOCOVESA.SN":  {"nombre": "Socovesa",          "sector": "Inmobiliario"},
     "INGEVEC.SN":   {"nombre": "Ingevec",           "sector": "Construcción"},
     "HITES.SN":     {"nombre": "Hites",             "sector": "Retail"},
     "MOLYMET.SN":   {"nombre": "Molymet",           "sector": "Minería"},
     "QUINENCO.SN":  {"nombre": "Quiñenco",          "sector": "Holding"},
     "MASISA.SN":    {"nombre": "Masisa",            "sector": "Industria"},
-    "ENDESA.SN":    {"nombre": "Endesa Chile",      "sector": "Energía"},
-    "BANMEDICA.SN": {"nombre": "Bánmedica",         "sector": "Salud"},
+    # ENDESA.SN eliminado — absorbida por ENELCHILE.SN (ya en IPSA_30)
+    # BANMEDICA.SN eliminado — delisted (privatizada por Clínica Bupa 2019)
     "HABITAT.SN":   {"nombre": "AFP Habitat",       "sector": "Financiero"},
     "PROVIDA.SN":   {"nombre": "AFP Provida",       "sector": "Financiero"},
     "SCHWAGER.SN":  {"nombre": "Schwager",          "sector": "Industria"},

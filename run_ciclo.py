@@ -126,62 +126,14 @@ def _run_main_logic():
             return
 
 
-        # Verificar horario
+        # Verificar horario (informativo)
         en_horario, msg = es_horario_mercado()  # Default NYSE
         print(f"Horario: {msg}")
+        # Nota: ciclo_trading_automatico() corre siempre. El filtro por-activo
+        # dentro de la función bloquea NYSE/Santiago fuera de horario pero
+        # permite Crypto 24/7. SL/TP también corren siempre (dentro del ciclo).
 
-        if not en_horario:
-            # Fuera de horario NYSE.
-            # Crypto opera 24/7 y se maneja dentro de ciclo_trading_automatico()
-            # vía es_horario_mercado(tipo_activo="Crypto") → siempre True.
-            # NO ejecutar señales aquí directamente para no saltarse
-            # validaciones de riesgo, posiciones máximas y deduplicación.
-
-            # Fuera de horario — solo verificar SL/TP/Trailing
-            logging.info(f"Fuera de horario: {msg} — solo verificando posiciones")
-            from engine.cierre_automatico import verificar_posiciones
-            from engine.trailing_stop import verificar_trailing_stops
-
-            # Trailing stops
-            resumen_trail = verificar_trailing_stops()
-            if resumen_trail.get("cierres"):
-                for c in resumen_trail["cierres"]:
-                    print(f"TRAILING STOP: {c['ticker']} | PnL {c['pnl_pct']:+.2f}%")
-                    logging.info(f"Trailing stop: {c['ticker']} PnL {c['pnl_pct']:+.2f}%")
-
-            # Guardar señales AT en DB (disponible 24/7)
-            try:
-                import pandas as pd
-                from engine.analisis_tecnico import get_señales_tecnicas
-                from data.historial import guardar_senales
-                at = get_señales_tecnicas(min_conviccion=70)
-                rows_at = [{
-                    'Señal': f"{a['accion']} {a['nombre']}: {', '.join(s['descripcion'] for s in a['señales'][:2])}",
-                    'Prob %': a['conviccion'],
-                    'Dirección': a['accion'],
-                    'Activos Chile': a['activo_motor'],
-                    'Score': a['conviccion'] / 10,
-                    'Tesis': f"{a['accion']} {a['nombre']} — RSI:{a['indicadores']['rsi']:.1f} %B:{a['indicadores']['pct_b']:.2f}",
-                } for a in at]
-                if rows_at:
-                    nuevas = guardar_senales(pd.DataFrame(rows_at))
-                    print(f"Señales AT guardadas: {nuevas}")
-            except Exception as e:
-                print(f"Error AT DB: {e}")
-
-            # SL/TP
-            resumen_cierre = verificar_posiciones(modo_test=False, auto_cerrar=True)
-            for c in resumen_cierre.get("cierres", []):
-                print(f"CIERRE: {c['ticker']} | {c['razon']} | PnL {c['pnl_pct']:+.2f}%")
-                logging.info(f"Cierre: {c['ticker']} {c['razon']} PnL {c['pnl_pct']:+.2f}%")
-
-            # Mostrar estado posiciones
-            for p in resumen_cierre.get("ok", []):
-                print(f"Posición: {p['ticker']} | precio {p['precio']:,.2f} | PnL {p['pnl_pct']:+.2f}%")
-            return
-
-        # En horario — ejecutar ciclo completo
-        print("Ejecutando ciclo completo...")
+        # Ejecutar ciclo completo (siempre)
 
         # Generar señales — carga paralela
         try:

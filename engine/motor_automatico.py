@@ -1076,15 +1076,13 @@ def ciclo_trading_automatico():
     except Exception as e:
         logging.error(f"Error en cierre automático: {e}")
 
-    # ── VERIFICAR HORARIO (solo para abrir nuevas posiciones) ─────────────────
+    # ── VERIFICAR HORARIO (informativo — NO retorna) ──────────────────────────
+    # El filtro real se aplica por-activo en el bucle de recomendaciones (línea ~1169)
+    # donde es_horario_mercado(tipo_activo) filtra NYSE/Santiago pero permite Crypto 24/7.
+    # Retornar aquí habría bloqueado BTC-USD en fines de semana y noches.
     en_horario, msg_horario = es_horario_mercado()
     if not en_horario:
-        logging.info(f"Fuera de horario para aperturas: {msg_horario}")
-        # Guardar estado con cierres ya procesados y retornar sin abrir posiciones
-        _guardar_estado(estado)
-        resultados["ejecutado"] = True
-        resultados["razon"]     = msg_horario
-        return resultados
+        logging.info(f"Fuera de horario NYSE: {msg_horario} — solo activos 24/7 son elegibles")
 
     # ── PIRÁMIDE: escalar posiciones ganadoras (antes de buscar aperturas nuevas)
     try:
