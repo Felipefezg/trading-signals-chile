@@ -13,7 +13,7 @@ Lógica de boost:
   streak≥5  →  +8%  (máximo, para no inflar artificialmente)
 
 Parámetros de ventana:
-  CYCLE_WINDOW = 8 min  (ciclo cada 5 min + 3 min de tolerancia)
+  CYCLE_WINDOW = 15 min  (ciclo cada 5 min + 10 min tolerancia para delays de red/IB)
   Un streak se corta si el activo no reaparece dentro de esa ventana.
 
 Ejemplo de valor:
@@ -30,7 +30,7 @@ from datetime import datetime, timedelta
 _BASE_DIR      = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STREAKS_FILE   = os.path.join(_BASE_DIR, "data", "signal_streaks.json")
 
-CYCLE_WINDOW   = timedelta(minutes=8)   # tiempo máximo entre ciclos consecutivos
+CYCLE_WINDOW   = timedelta(minutes=15)  # ciclo 5min + 10min tolerancia (delay red/IB/crash)
 MAX_BOOST_PCT  = 8.0                    # boost máximo en puntos de convicción
 BOOST_PER_STEP = 2.0                    # puntos adicionales por ciclo extra
 

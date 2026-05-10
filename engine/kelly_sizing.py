@@ -88,7 +88,15 @@ KELLY_STATS: dict[str, dict] = {
 
     # ── NUEVOS (ETF commodities) ──────────────────────────────────────────────
     "SLV":       {"win_rate": 0.50, "rr": 2.34, "n_trades": 0},   # Silver ETF — mismos stats iniciales que GLD
-    "GDX":       {"win_rate": 0.50, "rr": 2.00, "n_trades": 0},   # Gold Miners ETF — sin historial → fallback $7.5k
+    "GDX":       {"win_rate": 0.50, "rr": 2.00, "n_trades": 0},   # Gold Miners ETF — sin historial → fallback
+
+    # ── ETFs USA diversificadores (agregados 2026-05) ─────────────────────────
+    # Sin historial propio — stats conservadores basados en literatura ETF
+    # (SPY long-term win_rate ~0.55-0.60 en swing trading mensual, R/R ~1.8x).
+    # n_trades=0 → usa fallback Half-Kelly hasta acumular ≥3 trades reales.
+    "QQQ":       {"win_rate": 0.55, "rr": 1.80, "n_trades": 0},   # Nasdaq 100 — mayor vol que SPY
+    "IWM":       {"win_rate": 0.50, "rr": 1.70, "n_trades": 0},   # Russell 2000 — más vol, R/R menor
+    "XLE":       {"win_rate": 0.50, "rr": 1.90, "n_trades": 0},   # Energy ETF — sigue petróleo
 }
 
 # ── PARÁMETROS DE SIZING (en % del capital — agnósticos al monto) ────────────
