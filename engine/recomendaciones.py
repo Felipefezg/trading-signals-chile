@@ -1241,7 +1241,10 @@ def generar_recomendaciones(activos_dict):
         conviccion_pct = min(conviccion_pct, cap)
 
         ib_info   = INSTRUMENTOS_IB.get(activo, {})
-        tipo      = ib_info.get("tipo", "ETF")
+        # tipo_pre ya aplicó el fallback correcto a UNIVERSO_COMPLETO — reutilizarlo
+        # evita que activos nuevos (añadidos al universo pero no a INSTRUMENTOS_IB)
+        # reciban tipo="ETF" por default y pasen el filtro de horario incorrectamente.
+        tipo      = tipo_pre if tipo_pre else ib_info.get("tipo", "ETF")
         riesgo    = _calcular_riesgo(tipo, conviccion_pct, n_fuentes)
         horizonte = _calcular_horizonte(n_fuentes, conviccion_pct, tipo_producto=tipo)
 
