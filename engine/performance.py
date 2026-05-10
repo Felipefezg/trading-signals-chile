@@ -79,40 +79,10 @@ def registrar_trade_cerrado(ticker, accion, cantidad, precio_entrada,
     trades.append(trade_entry)
     _guardar_trades_cerrados(trades)
 
-    # ── Actualizar source_health con el resultado de este trade ──────────────
-    # Solo con trades confirmados por IB y con fuentes conocidas.
-    if confirmado_ib and fuentes:
-        _actualizar_source_health(fuentes, ganador=(pnl_total > 0))
-
     return pnl_total
-
-
-def _actualizar_source_health(fuentes: list, ganador: bool):
-    """
-    Incrementa wins/total en source_health.json para cada fuente del trade.
-    Usado por recomendaciones.py para el factor_calidad de señales futuras.
-    """
-    health_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                               "..", "data", "source_health.json")
-    try:
-        health = {}
-        if os.path.exists(health_file):
-            with open(health_file) as f:
-                health = json.load(f)
-        for fuente in fuentes:
-            if fuente not in health:
-                health[fuente] = {"total": 0, "wins": 0, "win_rate": 0.5}
-            health[fuente]["total"] += 1
-            if ganador:
-                health[fuente]["wins"] += 1
-            total = health[fuente]["total"]
-            wins  = health[fuente]["wins"]
-            # Win rate con suavizado Bayesiano (prior 50%, peso 5 trades)
-            health[fuente]["win_rate"] = round((wins + 2.5) / (total + 5), 3)
-        with open(health_file, "w") as f:
-            json.dump(health, f, indent=2)
-    except Exception:
-        pass
+    # Nota: el feedback por fuente (win_rate por fuente) se acumula en
+    # feedback_loop.registrar_cierre_con_contexto() → trade_outcomes.json.
+    # NO escribir aquí a source_health.json — estructura incompatible.
 
 # ── PnL POSICIONES ABIERTAS ───────────────────────────────────────────────────
 def get_pnl_posiciones_abiertas():

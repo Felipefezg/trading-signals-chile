@@ -60,6 +60,12 @@ PARES_CONOCIDOS = [
     ("GDX",         "GC=F",     "Gold Miners vs Oro",     0.85),
     ("SLV",         "HG=F",     "Plata vs Cobre",         0.65),
     ("GLD",         "HG=F",     "Oro vs Cobre",           0.55),
+    # ETFs USA — divergencias intra-mercado
+    ("QQQ",         "SPY",      "Nasdaq vs S&P 500",       0.92),   # tech vs broad market
+    ("IWM",         "SPY",      "Small Caps vs S&P 500",   0.85),   # risk-on/off divergencia
+    ("XLE",         "CL=F",     "Energy ETF vs Petróleo",  0.88),   # XLE sigue al crudo
+    ("QQQ",         "IWM",      "Nasdaq vs Russell 2000",  0.80),   # growth vs value signal
+    ("XLE",         "SPY",      "Energía vs S&P 500",      0.65),   # sector rotation
 ]
 
 # ── CARGA DE DATOS ────────────────────────────────────────────────────────────
