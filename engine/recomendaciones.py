@@ -46,9 +46,13 @@ INSTRUMENTOS_IB = {
     "GC=F":             {"ib": "GC",        "tipo": "Futuro",           "descripcion": "Oro (COMEX)",                  "yf": "GC=F"},
     "CL=F":             {"ib": "CL",        "tipo": "Futuro",           "descripcion": "Petróleo WTI (NYMEX)",         "yf": "CL=F"},
     "HG=F":             {"ib": "HG",        "tipo": "Futuro",           "descripcion": "Cobre (COMEX)",                "yf": "HG=F"},
-    # ETFs adicionales
+    # ETFs adicionales — Renta Fija / Commodities
     "TLT":              {"ib": "TLT",       "tipo": "ETF",              "descripcion": "iShares 20Y Treasury",         "yf": "TLT"},
     "GLD":              {"ib": "GLD",       "tipo": "ETF",              "descripcion": "SPDR Gold ETF",                "yf": "GLD"},
+    # ETFs USA ejecutables — descorrelacionados de Chile
+    "QQQ":              {"ib": "QQQ",       "tipo": "ETF",              "descripcion": "Nasdaq 100 ETF",               "yf": "QQQ"},
+    "IWM":              {"ib": "IWM",       "tipo": "ETF",              "descripcion": "Russell 2000 ETF",             "yf": "IWM"},
+    "XLE":              {"ib": "XLE",       "tipo": "ETF",              "descripcion": "Energy Sector ETF",            "yf": "XLE"},
     # IPSA 30 completo
     "SQM-B.SN":         {"ib": "SQM",       "tipo": "Acción Chile",     "descripcion": "SQM (Bolsa Santiago)",          "yf": "SQM-B.SN"},
     "CENCOSUD.SN":      {"ib": "CENCOSUD",  "tipo": "Acción Chile",     "descripcion": "Cencosud Santiago",            "yf": "CENCOSUD.SN"},
@@ -289,7 +293,7 @@ def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
     _ticker_str = (ticker or "").upper()
     if _ticker_str in ("BTC-USD", "ETH-USD", "BTC", "ETH"):
         _sl_cap_pct = _SL_CAP_CRYPTO
-    elif _ticker_str in ("SPY", "ECH", "GLD", "TLT", "SLV", "GDX", "GC=F", "CL=F", "HG=F"):
+    elif _ticker_str in ("SPY", "ECH", "GLD", "TLT", "SLV", "GDX", "QQQ", "IWM", "XLE", "GC=F", "CL=F", "HG=F"):
         _sl_cap_pct = _SL_CAP_ETF
     else:
         _sl_cap_pct = _SL_CAP_DEFAULT

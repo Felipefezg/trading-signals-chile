@@ -15,6 +15,7 @@ Salvaguardas:
 - Pausa si 3 trades consecutivos perdedores
 - Solo operar en horario de mercado
 - Máx 2 posiciones mismo sector
+- Máx 2 posiciones mismo bloque de correlación (Chile_macro / Commodities / USA_equity / Crypto)
 - No duplicar ticker
 """
 
@@ -61,6 +62,7 @@ PARAMS = {
     "pausa_consecutivos":       3,     # Pausa tras N trades consecutivos perdedores
     # ── Diversificación ───────────────────────────────────────────────────────
     "max_mismo_sector":         2,
+    "max_por_bloque":           2,   # máx posiciones abiertas del mismo bloque correlado
     # ── Horario ───────────────────────────────────────────────────────────────
     "horario_inicio":           "09:30",
     "horario_fin":              "15:45",
@@ -74,6 +76,39 @@ PARAMS = {
 # Ambos exceden max_usd_por_operacion y producen PnL completamente deformado.
 # Para operar estos activos: hacerlo MANUALMENTE desde IB Gateway.
 BLACKLIST_AUTO = {"CL", "HG", "GC"}  # Futuros con nocional masivo — operar via ETF (GLD/SLV/GDX)
+
+# ── BLOQUES DE CORRELACIÓN ────────────────────────────────────────────────────
+# Agrupa activos que responden al mismo factor macro subyacente.
+# Cuando un factor macro golpea, todos los activos del bloque se mueven juntos
+# → no diversifican el portafolio, amplifican el drawdown.
+#
+# Chile_macro: mineras, bancos y aerolíneas chilenas se correlacionan con
+#   riesgo político Chile + precio cobre. IPSA -5% → todos bajan.
+# Commodities_metales: GLD/SLV/GDX son el mismo trade (precio metal precioso).
+# Renta_fija: TLT es el único activo del bloque — sin riesgo de concentración.
+# Crypto: BTC 24/7, no correlacionado con Chile ni con ETFs USA.
+# USA_equity: QQQ/IWM/XLE son ETFs USA pero distintos sectores. IWM y QQQ tienen
+#   correlación alta en riesgo-off, por eso se incluyen en el mismo bloque.
+#
+# Lógica: máx PARAMS["max_por_bloque"] posiciones del mismo bloque simultáneamente.
+BLOQUES_CORRELACION = {
+    "Chile_macro":       {"SQM", "BSAC", "BCH", "LTM", "CMPC", "BSANTANDER",
+                          "COPEC", "BCI", "FALABELLA", "CENCOSUD", "ECH"},
+    "Commodities_metal": {"GLD", "SLV", "GDX"},
+    "Renta_fija":        {"TLT"},
+    "Crypto":            {"BTC", "ETH"},
+    "USA_equity":        {"SPY", "QQQ", "IWM", "XLE"},
+}
+
+# Mapa inverso IB_ticker → bloque para lookup O(1)
+_TICKER_A_BLOQUE: dict = {}
+for _bloque, _tickers in BLOQUES_CORRELACION.items():
+    for _t in _tickers:
+        _TICKER_A_BLOQUE[_t] = _bloque
+
+def _bloque_de(ib_ticker: str) -> str | None:
+    """Retorna el bloque de correlación del ticker, o None si no está clasificado."""
+    return _TICKER_A_BLOQUE.get(ib_ticker)
 
 # ── GRUPOS DE FUENTES (independencia de señal) ────────────────────────────────
 # Cada grupo mide un fenómeno distinto. Una señal convincente debe tener al menos
@@ -170,13 +205,17 @@ SECTORES = {
     "HABITAT":    "Financiero",
     "PROVIDA":    "Financiero",
     "MARINSA":    "Transporte",
-    # ETFs
+    # ETFs Chile / Renta Fija / Commodities
     "ECH":        "ETF Chile",
     "SPY":        "ETF USA",
     "TLT":        "Renta Fija",
     "GLD":        "Commodities",
     "SLV":        "Commodities",   # Silver ETF
     "GDX":        "Commodities",   # Gold Miners ETF
+    # ETFs USA — ejecutables, descorrelacionados de Chile
+    "QQQ":        "ETF Tech USA",
+    "IWM":        "ETF Small USA",
+    "XLE":        "ETF Energía USA",
     # Commodities / Futuros
     "GC":         "Commodities",
     "HG":         "Commodities",
@@ -837,6 +876,19 @@ def validar_señal(recomendacion, estado=None, posiciones_cache=None):
                       if SECTORES.get(t, "Otros") == sector)
     if sector_count >= PARAMS["max_mismo_sector"]:
         return False, f"Máximo {PARAMS['max_mismo_sector']} posiciones en sector {sector}"
+
+    # 6b. Máximo por bloque de correlación
+    # Impide concentrar el portafolio en activos que responden al mismo factor macro.
+    # Ejemplo: BSAC + BCH + SQM están todos en "Chile_macro" — si entran las 3,
+    # el portafolio no diversifica, amplifca el drawdown si Chile cae.
+    bloque = _bloque_de(ticker)
+    if bloque:
+        abiertas_en_bloque = sum(1 for t in posiciones if _bloque_de(t) == bloque)
+        if abiertas_en_bloque >= PARAMS["max_por_bloque"]:
+            return False, (
+                f"Bloque correlado '{bloque}': {abiertas_en_bloque} posiciones ya abiertas "
+                f"(máx {PARAMS['max_por_bloque']}) — {ticker} no añade diversificación"
+            )
 
     # 7. Riesgo total — expresado en % del capital IB real
     riesgo_actual_pct = calcular_riesgo_total()  # retorna %

@@ -74,7 +74,7 @@ ADRS_CHILE = {
     "LTM":  {"nombre": "LATAM Airlines ADR",  "sector": "Transporte","peso_ipsa": 0, "ib": "LTM",  "tipo": "Acción USA/Chile", "yf": "LTM"},
 }
 
-# ── ETFs ──────────────────────────────────────────────────────────────────────
+# ── ETFs Chile / Renta Fija / Commodities ─────────────────────────────────────
 ETFS = {
     "ECH":  {"nombre": "iShares MSCI Chile", "sector": "ETF Chile",  "peso_ipsa": 0, "ib": "ECH",  "tipo": "ETF", "yf": "ECH"},
     "SPY":  {"nombre": "S&P 500 ETF",        "sector": "ETF USA",    "peso_ipsa": 0, "ib": "SPY",  "tipo": "ETF", "yf": "SPY"},
@@ -82,6 +82,19 @@ ETFS = {
     "GLD":  {"nombre": "Gold ETF",           "sector": "Commodity",  "peso_ipsa": 0, "ib": "GLD",  "tipo": "ETF", "yf": "GLD"},
     "SLV":  {"nombre": "Silver ETF",         "sector": "Commodity",  "peso_ipsa": 0, "ib": "SLV",  "tipo": "ETF", "yf": "SLV"},
     "GDX":  {"nombre": "Gold Miners ETF",    "sector": "Commodity",  "peso_ipsa": 0, "ib": "GDX",  "tipo": "ETF", "yf": "GDX"},
+}
+
+# ── ETFs USA de alta liquidez — descorrelacionados de Chile ───────────────────
+# Incluidos en UNIVERSO_EJECUTABLE por:
+#   - Liquidez NYSE máxima (spread <0.01%, fill instantáneo en IB)
+#   - Cobertura completa en las 19 fuentes del sistema (macro USA, 13F, NLP, LLM)
+#   - Correlación baja con el bloque Chile/cobre (beta Chile ~0)
+# Propósito: diversificar el portafolio fuera del bloque Chile macro cuando las
+# señales locales están saturadas o en cooldown.
+ETFS_USA = {
+    "QQQ":  {"nombre": "Nasdaq 100 ETF",    "sector": "ETF Tech USA",   "peso_ipsa": 0, "ib": "QQQ",  "tipo": "ETF", "yf": "QQQ"},
+    "IWM":  {"nombre": "Russell 2000 ETF",  "sector": "ETF Small USA",  "peso_ipsa": 0, "ib": "IWM",  "tipo": "ETF", "yf": "IWM"},
+    "XLE":  {"nombre": "Energy Sector ETF", "sector": "ETF Energía USA","peso_ipsa": 0, "ib": "XLE",  "tipo": "ETF", "yf": "XLE"},
 }
 
 # ── COMMODITIES ───────────────────────────────────────────────────────────────
@@ -102,6 +115,7 @@ UNIVERSO_COMPLETO = {
     **SMALL_CAPS,
     **ADRS_CHILE,
     **ETFS,
+    **ETFS_USA,
     **COMMODITIES,
     **CRYPTO,
 }
@@ -113,18 +127,18 @@ def get_tickers_acciones_chile():
 
 def get_tickers_internacionales():
     """Activos internacionales"""
-    return {**ADRS_CHILE, **ETFS, **COMMODITIES, **CRYPTO}
+    return {**ADRS_CHILE, **ETFS, **ETFS_USA, **COMMODITIES, **CRYPTO}
 
 def get_tickers_at():
     """Activos para análisis técnico — los más líquidos"""
-    # IPSA top 15 + internacionales
+    # IPSA top 15 + internacionales (incluyendo ETFs USA ejecutables)
     ipsa_top = dict(list(IPSA_30.items())[:15])
-    return {**ipsa_top, **ADRS_CHILE, **ETFS, **COMMODITIES, **CRYPTO}
+    return {**ipsa_top, **ADRS_CHILE, **ETFS, **ETFS_USA, **COMMODITIES, **CRYPTO}
 
 def get_tickers_mtf():
     """Activos para análisis multi-timeframe — requieren suficientes datos"""
     ipsa_top = dict(list(IPSA_30.items())[:10])
-    return {**ipsa_top, **ADRS_CHILE, **ETFS, **COMMODITIES, **CRYPTO}
+    return {**ipsa_top, **ADRS_CHILE, **ETFS, **ETFS_USA, **COMMODITIES, **CRYPTO}
 
 def get_tickers_por_sector(sector):
     """Filtra activos por sector"""
@@ -164,6 +178,7 @@ UNIVERSO_EJECUTABLE = {
     **IPSA_EJECUTABLE,
     **ADRS_CHILE,
     **ETFS,
+    **ETFS_USA,
     **COMMODITIES_EJECUTABLES,
     **CRYPTO,
 }
