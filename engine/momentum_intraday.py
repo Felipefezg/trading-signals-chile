@@ -18,6 +18,8 @@ Parámetros:
   MIN_CONSISTENCIA = 0.60  fracción mínima de barras en la dirección principal
 """
 
+from __future__ import annotations  # Python 3.9: permite dict | None en annotations
+
 import time
 import yfinance as yf
 import pandas as pd

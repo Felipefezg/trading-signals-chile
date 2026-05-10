@@ -14,6 +14,7 @@ from data.cache_helper import cache_get, cache_set
 import pandas as pd
 import numpy as np
 from datetime import datetime
+import os
 import time
 
 # Grupos de búsqueda por activo
@@ -45,6 +46,33 @@ TERMINOS_ACTIVOS = {
     },
 }
 
+_BACKOFF_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "cache", "google_trends_backoff.json"
+)
+_BACKOFF_HORAS = 6  # Horas de espera tras un 429
+
+def _set_backoff():
+    """Registra timestamp de último 429 para enforced cooldown."""
+    try:
+        import json as _json
+        with open(_BACKOFF_FILE, "w") as _f:
+            _json.dump({"ts": time.time()}, _f)
+    except Exception:
+        pass
+
+def _en_backoff() -> bool:
+    """Retorna True si hay que esperar por un 429 reciente."""
+    try:
+        import json as _json
+        if not os.path.exists(_BACKOFF_FILE):
+            return False
+        with open(_BACKOFF_FILE) as _f:
+            d = _json.load(_f)
+        elapsed_h = (time.time() - d.get("ts", 0)) / 3600
+        return elapsed_h < _BACKOFF_HORAS
+    except Exception:
+        return False
+
 def get_trends(terminos, periodo="now 7-d", geo="CL"):
     """Obtiene datos de Google Trends para una lista de términos"""
     try:
@@ -57,6 +85,8 @@ def get_trends(terminos, periodo="now 7-d", geo="CL"):
             df = df.drop(columns=["isPartial"])
         return df
     except Exception as e:
+        if "429" in str(e):
+            _set_backoff()  # Enforce 6h cooldown tras rate limit
         print(f"Error Trends {terminos}: {e}")
         return None
 
@@ -147,21 +177,30 @@ def analizar_grupo(activo, config, periodo="now 7-d"):
     }
 
 def get_trends_chile(periodo="now 7-d"):
-    # Cache 60 minutos — Google Trends tiene rate limit
-    cached = cache_get("google_trends", max_age_min=60)
-    if cached:
-        return cached
-
     """
     Analiza Google Trends para todos los activos chilenos.
     Retorna señales ordenadas por score.
+
+    Cache: 360 min (6h) — Google tiene rate limit agresivo (429 tras ~12 req).
+    Bug corregido: cache_get devuelve [] (lista vacía) que es falsy → se ignoraba
+    y se reintentaba en cada ciclo provocando 429 en cadena. Ahora se usa
+    'is not None' para distinguir cache hit vacío de cache miss.
     """
+    # Backoff: si recibimos 429 reciente, no reintentar hasta que expire
+    if _en_backoff():
+        return []
+
+    # Cache 360min — evitar múltiples llamadas por hora (pytrends no oficial)
+    cached = cache_get("google_trends", max_age_min=360)
+    if cached is not None:   # [] vacío es válido — significa que no hubo señales
+        return cached
+
     resultados = []
     for activo, config in TERMINOS_ACTIVOS.items():
         resultado = analizar_grupo(activo, config, periodo)
         if resultado:
             resultados.append(resultado)
-        time.sleep(1)  # Evitar rate limit de Google
+        time.sleep(3)  # 3s entre grupos para evitar rate limit (era 1s)
 
     resultado = sorted(resultados, key=lambda x: x["score"], reverse=True)
     cache_set("google_trends", resultado)
