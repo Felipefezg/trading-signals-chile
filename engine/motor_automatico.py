@@ -25,6 +25,7 @@ import threading
 import time
 import logging
 from datetime import datetime, timedelta
+from typing import Optional
 import pytz
 import yfinance as yf
 
@@ -106,7 +107,7 @@ for _bloque, _tickers in BLOQUES_CORRELACION.items():
     for _t in _tickers:
         _TICKER_A_BLOQUE[_t] = _bloque
 
-def _bloque_de(ib_ticker: str) -> str | None:
+def _bloque_de(ib_ticker: str) -> Optional[str]:
     """Retorna el bloque de correlación del ticker, o None si no está clasificado."""
     return _TICKER_A_BLOQUE.get(ib_ticker)
 
