@@ -346,7 +346,9 @@ def get_precio_actual(ib_ticker, tipo):
         "PROVIDA":    "PROVIDA.SN",
         "MARINSA":    "MARINSA.SN",
         "SQM": "SQM", "ECH": "ECH", "SPY": "SPY", "GLD": "GLD",
-        "TLT": "TLT", "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
+        "QQQ": "QQQ", "IWM": "IWM", "XLE": "XLE",
+        "SLV": "SLV", "GDX": "GDX", "TLT": "TLT",
+        "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
     }
     yf_ticker = yf_map.get(ib_ticker, f"{ib_ticker}.SN")
     try:

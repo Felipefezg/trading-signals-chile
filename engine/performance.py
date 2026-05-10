@@ -104,6 +104,8 @@ def get_pnl_posiciones_abiertas():
         # Obtener precio actual
         yf_map = {
             "ECH": "ECH", "SQM": "SQM", "SPY": "SPY", "GLD": "GLD",
+            "QQQ": "QQQ", "IWM": "IWM", "XLE": "XLE",
+            "SLV": "SLV", "GDX": "GDX", "TLT": "TLT",
             "BTC": "BTC-USD", "HG": "HG=F", "CL": "CL=F", "GC": "GC=F",
         }
         yf_ticker = yf_map.get(ticker, ticker)

@@ -21,10 +21,12 @@ from datetime import datetime
 
 # Tickers con opciones líquidas
 TICKERS_OPCIONES = {
-    "SPY": {"nombre": "S&P 500 ETF",    "impacto": "ECH",    "tipo": "índice"},
+    "SPY": {"nombre": "S&P 500 ETF",    "impacto": "SPY",    "tipo": "índice"},
+    "QQQ": {"nombre": "Nasdaq 100 ETF", "impacto": "QQQ",    "tipo": "índice"},    # Fix: antes "ECH" — QQQ P/C impacta QQQ, no Chile
+    "IWM": {"nombre": "Russell 2000",   "impacto": "IWM",    "tipo": "índice"},    # Nuevo: opciones muy líquidas
+    "XLE": {"nombre": "Energy ETF",     "impacto": "XLE",    "tipo": "sector"},    # Nuevo: correlado con CL=F
     "SQM": {"nombre": "SQM ADR (NYSE)", "impacto": "SQM.SN", "tipo": "acción"},
     "GLD": {"nombre": "Gold ETF",       "impacto": "GC=F",   "tipo": "commodity"},
-    "QQQ": {"nombre": "Nasdaq ETF",     "impacto": "ECH",    "tipo": "índice"},
 }
 
 # Umbrales de señal

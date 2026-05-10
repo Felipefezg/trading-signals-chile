@@ -30,7 +30,13 @@ TRAIL_PCT = {
     "COPEC":  0.03,   # 3% — acción local menos volátil
     "ECH":    0.03,
     "SPY":    0.025,
+    "QQQ":    0.025,  # Nasdaq — similar liquidez a SPY
+    "IWM":    0.030,  # Small caps — ligeramente más volátil
+    "XLE":    0.035,  # Energía — commodity-driven, más swing
     "GLD":    0.03,
+    "SLV":    0.035,
+    "GDX":    0.04,
+    "TLT":    0.025,
     "LTM":    0.04,
     "default": 0.04,
 }
@@ -41,7 +47,8 @@ TICKER_YF_MAP = {
     "GC": "GC=F", "CL": "CL=F", "HG": "HG=F",
     # ADRs NYSE / ETFs
     "SQM": "SQM", "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
-    "ECH": "ECH", "SPY": "SPY", "GLD": "GLD", "TLT": "TLT",
+    "ECH": "ECH", "SPY": "SPY", "QQQ": "QQQ", "IWM": "IWM", "XLE": "XLE",
+    "GLD": "GLD", "SLV": "SLV", "GDX": "GDX", "TLT": "TLT",
     # Acciones Chile (.SN)
     "COPEC": "COPEC.SN", "FALABELLA": "FALABELLA.SN", "CMPC": "CMPC.SN",
     "BCI": "BCI.SN", "COLBUN": "COLBUN.SN", "ENELCHILE": "ENELCHILE.SN",
@@ -61,7 +68,8 @@ def _calcular_trail_atr(ticker, precio_actual, trail_pct_default=0.03):
         import yfinance as yf
         yf_map = {
             "BTC": "BTC-USD", "SQM": "SQM", "COPEC": "COPEC.SN",
-            "ECH": "ECH", "SPY": "SPY", "GLD": "GLD", "TLT": "TLT",
+            "ECH": "ECH", "SPY": "SPY", "QQQ": "QQQ", "IWM": "IWM", "XLE": "XLE",
+            "GLD": "GLD", "SLV": "SLV", "GDX": "GDX", "TLT": "TLT",
             "GC": "GC=F", "HG": "HG=F", "CL": "CL=F",
             "BSAC": "BSAC", "BCH": "BCH", "LTM": "LTM",
         }
@@ -141,7 +149,7 @@ def inicializar_trail(ticker, posicion):
     _ticker_up = ticker.upper()
     if _ticker_up in ("BTC-USD", "BTC", "ETH-USD", "ETH"):
         umbral_activ = 0.010
-    elif _ticker_up in ("SPY", "ECH", "GLD", "TLT", "SLV", "GDX"):
+    elif _ticker_up in ("SPY", "QQQ", "IWM", "XLE", "ECH", "GLD", "TLT", "SLV", "GDX"):
         umbral_activ = 0.012
     else:
         umbral_activ = 0.015   # acciones Chile, ADRs, futuros

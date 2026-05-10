@@ -696,7 +696,12 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         "CCU.SN":       "CCU.SN",
         "ECH":          "ECH",
         "SPY":          "SPY",
+        "QQQ":          "QQQ",
+        "IWM":          "IWM",
+        "XLE":          "XLE",
         "GLD":          "GLD",
+        "SLV":          "SLV",
+        "TLT":          "TLT",
         "BTC-USD":      "BTC-USD",
     }
     for alerta in (vol_alertas or []):

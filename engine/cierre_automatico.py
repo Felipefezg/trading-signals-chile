@@ -39,7 +39,12 @@ TICKER_YF_MAP = {
     # ETFs
     "ECH":        "ECH",
     "SPY":        "SPY",
+    "QQQ":        "QQQ",
+    "IWM":        "IWM",
+    "XLE":        "XLE",
     "GLD":        "GLD",
+    "SLV":        "SLV",
+    "GDX":        "GDX",
     "TLT":        "TLT",
     # Acciones Chile (Bolsa Santiago — sufijo .SN)
     "COPEC":      "COPEC.SN",

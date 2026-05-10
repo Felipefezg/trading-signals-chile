@@ -32,10 +32,13 @@ ACTIVOS_OPCIONES = {
     "GLD":  {"nombre": "Gold ETF",        "activo_motor": "GC=F",          "impacto": ["GC=F"]},
     "GDX":  {"nombre": "Gold Miners ETF", "activo_motor": "GC=F",          "impacto": ["GC=F", "CAP.SN"]},
     "SLV":  {"nombre": "Silver ETF",      "activo_motor": "SLV",           "impacto": ["SLV", "GLD", "GC=F"]},
-    "SPY":  {"nombre": "S&P 500 ETF",     "activo_motor": "^GSPC",         "impacto": ["ECH", "^GSPC"]},
+    "SPY":  {"nombre": "S&P 500 ETF",     "activo_motor": "SPY",           "impacto": ["SPY", "ECH"]},
+    "QQQ":  {"nombre": "Nasdaq 100 ETF",  "activo_motor": "QQQ",           "impacto": ["QQQ"]},             # Nuevo: IV QQQ impacta QQQ directamente
+    "IWM":  {"nombre": "Russell 2000",    "activo_motor": "IWM",           "impacto": ["IWM"]},             # Nuevo: opciones líquidas, buen proxy risk-on
+    "XLE":  {"nombre": "Energy Sector",   "activo_motor": "XLE",           "impacto": ["XLE", "COPEC.SN"]}, # Nuevo: reemplaza USO (no ejecutable)
     "TLT":  {"nombre": "20Y Treasury",    "activo_motor": "TLT",           "impacto": ["COLBUN.SN", "AGUAS-A.SN", "MALLPLAZA.SN"]},
     "EEM":  {"nombre": "Emerging Markets","activo_motor": "ECH",           "impacto": ["ECH", "CLP/USD"]},
-    "USO":  {"nombre": "Oil ETF",         "activo_motor": "CL=F",          "impacto": ["COPEC.SN", "CL=F"]},
+    # USO eliminado — no ejecutable en IB; señal de petróleo → XLE (ver arriba)
 }
 
 # ── ANÁLISIS DE CADENA DE OPCIONES ────────────────────────────────────────────

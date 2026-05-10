@@ -40,6 +40,15 @@ IPSA_TICKERS = {
     "AGUAS-A.SN":    "Aguas Andinas",
     "ECH":           "IPSA ETF (ECH)",
     "SQM":           "SQM (NYSE)",
+    # ETFs USA — volumen anormal relevante para señales de momentum
+    "SPY":           "S&P 500 ETF",
+    "QQQ":           "Nasdaq 100 ETF",
+    "IWM":           "Russell 2000 ETF",
+    "XLE":           "Energy Sector ETF",
+    "GLD":           "Gold ETF",
+    "SLV":           "Silver ETF",
+    "TLT":           "20Y Treasury ETF",
+    "BTC-USD":       "Bitcoin (USD)",
 }
 
 # Umbrales de alerta
