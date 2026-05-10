@@ -42,21 +42,29 @@ BENCHMARK_SECTOR = {
     "Salud":             {"benchmark": "SPY",      "relacion": "directa"},
     "ETF Chile":         {"benchmark": "ECH",      "relacion": "directa"},
     "ETF USA":           {"benchmark": "SPY",      "relacion": "directa"},
+    # ETFs USA ejecutables — benchmarks específicos por sector
+    "ETF Tech USA":      {"benchmark": "QQQ",      "relacion": "directa"},   # Nasdaq 100 se benchmarka contra sí mismo (tendencia propia)
+    "ETF Small USA":     {"benchmark": "SPY",      "relacion": "directa"},   # IWM sigue risk-on/off del mercado USA
+    "ETF Energía USA":   {"benchmark": "CL=F",     "relacion": "directa"},   # XLE correlacionado con precio petróleo
     "Renta Fija":        {"benchmark": "^TNX",     "relacion": "inversa"},
-    "Commodity":         {"benchmark": "HG=F",     "relacion": "directa"},
+    # "Commodity" (singular) y "Commodities" (plural) — ambas variantes cubiertas
+    # motor_automatico.py usa "Commodities" para GLD/SLV/GDX
+    "Commodity":         {"benchmark": "GLD",      "relacion": "directa"},
+    "Commodities":       {"benchmark": "GLD",      "relacion": "directa"},   # fix mismatch con SECTORES dict
     "Crypto":            {"benchmark": "BTC-USD",  "relacion": "directa"},
 }
 
 # ── INDICADORES MACRO ─────────────────────────────────────────────────────────
 INDICADORES_MACRO = {
     "SPY":       "S&P 500",
+    "QQQ":       "Nasdaq 100",   # benchmark para ETF Tech USA (QQQ)
     "ECH":       "IPSA ETF",
     "HG=F":      "Cobre",
     "^VIX":      "VIX",
     "^TNX":      "T10Y USA",
     "DX-Y.NYB":  "DXY",
     "CL=F":      "Petróleo",
-    "GC=F":      "Oro",
+    "GLD":       "Oro ETF",      # benchmark para Commodities/GLD/SLV/GDX (reemplaza GC=F futures)
 }
 
 def _calcular_tendencia(serie, periodo_corto=20, periodo_largo=60):
@@ -216,8 +224,10 @@ def evaluar_activo_vs_macro(yf_ticker, accion, sector=None):
     ech = contexto.get("ECH", {})
     ech_score = ech.get("score", 0)
 
-    # Para acciones chilenas locales
-    if sector and sector not in ("Crypto", "ETF USA", "Renta Fija"):
+    # Para acciones y activos chilenos — excluir activos USA puros
+    _SECTORES_USA = {"Crypto", "ETF USA", "Renta Fija",
+                     "ETF Tech USA", "ETF Small USA", "ETF Energía USA"}
+    if sector and sector not in _SECTORES_USA:
         if accion == "COMPRAR" and ech_score <= -2:
             ajuste_conv -= 10
             razones.append(f"ECH bajista fuerte — mercado Chile en caída")
@@ -254,8 +264,11 @@ def evaluar_activo_vs_macro(yf_ticker, accion, sector=None):
     dxy = contexto.get("DX-Y.NYB", {})
     dxy_score = dxy.get("score", 0)
 
-    # DXY fuerte → presión sobre emergentes y commodities
-    if sector in ("Minería", "Commodity", "ETF Chile", "Acción Chile"):
+    # DXY fuerte → presión sobre emergentes, commodities y energía
+    _SECTORES_DXY_SENSIBLES = {
+        "Minería", "Commodity", "Commodities", "ETF Chile", "Acción Chile", "ETF Energía USA"
+    }
+    if sector in _SECTORES_DXY_SENSIBLES:
         if accion == "COMPRAR" and dxy_score >= 2:
             ajuste_conv -= 5
             razones.append(f"DXY fuerte — presión sobre {sector}")

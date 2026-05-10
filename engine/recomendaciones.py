@@ -1272,6 +1272,11 @@ def generar_recomendaciones(activos_dict):
 
         tesis = _generar_tesis_resumida(activo, accion, evidencia_ok, fuentes_unicas)
 
+        # Garantizar que convicción sea siempre un float limpio (1 decimal)
+        # independientemente del camino que haya tomado (con o sin source_quality,
+        # con o sin boost). Previene valores como 62.900000000000006 en logs.
+        conviccion_pct = round(conviccion_pct, 1)
+
         recomendaciones.append({
             "activo":              activo,
             "ib_ticker":           ib_info.get("ib", activo),
