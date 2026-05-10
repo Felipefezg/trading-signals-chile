@@ -321,7 +321,7 @@ def get_señales_ml(min_accuracy=0.52, min_auc=0.55, max_auc_std=0.15, max_activ
     activos_ml = {}
     prioridad = [
         # ── ETFs USA ejecutables — alta liquidez, datos limpios para ML ────────
-        "SPY", "QQQ", "IWM", "XLE", "GLD", "SLV", "GDX",
+        "SPY", "QQQ", "IWM", "XLE", "TLT", "GLD", "SLV", "GDX",
         # ── ADRs Chile — dual-listed, datos NYSE ────────────────────────────────
         "SQM", "ECH",
         # ── Crypto y commodities ────────────────────────────────────────────────

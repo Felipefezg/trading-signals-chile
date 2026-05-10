@@ -36,7 +36,7 @@ ACTIVOS_OPCIONES = {
     "QQQ":  {"nombre": "Nasdaq 100 ETF",  "activo_motor": "QQQ",           "impacto": ["QQQ"]},             # Nuevo: IV QQQ impacta QQQ directamente
     "IWM":  {"nombre": "Russell 2000",    "activo_motor": "IWM",           "impacto": ["IWM"]},             # Nuevo: opciones líquidas, buen proxy risk-on
     "XLE":  {"nombre": "Energy Sector",   "activo_motor": "XLE",           "impacto": ["XLE", "COPEC.SN"]}, # Nuevo: reemplaza USO (no ejecutable)
-    "TLT":  {"nombre": "20Y Treasury",    "activo_motor": "TLT",           "impacto": ["COLBUN.SN", "AGUAS-A.SN", "MALLPLAZA.SN"]},
+    "TLT":  {"nombre": "20Y Treasury",    "activo_motor": "TLT",           "impacto": ["TLT", "COLBUN.SN", "AGUAS-A.SN", "MALLPLAZA.SN"]},
     "EEM":  {"nombre": "Emerging Markets","activo_motor": "ECH",           "impacto": ["ECH", "CLP/USD"]},
     # USO eliminado — no ejecutable en IB; señal de petróleo → XLE (ver arriba)
 }

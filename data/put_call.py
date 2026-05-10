@@ -27,6 +27,7 @@ TICKERS_OPCIONES = {
     "XLE": {"nombre": "Energy ETF",     "impacto": "XLE",    "tipo": "sector"},    # Nuevo: correlado con CL=F
     "SQM": {"nombre": "SQM ADR (NYSE)", "impacto": "SQM.SN", "tipo": "acción"},
     "GLD": {"nombre": "Gold ETF",       "impacto": "GC=F",   "tipo": "commodity"},
+    "TLT": {"nombre": "20Y Treasury",   "impacto": "TLT",    "tipo": "renta_fija"},  # P/C alto en TLT → capitulación en bonos → señal contrarian ALZA
 }
 
 # Umbrales de señal

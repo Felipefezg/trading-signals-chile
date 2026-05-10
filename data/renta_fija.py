@@ -33,8 +33,10 @@ ETFS_RENTA_FIJA = {
 
 # Impacto de tasas en activos chilenos
 IMPACTO_TASAS = {
-    "subida_tpm":   ["CHILE.SN", "BSANTANDER.SN", "BCI.SN", "ITAUCL.SN"],  # Bancos se benefician
-    "bajada_tpm":   ["COLBUN.SN", "ENELCHILE.SN", "AGUAS-A.SN", "MALLPLAZA.SN"],  # Utilities/REITS
+    # Tasas subiendo → TLT BAJA (precio inverso a yield), bancos chilenos SUBEN
+    "subida_tpm":   ["CHILE.SN", "BSANTANDER.SN", "BCI.SN", "ITAUCL.SN"],
+    # Tasas bajando → TLT SUBE, utilities/REITs SUBEN (cashflows descontados a menor tasa)
+    "bajada_tpm":   ["COLBUN.SN", "ENELCHILE.SN", "AGUAS-A.SN", "MALLPLAZA.SN"],
     "curva_invertida": ["ECH", "CLP/USD"],  # Riesgo recesión → presión sobre Chile
     "spread_alto":  ["ECH", "CLP/USD"],  # Mayor diferencial → presión emergentes
 }
@@ -252,10 +254,10 @@ def get_señales_renta_fija():
             "descripcion": spread["descripcion"],
         })
 
-    # Señal por movimiento de tasas USA (impacto en TLT/IEF)
+    # Señal por movimiento de tasas USA (impacto en TLT/IEF y acciones chilenas)
     t10y = tasas_usa.get("^TNX", {})
     if t10y.get("cambio_5d", 0) > 0.3:
-        # Tasas subiendo → TLT baja, bancos chilenos suben
+        # Tasas subiendo → bancos chilenos suben
         for activo in IMPACTO_TASAS["subida_tpm"]:
             señales.append({
                 "activo":      activo,
@@ -264,6 +266,14 @@ def get_señales_renta_fija():
                 "direccion":   "ALZA",
                 "descripcion": f"T10Y USA subió {t10y['cambio_5d']:+.3f}% → bancos favorecidos",
             })
+        # TLT: relación inversa yield/precio → tasas suben = precio TLT BAJA
+        señales.append({
+            "activo":      "TLT",
+            "fuente":      "Renta Fija",
+            "score":       2,
+            "direccion":   "BAJA",
+            "descripcion": f"T10Y USA subió {t10y['cambio_5d']:+.3f}% → TLT presionado (precio ↓ cuando yield ↑)",
+        })
     elif t10y.get("cambio_5d", 0) < -0.3:
         # Tasas bajando → utilities y REITs suben
         for activo in IMPACTO_TASAS["bajada_tpm"]:
@@ -274,6 +284,14 @@ def get_señales_renta_fija():
                 "direccion":   "ALZA",
                 "descripcion": f"T10Y USA bajó {t10y['cambio_5d']:+.3f}% → utilities favorecidas",
             })
+        # TLT: relación inversa yield/precio → tasas bajan = precio TLT SUBE
+        señales.append({
+            "activo":      "TLT",
+            "fuente":      "Renta Fija",
+            "score":       2,
+            "direccion":   "ALZA",
+            "descripcion": f"T10Y USA bajó {t10y['cambio_5d']:+.3f}% → TLT favorecido (precio ↑ cuando yield ↓)",
+        })
 
     return señales
 

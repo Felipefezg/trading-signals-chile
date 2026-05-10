@@ -66,6 +66,11 @@ PARES_CONOCIDOS = [
     ("XLE",         "CL=F",     "Energy ETF vs Petróleo",  0.88),   # XLE sigue al crudo
     ("QQQ",         "IWM",      "Nasdaq vs Russell 2000",  0.80),   # growth vs value signal
     ("XLE",         "SPY",      "Energía vs S&P 500",      0.65),   # sector rotation
+    # Renta fija vs activos de riesgo
+    ("TLT",         "^TNX",     "TLT vs T10Y yield",      -0.97),   # inversa precio/yield — divergencia = señal fuerte
+    ("TLT",         "SPY",      "TLT vs S&P 500",         -0.45),   # risk-off: TLT sube cuando SPY baja
+    ("TLT",         "GLD",      "TLT vs Oro",              0.55),   # ambos refugio — divergencia = rotación
+    ("TLT",         "QQQ",      "TLT vs Nasdaq",          -0.50),   # tasas largas presionan valuaciones growth
 ]
 
 # ── CARGA DE DATOS ────────────────────────────────────────────────────────────

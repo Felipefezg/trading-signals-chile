@@ -33,6 +33,7 @@ ACTIVOS_IB = {
     "QQQ":  {"yf": "QQQ",   "activo_motor": "QQQ"},
     "IWM":  {"yf": "IWM",   "activo_motor": "IWM"},
     "XLE":  {"yf": "XLE",   "activo_motor": "XLE"},
+    "TLT":  {"yf": "TLT",   "activo_motor": "TLT"},
     "SLV":  {"yf": "SLV",   "activo_motor": "SLV"},
     "GC=F": {"yf": "GC=F",  "activo_motor": "GC=F"},
     "HG=F": {"yf": "HG=F",  "activo_motor": "HG=F"},

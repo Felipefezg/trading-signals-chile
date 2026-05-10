@@ -27,12 +27,12 @@ HEALTH_FILE = os.path.join(BASE_DIR, "data", "source_health.json")
 
 ALERTA_CONSECUTIVOS = 3   # ciclos vacíos/error consecutivos para generar warning
 
-# 19 fuentes canónicas — en el mismo orden que data_loader.FUENTES
+# 20 fuentes canónicas — en el mismo orden que data_loader.FUENTES
 ALL_SOURCES: List[str] = [
     "polymarket", "kalshi", "macro_usa", "noticias", "fear_greed",
     "cmf", "put_call", "analisis_tecnico", "google_trends", "volumen",
     "ib_data", "order_flow", "correlaciones", "mercado_local", "mtf",
-    "renta_fija", "sec_13f", "iv_opciones", "ml",
+    "renta_fija", "sec_13f", "iv_opciones", "ml", "momentum",
 ]
 
 # Mapeo de claves del dict datos → nombre canónico de fuente
@@ -56,6 +56,7 @@ _KEY_MAP: Dict[str, str] = {
     "sec_13f":          "sec_13f",
     "iv_opciones":      "iv_opciones",
     "ml":               "ml",
+    "momentum":         "momentum",
 }
 
 
