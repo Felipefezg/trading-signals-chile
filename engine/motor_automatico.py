@@ -54,7 +54,7 @@ PARAMS = {
     "max_pct_riesgo_total":    20.0,   # % capital máx en riesgo simultáneo
     "min_pct_por_operacion":    2.0,   # % capital mínimo (floor para señales sin Kelly)
     # ── Filtros de calidad ────────────────────────────────────────────────────
-    "conviccion_minima":       78,
+    "conviccion_minima":       75,    # era 78 — bajado para paper trading (24 señales rechazadas por 1 punto)
     "riesgo_maximo":            7,
     "fuentes_minimas":          3,
     # ── Protección de capital ─────────────────────────────────────────────────
@@ -272,8 +272,10 @@ def get_capital_ib() -> float:
     return _CAPITAL_FALLBACK
 
 # ── ESTADO DEL MOTOR ──────────────────────────────────────────────────────────
-COOLDOWN_MINUTOS = 240  # 4 horas — evita chasing intraday tras SL hit
-                        # (era 60 min: SQM perdió x2 en el mismo día mismo lado)
+COOLDOWN_MINUTOS   = 240  # 4 horas — evita chasing intraday tras SL hit
+                          # (era 60 min: SQM perdió x2 en el mismo día mismo lado)
+COOLDOWN_FALLO_MIN =  60  # 1 hora — cooldown post APERTURA_FALLIDA (error IB)
+                          # Evita retry storm (ej. BTC VENDER bloqueado en paper)
 
 def _cargar_estado():
     _defaults = {
@@ -728,9 +730,9 @@ def _umbral_conviccion_efectivo() -> int:
     """
     Umbral de convicción ajustado al régimen de volatilidad actual (VIX).
 
-    VIX < 15  →  75%   mercado calmo, umbral relajado
-    VIX 15-25 →  78%   régimen normal (valor base PARAMS)
-    VIX 25-35 →  82%   stress, exigir mayor convicción
+    VIX < 15  →  72%   mercado calmo, umbral relajado
+    VIX 15-25 →  75%   régimen normal (valor base PARAMS)
+    VIX 25-35 →  80%   stress, exigir mayor convicción
     VIX > 35  →  85%   crisis, umbral máximo conservador
 
     Caché de 15 minutos para no llamar yfinance en cada validación.
@@ -1279,6 +1281,23 @@ def ciclo_trading_automatico():
                         alerta_riesgo("ERROR", f"Apertura fallida: {r['accion']} {r['ib_ticker']}", {"Error": error_ib, "Convicción": f"{r['conviccion']}%"})
                     except Exception:
                         pass
+                    # ── Cooldown post-fallo: evita retry storm en errores estructurales
+                    # (ej. "short no permitido en paper trading", instrumento no disponible)
+                    # Sin este cooldown el motor reintenta cada 5 min indefinidamente.
+                    # Lógica: _en_cooldown computa elapsed vs COOLDOWN_MINUTOS (240 min).
+                    # Para dejar COOLDOWN_FALLO_MIN (60) de bloqueo restante, se guarda
+                    # un timestamp "artificialmente viejo" = now - (240-60) = now - 180 min.
+                    _tk_fallido = r.get("ib_ticker", "")
+                    if _tk_fallido:
+                        _ts_fallo = (
+                            datetime.now() -
+                            timedelta(minutes=COOLDOWN_MINUTOS - COOLDOWN_FALLO_MIN)
+                        ).isoformat()
+                        estado.setdefault("cooldown_tickers", {})[_tk_fallido] = _ts_fallo
+                        logging.info(
+                            f"COOLDOWN FALLO: {_tk_fallido} bloqueado {COOLDOWN_FALLO_MIN} min "
+                            f"(error: {error_ib[:60]})"
+                        )
             else:
                 resultados["rechazadas"].append({
                     "ticker":    r.get("ib_ticker", ""),

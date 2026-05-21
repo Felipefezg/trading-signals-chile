@@ -1,9 +1,17 @@
 {
   "SQM": {
-    "win_rate": 0.0,
-    "rr": 0.01,
+    "win_rate": 0.25,
+    "rr": 3.79,
+    "n_trades": 4
+  },
+  "BCH": {
+    "win_rate": 0.333,
+    "rr": 4.91,
     "n_trades": 3
   },
-  "_updated": "2026-05-08T10:58:31.849421",
-  "_n_tickers": 1
+  "_updated": "2026-05-21T21:12:27.149925",
+  "_n_tickers": 2,
+  "_min_trades": 3,
+  "_source": "trade_outcomes_confirmados_ib",
+  "_rebuild_completo": true
 }

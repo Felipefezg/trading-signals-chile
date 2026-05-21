@@ -315,5 +315,1121 @@
       "precio": 90.26,
       "monto_usd": 7943.0
     }
+  },
+  {
+    "timestamp": "2026-05-10T19:20:30.692978",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82255.9765625,
+      "stop_loss": 83620.133,
+      "take_profit": 79527.6637,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "An\u00e1lisis T\u00e9cnico",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 6.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:26:40.570372",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82277.828125,
+      "stop_loss": 83620.133,
+      "take_profit": 79593.2184,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket",
+        "Kalshi",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.3 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.3 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:32:39.178094",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82227.9765625,
+      "stop_loss": 83620.133,
+      "take_profit": 79443.6637,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "An\u00e1lisis T\u00e9cnico",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:38:38.981132",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82347.59375,
+      "stop_loss": 83620.133,
+      "take_profit": 79802.5152,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "Kalshi",
+        "An\u00e1lisis T\u00e9cnico",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.6 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 5.04
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.6 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:44:34.023233",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82358.40625,
+      "stop_loss": 83620.133,
+      "take_profit": 79834.9527,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "MTF",
+        "Kalshi",
+        "An\u00e1lisis T\u00e9cnico"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.4 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.4 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T20:46:40.796688",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 81613.140625,
+      "stop_loss": 83620.133,
+      "take_profit": 77599.1559,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "MTF"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T23:31:56.176841",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 82.0,
+      "score": 8.2,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80604.0,
+      "stop_loss": 83620.133,
+      "take_profit": 74571.734,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "MTF",
+        "Polymarket",
+        "Kalshi"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 2.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T00:54:26.188096",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80806.390625,
+      "stop_loss": 83620.133,
+      "take_profit": 75178.9059,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "MTF",
+        "Kalshi"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 1.0,
+          "direccion": "BAJA",
+          "peso": 7.35
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 1.0,
+          "direccion": "BAJA",
+          "peso": 7.35
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 1.0,
+          "direccion": "BAJA",
+          "peso": 7.35
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T02:29:24.231919",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80957.9296875,
+      "stop_loss": 83620.133,
+      "take_profit": 75633.5231,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "MTF"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T03:50:13.976452",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 77.4,
+      "score": 7.7,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80740.2421875,
+      "stop_loss": 83620.133,
+      "take_profit": 74980.4606,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "MTF",
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 61.0 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 3.0
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | AT: Bitcoin: RSI 61.0 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T05:04:06.656571",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80790.71875,
+      "stop_loss": 83620.133,
+      "take_profit": 75131.8902,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 61.1 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 3.0
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | AT: Bitcoin: RSI 61.1 \u2014 zona de sobrecompra | MACD pos",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T06:13:59.870857",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 81015.96875,
+      "stop_loss": 83620.133,
+      "take_profit": 75807.6402,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "MTF",
+        "Polymarket",
+        "Kalshi"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
   }
 ]

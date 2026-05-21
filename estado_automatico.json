@@ -1,14 +1,14 @@
 {
   "activo": true,
   "pausado": false,
-  "razon_pausa": null,
-  "consecutivos_perdedor": 2,
-  "pnl_dia": -257.03000000000003,
-  "ultima_verificacion": "2026-05-07T15:44:23.604693",
-  "ordenes_hoy": 3,
+  "razon_pausa": "",
+  "consecutivos_perdedor": 0,
+  "pnl_dia": 0,
+  "ultima_verificacion": "2026-05-11T06:19:03.311960",
+  "ordenes_hoy": 0,
   "log": [],
-  "cooldown_tickers": {
-    "SQM": "2026-05-07T13:15:40.076324"
-  },
+  "cooldown_tickers": {},
+  "consecutivos_perdedor_crypto": 0,
+  "perdedores_dia": {},
   "trades_consecutivos_perdedores": 0
 }

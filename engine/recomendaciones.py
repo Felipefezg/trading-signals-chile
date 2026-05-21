@@ -9,8 +9,28 @@ en recomendaciones accionables con:
 - Alertas Telegram
 """
 
+import logging
 import requests
 import yfinance as yf
+
+# signal_decay: import condicional — fail-open si el módulo no está disponible
+try:
+    from engine.signal_decay import decay_earnings, decay_noticias, decay_cmf, decay_13f
+except Exception:
+    # Fallback: sin decay (factor 1.0 = señal fresca, sin penalización)
+    def decay_earnings(fecha=None): return 1.0   # noqa: E301
+    def decay_noticias(fecha=None): return 1.0
+    def decay_cmf(fecha=None):      return 1.0
+    def decay_13f(fecha=None):      return 1.0
+
+# ── ESTADO DE RÉGIMEN (módulo-level) ─────────────────────────────────────────
+# Actualizado por consolidar_señales() en cada ciclo.
+# Leído por generar_recomendaciones() para annotar cada recomendación.
+_ultimo_regimen: dict = {"regimen": "RANGING", "ok": False}
+
+def get_ultimo_regimen() -> dict:
+    """Retorna la info del último régimen detectado (para dashboard/logs)."""
+    return _ultimo_regimen
 
 # ── CONFIGURACIÓN TELEGRAM ────────────────────────────────────────────────────
 TELEGRAM_TOKEN   = "8648892135:AAHairDr4kx1IuRWkI0CL9FgKG6Sx_g_YlA"
@@ -27,9 +47,9 @@ INSTRUMENTOS_IB = {
     "^GSPC":            {"ib": "SPY",       "tipo": "ETF",              "descripcion": "S&P 500 ETF",                  "yf": "^GSPC"},
     # Acciones Chile con ADR
     "SQM.SN":           {"ib": "SQM",       "tipo": "Acción USA/Chile", "descripcion": "SQM ADR (NYSE)",               "yf": "SQM"},
-    "CHILE.SN":         {"ib": "BCH",       "tipo": "Acción USA/Chile", "descripcion": "Banco de Chile ADR",           "yf": "CHILE.SN"},
-    "BSANTANDER.SN":    {"ib": "BSAC",      "tipo": "Acción USA/Chile", "descripcion": "Santander Chile ADR",          "yf": "BSANTANDER.SN"},
-    "LTM.SN":           {"ib": "LTM",       "tipo": "Acción USA/Chile", "descripcion": "LATAM Airlines ADR",           "yf": "LTM.SN"},
+    "CHILE.SN":         {"ib": "BCH",       "tipo": "Acción USA/Chile", "descripcion": "Banco de Chile ADR",           "yf": "BCH"},
+    "BSANTANDER.SN":    {"ib": "BSAC",      "tipo": "Acción USA/Chile", "descripcion": "Santander Chile ADR",          "yf": "BSAC"},
+    "LTM.SN":           {"ib": "LTM",       "tipo": "Acción USA/Chile", "descripcion": "LATAM Airlines ADR",           "yf": "LTM"},
     # Acciones Chile locales
     "COPEC.SN":         {"ib": "COPEC",     "tipo": "Acción Chile",     "descripcion": "Copec (Santiago)",             "yf": "COPEC.SN"},
     "BCI.SN":           {"ib": "BCI",       "tipo": "Acción Chile",     "descripcion": "Banco BCI (Santiago)",         "yf": "BCI.SN"},
@@ -126,6 +146,10 @@ FUENTES_APLICABLES: dict = {
         "ML",
         # Sentimiento macro indirecto
         "Polymarket", "Kalshi",
+        # Earnings: aplica solo si la empresa reporta EPS (mayormente ADRs/cross-listadas)
+        "Earnings Surprise",
+        # Cobre: amplificador directo cuando HG=F se mueve (IPSA ~40% minería)
+        "Cobre",
         # NO: 13F SEC, IV Opciones, Order Flow, Put/Call, IB Data, Momentum
         # (no hay opciones líquidas sobre .SN, 13F no cubre empresas solo listadas en Santiago)
     },
@@ -144,6 +168,10 @@ FUENTES_APLICABLES: dict = {
         "ML",
         # Sentimiento
         "Polymarket", "Kalshi",
+        # Earnings: señal post-evento de alta convicción para ADRs con cobertura de analistas
+        "Earnings Surprise",
+        # Cobre: amplificador directo (SQM, BCH dual-listadas son altamente copper-linked)
+        "Cobre",
     },
     "ETF": {
         # Técnico
@@ -277,56 +305,69 @@ def _get_volatilidad(yf_ticker):
     except:
         return None, None
 
-def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
+def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None, regimen=None):
     """
     SL/TP calibrado usando soporte/resistencia real.
     Fallback a volatilidad si no hay niveles disponibles.
 
-    Cap de SL por tipo de activo:
-    - Crypto: 8%  — volatilidad estructuralmente alta; trailing stop cubre el resto
-    - ETF: 4%     — instrumentos diversificados, gaps menores
-    - Acciones: 5% — protección intraday compatible con trailing stop (umbral 1%)
+    Cap base de SL por tipo de activo:
+    - Crypto:   8%  — volatilidad estructuralmente alta
+    - ETF:      4%  — instrumentos diversificados, gaps menores
+    - Acciones: 5%  — red de seguridad ante caídas bruscas
 
-    El sistema usa trailing stop como protección principal de ganancias.
-    El SL fijo aquí es la red de seguridad ante caídas bruscas previas al
-    1% de ganancia necesario para activar el trailing. Un SL de largo plazo
-    (-20%) no cumple esa función de manera útil.
+    El cap y el multiplicador ATR se escalan según el régimen de mercado:
+
+    Régimen       Cap Acciones  Cap ETF  Cap Crypto  Mult ATR
+    BULL_TREND        4%          3%        6%         0.80
+    RANGING           5%          4%        8%         1.00  ← baseline
+    BEAR_TREND        6%          5%        9%         1.20
+    HIGH_VOL          8%          6.5%     11%         1.50
+    CRISIS           11%          9%       14%         2.00
+
+    Racional: en HIGH_VOL/CRISIS la volatilidad realizada supera la histórica
+    y el ATR de 20d subestima el ruido real — un SL demasiado ajustado se
+    activa antes de que el trade pueda desarrollarse.
     """
     if precio is None:
         return None, None, None
 
-    # Cap de SL según tipo de activo (inferido desde el ticker)
-    _SL_CAP_CRYPTO  = 0.08
-    _SL_CAP_ETF     = 0.04
-    _SL_CAP_DEFAULT = 0.05
+    # ── Parámetros por régimen ───────────────────────────────────────────────
+    # Cada entrada: (cap_acciones, cap_etf, cap_crypto, mult_atr)
+    _REGIMEN_SL: dict = {
+        "BULL_TREND": (0.04, 0.03, 0.06, 0.80),
+        "RANGING":    (0.05, 0.04, 0.08, 1.00),
+        "BEAR_TREND": (0.06, 0.05, 0.09, 1.20),
+        "HIGH_VOL":   (0.08, 0.065, 0.11, 1.50),
+        "CRISIS":     (0.11, 0.09, 0.14, 2.00),
+    }
+    _reg = regimen if regimen in _REGIMEN_SL else "RANGING"
+    _cap_acc, _cap_etf, _cap_cry, _mult_atr = _REGIMEN_SL[_reg]
 
-    # Detectar tipo de activo por sufijo/nombre para aplicar el cap correcto
+    # Cap según tipo de activo
     _ticker_str = (ticker or "").upper()
     if _ticker_str in ("BTC-USD", "ETH-USD", "BTC", "ETH"):
-        _sl_cap_pct = _SL_CAP_CRYPTO
+        _sl_cap_pct = _cap_cry
     elif _ticker_str in ("SPY", "ECH", "GLD", "TLT", "SLV", "GDX", "QQQ", "IWM", "XLE", "GC=F", "CL=F", "HG=F"):
-        _sl_cap_pct = _SL_CAP_ETF
+        _sl_cap_pct = _cap_etf
     else:
-        _sl_cap_pct = _SL_CAP_DEFAULT
+        _sl_cap_pct = _cap_acc
 
     def _aplicar_cap(sl_raw, accion_):
-        """Fuerza SL dentro del cap máximo. Garantiza que el SL no sea peor que
-        el cap, pero respeta niveles más conservadores si soporte/resistencia
-        ya ofrece un SL más cercano."""
+        """Fuerza SL dentro del cap máximo adaptivo al régimen."""
         if sl_raw is None:
             return None
         if accion_ == "COMPRAR":
             sl_min = round(precio * (1 - _sl_cap_pct), 4)
-            return max(sl_raw, sl_min)   # SL de compra: el más alto (menos agresivo)
+            return max(sl_raw, sl_min)
         else:
             sl_max = round(precio * (1 + _sl_cap_pct), 4)
-            return min(sl_raw, sl_max)   # SL de venta: el más bajo (menos agresivo)
+            return min(sl_raw, sl_max)
 
-    # Intentar calibrar con soporte/resistencia
+    # ── Soporte/resistencia calibrado ────────────────────────────────────────
     if ticker:
         try:
             from engine.soporte_resistencia import calcular_sl_tp_calibrado
-            atr = precio * volatilidad if volatilidad else None
+            atr = precio * volatilidad * _mult_atr if volatilidad else None
             sl_sr, tp_sr = calcular_sl_tp_calibrado(ticker, accion, precio, atr)
             if sl_sr and tp_sr:
                 sl_capped = _aplicar_cap(sl_sr, accion)
@@ -334,18 +375,20 @@ def _calcular_sl_tp(accion, precio, volatilidad, horizonte_dias, ticker=None):
         except:
             pass
 
-    # Fallback: ATR
+    # ── Fallback: ATR escalado por régimen ───────────────────────────────────
     if volatilidad is None:
         return None, None, None
 
     dias_map = {"1–7 días": 5, "1–4 semanas": 15, "1–3 meses": 45}
     dias = 10
     for k, v in dias_map.items():
-        if k in horizonte_dias:
+        if k in str(horizonte_dias):
             dias = v
             break
 
-    mov = precio * volatilidad * (dias / 20) ** 0.5
+    # _mult_atr escala el movimiento esperado según el régimen:
+    # en CRISIS el ATR histórico (20d) subestima la vol real → ampliar
+    mov = precio * volatilidad * (dias / 20) ** 0.5 * _mult_atr
 
     if accion == "COMPRAR":
         sl = round(precio - mov, 2)
@@ -512,21 +555,30 @@ def enviar_alertas_nuevas(recomendaciones, enviadas_cache=None):
     return enviadas, enviadas_cache
 
 # ── CONSOLIDACIÓN ─────────────────────────────────────────────────────────────
-def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None, ml=None, momentum=None):
+def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_greed=None, cmf_hechos=None, vol_alertas=None, put_call=None, analisis_tecnico=None, google_trends=None, ib_data=None, mercado_local=None, renta_fija=None, mtf=None, sec_13f=None, order_flow=None, correlaciones=None, iv_opciones=None, ml=None, momentum=None, earnings_surprise=None):
     # _source_quality se carga en generar_recomendaciones() para que funcione
     # también cuando es llamado directamente desde el dashboard.
 
-    # Inicializar todos los activos del universo maestro.
-    # SOLO con yf_tickers — NO agregar ib_tickers por separado.
-    # El segundo loop anterior creaba acumuladores duplicados para COPEC vs COPEC.SN,
-    # SQM vs SQM-B.SN, etc. causando señales fragmentadas y recomendaciones contradictorias.
+    # Inicializar SOLO los activos ejecutables del universo (25 activos).
+    # Pre-filtrar aquí evita consolidar señales de los ~30 activos que nunca
+    # pasan validar_señal() en motor_automatico (liquidez insuficiente en IB).
+    # Antes: 55 activos de UNIVERSO_COMPLETO → 78% de rechazos eran ruido puro.
+    # Ahora: solo UNIVERSO_EJECUTABLE → cero cómputo innecesario en consolidación.
+    # Fuentes que agregan tickers dinámicamente (correlaciones, etc.) pasan
+    # igualmente por el filtro de generar_recomendaciones() antes del cómputo pesado.
     activos = {}
     try:
-        from engine.universo import UNIVERSO_COMPLETO
-        for yf_ticker in UNIVERSO_COMPLETO:
+        from engine.universo import UNIVERSO_EJECUTABLE
+        for yf_ticker in UNIVERSO_EJECUTABLE:
             activos[yf_ticker] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
     except Exception:
-        pass
+        # Fallback: si UNIVERSO_EJECUTABLE no está disponible, usar UNIVERSO_COMPLETO
+        try:
+            from engine.universo import UNIVERSO_COMPLETO
+            for yf_ticker in UNIVERSO_COMPLETO:
+                activos[yf_ticker] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        except Exception:
+            pass
 
     # Polymarket
     if poly_df is not None and not poly_df.empty:
@@ -590,10 +642,18 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             if activo:
                 if activo not in activos:
                     activos[activo] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+                fecha_noticia  = n.get("fecha", "")
+                _d_noticias    = decay_noticias(fecha_noticia)
+                peso_noticia   = round(n.get("score", 0) * 0.1 * _d_noticias, 3)
                 activos[activo]["fuentes"].append("Noticias")
                 activos[activo]["evidencia"].append({
-                    "fuente": "Noticias", "señal": n.get("titulo","")[:80],
-                    "prob": None, "direccion": "NEUTRAL", "peso": round(n.get("score",0) * 0.1, 2),
+                    "fuente":       "Noticias",
+                    "señal":        n.get("titulo", "")[:80],
+                    "prob":         None,
+                    "direccion":    "NEUTRAL",
+                    "peso":         peso_noticia,
+                    "fecha_señal":  fecha_noticia,
+                    "decay":        round(_d_noticias, 3),
                 })
 
 
@@ -892,13 +952,20 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
         # 13F es SLOW/lagging (archivos trimestrales de hace ≤45 días).
         # Peso reducido — solo contexto de posicionamiento institucional,
         # nunca debe ser la fuente determinante de timing de entrada.
-        peso_13f = score_13f * 0.25
+        # Decay HL=720h: archivo de ayer → decay≈1.0, archivo de 30d → decay≈0.50
+        fecha_13f  = data_13f.get("fecha_señal", "")
+        _d_13f     = decay_13f(fecha_13f)
+        peso_13f   = score_13f * 0.25 * _d_13f
         activos[activo_13f]["alza"] += peso_13f
         activos[activo_13f]["fuentes"].append("13F SEC")
         activos[activo_13f]["evidencia"].append({
-            "fuente": "13F SEC",
-            "señal":  f"{ticker_13f}: {data_13f.get('descripcion', '')} ({data_13f.get('n_fondos', 0)} fondos)",
-            "prob":   None, "direccion": "ALZA", "peso": round(peso_13f, 2),
+            "fuente":      "13F SEC",
+            "señal":       f"{ticker_13f}: {data_13f.get('descripcion', '')} ({data_13f.get('n_fondos', 0)} fondos)",
+            "prob":        None,
+            "direccion":   "ALZA",
+            "peso":        round(peso_13f, 3),
+            "fecha_señal": fecha_13f,
+            "decay":       round(_d_13f, 3),
         })
 
     # ── ORDER FLOW (Level 2 — bid/ask imbalance) ──────────────────────────────
@@ -1081,6 +1148,88 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
             "prob":   None, "direccion": dir_ib, "peso": round(peso_ib, 2),
         })
 
+    # ── EARNINGS SURPRISE (EPS post-evento, ventana T+0 a T+3) ──────────────────
+    # Señal de alta convicción: sorpresa de EPS vs consenso en últimas 72h.
+    # peso = score × 2.0  (score 1→2, score 2→4, score 3→6)
+    # Fuente independiente — no correlacionada con técnico/macro.
+    for señal_earn in (earnings_surprise or []):
+        # Preferir activo (yf_ticker canónico) sobre activo_motor (ib_ticker)
+        # La normalización post-acumulación (_ALIAS_CANONICAL) resuelve aliases residuales.
+        activo_earn = señal_earn.get("activo") or señal_earn.get("activo_motor", "")
+        if not activo_earn:
+            continue
+        if activo_earn not in activos:
+            activos[activo_earn] = {"alza": 0, "baja": 0, "fuentes": [], "evidencia": []}
+        score_earn = señal_earn.get("score", 0)
+        dir_earn   = señal_earn.get("direccion", "")
+        if score_earn < 1 or dir_earn not in ("COMPRAR", "VENDER"):
+            continue
+        # Mapear COMPRAR/VENDER → alza/baja (las otras fuentes usan ALZA/BAJA)
+        dir_bucket    = "alza" if dir_earn == "COMPRAR" else "baja"
+        dir_label     = "ALZA" if dir_earn == "COMPRAR" else "BAJA"
+        fecha_reporte = señal_earn.get("fecha_reporte", "")
+        _d_earn       = decay_earnings(fecha_reporte)
+        peso_earn     = score_earn * 2.0 * _d_earn   # Decae a 50% a las 36h
+        activos[activo_earn][dir_bucket] += peso_earn
+        activos[activo_earn]["fuentes"].append("Earnings Surprise")
+        activos[activo_earn]["evidencia"].append({
+            "fuente":      "Earnings Surprise",
+            "señal":       señal_earn.get("descripcion", "")[:80],
+            "prob":        None,
+            "direccion":   dir_label,
+            "peso":        round(peso_earn, 3),
+            "fecha_señal": fecha_reporte,
+            "decay":       round(_d_earn, 3),
+        })
+
+    # ── Régimen de mercado — reponderación dinámica ───────────────────────────
+    # Ajusta los pesos de evidencia según el régimen actual (BULL/BEAR/HIGH_VOL/RANGING/CRISIS).
+    # Recalcula alza/baja desde la evidencia ajustada para mantener consistencia.
+    # Fail-open: si market_regime falla → multiplicadores vacíos → sin cambio.
+    global _ultimo_regimen
+    _regime_info: dict = {}
+    try:
+        from engine.market_regime import get_multiplicadores, detectar_regimen
+        _mult_regimen  = get_multiplicadores()   # {fuente: factor_float}
+        _regime_info   = detectar_regimen()
+        _ultimo_regimen = _regime_info          # exponer para dashboard
+        _regimen_actual = _regime_info.get("regimen", "RANGING")
+
+        if _mult_regimen:
+            for _activo, _data in activos.items():
+                _nueva_alza = 0.0
+                _nueva_baja = 0.0
+                for _ev in _data.get("evidencia", []):
+                    _fuente_ev  = _ev.get("fuente", "")
+                    _factor_ev  = _mult_regimen.get(_fuente_ev, 1.0)
+                    _peso_orig  = _ev.get("peso", 0.0)
+                    _peso_adj   = round(_peso_orig * _factor_ev, 3)
+                    _ev["peso"]          = _peso_adj
+                    _ev["regime_factor"] = _factor_ev
+                    _dir_ev = _ev.get("direccion", "").upper()
+                    if _dir_ev in ("ALZA", "COMPRAR"):
+                        _nueva_alza += _peso_adj
+                    elif _dir_ev in ("BAJA", "VENDER"):
+                        _nueva_baja += _peso_adj
+                _data["alza"] = round(_nueva_alza, 4)
+                _data["baja"] = round(_nueva_baja, 4)
+
+        logging.debug(f"[régimen] {_regimen_actual} aplicado — {len(_mult_regimen)} fuentes ajustadas")
+
+    except Exception as _e_reg:
+        logging.warning(f"[régimen] Reponderación falló: {_e_reg} — pesos sin cambio")
+
+    # ── Cobre-linked: amplificación + descuento de co-linealidad ─────────────
+    # Amplifica señales de activos con alta beta al cobre cuando HG=F se mueve.
+    # Penaliza el peso (no el conteo) de fuentes co-lineales (Macro, Corr, etc.)
+    # que probablemente reflejan el mismo driver macro, no información independiente.
+    # Fail-open: si la detección de cobre falla → activos sin cambio.
+    try:
+        from engine.cobre_amplifier import amplificar_señales_cobre
+        activos = amplificar_señales_cobre(activos)
+    except Exception as _e_cu:
+        logging.warning(f"[cobre] amplificador no aplicado: {_e_cu}")
+
     # ── Normalizar aliases — merge post-acumulación ───────────────────────────
     # Mismo activo puede haber acumulado señales bajo keys distintos porque
     # diferentes fuentes usan formatos distintos (SQM-B.SN vs SQM vs SQM.SN).
@@ -1168,6 +1317,16 @@ def consolidar_señales(poly_df, kalshi_list, macro_list, noticias_list, fear_gr
 def generar_recomendaciones(activos_dict):
     recomendaciones = []
 
+    # Pre-cargar universo ejecutable para filtrar activos no ejecutables
+    # antes de generar la recomendación completa (evita cómputo innecesario
+    # para SMALL_CAPS y acciones .SN de bajo peso que siempre se rechazan en validar_señal).
+    _ejecutables: set = set()
+    try:
+        from engine.universo import UNIVERSO_EJECUTABLE
+        _ejecutables = {v["ib"] for v in UNIVERSO_EJECUTABLE.values()}
+    except Exception:
+        pass  # Si falla el import, no filtrar — fail-open
+
     # Cargar factores de calidad por fuente (win_rate histórico).
     # Se carga una vez aquí para que generar_recomendaciones() funcione tanto
     # cuando es llamado directamente (dashboard) como desde consolidar_señales().
@@ -1179,6 +1338,28 @@ def generar_recomendaciones(activos_dict):
         pass
 
     for activo, data in activos_dict.items():
+        # ── Filtro ejecutabilidad — descartar antes del cómputo pesado ─────
+        # SMALL_CAPS y acciones .SN de bajo peso generan señales pero nunca
+        # pasan validar_señal() (is_ejecutable=False). Filtrarlos aquí ahorra
+        # cómputo de volatilidad, SL/TP y LLM, y elimina entradas RECHAZADA
+        # del log que son ruido estructural (no errores reales).
+        if _ejecutables:
+            ib_ticker_check = INSTRUMENTOS_IB.get(activo, {}).get("ib", activo)
+            if ib_ticker_check not in _ejecutables:
+                continue  # no ejecutable — omitir silenciosamente
+
+        # ── Filtro blacklist nocional — futuros que nunca se ejecutan ────────
+        # GC (oro), HG (cobre), CL (petróleo) tienen nocional >$25k/contrato.
+        # Están en BLACKLIST_AUTO en motor_automatico → nunca se ejecutan.
+        # Filtrarlos aquí evita: (a) cómputo innecesario, (b) señales en DB
+        # que distorsionan el hit rate y el conteo de fuentes_minimas.
+        try:
+            from engine.motor_automatico import BLACKLIST_AUTO as _BLACKLIST_AUTO
+            if ib_ticker_check in _BLACKLIST_AUTO:
+                continue  # futuro de nocional masivo — jamás ejecutable
+        except Exception:
+            pass  # fail-open: si no se puede importar, no filtrar
+
         # ── Tipo de activo → determinar fuentes aplicables ────────────────
         # Busca en INSTRUMENTOS_IB primero, luego en universo maestro.
         ib_info_pre = INSTRUMENTOS_IB.get(activo, {})
@@ -1220,6 +1401,14 @@ def generar_recomendaciones(activos_dict):
         else:
             continue
 
+        # ── Filtro: short Crypto no disponible en paper trading ───────────────
+        # IB paper trading no permite short directo sobre Crypto (BTC).
+        # Si la señal es VENDER y no hay posición larga abierta, la orden
+        # falla siempre → filtrar aquí evita cómputo pesado (SL/TP, LLM)
+        # y el ruido de RECHAZADA en el log.
+        if tipo_pre == "Crypto" and accion == "VENDER":
+            continue  # short Crypto: omitir silenciosamente
+
         conviccion_pct = round(conviccion * 100, 1)
         # Fuentes y n_fuentes basados solo en evidencia aplicable al tipo
         fuentes_unicas = list(set(e["fuente"] for e in evidencia_ok))
@@ -1227,17 +1416,30 @@ def generar_recomendaciones(activos_dict):
         # Fuentes descartadas por tipo (para trazabilidad en dashboard)
         fuentes_excluidas = list(set(e["fuente"] for e in evidencia_out))
 
-        # Cap de convicción por número de fuentes independientes
-        # Con pocas fuentes no se puede llegar a convicción alta aunque estén alineadas
-        # Cap de convicción por número de fuentes independientes.
-        # Calibrado para que señales de alta calidad con 2 fuentes puedan
-        # cruzar el umbral de 75% (VIX normal), mientras que el umbral de
-        # fuentes_minimas=3 sigue siendo la barrera de entrada real en validar_señal().
-        # Con 1 fuente: cap bajo (60%) — señal insuficiente por definición.
-        # Con 2 fuentes: 76% — permite pasar si las 2 fuentes son muy consistentes.
-        # Con 3+: incremento normal.
+        # ── Gate por calidad histórica: solo fuentes con WR suficiente ────────
+        # Un factor_quality >= 0.90 equivale a WR >= 45% (apenas por encima del
+        # azar). Fuentes por debajo de ese umbral siguen aportando evidencia y
+        # se muestran en el dashboard, pero NO cuentan hacia n_fuentes para el
+        # check de fuentes_minimas en validar_señal().
+        # Fuentes sin historial suficiente (ausentes en _source_quality) reciben
+        # factor 1.0 por defecto → pasan el gate (inocentes hasta no demostrar lo contrario).
+        _MIN_QUALITY_GATE = 0.90   # factor ≈ WR 45%
+        if _source_quality:
+            fuentes_credibles      = [f for f in fuentes_unicas
+                                      if _source_quality.get(f, 1.0) >= _MIN_QUALITY_GATE]
+            fuentes_descartadas_wr = [f for f in fuentes_unicas
+                                      if _source_quality.get(f, 1.0) < _MIN_QUALITY_GATE]
+        else:
+            # Sin datos de calidad → todas las fuentes pasan (comportamiento anterior)
+            fuentes_credibles      = fuentes_unicas
+            fuentes_descartadas_wr = []
+        n_fuentes_credibles = len(fuentes_credibles)
+
+        # Cap de convicción por fuentes CREDIBLES — solo confirmaciones con
+        # track record positivo elevan el cap. Una señal con 3 fuentes pero
+        # dos de baja calidad queda cappada igual que una de 1 fuente creíble.
         CAP_FUENTES = {1: 60, 2: 76, 3: 85, 4: 90, 5: 95}
-        cap = CAP_FUENTES.get(n_fuentes, 95)
+        cap = CAP_FUENTES.get(n_fuentes_credibles, 95)
         conviccion_pct = min(conviccion_pct, cap)
 
         ib_info   = INSTRUMENTOS_IB.get(activo, {})
@@ -1245,13 +1447,17 @@ def generar_recomendaciones(activos_dict):
         # evita que activos nuevos (añadidos al universo pero no a INSTRUMENTOS_IB)
         # reciban tipo="ETF" por default y pasen el filtro de horario incorrectamente.
         tipo      = tipo_pre if tipo_pre else ib_info.get("tipo", "ETF")
-        riesgo    = _calcular_riesgo(tipo, conviccion_pct, n_fuentes)
-        horizonte = _calcular_horizonte(n_fuentes, conviccion_pct, tipo_producto=tipo)
+        riesgo    = _calcular_riesgo(tipo, conviccion_pct, n_fuentes_credibles)
+        horizonte = _calcular_horizonte(n_fuentes_credibles, conviccion_pct, tipo_producto=tipo)
 
-        # Volatilidad y SL/TP
+        # Volatilidad y SL/TP — adaptivo al régimen de mercado
         yf_ticker = ib_info.get("yf", activo)
         precio_actual, vol = _get_volatilidad(yf_ticker)
-        precio_actual, sl, tp = _calcular_sl_tp(accion, precio_actual, vol, horizonte["dias"], ticker=yf_ticker)
+        precio_actual, sl, tp = _calcular_sl_tp(
+            accion, precio_actual, vol, horizonte["dias"],
+            ticker=yf_ticker,
+            regimen=_ultimo_regimen.get("regimen", "RANGING"),
+        )
 
         # Tipo de instrumento sugerido
         instrumentos_sugeridos = _sugerir_instrumento(tipo, accion, horizonte["label"], riesgo, conviccion_pct)
@@ -1273,11 +1479,13 @@ def generar_recomendaciones(activos_dict):
             sizing_macro = 1.0
 
         # ── Ajuste por calidad histórica de fuentes ──────────────────────
-        # Factor promedio de las fuentes activas; 1.0 si sin datos suficientes.
+        # Factor promedio solo sobre fuentes CREDIBLES — excluir las de baja calidad
+        # del promedio evita que arrastren hacia abajo el factor de fuentes buenas.
         # Rango: [0.85, 1.10] → máximo ajuste ±10% sobre convicción actual.
         factor_calidad = 1.0
-        if _source_quality and fuentes_unicas:
-            factores = [_source_quality.get(f, 1.0) for f in fuentes_unicas]
+        _fuentes_para_factor = fuentes_credibles if fuentes_credibles else fuentes_unicas
+        if _source_quality and _fuentes_para_factor:
+            factores = [_source_quality.get(f, 1.0) for f in _fuentes_para_factor]
             factor_calidad = round(sum(factores) / len(factores), 3)
             conviccion_pct = round(min(cap, conviccion_pct * factor_calidad), 1)
             conviccion_pct = max(0, conviccion_pct)
@@ -1315,14 +1523,19 @@ def generar_recomendaciones(activos_dict):
             "precio_actual":       precio_actual,
             "stop_loss":           sl,
             "take_profit":         tp,
+            "sl_regimen":          _ultimo_regimen.get("regimen", "RANGING"),
             "instrumentos":        instrumentos_sugeridos,
             "fuentes":             fuentes_unicas,
-            "n_fuentes":           n_fuentes,
+            "n_fuentes":           n_fuentes_credibles,   # fuentes con WR >= gate — lo que valida_señal() verifica
+            "n_fuentes_total":     n_fuentes,             # todas las fuentes aplicables (para dashboard)
+            "fuentes_credibles":   fuentes_credibles,
+            "fuentes_descartadas_wr": fuentes_descartadas_wr,   # baja calidad histórica — no cuentan para fuentes_minimas
             "evidencia":           evidencia_ok,
             "fuentes_excluidas":   fuentes_excluidas,
             "tesis":               tesis,
             "boost_persistencia":  round(boost_persistencia, 1),
             "factor_calidad":      factor_calidad,
+            "regimen_mercado":     _ultimo_regimen.get("regimen", "RANGING"),
         })
 
     # ── Dedup de seguridad: un ib_ticker → una recomendación ─────────────

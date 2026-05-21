@@ -2126,3 +2126,1239 @@ Posiciones sincronizadas con IB: 1
 Horario: Fuera de horario NYSE (09:30-15:45 ET)
 Señales AT guardadas: 1
 Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:41:23] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:46:35] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:51:51] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 21:57:03] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:02:18] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:07:39] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:12:55] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:18:14] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:23:26] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:28:40] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:33:54] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:39:07] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:44:23] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:49:38] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 22:54:54] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 23:00:15] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 23:05:27] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-07 23:10:39] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-08 01:20:21] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 13
+Posición: GLD | precio 431.70 | PnL -0.40%
+Posiciones sincronizadas con IB: 1
+  GLD: COMPRAR 19.0 @ 433.4126
+
+[2026-05-08 02:11:29] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posición: GLD | precio 431.70 | PnL -0.40%
+  Eliminando posición fantasma: GLD
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 03:14:42] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+  IB Error [2151]: La información sobre las posiciones todavía no está disponible.
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+  IB Error [1102]: Conectividad entre IB y TWS ha sido restaurada - datos mantenidos: Todos los cen
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 05:12:04] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Error analizando CHILE.SN: 'NoneType' object is not subscriptable
+Error analizando CAP.SN: 'NoneType' object is not subscriptable
+Error analizando BTC-USD: 'NoneType' object is not subscriptable
+Señales AT guardadas: 1
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 08:30:20] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+  IB Error [502]: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is e
+  IB Error [502]: Couldn't connect to TWS. Confirm that "Enable ActiveX and Socket EClients" 
+is e
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 08:36:06] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 08:41:21] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 08:46:36] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 08:51:51] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 08:57:06] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 09:02:33] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 09:07:48] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 09:13:50] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 09:19:06] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 09:24:22] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+Señales AT guardadas: 2
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 09:50:22] Iniciando ciclo automático...
+Horario: Mercado NYSE abierto — HORARIO ÓPTIMO entrada
+Ejecutando ciclo completo...
+Error P/C SPY: Failed to perform, curl: (6) Could not resolve host: query1.finance.yahoo.com. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Error Polymarket: HTTPSConnectionPool(host='gamma-api.polymarket.com', port=443): Max retries exceeded with url: /markets?active=true&closed=false&limit=200 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e554f70>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Kalshi [KXFED]: HTTPSConnectionPool(host='api.elections.kalshi.com', port=443): Max retries exceeded with url: /trade-api/v2/markets?limit=3&status=open&series_ticker=KXFED (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e48e6a0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error CMF: HTTPSConnectionPool(host='www.cmfchile.cl', port=443): Max retries exceeded with url: /institucional/hechos/hechos_portada.php (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e554be0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Kalshi [KXCPI]: HTTPSConnectionPool(host='api.elections.kalshi.com', port=443): Max retries exceeded with url: /trade-api/v2/markets?limit=3&status=open&series_ticker=KXCPI (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e554c10>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Kalshi [KXGDP]: HTTPSConnectionPool(host='api.elections.kalshi.com', port=443): Max retries exceeded with url: /trade-api/v2/markets?limit=3&status=open&series_ticker=KXGDP (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e52dd60>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error macro USA [^VIX]: 'NoneType' object is not subscriptable
+Error Kalshi [KXBTC]: HTTPSConnectionPool(host='api.elections.kalshi.com', port=443): Max retries exceeded with url: /trade-api/v2/markets?limit=3&status=open&series_ticker=KXBTC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e519100>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error analizando SQM-B.SN: 'NoneType' object is not subscriptable
+Error Kalshi [KXUNEMP]: HTTPSConnectionPool(host='api.elections.kalshi.com', port=443): Max retries exceeded with url: /trade-api/v2/markets?limit=3&status=open&series_ticker=KXUNEMP (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e50a190>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error P/C SQM: Failed to perform, curl: (6) Could not resolve host: query1.finance.yahoo.com. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Error macro USA [^TNX]: 'NoneType' object is not subscriptable
+Error analizando COPEC.SN: 'NoneType' object is not subscriptable
+Error P/C GLD: Failed to perform, curl: (6) Could not resolve host: query1.finance.yahoo.com. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Error macro USA [DX-Y.NYB]: 'NoneType' object is not subscriptable
+Error analizando BCI.SN: 'NoneType' object is not subscriptable
+Error P/C QQQ: Failed to perform, curl: (6) Could not resolve host: query1.finance.yahoo.com. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Error macro USA [GC=F]: 'NoneType' object is not subscriptable
+Error analizando BSANTANDER.SN: 'NoneType' object is not subscriptable
+Error macro USA [CL=F]: 'NoneType' object is not subscriptable
+Error analizando CHILE.SN: 'NoneType' object is not subscriptable
+Error macro USA [HG=F]: 'NoneType' object is not subscriptable
+Error analizando FALABELLA.SN: 'NoneType' object is not subscriptable
+Error macro USA [^GSPC]: 'NoneType' object is not subscriptable
+Error analizando CENCOSUD.SN: 'NoneType' object is not subscriptable
+Error analizando CMPC.SN: 'NoneType' object is not subscriptable
+Error analizando COLBUN.SN: 'NoneType' object is not subscriptable
+Error analizando ENELCHILE.SN: 'NoneType' object is not subscriptable
+  Cargando precios de 54 activos...
+Error analizando ENELAM.SN: 'NoneType' object is not subscriptable
+Error analizando ENTEL.SN: 'NoneType' object is not subscriptable
+Error analizando LTM.SN: 'NoneType' object is not subscriptable
+Error analizando CAP.SN: 'NoneType' object is not subscriptable
+Error analizando CCU.SN: 'NoneType' object is not subscriptable
+Error analizando SQM: 'NoneType' object is not subscriptable
+  Precios disponibles: 0/54
+Error analizando BSAC: 'NoneType' object is not subscriptable
+Error analizando BCH: 'NoneType' object is not subscriptable
+Error analizando LTM: 'NoneType' object is not subscriptable
+Error analizando ECH: 'NoneType' object is not subscriptable
+Error analizando SPY: 'NoneType' object is not subscriptable
+Error analizando TLT: 'NoneType' object is not subscriptable
+Error CMF: HTTPSConnectionPool(host='www.cmfchile.cl', port=443): Max retries exceeded with url: /institucional/hechos/hechos_portada.php (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10e519940>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error analizando GLD: 'NoneType' object is not subscriptable
+Error analizando SLV: 'NoneType' object is not subscriptable
+Error analizando GDX: 'NoneType' object is not subscriptable
+Error analizando GC=F: 'NoneType' object is not subscriptable
+Error analizando HG=F: 'NoneType' object is not subscriptable
+Error analizando CL=F: 'NoneType' object is not subscriptable
+Error analizando BTC-USD: 'NoneType' object is not subscriptable
+Error Google News [SQM litio Chile]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=SQM+litio+Chile&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea684c0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [SQM litio Chile]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=SQM+litio+Chile&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed09400>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [cobre Chile precio]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=cobre+Chile+precio&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea68520>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [cobre Chile precio]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=cobre+Chile+precio&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed095e0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Banco Central Chile tasa]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Banco+Central+Chile+tasa&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea684c0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Exception in thread Thread-6:
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/ibapi/client.py", line 276, in run
+    self.disconnect()
+  File "/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/ibapi/client.py", line 212, in disconnect
+    self.conn.disconnect()
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+Device set to use mps:0
+Error Google News [Banco Central Chile tasa]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Banco+Central+Chile+tasa&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed090d0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [IPSA bolsa Santiago]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=IPSA+bolsa+Santiago&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed09340>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [IPSA bolsa Santiago]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=IPSA+bolsa+Santiago&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed096d0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Codelco produccion]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Codelco+produccion&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed09280>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Codelco produccion]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Codelco+produccion&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea68cd0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Cochilco cobre litio]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Cochilco+cobre+litio&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed095e0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Cochilco cobre litio]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Cochilco+cobre+litio&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea684c0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [economia Chile hoy]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=economia+Chile+hoy&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed096d0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [economia Chile hoy]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=economia+Chile+hoy&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea68220>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [dolar peso chileno]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=dolar+peso+chileno&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed09700>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [dolar peso chileno]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=dolar+peso+chileno&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea68640>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Copec energia Chile]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Copec+energia+Chile&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed09e80>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [Copec energia Chile]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=Copec+energia+Chile&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea68f10>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [mineria Chile royalty]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=mineria+Chile+royalty&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ed09ac0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Error Google News [mineria Chile royalty]: HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=mineria+Chile+royalty&hl=es-419&gl=CL&ceid=CL:es-419 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10ea68640>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+Datos cargados en 3.8s
+Sin señales con convicción >= 70% para guardar
+  IB Error [2151]: La información sobre las posiciones todavía no está disponible.
+  IB Error [2151]: La información sobre las posiciones todavía no está disponible.
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+  Cargando precios de 54 activos...
+  Precios disponibles: 54/54
+  Buscando 13F para SQM...
+  Buscando 13F para ECH...
+Error cargando modelo NLP: cannot import name 'pipeline' from 'transformers' (/Users/felipefernandez/trading_signals/venv/lib/python3.9/site-packages/transformers/__init__.py)
+  Buscando 13F para BSAC...
+  Buscando 13F para BCH...
+  Buscando 13F para LTM...
+  Ejecutando: COMPRAR GLD
+  ❌ COMPRAR GLD — Ya hay posición GLD en IB
+  Ejecutando: COMPRAR BSAC
+  Orden enviada: COMPRAR 29 BSAC @ 68.2500 (ID:6)
+  IB Error [202]: Orden cancelada. Motivo:We cannot accept an order at a limit price at or more ag
+  ❌ COMPRAR BSAC — Orden rechazada por IB: Cancelled
+  Ejecutando: COMPRAR SQM
+  Orden enviada: COMPRAR 88 SQM @ 90.7700 (ID:7)
+  ✅ COMPRAR SQM — confirmado por IB
+✅ 1 apertura(s):
+   COMPRAR SQM | Conv: 78.4%
+❌ 27 señal(es) rechazada(s):
+   TLT: Convicción 77% < umbral 78% (VIX=17.3)
+   BTC-USD: BTC-USD fuera del universo ejecutable (liquidez insuficiente en IB)
+   SLV: Convicción 70.3% < umbral 78% (VIX=17.3)
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:03:18] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:08:20] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:13:24] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:18:27] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:23:30] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:28:32] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:33:36] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:38:38] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:43:41] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:48:44] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:53:47] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 11:58:50] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:03:53] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:08:58] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:14:04] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:19:07] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:24:11] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:29:14] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:34:19] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:39:22] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:44:29] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:49:32] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:54:35] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 12:59:38] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:04:47] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:09:50] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:14:53] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:19:56] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:24:59] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:30:03] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:35:06] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:40:09] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:45:13] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 13:50:18] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:15:33] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:20:46] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:25:49] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:30:53] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:35:56] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:40:59] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:46:02] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:51:05] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 14:56:08] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 15:52:40] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 16:52:25] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 17:49:22] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 18:54:58] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 20:00:51] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 21:06:34] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 22:18:41] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-08 23:23:16] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+  IB Error [2151]: La información sobre las posiciones todavía no está disponible.
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 00:29:22] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 01:29:59] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 02:30:38] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 03:41:23] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 04:32:06] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 05:37:56] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 06:38:32] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 09:07:32] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:22:59] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:28:02] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:33:06] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:38:09] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:43:12] Iniciando ciclo automático...
+Motor PAUSADO — 3 trades consecutivos perdedores
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:48:17] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 11
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:53:29] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 10:58:41] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 11:03:54] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 11:09:12] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 11:14:23] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 11:19:36] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 11:24:50] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 11:30:01] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 12:35:15] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error analizando ECH: 'NoneType' object is not subscriptable
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 13:37:26] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 16:10:52] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error analizando SQM-B.SN: 'NoneType' object is not subscriptable
+Error analizando TLT: 'NoneType' object is not subscriptable
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 17:35:20] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error analizando ECH: 'NoneType' object is not subscriptable
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 18:46:28] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 19:58:29] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 20:59:27] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 22:16:39] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-09 23:38:36] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 00:40:41] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 11
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 01:46:36] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 02:51:14] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 04:01:17] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 05:20:00] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 06:39:28] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error analizando BCI.SN: 'NoneType' object is not subscriptable
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 07:50:40] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 09:19:45] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 10:35:27] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 11:42:00] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Error analizando SQM-B.SN: 'NoneType' object is not subscriptable
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 12:43:21] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:01:35] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 113, in _run_main_logic
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 109, in <module>
+    def _bloque_de(ib_ticker: str) -> str | None:
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:06:47] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for |: 'type' and 'NoneType'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 113, in _run_main_logic
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 109, in <module>
+    def _bloque_de(ib_ticker: str) -> str | None:
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:11:56] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for |: 'type' and 'NoneType'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 113, in _run_main_logic
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 109, in <module>
+    def _bloque_de(ib_ticker: str) -> str | None:
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:16:59] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for |: 'type' and 'NoneType'
+Traceback (most recent call last):
+  File "/Users/felipefernandez/trading_signals/run_ciclo.py", line 113, in _run_main_logic
+    from engine.motor_automatico import ciclo_trading_automatico, get_resumen_motor, es_horario_mercado
+  File "/Users/felipefernandez/trading_signals/engine/motor_automatico.py", line 109, in <module>
+    def _bloque_de(ib_ticker: str) -> str | None:
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:22:02] Iniciando ciclo automático...
+ERROR en ciclo: unsupported operand type(s) for |: 'type' and 'NoneType'
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:27:06] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 2
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:32:25] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:37:38] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:42:49] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:48:02] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 13:53:16] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:16:52] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:32:07] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:37:20] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:42:32] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:47:39] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:52:52] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 14:58:05] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:03:18] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:08:32] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:13:44] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:18:55] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:24:07] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:39:24] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:49:43] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 15:54:54] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 16:00:09] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 16:05:22] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 16:18:37] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 16:34:00] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 16:49:18] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 16:54:31] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:04:49] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:15:01] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:20:15] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:25:27] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:30:39] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:35:51] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:41:05] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:46:17] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:51:31] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 17:56:43] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:01:55] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:07:06] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:22:27] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:42:47] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:48:00] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:53:13] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 18:58:26] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:03:42] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:08:55] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 1
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:14:10] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Señales AT guardadas: 0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:19:22] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Datos cargados en 9.3s
+Señales guardadas en DB: 17
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   SPY: Fuera de horario (ETF): Mercado cerrado (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:25:33] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Datos cargados en 9.5s
+Señales guardadas en DB: 17
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   SPY: Fuera de horario (ETF): Mercado cerrado (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:31:49] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Datos cargados en 7.8s
+Señales guardadas en DB: 18
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   SPY: Fuera de horario (ETF): Mercado cerrado (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:37:42] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Datos cargados en 8.8s
+Señales guardadas en DB: 18
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   SPY: Fuera de horario (ETF): Mercado cerrado (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 19:43:42] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+Datos cargados en 8.1s
+Señales guardadas en DB: 18
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   SPY: Fuera de horario (ETF): Mercado cerrado (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 20:30:11] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Error P/C IWM: 'NoneType' object is not subscriptable
+Error analizando CCU.SN: 'NoneType' object is not subscriptable
+Error Google News [Copec energia Chile]: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=8)
+Datos cargados en 321.8s
+Señales guardadas en DB: 19
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 34 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   FALABELLA: Fuera de horario (Acción Chile): Bolsa Santiago cerrada (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Device set to use mps:0
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 21:52:25] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Datos cargados en 25.5s
+Señales guardadas en DB: 19
+Error analizando ENELAM.SN: 'NoneType' object is not subscriptable
+Error P/C IWM: Failed to perform, curl: (28) Operation timed out after 304103 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Error Kalshi [KXUNEMP]: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+Error Google News [Cochilco cobre litio]: HTTPSConnectionPool(host='news.google.com', port=443): Read timed out. (read timeout=8)
+❌ 34 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   FALABELLA: Fuera de horario (Acción Chile): Bolsa Santiago cerrada (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-10 23:20:32] Iniciando ciclo automático...
+Horario: Mercado cerrado (fin de semana)
+  Buscando 13F para SQM...
+  Buscando 13F para ECH...
+  Buscando 13F para BSAC...
+  Buscando 13F para BCH...
+  Buscando 13F para LTM...
+Datos cargados en 15.5s
+Señales guardadas en DB: 19
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 34 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   BCH: Fuera de horario (Acción USA/Chile): Mercado cerrado (fin de semana)
+   SPY: Fuera de horario (ETF): Mercado cerrado (fin de semana)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-11 00:37:40] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 57 activos...
+  Precios disponibles: 56/57
+Datos cargados en 28.7s
+Señales guardadas en DB: 18
+Error analizando ECH: 'NoneType' object is not subscriptable
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 34 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   BCH: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   FALABELLA: Fuera de horario (Acción Chile): Bolsa Santiago fuera de horario
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-11 02:12:56] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Error analizando GDX: 'NoneType' object is not subscriptable
+Datos cargados en 325.1s
+Señales guardadas en DB: 20
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   IWM: Fuera de horario (ETF): Fuera de horario NYSE (09:30-15:45 ET)
+   BCH: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Posiciones sincronizadas con IB: 0
+
+[2026-05-11 03:31:29] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Datos cargados en 324.9s
+Señales guardadas en DB: 18
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 34 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   BCH: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   IWM: Fuera de horario (ETF): Fuera de horario NYSE (09:30-15:45 ET)
+Sin operaciones en este ciclo — condiciones no cumplidas
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+Posiciones sincronizadas con IB: 0
+
+[2026-05-11 04:56:16] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Datos cargados en 25.6s
+Señales guardadas en DB: 18
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 34 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   BCH: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   IWM: Fuera de horario (ETF): Fuera de horario NYSE (09:30-15:45 ET)
+Sin operaciones en este ciclo — condiciones no cumplidas
+  IB Error [1100]: Conectividad entre IB y TWS ha sido perdida
+  IB Error [1102]: Conectividad entre IB y TWS ha sido restaurada - datos mantenidos: Todos los cen
+Posiciones sincronizadas con IB: 0
+
+[2026-05-11 06:02:23] Iniciando ciclo automático...
+Horario: Fuera de horario NYSE (09:30-15:45 ET)
+  Cargando precios de 57 activos...
+  Precios disponibles: 57/57
+Datos cargados en 21.2s
+Señales guardadas en DB: 18
+Error P/C TLT: Failed to perform, curl: (28) Operation timed out after 302285 milliseconds with 0 bytes received. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Error analizando BTC-USD: 'NoneType' object is not subscriptable
+  Ejecutando: VENDER BTC
+  ❌ VENDER BTC — VENDER BTC bloqueado: no hay posición larga en IB (short no permitido en paper trading para Crypto)
+❌ 35 señal(es) rechazada(s):
+   BSAC: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   BCH: Fuera de horario (Acción USA/Chile): Fuera de horario NYSE (09:30-15:45 ET)
+   IWM: Fuera de horario (ETF): Fuera de horario NYSE (09:30-15:45 ET)
+Sin operaciones en este ciclo — condiciones no cumplidas
+Device set to use mps:0
+Device set to use mps:0
+Device set to use mps:0

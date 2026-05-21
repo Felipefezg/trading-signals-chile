@@ -34,11 +34,21 @@ os.makedirs(os.path.join(BASE_DIR, "data"), exist_ok=True)
 
 # ── STORAGE ───────────────────────────────────────────────────────────────────
 
-def _cargar_outcomes() -> List[dict]:
+def _cargar_outcomes(excluir_artefactos: bool = True) -> List[dict]:
+    """
+    Carga trade_outcomes.json.
+
+    Args:
+        excluir_artefactos: si True (default), omite registros marcados con
+                            _excluir_stats=True (p.ej. bug CLP/USD en BSAC).
+    """
     try:
         if os.path.exists(OUTCOMES_FILE):
             with open(OUTCOMES_FILE) as f:
-                return json.load(f)
+                data = json.load(f)
+            if excluir_artefactos:
+                data = [o for o in data if not o.get("_excluir_stats", False)]
+            return data
     except Exception:
         pass
     return []
@@ -102,10 +112,38 @@ def registrar_cierre_con_contexto(
 
     datos_ap = apertura.get("datos", {}) if apertura else {}
 
+    fecha_cierre_dt   = datetime.now()
+    fecha_apertura_ts = apertura.get("timestamp") if apertura else None
+
+    # Sanity check: pnl_pct absurdo = posible bug CLP/USD
+    # Si |pnl| > 30% y el trade duró < 10 min → marcar automáticamente como artefacto.
+    # Umbral 30%: el máximo teórico en un trade real con TP=4xATR y SL=2xATR es ~20%.
+    es_artefacto = False
+    nota_artefacto = ""
+    if abs(pnl_pct) > 30:
+        duracion_s = 9999
+        if fecha_apertura_ts:
+            try:
+                dt_ap = datetime.fromisoformat(fecha_apertura_ts)
+                duracion_s = (fecha_cierre_dt - dt_ap).total_seconds()
+            except Exception:
+                pass
+        if duracion_s < 600:  # < 10 minutos
+            es_artefacto   = True
+            nota_artefacto = (
+                f"pnl={pnl_pct:+.1f}% en {duracion_s:.0f}s — "
+                f"sospechoso bug CLP/USD (precio_entrada en una moneda, "
+                f"precio_actual en otra). Revisar get_precio_actual({ib_ticker})."
+            )
+            logging.warning(
+                f"[feedback] ARTEFACTO AUTO-DETECTADO: {ib_ticker} "
+                f"pnl={pnl_pct:+.1f}% en {duracion_s:.0f}s → _excluir_stats=True"
+            )
+
     outcome = {
         "ib_ticker":      ib_ticker,
-        "fecha_cierre":   datetime.now().isoformat(),
-        "fecha_apertura": apertura.get("timestamp") if apertura else None,
+        "fecha_cierre":   fecha_cierre_dt.isoformat(),
+        "fecha_apertura": fecha_apertura_ts,
         "accion":         datos_ap.get("accion"),
         "activo":         datos_ap.get("activo", ib_ticker),
         "tipo":           datos_ap.get("tipo"),
@@ -121,7 +159,13 @@ def registrar_cierre_con_contexto(
         "tesis":          datos_ap.get("tesis"),
     }
 
-    outcomes = _cargar_outcomes()
+    if es_artefacto:
+        outcome["_artefacto"]    = f"PNL_ABSURDO_{fecha_cierre_dt.strftime('%Y-%m-%d')}"
+        outcome["_excluir_stats"] = True
+        outcome["_nota"]         = nota_artefacto
+
+    # _cargar_outcomes(excluir_artefactos=False) para no perder el historial completo
+    outcomes = _cargar_outcomes(excluir_artefactos=False)
     outcomes.append(outcome)
     _guardar_outcomes(outcomes)
 
@@ -240,28 +284,34 @@ def actualizar_kelly_live(min_trades: int = 3):
     kelly_sizing.py lee este archivo en runtime — prioridad sobre KELLY_STATS hardcodeado
     cuando n_trades >= min_trades para ese ticker.
 
+    DISEÑO: reconstruye el archivo COMPLETAMENTE desde trade_outcomes.json.
+    NO mergea con datos preexistentes — evita que data contaminada (backtests,
+    versiones anteriores, señales no ejecutadas) persista indefinidamente.
+    Solo los tickers con ≥ min_trades trades REALES confirmados por IB quedan.
+
     No modifica engine/kelly_sizing.py (no manipulación de código fuente en runtime).
     """
     stats = calcular_stats_por_ticker(min_trades=min_trades)
-    if not stats:
-        return
 
     try:
-        # Merge con datos existentes (conservar tickers sin trades suficientes)
-        existing: dict = {}
-        if os.path.exists(KELLY_LIVE_FILE):
-            with open(KELLY_LIVE_FILE) as f:
-                existing = json.load(f)
-
-        # Solo actualizar tickers con datos frescos
-        existing.update(stats)
-        existing["_updated"]  = datetime.now().isoformat()
-        existing["_n_tickers"] = len([k for k in existing if not k.startswith("_")])
+        # Reconstrucción completa — sin merge con datos anteriores.
+        # Si stats está vacío (< min_trades para todos los tickers), escribir
+        # solo metadatos para que kelly_sizing.py use sus KELLY_STATS hardcodeados.
+        nuevo: dict = {}
+        nuevo.update(stats)
+        nuevo["_updated"]           = datetime.now().isoformat()
+        nuevo["_n_tickers"]         = len(stats)
+        nuevo["_min_trades"]        = min_trades
+        nuevo["_source"]            = "trade_outcomes_confirmados_ib"
+        nuevo["_rebuild_completo"]  = True   # flag: este archivo no contiene data histórica ajena
 
         with open(KELLY_LIVE_FILE, "w") as f:
-            json.dump(existing, f, indent=2)
+            json.dump(nuevo, f, indent=2)
 
-        logging.info(f"Kelly live actualizado: {len(stats)} tickers con ≥{min_trades} trades reales")
+        logging.info(
+            f"Kelly live reconstruido desde cero: {len(stats)} tickers "
+            f"con ≥{min_trades} trades reales confirmados IB"
+        )
     except Exception as e:
         logging.error(f"Error actualizando kelly_stats_live: {e}")
 
@@ -378,6 +428,83 @@ def get_training_data_ml() -> List[dict]:
         })
 
     return registros
+
+
+# ── SINCRONIZACIÓN CON SOURCE_HEALTH ─────────────────────────────────────────
+
+SOURCE_HEALTH_FILE = os.path.join(BASE_DIR, "data", "source_health.json")
+
+
+def sincronizar_win_rate_source_health(min_trades: int = 3) -> int:
+    """
+    Escribe el win_rate real (calculado desde trade_outcomes) en source_health.json.
+
+    Esto cierra el loop: source_health trackea disponibilidad de fuentes,
+    feedback_loop trackea su predictive accuracy. Ahora ambos se consolidan.
+
+    Solo actualiza fuentes con >= min_trades trades. Las demás quedan con
+    win_rate=None (sin evidencia suficiente).
+
+    Returns: número de fuentes actualizadas.
+    """
+    stats = calcular_stats_por_fuente(min_trades=min_trades)
+    if not stats:
+        return 0
+
+    try:
+        with open(SOURCE_HEALTH_FILE) as f:
+            sh = json.load(f)
+    except Exception:
+        return 0
+
+    # source_health puede tener estructura {fuentes: {...}} o directamente {fuente: {...}}
+    fuentes_dict = sh.get("fuentes", sh)
+
+    # Mapeo nombre_feedback → nombre_source_health (pueden diferir levemente)
+    nombre_map = {
+        "Análisis Técnico": "analisis_tecnico",
+        "IV Opciones":      "iv_opciones",
+        "Order Flow":       "order_flow",
+        "Correlaciones":    "correlaciones",
+        "Macro USA":        "macro_usa",
+        "ML":               "ml",
+        "MTF":              "mtf",
+        "Mercado Local":    "mercado_local",
+        "13F SEC":          "sec_13f",
+        "Renta Fija":       "renta_fija",
+        "Put/Call":         "put_call",
+        "Fear&Greed":       "fear_greed",
+        "Kalshi":           "kalshi",
+        "Polymarket":       "polymarket",
+        "Noticias":         "noticias",
+        "CMF":              "cmf",
+        "Volumen":          "volumen",
+        "Google Trends":    "google_trends",
+        "IB Data":          "ib_data",
+        "Momentum":         "momentum",
+    }
+
+    actualizadas = 0
+    for s in stats:
+        fuente_feedback = s["fuente"]
+        sh_key = nombre_map.get(fuente_feedback)
+        if not sh_key or sh_key not in fuentes_dict:
+            continue
+        fuentes_dict[sh_key]["win_rate"]   = s["win_rate"]
+        fuentes_dict[sh_key]["rr_real"]    = s["rr"]
+        fuentes_dict[sh_key]["ev_real"]    = s["ev"]
+        fuentes_dict[sh_key]["n_trades_feedback"] = s["n_trades"]
+        fuentes_dict[sh_key]["_feedback_updated"] = datetime.now().isoformat()
+        actualizadas += 1
+
+    try:
+        with open(SOURCE_HEALTH_FILE, "w") as f:
+            json.dump(sh, f, indent=2, default=str)
+        logging.info(f"[feedback] source_health actualizado: {actualizadas} fuentes con win_rate real")
+    except Exception as e:
+        logging.warning(f"[feedback] Error escribiendo source_health: {e}")
+
+    return actualizadas
 
 
 # ── CLI ───────────────────────────────────────────────────────────────────────

@@ -162,6 +162,7 @@ def _run_main_logic():
                 correlaciones=datos.get("correlaciones"),
                 iv_opciones=datos.get("iv_opciones"),
                 ml=datos.get("ml"),
+                momentum=datos.get("momentum"),
             )
             recomendaciones = generar_recomendaciones(activos)
 

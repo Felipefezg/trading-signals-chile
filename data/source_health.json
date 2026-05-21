@@ -3,19 +3,19 @@
     "polymarket": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 4
+      "ultimo_n_items": 3
     },
     "kalshi": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
       "ultimo_n_items": 10
@@ -23,19 +23,19 @@
     "macro_usa": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 9
+      "ultimo_n_items": 15
     },
     "noticias": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
       "ultimo_n_items": 30
@@ -43,9 +43,9 @@
     "fear_greed": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
       "ultimo_n_items": 8
@@ -53,109 +53,109 @@
     "cmf": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 187,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 201,
       "n_vacios": 10,
       "n_errores": 0,
-      "ultimo_n_items": 14
+      "ultimo_n_items": 9
     },
     "put_call": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 3
+      "ultimo_n_items": 6
     },
     "analisis_tecnico": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 13
+      "ultimo_n_items": 14
     },
     "google_trends": {
       "estado": "empty",
-      "consecutivos_vacios": 112,
+      "consecutivos_vacios": 126,
       "ultimo_ok": "2026-05-07T11:35:46.800874",
-      "n_ciclos": 197,
+      "n_ciclos": 211,
       "n_ok": 78,
-      "n_vacios": 119,
+      "n_vacios": 133,
       "n_errores": 0,
       "ultimo_n_items": 0
     },
     "volumen": {
-      "estado": "ok",
-      "consecutivos_vacios": 0,
+      "estado": "empty",
+      "consecutivos_vacios": 14,
       "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
+      "n_ciclos": 211,
       "n_ok": 101,
-      "n_vacios": 96,
+      "n_vacios": 110,
       "n_errores": 0,
-      "ultimo_n_items": 2
+      "ultimo_n_items": 0
     },
     "ib_data": {
       "estado": "empty",
-      "consecutivos_vacios": 197,
-      "ultimo_ok": null,
-      "n_ciclos": 197,
-      "n_ok": 0,
-      "n_vacios": 197,
+      "consecutivos_vacios": 13,
+      "ultimo_ok": "2026-05-08T10:57:56.877588",
+      "n_ciclos": 211,
+      "n_ok": 1,
+      "n_vacios": 210,
       "n_errores": 0,
       "ultimo_n_items": 0
     },
     "order_flow": {
       "estado": "empty",
-      "consecutivos_vacios": 197,
-      "ultimo_ok": null,
-      "n_ciclos": 197,
-      "n_ok": 0,
-      "n_vacios": 197,
+      "consecutivos_vacios": 13,
+      "ultimo_ok": "2026-05-08T10:57:56.877588",
+      "n_ciclos": 211,
+      "n_ok": 1,
+      "n_vacios": 210,
       "n_errores": 0,
       "ultimo_n_items": 0
     },
     "correlaciones": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 19
+      "ultimo_n_items": 42
     },
     "mercado_local": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 10
+      "ultimo_n_items": 14
     },
     "mtf": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 12
+      "ultimo_n_items": 15
     },
     "renta_fija": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
       "ultimo_n_items": 2
@@ -163,9 +163,9 @@
     "sec_13f": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
       "ultimo_n_items": 3
@@ -173,24 +173,34 @@
     "iv_opciones": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 15
+      "ultimo_n_items": 7
     },
     "ml": {
       "estado": "ok",
       "consecutivos_vacios": 0,
-      "ultimo_ok": "2026-05-07T15:44:23.508904",
-      "n_ciclos": 197,
-      "n_ok": 197,
+      "ultimo_ok": "2026-05-11T06:13:56.767259",
+      "n_ciclos": 211,
+      "n_ok": 211,
       "n_vacios": 0,
       "n_errores": 0,
-      "ultimo_n_items": 3
+      "ultimo_n_items": 1
+    },
+    "momentum": {
+      "estado": "empty",
+      "consecutivos_vacios": 11,
+      "ultimo_ok": null,
+      "n_ciclos": 11,
+      "n_ok": 0,
+      "n_vacios": 11,
+      "n_errores": 0,
+      "ultimo_n_items": 0
     }
   },
-  "ciclos_total": 197,
-  "ultimo_ciclo": "2026-05-07T15:44:23.508904"
+  "ciclos_total": 211,
+  "ultimo_ciclo": "2026-05-11T06:13:56.767259"
 }

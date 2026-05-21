@@ -1,647 +1,5 @@
 [
   {
-    "timestamp": "2026-05-07T15:08:40.651364",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER CAP",
-    "datos": {
-      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 67,
-      "riesgo": 3,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico",
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.653825",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
-      "conviccion": 67,
-      "riesgo": 5,
-      "fuentes": [
-        "Polymarket",
-        "Kalshi"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.656139",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR HITES.SN",
-    "datos": {
-      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.658383",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BSAC",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "Correlaciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.660752",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BCH",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "Correlaciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.662931",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SPY",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.665027",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SPY",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.667130",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR COLBUN",
-    "datos": {
-      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.670032",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR PARAUCO",
-    "datos": {
-      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.672163",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR MALLPLAZA",
-    "datos": {
-      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.674264",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR AGUAS-A",
-    "datos": {
-      "razon": "AGUAS-A fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.676363",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR CONCHATORO",
-    "datos": {
-      "razon": "CONCHATORO fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.678623",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR FORUS",
-    "datos": {
-      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.680724",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SMU",
-    "datos": {
-      "razon": "SMU fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.682813",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SALFACORP",
-    "datos": {
-      "razon": "SALFACORP fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.684910",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR PROVIDA",
-    "datos": {
-      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.687303",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR CL",
-    "datos": {
-      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
-      "conviccion": 65,
-      "riesgo": 8,
-      "fuentes": [
-        "Correlaciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.689491",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER FALABELLA",
-    "datos": {
-      "razon": "Convicci\u00f3n 55% < m\u00ednimo 78%",
-      "conviccion": 55,
-      "riesgo": 7,
-      "fuentes": [
-        "ML"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.691515",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER ENELCHILE",
-    "datos": {
-      "razon": "ENELCHILE fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 55,
-      "riesgo": 7,
-      "fuentes": [
-        "ML"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.693529",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER ENTEL",
-    "datos": {
-      "razon": "ENTEL fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 55,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.695511",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER VAPORES",
-    "datos": {
-      "razon": "VAPORES fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 55,
-      "riesgo": 7,
-      "fuentes": [
-        "ML"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.697676",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER MARINSA",
-    "datos": {
-      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 55,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:08:40.699678",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER USD.CLP",
-    "datos": {
-      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 52.3,
-      "riesgo": 3,
-      "fuentes": [
-        "Macro USA",
-        "Polymarket",
-        "Renta Fija",
-        "Kalshi",
-        "Noticias",
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.797993",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR GLD",
-    "datos": {
-      "razon": "Ya existe posici\u00f3n abierta en GLD",
-      "conviccion": 78.0,
-      "riesgo": 1,
-      "fuentes": [
-        "Correlaciones",
-        "IV Opciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.803997",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR GC",
-    "datos": {
-      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
-      "conviccion": 78.0,
-      "riesgo": 3,
-      "fuentes": [
-        "Correlaciones",
-        "IV Opciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.809380",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR LTM",
-    "datos": {
-      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
-      "conviccion": 77,
-      "riesgo": 1,
-      "fuentes": [
-        "Correlaciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.814578",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SQM",
-    "datos": {
-      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
-      "conviccion": 77,
-      "riesgo": 2,
-      "fuentes": [
-        "IV Opciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.818931",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BSAC",
-    "datos": {
-      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
-      "conviccion": 77,
-      "riesgo": 2,
-      "fuentes": [
-        "IV Opciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.823101",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BCH",
-    "datos": {
-      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
-      "conviccion": 77,
-      "riesgo": 2,
-      "fuentes": [
-        "IV Opciones",
-        "13F SEC"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.827908",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR LTM",
-    "datos": {
-      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
-      "conviccion": 77,
-      "riesgo": 2,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico",
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.831519",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR CMPC",
-    "datos": {
-      "razon": "Convicci\u00f3n 77% < m\u00ednimo 78%",
-      "conviccion": 77,
-      "riesgo": 3,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico",
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.835432",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR MALLPLAZA",
-    "datos": {
-      "razon": "MALLPLAZA fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 77,
-      "riesgo": 3,
-      "fuentes": [
-        "IV Opciones",
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.838769",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR HG",
-    "datos": {
-      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
-      "conviccion": 77,
-      "riesgo": 4,
-      "fuentes": [
-        "Correlaciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.842036",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SQM",
-    "datos": {
-      "razon": "Convicci\u00f3n 73.7% < m\u00ednimo 78%",
-      "conviccion": 73.7,
-      "riesgo": 1,
-      "fuentes": [
-        "13F SEC",
-        "Noticias",
-        "IV Opciones",
-        "Macro USA",
-        "Put/Call",
-        "Kalshi"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.844986",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER COPEC",
-    "datos": {
-      "razon": "Convicci\u00f3n 74.1% < m\u00ednimo 78%",
-      "conviccion": 74.1,
-      "riesgo": 2,
-      "fuentes": [
-        "Macro USA",
-        "Kalshi",
-        "Polymarket"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.847954",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR TLT",
-    "datos": {
-      "razon": "Convicci\u00f3n 66.5% < m\u00ednimo 78%",
-      "conviccion": 66.5,
-      "riesgo": 1,
-      "fuentes": [
-        "Correlaciones",
-        "IV Opciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.850793",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER GDX",
-    "datos": {
-      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
-      "conviccion": 67,
-      "riesgo": 1,
-      "fuentes": [
-        "Correlaciones",
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.853576",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER CAP",
-    "datos": {
-      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 67,
-      "riesgo": 3,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico",
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.856069",
-    "tipo": "RECHAZADA",
-    "descripcion": "VENDER BTC",
-    "datos": {
-      "razon": "Convicci\u00f3n 67% < m\u00ednimo 78%",
-      "conviccion": 67,
-      "riesgo": 5,
-      "fuentes": [
-        "Kalshi",
-        "Polymarket"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.858497",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR HITES.SN",
-    "datos": {
-      "razon": "HITES.SN fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.860810",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BSAC",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "Correlaciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.863127",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BCH",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "Correlaciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.865442",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SPY",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.867607",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR BTC-USD",
-    "datos": {
-      "razon": "BTC-USD fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "An\u00e1lisis T\u00e9cnico"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.869764",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR SPY",
-    "datos": {
-      "razon": "Convicci\u00f3n 65% < m\u00ednimo 78%",
-      "conviccion": 65,
-      "riesgo": 5,
-      "fuentes": [
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.871810",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR COLBUN",
-    "datos": {
-      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "IV Opciones"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-05-07T15:20:00.873917",
-    "tipo": "RECHAZADA",
-    "descripcion": "COMPRAR PARAUCO",
-    "datos": {
-      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
-      "conviccion": 65,
-      "riesgo": 7,
-      "fuentes": [
-        "Mercado Local"
-      ]
-    }
-  },
-  {
     "timestamp": "2026-05-07T15:20:00.875922",
     "tipo": "RECHAZADA",
     "descripcion": "COMPRAR AGUAS-A",
@@ -2761,6 +2119,1885 @@
         "Kalshi",
         "Macro USA"
       ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:57:59.426307",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "COMPRAR GLD",
+    "datos": {
+      "activo": "GLD",
+      "ib_ticker": "GLD",
+      "tipo": "ETF",
+      "descripcion": "SPDR Gold ETF",
+      "accion": "COMPRAR",
+      "direccion": "ALZA",
+      "conviccion": 81.7,
+      "score": 8.2,
+      "riesgo": 1,
+      "horizonte": {
+        "label": "Medio plazo",
+        "dias": "1\u20134 semanas",
+        "emoji": "\ud83d\udcc5"
+      },
+      "precio_actual": 433.25,
+      "stop_loss": 425.7,
+      "take_profit": 520.9792,
+      "instrumentos": [
+        {
+          "vehiculo": "ETF directo",
+          "razon": "L\u00edquido, diversificado, sin apalancamiento. Ideal para esta se\u00f1al.",
+          "cuando": "Siempre disponible",
+          "pros": "Simple, bajo costo, sin vencimiento",
+          "contras": "Retorno limitado vs acci\u00f3n directa"
+        }
+      ],
+      "fuentes": [
+        "Correlaciones",
+        "Macro USA",
+        "IV Opciones"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "Macro USA",
+          "se\u00f1al": "Oro sube +0.7% \u2192 apetito riesgo \u2192 GLD ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 0.57
+        },
+        {
+          "fuente": "Correlaciones",
+          "se\u00f1al": "Gold ETF vs SPY: GLD adelantado vs SPY \u2192 convergencia esperada",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 0.9
+        },
+        {
+          "fuente": "IV Opciones",
+          "se\u00f1al": "IV Silver ETF impacta GLD: Skew calls 21.3% \u2014 apuesta alcista fuerte",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 2.4
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "COMPRAR GLD: Oro sube +0.7% \u2192 apetito riesgo \u2192 GLD ALZA | IV: IV Silver ETF impacta GLD: Skew calls 21 | Corr: Gold ETF vs SPY: GLD adelantado vs SPY \u2192",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "sin detalle"
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:04.979241",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "COMPRAR BSAC",
+    "datos": {
+      "activo": "BSANTANDER.SN",
+      "ib_ticker": "BSAC",
+      "tipo": "Acci\u00f3n USA/Chile",
+      "descripcion": "Santander Chile ADR",
+      "accion": "COMPRAR",
+      "direccion": "ALZA",
+      "conviccion": 80.0,
+      "score": 8.0,
+      "riesgo": 1,
+      "horizonte": {
+        "label": "Medio plazo",
+        "dias": "1\u20134 semanas",
+        "emoji": "\ud83d\udcc5"
+      },
+      "precio_actual": 68.18000030517578,
+      "stop_loss": 66.0985,
+      "take_profit": 72.343,
+      "instrumentos": [
+        {
+          "vehiculo": "Acci\u00f3n directa",
+          "razon": "Exposici\u00f3n directa al activo. Recomendado para se\u00f1ales de medio/largo plazo.",
+          "cuando": "Horizonte > 1 semana",
+          "pros": "Sin vencimiento, dividendos, simplicidad",
+          "contras": "Capital completo comprometido"
+        }
+      ],
+      "fuentes": [
+        "Correlaciones",
+        "Order Flow",
+        "IV Opciones"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "Order Flow",
+          "se\u00f1al": "Order Flow Santander Chile: Presi\u00f3n vendedora (84.1% ask)",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 1.5
+        },
+        {
+          "fuente": "IV Opciones",
+          "se\u00f1al": "IV iShares Chile impacta BSANTANDER.SN: Skew calls 5.2% \u2014 sesgo alcista",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Order Flow",
+          "se\u00f1al": "Order Flow Santander Chile ADR: Presi\u00f3n compradora (90.0%)",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.5
+        },
+        {
+          "fuente": "Correlaciones",
+          "se\u00f1al": "Santander Chile ADR vs SPY: BSAC rezagado vs SPY \u2192 convergencia esperada",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.2
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "COMPRAR BSANTANDER.SN: IV: IV iShares Chile impacta BSANTANDER.SN:  | Corr: Santander Chile ADR vs SPY: BSAC rezagad",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "sin detalle"
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:08.968778",
+    "tipo": "APERTURA",
+    "descripcion": "COMPRAR SQM",
+    "datos": {
+      "activo": "SQM",
+      "ib_ticker": "SQM",
+      "tipo": "ETF",
+      "descripcion": "SQM",
+      "accion": "COMPRAR",
+      "direccion": "ALZA",
+      "conviccion": 78.4,
+      "score": 7.8,
+      "riesgo": 1,
+      "horizonte": {
+        "label": "Medio plazo",
+        "dias": "1\u20134 semanas",
+        "emoji": "\ud83d\udcc5"
+      },
+      "precio_actual": 90.68000030517578,
+      "stop_loss": 71.3096,
+      "take_profit": 129.4208,
+      "instrumentos": [
+        {
+          "vehiculo": "ETF directo",
+          "razon": "L\u00edquido, diversificado, sin apalancamiento. Ideal para esta se\u00f1al.",
+          "cuando": "Siempre disponible",
+          "pros": "Simple, bajo costo, sin vencimiento",
+          "contras": "Retorno limitado vs acci\u00f3n directa"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "Noticias",
+        "Correlaciones",
+        "Macro USA",
+        "Kalshi",
+        "IB Data",
+        "IV Opciones",
+        "Put/Call"
+      ],
+      "n_fuentes": 8,
+      "evidencia": [
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will China invades Taiwan before GTA VI?",
+          "prob": 50.5,
+          "direccion": "ALZA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Correlaciones",
+          "se\u00f1al": "SQM ADR vs ECH: SQM rezagado vs ECH \u2192 convergencia esperada",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 0.6
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Will **real GDP** increase by more than 1.5% in Q2 2026?",
+          "prob": 70.0,
+          "direccion": "ALZA",
+          "peso": 4.0
+        },
+        {
+          "fuente": "Macro USA",
+          "se\u00f1al": "Cobre LME sube +2.9% \u2192 correlaci\u00f3n directa \u2192 SQM.SN ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 2.29
+        },
+        {
+          "fuente": "Macro USA",
+          "se\u00f1al": "SP500 sube +0.8% \u2192 correlaci\u00f3n global \u2192 SQM.SN ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 0.63
+        },
+        {
+          "fuente": "Macro USA",
+          "se\u00f1al": "D\u00f3lar baja -0.3% \u2192 commodities en USD \u2192 SQM.SN ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 0.27
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Alianza Codelco-SQM recibe aprobaci\u00f3n clave para explotaci\u00f3n del litio en Salar ",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 1.5
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Alianza Codelco-SQM recibe aprobaci\u00f3n clave para explotaci\u00f3n del litio en Salar ",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 1.5
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Cochilco impulsa la miner\u00eda chilena en agenda internacional de cobre y litio - R",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 1.4
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Codelco y SQM suscriben la mayor asociaci\u00f3n p\u00fablico-privada de Chile al crear No",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 1.5
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Codelco y SQM suscriben la mayor asociaci\u00f3n p\u00fablico-privada de Chile al crear No",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 1.5
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Cochilco destaca recuperaci\u00f3n del mercado del litio al cierre de 2025 - mch.cl",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 0.9
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "Informe de litio Cochilco: Se prev\u00e9n mejores perspectivas de precio para 2025 y ",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 0.9
+        },
+        {
+          "fuente": "Noticias",
+          "se\u00f1al": "S.E. el Presidente de la Rep\u00fablica, Gabriel Boric Font, encabeza hito que marca ",
+          "prob": null,
+          "direccion": "NEUTRAL",
+          "peso": 0.5
+        },
+        {
+          "fuente": "Put/Call",
+          "se\u00f1al": "P/C SQM: 0.014 \u2014 CODICIA EXTREMA \u2014 Contrarian VENTA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 2.7
+        },
+        {
+          "fuente": "IV Opciones",
+          "se\u00f1al": "IV SQM ADR: P/C OI ratio 0.17 \u2014 m\u00e1s calls abiertas",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 2.4
+        },
+        {
+          "fuente": "IB Data",
+          "se\u00f1al": "Precio en zona baja del d\u00eda | Precio 90.78 bajo VWAP 91.14",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 1.0
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "COMPRAR SQM: Polymarket se\u00f1ala alza (50.5%) | Kalshi confirma alza | Cobre LME sube +2.9% \u2192 correlaci\u00f3n directa \u2192 SQM.S | IV: IV SQM ADR: P/C OI ratio 0.17 \u2014 m\u00e1s call",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": true,
+      "orden_id": 7,
+      "cantidad": 88.0,
+      "precio": 90.26,
+      "monto_usd": 7943.0
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.125273",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR TLT",
+    "datos": {
+      "razon": "Convicci\u00f3n 77% < umbral 78% (VIX=17.3)",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.137688",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER BTC-USD",
+    "datos": {
+      "razon": "BTC-USD fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 77,
+      "riesgo": 1,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.147182",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SLV",
+    "datos": {
+      "razon": "Convicci\u00f3n 70.3% < umbral 78% (VIX=17.3)",
+      "conviccion": 70.3,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "Macro USA",
+        "IB Data",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.154992",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCH",
+    "datos": {
+      "razon": "Convicci\u00f3n 69.3% < umbral 78% (VIX=17.3)",
+      "conviccion": 69.3,
+      "riesgo": 2,
+      "fuentes": [
+        "Correlaciones",
+        "Order Flow",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.161639",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER HG",
+    "datos": {
+      "razon": "HG en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 69.0,
+      "riesgo": 3,
+      "fuentes": [
+        "Correlaciones",
+        "An\u00e1lisis T\u00e9cnico",
+        "IB Data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.168520",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER SPY",
+    "datos": {
+      "razon": "Convicci\u00f3n 67% < umbral 78% (VIX=17.3)",
+      "conviccion": 67,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "IV Opciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.173980",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CAP",
+    "datos": {
+      "razon": "CAP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 67,
+      "riesgo": 3,
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.178891",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GC",
+    "datos": {
+      "razon": "GC en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 67,
+      "riesgo": 4,
+      "fuentes": [
+        "Correlaciones",
+        "IB Data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.183521",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER COPEC",
+    "datos": {
+      "razon": "Convicci\u00f3n 65.0% < umbral 78% (VIX=17.3)",
+      "conviccion": 65.0,
+      "riesgo": 2,
+      "fuentes": [
+        "Macro USA",
+        "Kalshi",
+        "Polymarket"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.187646",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR USO",
+    "datos": {
+      "razon": "USO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.191479",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR QQQ",
+    "datos": {
+      "razon": "QQQ fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 5,
+      "fuentes": [
+        "IB Data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.195079",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR BCI",
+    "datos": {
+      "razon": "Convicci\u00f3n 65% < umbral 78% (VIX=17.3)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "CMF"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.198703",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR COLBUN",
+    "datos": {
+      "razon": "COLBUN fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.201760",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR ENELAM",
+    "datos": {
+      "razon": "ENELAM fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.204867",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PARAUCO",
+    "datos": {
+      "razon": "PARAUCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.207739",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR ILC",
+    "datos": {
+      "razon": "ILC fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.210629",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR FORUS",
+    "datos": {
+      "razon": "FORUS fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.213360",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SMU",
+    "datos": {
+      "razon": "SMU fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.216292",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR ECL",
+    "datos": {
+      "razon": "ECL fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.218963",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR SALFACORP",
+    "datos": {
+      "razon": "SALFACORP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.221478",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR PROVIDA",
+    "datos": {
+      "razon": "PROVIDA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.223848",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR CL",
+    "datos": {
+      "razon": "CL en blacklist auto-trading (nocional masivo \u2014 operar manualmente)",
+      "conviccion": 65,
+      "riesgo": 8,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.226192",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER GDX",
+    "datos": {
+      "razon": "Convicci\u00f3n 62.900000000000006% < umbral 78% (VIX=17.3)",
+      "conviccion": 62.900000000000006,
+      "riesgo": 1,
+      "fuentes": [
+        "Correlaciones",
+        "Macro USA"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.228799",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER FALABELLA",
+    "datos": {
+      "razon": "Convicci\u00f3n 55% < umbral 78% (VIX=17.3)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Correlaciones"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.231247",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER CCU",
+    "datos": {
+      "razon": "CCU fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "ML"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.233634",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER BESALCO",
+    "datos": {
+      "razon": "BESALCO fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:10.236303",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER MARINSA",
+    "datos": {
+      "razon": "MARINSA fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 55,
+      "riesgo": 7,
+      "fuentes": [
+        "Mercado Local"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:31.838660",
+    "tipo": "CIERRE",
+    "descripcion": "TRAILING STOP",
+    "datos": {
+      "ticker": "SQM",
+      "razon": "TRAILING STOP",
+      "pnl_pct": -3.53,
+      "ejecutado": true,
+      "confirmado_ib": true,
+      "error": null
+    }
+  },
+  {
+    "timestamp": "2026-05-08T10:59:24.566370",
+    "tipo": "PAUSA",
+    "descripcion": "3 trades consecutivos perdedores",
+    "datos": {}
+  },
+  {
+    "timestamp": "2026-05-10T19:20:30.692978",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82255.9765625,
+      "stop_loss": 83620.133,
+      "take_profit": 79527.6637,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "An\u00e1lisis T\u00e9cnico",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 6.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:26:40.570372",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82277.828125,
+      "stop_loss": 83620.133,
+      "take_profit": 79593.2184,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket",
+        "Kalshi",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.3 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.3 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:32:39.178094",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82227.9765625,
+      "stop_loss": 83620.133,
+      "take_profit": 79443.6637,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "An\u00e1lisis T\u00e9cnico",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.2 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:38:38.981132",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82347.59375,
+      "stop_loss": 83620.133,
+      "take_profit": 79802.5152,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "Kalshi",
+        "An\u00e1lisis T\u00e9cnico",
+        "MTF"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.6 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 5.04
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.6 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T19:44:34.023233",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 90,
+      "score": 9.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 82358.40625,
+      "stop_loss": 83620.133,
+      "take_profit": 79834.9527,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "MTF",
+        "Kalshi",
+        "An\u00e1lisis T\u00e9cnico"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 68.4 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.5
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | AT: Bitcoin: RSI 68.4 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 8.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T20:46:40.796688",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 81613.140625,
+      "stop_loss": 83620.133,
+      "take_profit": 77599.1559,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "MTF"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 3 TF alineados \u2014 BAJA",
+          "prob": null,
+          "direccion": "BAJA",
+          "peso": 4.2
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | MTF: Bitcoin: 3 TF alineados \u2014 BAJA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-10T22:09:06.925277",
+    "tipo": "RECHAZADA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "ticker": "BTC",
+      "activo": "BTC-USD",
+      "accion": "VENDER",
+      "razon": "Convicci\u00f3n 71% < umbral 75% (VIX=17.2)",
+      "conviccion": 71,
+      "n_fuentes": 2,
+      "riesgo": 5,
+      "fuentes": [
+        "Kalshi",
+        "Polymarket"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-10T23:31:56.176841",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 82.0,
+      "score": 8.2,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80604.0,
+      "stop_loss": 83620.133,
+      "take_profit": 74571.734,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "MTF",
+        "Polymarket",
+        "Kalshi"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 2.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T00:54:26.188096",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80806.390625,
+      "stop_loss": 83620.133,
+      "take_profit": 75178.9059,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Polymarket",
+        "MTF",
+        "Kalshi"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.4,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 1.0,
+          "direccion": "BAJA",
+          "peso": 7.35
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 1.0,
+          "direccion": "BAJA",
+          "peso": 7.35
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 1.0,
+          "direccion": "BAJA",
+          "peso": 7.35
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.4%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T00:54:27.360805",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR USD.CLP",
+    "datos": {
+      "ticker": "USD.CLP",
+      "activo": "CLP/USD",
+      "accion": "COMPRAR",
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 65.0,
+      "n_fuentes": 5,
+      "riesgo": 2,
+      "fuentes": [
+        "Polymarket",
+        "Noticias",
+        "Kalshi",
+        "Macro USA",
+        "Renta Fija"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-11T02:29:24.231919",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80957.9296875,
+      "stop_loss": 83620.133,
+      "take_profit": 75633.5231,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "Polymarket",
+        "MTF"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T02:29:25.359685",
+    "tipo": "RECHAZADA",
+    "descripcion": "COMPRAR USD.CLP",
+    "datos": {
+      "ticker": "USD.CLP",
+      "activo": "CLP/USD",
+      "accion": "COMPRAR",
+      "razon": "USD.CLP fuera del universo ejecutable (liquidez insuficiente en IB)",
+      "conviccion": 64.8,
+      "n_fuentes": 5,
+      "riesgo": 3,
+      "fuentes": [
+        "Polymarket",
+        "Renta Fija",
+        "Noticias",
+        "Macro USA",
+        "Kalshi"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-05-11T03:50:13.976452",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 77.4,
+      "score": 7.7,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80740.2421875,
+      "stop_loss": 83620.133,
+      "take_profit": 74980.4606,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "MTF",
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket"
+      ],
+      "n_fuentes": 4,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 61.0 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 3.0
+        },
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | AT: Bitcoin: RSI 61.0 \u2014 zona de sobrecompra | MACD pos | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T05:04:06.656571",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 80790.71875,
+      "stop_loss": 83620.133,
+      "take_profit": 75131.8902,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "Kalshi",
+        "An\u00e1lisis T\u00e9cnico",
+        "Polymarket"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "An\u00e1lisis T\u00e9cnico",
+          "se\u00f1al": "Bitcoin: RSI 61.1 \u2014 zona de sobrecompra | MACD positivo y creciente",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 3.0
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | AT: Bitcoin: RSI 61.1 \u2014 zona de sobrecompra | MACD pos",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
+    }
+  },
+  {
+    "timestamp": "2026-05-11T06:13:59.870857",
+    "tipo": "APERTURA_FALLIDA",
+    "descripcion": "VENDER BTC",
+    "datos": {
+      "activo": "BTC-USD",
+      "ib_ticker": "BTC",
+      "tipo": "Crypto",
+      "descripcion": "Bitcoin (IBKR Crypto)",
+      "accion": "VENDER",
+      "direccion": "BAJA",
+      "conviccion": 80,
+      "score": 8.0,
+      "riesgo": 2,
+      "horizonte": {
+        "label": "Corto plazo",
+        "dias": "1\u20137 d\u00edas",
+        "emoji": "\u26a1"
+      },
+      "precio_actual": 81015.96875,
+      "stop_loss": 83620.133,
+      "take_profit": 75807.6402,
+      "instrumentos": [
+        {
+          "vehiculo": "Crypto directo (IB)",
+          "razon": "Exposici\u00f3n directa. IB permite comprar/vender BTC y ETH.",
+          "cuando": "Siempre disponible en IB",
+          "pros": "Simplicidad, sin derivados",
+          "contras": "Alta volatilidad, sin SL autom\u00e1tico"
+        },
+        {
+          "vehiculo": "ETF de Crypto (IBIT, FBTC)",
+          "razon": "Exposici\u00f3n a BTC v\u00eda ETF. Menor volatilidad operacional.",
+          "cuando": "Si prefieres estructura regulada",
+          "pros": "Liquidez de ETF, sin wallet",
+          "contras": "Tracking error, comisi\u00f3n de gesti\u00f3n"
+        }
+      ],
+      "fuentes": [
+        "MTF",
+        "Polymarket",
+        "Kalshi"
+      ],
+      "n_fuentes": 3,
+      "evidencia": [
+        {
+          "fuente": "MTF",
+          "se\u00f1al": "Bitcoin: 2 TF alineados \u2014 ALZA",
+          "prob": null,
+          "direccion": "ALZA",
+          "peso": 1.8
+        },
+        {
+          "fuente": "Polymarket",
+          "se\u00f1al": "Will bitcoin hit $1m before GTA VI?",
+          "prob": 49.5,
+          "direccion": "BAJA",
+          "peso": 0.01
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        },
+        {
+          "fuente": "Kalshi",
+          "se\u00f1al": "Bitcoin price range  on May 11, 2026?",
+          "prob": 0.0,
+          "direccion": "BAJA",
+          "peso": 7.5
+        }
+      ],
+      "fuentes_excluidas": [],
+      "tesis": "VENDER BTC-USD: Polymarket se\u00f1ala baja (49.5%) | Kalshi confirma baja | MTF: Bitcoin: 2 TF alineados \u2014 ALZA",
+      "boost_persistencia": 0.0,
+      "factor_calidad": 1.0,
+      "confirmado_ib": false,
+      "error_ib": "VENDER BTC bloqueado: no hay posici\u00f3n larga en IB (short no permitido en paper trading para Crypto)"
     }
   }
 ]

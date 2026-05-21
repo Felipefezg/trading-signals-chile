@@ -1,224 +1,212 @@
 {
-  "MALLPLAZA.SN|COMPRAR": {
-    "activo": "MALLPLAZA.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "MARINSA.SN|VENDER": {
-    "activo": "MARINSA.SN",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "LTM.SN|VENDER": {
-    "activo": "LTM.SN",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "MASISA.SN|COMPRAR": {
-    "activo": "MASISA.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "COLBUN.SN|COMPRAR": {
-    "activo": "COLBUN.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "CAP.SN|VENDER": {
-    "activo": "CAP.SN",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "QQQ|VENDER": {
-    "activo": "QQQ",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "HG=F|VENDER": {
-    "activo": "HG=F",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "SLV|VENDER": {
-    "activo": "SLV",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "ENELAM.SN|COMPRAR": {
-    "activo": "ENELAM.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "GLD|VENDER": {
-    "activo": "GLD",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "BTC-USD|VENDER": {
-    "activo": "BTC-USD",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "COPEC.SN|VENDER": {
-    "activo": "COPEC.SN",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "CENCOSUD.SN|VENDER": {
-    "activo": "CENCOSUD.SN",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "FALABELLA.SN|COMPRAR": {
-    "activo": "FALABELLA.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "CLP/USD|COMPRAR": {
-    "activo": "CLP/USD",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
   "SQM|COMPRAR": {
     "activo": "SQM",
     "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "BESALCO.SN|COMPRAR": {
-    "activo": "BESALCO.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "ENTEL.SN|COMPRAR": {
-    "activo": "ENTEL.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "SALFACORP.SN|COMPRAR": {
-    "activo": "SALFACORP.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "TLT|COMPRAR": {
-    "activo": "TLT",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "XLE|VENDER": {
-    "activo": "XLE",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "CL=F|COMPRAR": {
-    "activo": "CL=F",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "BCI.SN|COMPRAR": {
-    "activo": "BCI.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "CCU.SN|VENDER": {
-    "activo": "CCU.SN",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "IWM|COMPRAR": {
-    "activo": "IWM",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "BSANTANDER.SN|COMPRAR": {
-    "activo": "BSANTANDER.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "USO|COMPRAR": {
-    "activo": "USO",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "CHILE.SN|COMPRAR": {
-    "activo": "CHILE.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "SPY|VENDER": {
-    "activo": "SPY",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "FORUS.SN|COMPRAR": {
-    "activo": "FORUS.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "ENELCHILE.SN|COMPRAR": {
-    "activo": "ENELCHILE.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "ECH|COMPRAR": {
-    "activo": "ECH",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "GC=F|VENDER": {
-    "activo": "GC=F",
-    "accion": "VENDER",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
-  },
-  "ILC.SN|COMPRAR": {
-    "activo": "ILC.SN",
-    "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
   },
   "PARAUCO.SN|COMPRAR": {
     "activo": "PARAUCO.SN",
     "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "XLE|COMPRAR": {
+    "activo": "XLE",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "BCI.SN|COMPRAR": {
+    "activo": "BCI.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "ENELCHILE.SN|COMPRAR": {
+    "activo": "ENELCHILE.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "ENTEL.SN|COMPRAR": {
+    "activo": "ENTEL.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "MALLPLAZA.SN|COMPRAR": {
+    "activo": "MALLPLAZA.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
   },
   "PROVIDA.SN|COMPRAR": {
     "activo": "PROVIDA.SN",
     "accion": "COMPRAR",
-    "streak": 2,
-    "last_seen": "2026-05-10T13:32:38.842493"
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "LTM.SN|VENDER": {
+    "activo": "LTM.SN",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "SALFACORP.SN|COMPRAR": {
+    "activo": "SALFACORP.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "CAP.SN|VENDER": {
+    "activo": "CAP.SN",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "CHILE.SN|COMPRAR": {
+    "activo": "CHILE.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "ENELAM.SN|COMPRAR": {
+    "activo": "ENELAM.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "BTC-USD|VENDER": {
+    "activo": "BTC-USD",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "SLV|VENDER": {
+    "activo": "SLV",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "ILC.SN|COMPRAR": {
+    "activo": "ILC.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "HG=F|VENDER": {
+    "activo": "HG=F",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "BSANTANDER.SN|COMPRAR": {
+    "activo": "BSANTANDER.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "FALABELLA.SN|COMPRAR": {
+    "activo": "FALABELLA.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "ECH|COMPRAR": {
+    "activo": "ECH",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "IWM|COMPRAR": {
+    "activo": "IWM",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "SPY|VENDER": {
+    "activo": "SPY",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "QQQ|VENDER": {
+    "activo": "QQQ",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "COLBUN.SN|COMPRAR": {
+    "activo": "COLBUN.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "BESALCO.SN|COMPRAR": {
+    "activo": "BESALCO.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "MASISA.SN|COMPRAR": {
+    "activo": "MASISA.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "COPEC.SN|COMPRAR": {
+    "activo": "COPEC.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "CCU.SN|VENDER": {
+    "activo": "CCU.SN",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "GLD|VENDER": {
+    "activo": "GLD",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "GC=F|VENDER": {
+    "activo": "GC=F",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "TLT|COMPRAR": {
+    "activo": "TLT",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "FORUS.SN|COMPRAR": {
+    "activo": "FORUS.SN",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "CL=F|COMPRAR": {
+    "activo": "CL=F",
+    "accion": "COMPRAR",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "MARINSA.SN|VENDER": {
+    "activo": "MARINSA.SN",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
+  },
+  "CENCOSUD.SN|VENDER": {
+    "activo": "CENCOSUD.SN",
+    "accion": "VENDER",
+    "streak": 1,
+    "last_seen": "2026-05-11T08:15:28.228282"
   }
 }

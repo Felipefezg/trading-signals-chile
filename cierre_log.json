@@ -1514,5 +1514,28 @@
       "orden_id": 5,
       "precio_fill": 92.52
     }
+  },
+  {
+    "timestamp": "2026-05-08T10:58:31.738934",
+    "ticker": "SQM",
+    "razon": "TRAILING STOP",
+    "pnl_pct": -3.53,
+    "precio": 90.5,
+    "confirmado_ib": true,
+    "orden_ib": {
+      "ticker": "SQM",
+      "accion": "SELL",
+      "cantidad": 88.0,
+      "razon": "TRAILING STOP",
+      "precio": 90.68000030517578,
+      "pnl_pct": -3.53,
+      "timestamp": "2026-05-08T10:58:29.275513",
+      "ejecutado": true,
+      "modo": "PAPER",
+      "error": null,
+      "confirmado_ib": true,
+      "orden_id": 8,
+      "precio_fill": 90.5
+    }
   }
 ]

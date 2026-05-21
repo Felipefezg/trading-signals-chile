@@ -26,5 +26,19 @@
     "resultado": "perdedor",
     "confirmado_ib": true,
     "tipo": "ETF"
+  },
+  {
+    "ticker": "SQM",
+    "accion": "COMPRAR",
+    "cantidad": 88.0,
+    "precio_entrada": 90.2714,
+    "precio_salida": 90.5,
+    "pnl_total": 20.12,
+    "pnl_pct": 0.25,
+    "fecha_entrada": "2026-05-08T10:58:08.405497",
+    "fecha_salida": "2026-05-08T10:58:31.731377",
+    "resultado": "ganador",
+    "confirmado_ib": true,
+    "tipo": "ETF"
   }
 ]
