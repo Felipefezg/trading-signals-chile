@@ -194,7 +194,7 @@ def registrar_ciclo_fuentes(datos: dict, errores: Optional[dict] = None) -> dict
 
     # ── Log resumen compacto de ciclo
     logging.info(
-        f"[SourceHealth] ok={len(resumen['ok'])}/19  "
+        f"[SourceHealth] ok={len(resumen['ok'])}/{len(ALL_SOURCES)}  "
         f"empty={resumen['empty'] or '—'}  "
         f"error={resumen['error'] or '—'}"
     )
